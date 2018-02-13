@@ -17,6 +17,6 @@ public class playerControl : MonoBehaviour {
 		input.x = Input.GetAxisRaw("Horizontal") * maxSpeed;
 		input.y = Input.GetAxisRaw("Vertical") * maxSpeed;
 
-		rbody.MovePosition((Vector2)transform.position + input);
+		rbody.AddForce(input);
 	}
 }
