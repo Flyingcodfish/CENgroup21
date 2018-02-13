@@ -7,41 +7,48 @@ public class playerControl : MonoBehaviour {
 	public float maxSpeed;
 
 	private Rigidbody2D rbody;
-	private Vector2 input;
+	public Vector2 input; //only public so it's visible in the inspector; temporary
     private Animator animator;
+	private SpriteRenderer sprite;
 
     void Start (){
-		rbody = gameObject.GetComponent<Rigidbody2D>();
+		rbody = this.GetComponent<Rigidbody2D>();
         animator = this.GetComponent<Animator>();
+		sprite = this.GetComponent<SpriteRenderer>();
     }
 		
+	//occurs at a framerate-independant rate; used for physics 
 	void FixedUpdate () {
-		input.x = Input.GetAxisRaw("Horizontal") * maxSpeed;
-		input.y = Input.GetAxisRaw("Vertical") * maxSpeed;
+		input.x = Input.GetAxisRaw("Horizontal");
+		input.y = Input.GetAxisRaw("Vertical");
 
-		rbody.AddForce(input);
+		input = Vector2.ClampMagnitude(input, 1f); //prevents diagonal movement from being faster than orthogonal movement
+		rbody.AddForce(input * maxSpeed);
 	}
-    // src: http://michaelcummings.net/mathoms/creating-2d-animated-sprites-using-unity-4.3
+    
+	//occurs every frame
+	// src: http://michaelcummings.net/mathoms/creating-2d-animated-sprites-using-unity-4.3
     void Update()
     {
-        var vertical = Input.GetAxis("Vertical");
-        var horizontal = Input.GetAxis("Horizontal");
-
-        if (vertical > 0)
-        {
-            animator.SetInteger("Direction", 2);
-        }
-        else if (vertical < 0)
-        {
-            animator.SetInteger("Direction", 0);
-        }
-        else if (horizontal > 0)
+        if (input.y > 0) 	//up
         {
             animator.SetInteger("Direction", 1);
         }
-        else if (horizontal < 0)
+        else if (input.y < 0) //down
+        {
+            animator.SetInteger("Direction", 2);
+        }
+        else if (input.x < 0) //left
         {
             animator.SetInteger("Direction", 3);
+			sprite.flipX = true;
         }
+        else if (input.x > 0) //right
+        {
+            animator.SetInteger("Direction", 3);
+			sprite.flipX = false;
+        }
+		else
+			animator.SetInteger("Direction", 0); //idle
     }
 }
