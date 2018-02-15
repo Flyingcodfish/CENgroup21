@@ -5,6 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/CDL_test.unity
+  - enabled: 0
+    path: Assets/Scenes/dungeon_test.unity
     guid: 4c1c7bca0878c924fb3aefcddb8d432b
+  - enabled: 1
+    path: Assets/Scenes/beach_test.unity
+    guid: 778f0f111b5f78f429641e2619ffa0a6
