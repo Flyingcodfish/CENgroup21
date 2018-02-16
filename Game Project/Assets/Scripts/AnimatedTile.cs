@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
-// Tile that plays an animated loops of sprites
+// Tile that plays an animated loops of sprites.
 //modified from: https://docs.unity3d.com/ScriptReference/Tilemaps.TileBase.GetTileAnimationData.html
 [CreateAssetMenu(fileName = "New Animated Tile", menuName = "Animated Tile")]
-public class AnimatedTile : TileBase
-{
+public class AnimatedTile : TileBase {
 	//fields required for an animated sprite.
 	//All animation handled by tile renderer and tilemap
 	public Sprite[] m_AnimatedSprites;
@@ -23,8 +22,7 @@ public class AnimatedTile : TileBase
 	public override void GetTileData(Vector3Int location, ITilemap tileMap, ref TileData tileData){
 		if (m_AnimatedSprites != null && m_AnimatedSprites.Length > 0){
 			tileData.sprite = m_AnimatedSprites[0]; //send the first frame of the animation as a "representative."
-													//tilemap palette thumbnail is thus detemrined by this tile.
-													//physics shape is determined by the combined overlay of all tiles, though.
+													//tilemap palette thumbnail and physics shape are thus determined by this tile.
 		}
 		else{
 			tileData.sprite = null;
@@ -38,8 +36,7 @@ public class AnimatedTile : TileBase
 
 	//base method just returns false; we need to provide information to renderer and return true (success)
 	public override bool GetTileAnimationData(Vector3Int location, ITilemap tileMap, ref TileAnimationData tileAnimationData){
-		if (m_AnimatedSprites != null && m_AnimatedSprites.Length > 0)
-		{
+		if (m_AnimatedSprites != null && m_AnimatedSprites.Length > 0){
 			tileAnimationData.animatedSprites = m_AnimatedSprites;
 			tileAnimationData.animationSpeed = m_AnimationSpeed;
 			tileAnimationData.animationStartTime = m_AnimationStartTime;
