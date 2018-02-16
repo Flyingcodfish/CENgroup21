@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerControl : MonoBehaviour {
+public class Player : Actor {
 
 	public float maxSpeed;
 
@@ -11,7 +11,8 @@ public class playerControl : MonoBehaviour {
     private Animator animator;
 	private SpriteRenderer sprite;
 
-    void Start (){
+    public override void Start (){
+		base.Start();
 		rbody = this.GetComponent<Rigidbody2D>();
         animator = this.GetComponent<Animator>();
 		sprite = this.GetComponent<SpriteRenderer>();
@@ -27,7 +28,7 @@ public class playerControl : MonoBehaviour {
 	}
     
 	//occurs every frame
-	// src: http://michaelcummings.net/mathoms/creating-2d-animated-sprites-using-unity-4.3
+	//src: http://michaelcummings.net/mathoms/creating-2d-animated-sprites-using-unity-4.3
     void Update()
     {
         if (input.y > 0) 	//up
@@ -51,4 +52,8 @@ public class playerControl : MonoBehaviour {
 		else
 			animator.SetInteger("Direction", 0); //idle
     }
+
+	public Player() : base(){
+		//pass
+	}
 }
