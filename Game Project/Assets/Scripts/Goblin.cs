@@ -8,11 +8,14 @@ public class Goblin : Actor {
 	public override void Start(){
 		base.Start();
 		target = GameObject.FindWithTag("Player");
+
 	}
 
 
 	public void Update(){
-		//run at player
+		//
+
+
 
 	}
 
