@@ -19,8 +19,12 @@ public class MapConverter {
 	//tilemaps are "flattened" into one: each boolean matrix is logically OR'd together
 	//matrix size is determined by tilemap BoundsInt. Uses largest x and y dimensions among maps.
 	//Cells with tiles are not walkable, and convert to false. Cells without tiles convert to true.
-	public static PathMap TilemapToPathGrid (Tilemap[] maps){
-		if (maps == null) return new PathMap(); //rude
+	public static PathMap TilemapListToPathMap (Tilemap[] maps){
+		if (maps == null || maps.Length == 0){
+			Debug.Log("Error 213jc93c: maps is invalid");
+			return new PathMap(); //TODO: make this return a completely walkable map
+		}
+		Debug.Log("m is of length", maps.Length);
 		//find largest x, y map dimensions
 		BoundsInt outerBounds = new BoundsInt(); //matrix elements are hereby referred to as "nodes"
 		BoundsInt[] bounds = new BoundsInt[maps.Length];
@@ -68,11 +72,11 @@ public class MapConverter {
 		return pathMap;
 	}
 
-	//overloaded option for converting only one map
-	public static PathMap TilemapToPathGrid (Tilemap map){
+	//option for converting only one map
+	public static PathMap TilemapToPathMap (Tilemap map){
 		if (map == null) return new PathMap(); //rude
 		Tilemap[] arr = {map};
-		return TilemapToPathGrid(arr);
+		return TilemapListToPathMap(arr);
 	}
 		
 	//based on bounds information, and matrix position, returns the TileMap location of a matrix tile
@@ -81,8 +85,17 @@ public class MapConverter {
 		return new Vector3Int(pathMap.bounds.xMin + i, pathMap.bounds.yMax - j, 0);
 	}
 
+	public static Vector3Int TileToNode(PathMap pathMap, int x, int y){
+		return new Vector3Int(x - pathMap.bounds.xMin, pathMap.bounds.yMax - y, 0);
+	}
+
 	//finds the world coordinates of a given node. the basis of all AI behavior
 	public static Vector3 NodeToWorld(PathMap pathMap, int i, int j){
 		return pathMap.referenceTilemap.GetCellCenterWorld(NodeToTile(pathMap, i, j));
+	}
+
+	public static Vector3Int WorldToNode(PathMap pathMap, Vector3 pos){
+		Vector3Int point = pathMap.referenceTilemap.WorldToCell(pos);
+		return TileToNode(pathMap, point.x, point.y);
 	}
 }

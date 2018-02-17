@@ -26,6 +26,7 @@ public abstract class Actor : MonoBehaviour {
 	public virtual void die(){
 		Destroy(this);
 	}
+
 }
 
 //makes AI behaviors more flexible/powerful

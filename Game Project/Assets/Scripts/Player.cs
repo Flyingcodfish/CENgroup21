@@ -53,6 +53,8 @@ public class Player : Actor {
 			animator.SetInteger("Direction", 0); //idle
     }
 
+
+
 	public Player() : base(){
 		//pass
 	}
