@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using NesScripts.Controls.PathFind;
+using Pathfinding;
 
 public class Goblin : Actor {
 	//navigation fields
@@ -33,7 +33,7 @@ public class Goblin : Actor {
 
 	public void Update(){
 		//chase player
-		path = navigator.GetPath(bType, transform.position, targetObject.transform.position);
+		path = navigator.GetWorldPath(bType, transform.position, targetObject.transform.position);
 		if (path.Length > 0){
 			moveTarget = path[0]; 
 		}

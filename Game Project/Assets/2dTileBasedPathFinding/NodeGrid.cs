@@ -4,17 +4,19 @@
  *   
  * Author: Ronen Ness.
  * Since: 2016. 
+ * 
+ * Edited by Cody LaFlamme, 2018
 */
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace NesScripts.Controls.PathFind
+namespace Pathfinding
 {
     /// <summary>
     /// A 2D grid of nodes we use to find path.
     /// The grid mark which tiles are walkable and which are not.
     /// </summary>
-    public class PathGrid
+    public class NodeGrid
     {
         // nodes in grid
         public Node[,] nodes;
@@ -33,7 +35,7 @@ namespace NesScripts.Controls.PathFind
         ///     > 1.0f = costy tile.
         ///     < 1.0f = cheap tile.
         /// </param>
-        public PathGrid(int width, int height, float[,] tiles_costs)
+        public NodeGrid(int width, int height, float[,] tiles_costs)
         {
             gridSizeX = width;
             gridSizeY = height;
@@ -44,7 +46,6 @@ namespace NesScripts.Controls.PathFind
                 for (int y = 0; y < height; y++)
                 {
                     nodes[x, y] = new Node(tiles_costs[x, y], x, y);
-
                 }
             }
         }
@@ -55,7 +56,7 @@ namespace NesScripts.Controls.PathFind
         /// <param name="width">PathGrid width.</param>
         /// <param name="height">PathGrid height.</param>
         /// <param name="walkable_tiles">A 2d array, matching width and height, which tiles are walkable and which are not.</param>
-        public PathGrid(int width, int height, bool[,] walkable_tiles)
+        public NodeGrid(int width, int height, bool[,] walkable_tiles)
         {
             gridSizeX = width;
             gridSizeY = height;

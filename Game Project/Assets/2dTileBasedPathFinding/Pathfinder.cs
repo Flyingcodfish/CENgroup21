@@ -2,32 +2,34 @@
  * Provide simple path-finding algorithm with tile prices support.
  * Based on code and tutorial by Sebastian Lague (https://www.youtube.com/channel/UCmtyQOKKmrMVaKuRXz02jbQ).
  *   
- * Author: Ronen Ness.
+ * Author: Ronen Ness
  * Since: 2016. 
+ * 
+ * Edited by Cody LaFlamme, 2018
 */
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace NesScripts.Controls.PathFind
+namespace Pathfinding
 {
     /// <summary>
     /// Main class to find the best path to walk from A to B.
     /// 
     /// Usage example:
-    /// PathGrid grid = new PathGrid(width, height, tiles_costs);
+    /// NodeGrid grid = new NodeGrid(width, height, tiles_costs);
     /// List<Point> path = Pathfinding.FindPath(grid, from, to);
     /// </summary>
-    public class Pathfinding
+    public static class Pathfinder //not related to the tabletop RPG game
     {
         /// <summary>
         /// Find a path between two points.
         /// </summary>
-        /// <param name="grid">PathGrid to search.</param>
+        /// <param name="grid">NodeGrid to search.</param>
         /// <param name="startPos">Starting position.</param>
         /// <param name="targetPos">Ending position.</param>
         /// <param name="ignorePrices">If true, will ignore tile price (how much it "cost" to walk on).</param>
         /// <returns>List of points that represent the path to walk.</returns>
-        public static List<Point> FindPath(PathGrid grid, Point startPos, Point targetPos, bool ignorePrices = false)
+        public static List<Point> FindPath(NodeGrid grid, Point startPos, Point targetPos, bool ignorePrices = false)
         {
             // find path
             List<Node> nodes_path = _ImpFindPath(grid, startPos, targetPos, ignorePrices);
@@ -47,12 +49,12 @@ namespace NesScripts.Controls.PathFind
         /// <summary>
         /// Internal function that implements the path-finding algorithm.
         /// </summary>
-        /// <param name="grid">PathGrid to search.</param>
+        /// <param name="grid">NodeGrid to search.</param>
         /// <param name="startPos">Starting position.</param>
         /// <param name="targetPos">Ending position.</param>
         /// <param name="ignorePrices">If true, will ignore tile price (how much it "cost" to walk on).</param>
         /// <returns>List of grid nodes that represent the path to walk.</returns>
-        private static List<Node> _ImpFindPath(PathGrid grid, Point startPos, Point targetPos, bool ignorePrices = false)
+        private static List<Node> _ImpFindPath(NodeGrid grid, Point startPos, Point targetPos, bool ignorePrices = false)
         {
             Node startNode = grid.nodes[startPos.x, startPos.y];
             Node targetNode = grid.nodes[targetPos.x, targetPos.y];
@@ -106,11 +108,11 @@ namespace NesScripts.Controls.PathFind
         /// <summary>
         /// Retrace path between two points.
         /// </summary>
-        /// <param name="grid">PathGrid to work on.</param>
+        /// <param name="grid">NodeGrid to work on.</param>
         /// <param name="startNode">Starting node.</param>
         /// <param name="endNode">Ending (target) node.</param>
         /// <returns>Retraced path between nodes.</returns>
-        private static List<Node> RetracePath(PathGrid grid, Node startNode, Node endNode)
+        private static List<Node> RetracePath(NodeGrid grid, Node startNode, Node endNode)
         {
             List<Node> path = new List<Node>();
             Node currentNode = endNode;
