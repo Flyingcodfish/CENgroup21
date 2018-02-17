@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using NesScripts.Controls.PathFind;
 
+using System; //for String
 
 public class Navigator : MonoBehaviour {
 
@@ -85,9 +86,16 @@ public class Navigator : MonoBehaviour {
 		pathMaps = new Dictionary<BlockingType, PathMap>();
 		//for each list of blocking layers (assumes BlockingType enum starts at 0)
 		PathMap pMap;
+
+		Debug.Log(blockingMapMatrix[Navigator.BlockingType.walking][0]); //should be walls list
+		Debug.Log(blockingMapMatrix[Navigator.BlockingType.walking][1]); //should be holes list
+		Debug.Log(String.Format("number of types: {0}", blockingMapMatrix.blockingLists.Length));
+
 		for (int t=0; t<blockingMapMatrix.blockingLists.Length; t++){
+			Debug.Log(t);
 			//generate a PathMap
 			pMap = MapConverter.TilemapListToPathMap(blockingMapMatrix[(BlockingType)t].blockingMaps);
+			Debug.Log(String.Format("adding pathMap to dict: {0}", pMap));
 			//add to dictionary, with the current BlockingType as a key
 			pathMaps.Add((BlockingType)t, pMap);
 		}

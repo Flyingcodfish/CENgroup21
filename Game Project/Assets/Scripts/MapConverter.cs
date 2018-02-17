@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using System; //for String
 using UnityEngine.Tilemaps; //for TileMap
 using NesScripts.Controls.PathFind; //for PathGrid
 
@@ -21,15 +22,20 @@ public class MapConverter {
 	//Cells with tiles are not walkable, and convert to false. Cells without tiles convert to true.
 	public static PathMap TilemapListToPathMap (Tilemap[] maps){
 		if (maps == null || maps.Length == 0){
-			Debug.Log("Error 213jc93c: maps is invalid");
+			Debug.Log("Error: maps is invalid");
 			return new PathMap(); //TODO: make this return a completely walkable map
 		}
-		Debug.Log("m is of length", maps.Length);
+		Debug.Log(String.Format("maps is of length: {0}", maps.Length));
 		//find largest x, y map dimensions
 		BoundsInt outerBounds = new BoundsInt(); //matrix elements are hereby referred to as "nodes"
 		BoundsInt[] bounds = new BoundsInt[maps.Length];
 		for (int m = 0; m < maps.Length; m++){
 			bounds[m] = maps[m].cellBounds;
+			Debug.Log(String.Format("bounds {0}: {1}; zMin: {2}, zMax: {3}", m, bounds[m], bounds[m].zMin, bounds[m].zMax));
+
+			outerBounds.zMin = 0;
+			outerBounds.zMax = 1;
+
 			if (bounds[m].xMin < outerBounds.xMin)
 				outerBounds.xMin = bounds[m].xMin;
 
@@ -37,7 +43,7 @@ public class MapConverter {
 				outerBounds.xMax = bounds[m].xMax;
 
 			if (bounds[m].yMin < outerBounds.yMin)
-				outerBounds.yMax = bounds[m].yMin;
+				outerBounds.yMin = bounds[m].yMin;
 
 			if (bounds[m].yMax > outerBounds.yMax)
 				outerBounds.yMax = bounds[m].yMax;
@@ -52,41 +58,46 @@ public class MapConverter {
 		}
 		//for each map:
 		for (int m=0; m<maps.Length; m++){
-			//loop through positions, starting at top left x/y in map
-			for (int x = bounds[m].xMin; x <= bounds[m].xMax; x++){
-				for (int y = bounds[m].yMax; y >= bounds[m].yMin; y--){
+			Debug.Log(outerBounds);
+			//loop through positions, starting at bottom left x/y in map
+			//NOTE: MAX BOUNDS ARE EXCLUSIVE
+			for (int x = bounds[m].xMin; x < bounds[m].xMax; x++){
+				for (int y = bounds[m].yMin; y < bounds[m].yMax; y++){
 					//convert tilemap x/y into node i/j
 					i = x - outerBounds.xMin;
-					j = outerBounds.yMax - y;
+					j = y - outerBounds.yMin;
 					//set matrix bool value: null => true, else false.
 					//each map is added together: if ANY map has a tile in a location, that node is false (ie not walkable)
+					//Debug.Log(String.Format("i: {0}, j: {1}, x: {2}, y: {3}, tile: {4}", i, j, x, y, maps[m].GetTile(new Vector3Int(x,y,0))));
 					boolMat[i,j] = (boolMat[i,j] && (maps[m].GetTile(new Vector3Int(x,y,0)) == null));
 				}//y loop
 			}//x loop
 		}//m loop
+
+		//DEBUG BLOCK
+		for (i=0; i<outerBounds.size.x; i++){
+			for (j=0; j<outerBounds.size.y; j++){
+				Debug.Log(String.Format("i: {0}, j: {1}, tile: {2}", i, j, boolMat[i,j]));
+			}
+		}
+		//END DEBUG
+
 		//return results
-		PathMap pathMap;
+		PathMap pathMap = new PathMap();
 		pathMap.referenceTilemap = maps[0]; //all tilemaps passed in should share a parent grid layout
 		pathMap.bounds = outerBounds;
 		pathMap.pathGrid = new PathGrid(outerBounds.size.x,outerBounds.size.y,boolMat);
 		return pathMap;
 	}
-
-	//option for converting only one map
-	public static PathMap TilemapToPathMap (Tilemap map){
-		if (map == null) return new PathMap(); //rude
-		Tilemap[] arr = {map};
-		return TilemapListToPathMap(arr);
-	}
 		
 	//based on bounds information, and matrix position, returns the TileMap location of a matrix tile
 	//might not ever be used except when getting world coordinates, as in "NodeToWorld"
 	public static Vector3Int NodeToTile(PathMap pathMap, int i, int j){
-		return new Vector3Int(pathMap.bounds.xMin + i, pathMap.bounds.yMax - j, 0);
+		return new Vector3Int(pathMap.bounds.xMin + i, pathMap.bounds.yMin + j, 0);
 	}
 
 	public static Vector3Int TileToNode(PathMap pathMap, int x, int y){
-		return new Vector3Int(x - pathMap.bounds.xMin, pathMap.bounds.yMax - y, 0);
+		return new Vector3Int(x - pathMap.bounds.xMin, y - pathMap.bounds.yMin, 0);
 	}
 
 	//finds the world coordinates of a given node. the basis of all AI behavior
