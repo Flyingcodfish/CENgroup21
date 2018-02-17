@@ -556,32 +556,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4834693833277138, guid: e39ea5ffe39bdaf4d9f681a29acdce22, type: 2}
       propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 61842741084441528, guid: e39ea5ffe39bdaf4d9f681a29acdce22,
-        type: 2}
-      propertyPath: m_Offset.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 61842741084441528, guid: e39ea5ffe39bdaf4d9f681a29acdce22,
-        type: 2}
-      propertyPath: m_Offset.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 61842741084441528, guid: e39ea5ffe39bdaf4d9f681a29acdce22,
-        type: 2}
-      propertyPath: m_EdgeRadius
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 61842741084441528, guid: e39ea5ffe39bdaf4d9f681a29acdce22,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 61842741084441528, guid: e39ea5ffe39bdaf4d9f681a29acdce22,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 0.5
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e39ea5ffe39bdaf4d9f681a29acdce22, type: 2}
@@ -1179,7 +1154,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1134911381
 GameObject:
@@ -45841,7 +45816,7 @@ GameObject:
   - component: {fileID: 1835521022}
   - component: {fileID: 1835521021}
   m_Layer: 0
-  m_Name: Grid
+  m_Name: Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
