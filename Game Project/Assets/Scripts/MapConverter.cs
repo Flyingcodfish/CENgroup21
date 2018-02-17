@@ -25,13 +25,13 @@ public class MapConverter {
 			Debug.Log("Error: maps is invalid");
 			return new PathMap(); //TODO: make this return a completely walkable map
 		}
-		Debug.Log(String.Format("maps is of length: {0}", maps.Length));
+//		Debug.Log(String.Format("maps is of length: {0}", maps.Length));
 		//find largest x, y map dimensions
 		BoundsInt outerBounds = new BoundsInt(); //matrix elements are hereby referred to as "nodes"
 		BoundsInt[] bounds = new BoundsInt[maps.Length];
 		for (int m = 0; m < maps.Length; m++){
 			bounds[m] = maps[m].cellBounds;
-			Debug.Log(String.Format("bounds {0}: {1}; zMin: {2}, zMax: {3}", m, bounds[m], bounds[m].zMin, bounds[m].zMax));
+//			Debug.Log(String.Format("bounds {0}: {1}; zMin: {2}, zMax: {3}", m, bounds[m], bounds[m].zMin, bounds[m].zMax));
 
 			outerBounds.zMin = 0;
 			outerBounds.zMax = 1;
@@ -58,7 +58,7 @@ public class MapConverter {
 		}
 		//for each map:
 		for (int m=0; m<maps.Length; m++){
-			Debug.Log(outerBounds);
+//			Debug.Log(outerBounds);
 			//loop through positions, starting at bottom left x/y in map
 			//NOTE: MAX BOUNDS ARE EXCLUSIVE
 			for (int x = bounds[m].xMin; x < bounds[m].xMax; x++){
@@ -68,19 +68,18 @@ public class MapConverter {
 					j = y - outerBounds.yMin;
 					//set matrix bool value: null => true, else false.
 					//each map is added together: if ANY map has a tile in a location, that node is false (ie not walkable)
-					//Debug.Log(String.Format("i: {0}, j: {1}, x: {2}, y: {3}, tile: {4}", i, j, x, y, maps[m].GetTile(new Vector3Int(x,y,0))));
 					boolMat[i,j] = (boolMat[i,j] && (maps[m].GetTile(new Vector3Int(x,y,0)) == null));
 				}//y loop
 			}//x loop
 		}//m loop
 
-		//DEBUG BLOCK
-		for (i=0; i<outerBounds.size.x; i++){
-			for (j=0; j<outerBounds.size.y; j++){
-				Debug.Log(String.Format("i: {0}, j: {1}, tile: {2}", i, j, boolMat[i,j]));
-			}
-		}
-		//END DEBUG
+//		//DEBUG BLOCK
+//		for (i=0; i<outerBounds.size.x; i++){
+//			for (j=0; j<outerBounds.size.y; j++){
+//				Debug.Log(String.Format("i: {0}, j: {1}, tile: {2}", i, j, boolMat[i,j]));
+//			}
+//		}
+//		//END DEBUG
 
 		//return results
 		PathMap pathMap = new PathMap();
