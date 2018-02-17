@@ -72,27 +72,29 @@ namespace Pathfinding
         }
 
         /// <summary>
-        /// Get all the neighbors of a given tile in the grid.
+        /// Get all the walkable neighbors of a given tile in the grid.
         /// </summary>
-        /// <param name="node">Node to get neighbots for.</param>
+        /// <param name="node">Node to get neighbors for.</param>
         /// <returns>List of node neighbors.</returns>
         public List<Node> GetNeighbours(Node node)
         {
             List<Node> neighbours = new List<Node>();
 
-            for (int x = -1; x <= 1; x++)
-            {
-                for (int y = -1; y <= 1; y++)
-                {
-                    if (x == 0 && y == 0)
-                        continue;
+            for (int x = -1; x <= 1; x++){
+                for (int y = -1; y <= 1; y++){
+					if (x == 0 && y == 0)
+						continue; //tile is looking at itself; cannot be a neighbor
 
-                    int checkX = node.gridX + x;
-                    int checkY = node.gridY + y;
+					int checkX = node.gridX + x;
+					int checkY = node.gridY + y;
 
-                    if (checkX >= 0 && checkX < gridSizeX && checkY >= 0 && checkY < gridSizeY)
-                    {
-                        neighbours.Add(nodes[checkX, checkY]);
+					//can't go diagonal if there's a wall in an adjacent orthogonal position
+					if (x!=0 && y!=0 && !(nodes[checkX, node.gridY].walkable && nodes[node.gridX, checkY].walkable))
+						continue;
+					
+					//ensure x and y are in bounds
+					if (checkX >= 0 && checkX < gridSizeX && checkY >= 0 && checkY < gridSizeY){
+						neighbours.Add(nodes[checkX, checkY]);
                     }
                 }
             }

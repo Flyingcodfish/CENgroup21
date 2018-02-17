@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.Tilemaps;
-using System; //for String.Format
 
 namespace Pathfinding{
 	
@@ -138,7 +137,7 @@ namespace Pathfinding{
 							return lists[t];
 					}
 					//not found. Whine and return garbage.
-					Debug.Log(String.Format("Warning: TilemapList for BlockingType '{0}' not found in Navigator TilemapMatrix.", bType));
+					Debug.Log(System.String.Format("Warning: TilemapList for BlockingType '{0}' not found in Navigator TilemapMatrix.", bType));
 					return new TilemapList();
 				}
 			}

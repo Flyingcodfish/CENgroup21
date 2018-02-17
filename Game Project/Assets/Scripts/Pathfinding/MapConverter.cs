@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using System; //for String
 using UnityEngine.Tilemaps; //for TileMap
 
 namespace Pathfinding{

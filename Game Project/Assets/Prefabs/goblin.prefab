@@ -103,7 +103,7 @@ MonoBehaviour:
   maxHealth: 50
   team: 2
   drag: 100
-  maxSpeed: 200
+  maxSpeed: 300
   bType: 0
   marker: {fileID: 1814082731735932, guid: 3694db8d6b29e9e43960013368ab26e4, type: 2}
 --- !u!120 &120648994221927628
