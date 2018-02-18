@@ -4,7 +4,7 @@ using UnityEngine;
 
 using Pathfinding;
 
-public class Goblin : Actor {
+public class Goblin: Actor {
 	//navigation fields
 	private GameObject targetObject;
 	private Vector3[] path;
@@ -27,7 +27,6 @@ public class Goblin : Actor {
 	}
 
 	public void FixedUpdate(){
-
 		rbody.AddForce((moveTarget-transform.position).normalized * maxSpeed);
 	}
 

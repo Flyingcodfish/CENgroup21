@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace Pathfinding{
-	
+
 	public class Navigator : MonoBehaviour {
 
 		//objects using the navigator have a specific "blocking type" that describes their interaction with different tilemap layers.

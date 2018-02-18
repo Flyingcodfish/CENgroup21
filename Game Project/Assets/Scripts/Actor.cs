@@ -10,11 +10,11 @@ using UnityEngine;
 public abstract class Actor : MonoBehaviour {
 
 	public int maxHealth;
-	protected int currentHealth; //damage must be dealt via message; triggers takeDamage method
+	public int currentHealth{get; protected set;} //outsiders should not set directly, but use takeDamage()
 	public Team team = Team.neutral; //default team
 
-	public float drag;
-	public float maxSpeed;
+	public float drag = 100f;
+	public float maxSpeed = 300f;
 
 	public Rigidbody2D rbody {get; private set;}
 	public Animator animator {get; private set;}
@@ -30,6 +30,8 @@ public abstract class Actor : MonoBehaviour {
 		sprite = this.GetComponent<SpriteRenderer>();
 
 		rbody.drag = this.drag;
+		rbody.gravityScale = 0;
+		rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
 
 		this.ActorStart();
 	}
