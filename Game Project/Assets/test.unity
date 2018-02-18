@@ -189,7 +189,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 38670958}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.07, y: -8.09, z: -10}
+  m_LocalPosition: {x: 3.96, y: -5.75, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -55139,6 +55139,69 @@ Prefab:
       propertyPath: m_TileAssetArray.Array.data[31].m_Data
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8195094280894643602, guid: 35c77af272856fd49a227409cf24e083,
+        type: 2}
+      propertyPath: m_Tiles.Array.data[427].second.m_TileSpriteIndex
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094280894643602, guid: 35c77af272856fd49a227409cf24e083,
+        type: 2}
+      propertyPath: m_Tiles.Array.data[1041].second.m_TileSpriteIndex
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094280894643602, guid: 35c77af272856fd49a227409cf24e083,
+        type: 2}
+      propertyPath: m_Tiles.Array.data[1420].second.m_TileSpriteIndex
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094280894643602, guid: 35c77af272856fd49a227409cf24e083,
+        type: 2}
+      propertyPath: m_TileSpriteArray.Array.data[8].m_RefCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094280894643602, guid: 35c77af272856fd49a227409cf24e083,
+        type: 2}
+      propertyPath: m_TileSpriteArray.Array.data[8].m_Data
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094280894643602, guid: 35c77af272856fd49a227409cf24e083,
+        type: 2}
+      propertyPath: m_TileSpriteArray.Array.data[15].m_RefCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094280894643602, guid: 35c77af272856fd49a227409cf24e083,
+        type: 2}
+      propertyPath: m_TileSpriteArray.Array.data[15].m_Data
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094280894643602, guid: 35c77af272856fd49a227409cf24e083,
+        type: 2}
+      propertyPath: m_TileSpriteArray.Array.data[20].m_RefCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094280894643602, guid: 35c77af272856fd49a227409cf24e083,
+        type: 2}
+      propertyPath: m_TileSpriteArray.Array.data[20].m_Data
+      value: 
+      objectReference: {fileID: 21300272, guid: 2147e0539ce911048a584a8323547e64,
+        type: 3}
+    - target: {fileID: 8195094280894643602, guid: 35c77af272856fd49a227409cf24e083,
+        type: 2}
+      propertyPath: m_TileSpriteArray.Array.data[23].m_Data
+      value: 
+      objectReference: {fileID: 21300242, guid: 2147e0539ce911048a584a8323547e64,
+        type: 3}
+    - target: {fileID: 8195094280894643602, guid: 35c77af272856fd49a227409cf24e083,
+        type: 2}
+      propertyPath: m_TileSpriteArray.Array.data[25].m_RefCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094280894643602, guid: 35c77af272856fd49a227409cf24e083,
+        type: 2}
+      propertyPath: m_TileSpriteArray.Array.data[25].m_Data
+      value: 
+      objectReference: {fileID: 21300172, guid: 2147e0539ce911048a584a8323547e64,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35c77af272856fd49a227409cf24e083, type: 2}
   m_IsPrefabParent: 0
@@ -55151,6 +55214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 630482390}
   - component: {fileID: 630482389}
+  - component: {fileID: 630482391}
   m_Layer: 0
   m_Name: rogue like attack animations_attack down_0
   m_TagString: Untagged
@@ -55209,12 +55273,26 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 630482388}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.36, y: -7.67, z: -1}
+  m_LocalPosition: {x: 5.21, y: -5.23, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &630482391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 630482388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfc376dce891c7d4f9f7a3067bc3a189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 0.1, y: 0.1}
+  shadowMaterial: {fileID: 0}
+  shadowColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1286964504
 GameObject:
   m_ObjectHideFlags: 0
