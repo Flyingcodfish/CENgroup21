@@ -30,6 +30,8 @@ public class Slime : Actor {
 		}
 		else moveVector = Vector3.zero;
 
+
+
 		//animation
 		if (moveVector.magnitude < moveDeadZone){
 			moveVector = Vector3.zero;
@@ -43,6 +45,9 @@ public class Slime : Actor {
 
 	void FixedUpdate(){
 		//forces
-		rbody.AddForce(moveVector * maxSpeed);
+		//only move if slime is both walking and also not in the middle of a bounce
+		if (animator.GetBool("Grounded") == false){
+			rbody.AddForce(moveVector * this.maxSpeed);
+		}
 	}
 }
