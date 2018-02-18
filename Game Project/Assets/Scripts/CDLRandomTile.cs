@@ -4,8 +4,8 @@ using UnityEngine.Tilemaps;
 //Random tile. When placed into a tilemap, will become one random sprite from its array.
 //Useful for large, flat tilemap regions that benefit from some variety.
 //Does not change after placement, probably :^)
-[CreateAssetMenu(fileName = "New Random Tile", menuName = "Random Tile")]
-public class RandomTile : TileBase {
+[CreateAssetMenu(fileName = "New CDL Random Tile", menuName = "CDL Random Tile")]
+public class CDLRandomTile : TileBase {
 
 	//array of choices
 	public Sprite[] sprites;
