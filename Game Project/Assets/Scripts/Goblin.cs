@@ -3,17 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Goblin : Actor {
-	private GameObject target;
-
-	public override void Start(){
-		base.Start();
-		target = GameObject.FindWithTag("Player");
-	}
-
-
-	public void Update(){
-		//run at player
-
-	}
+	//goblin is a test enemy fleshed out in the branch pathfinding_test.
+	//check that to see test enemy behaviors.
 
 }
