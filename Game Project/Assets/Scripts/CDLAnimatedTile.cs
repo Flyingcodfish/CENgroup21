@@ -3,8 +3,8 @@ using UnityEngine.Tilemaps;
 
 // Tile that plays an animated loops of sprites.
 //modified from: https://docs.unity3d.com/ScriptReference/Tilemaps.TileBase.GetTileAnimationData.html
-[CreateAssetMenu(fileName = "New Animated Tile", menuName = "Animated Tile")]
-public class AnimatedTile : TileBase {
+[CreateAssetMenu(fileName = "New CDL Animated Tile", menuName = "CDL Animated Tile")]
+public class CDLAnimatedTile : TileBase {
 	//fields required for an animated sprite.
 	//All animation handled by tile renderer and tilemap
 	public Sprite[] m_AnimatedSprites;
@@ -14,7 +14,7 @@ public class AnimatedTile : TileBase {
 	//add fields to imitate a normal sprite
 	public Color color = Color.white;
 	private Matrix4x4 transform = Matrix4x4.identity;
-	private GameObject gameobject = null;
+	private GameObject gameObject = null;
 	private TileFlags flags = TileFlags.LockColor;
 	public Tile.ColliderType colliderType = Tile.ColliderType.Sprite;
 
@@ -29,7 +29,7 @@ public class AnimatedTile : TileBase {
 		}
 		tileData.color = this.color;
 		tileData.transform = this.transform;
-		tileData.gameObject = this.gameobject;
+		tileData.gameObject = this.gameObject;
 		tileData.flags = this.flags;
 		tileData.colliderType = this.colliderType;
 	}
