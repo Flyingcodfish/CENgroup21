@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class SpriteShadow : MonoBehaviour {
 
-    public Vector3 offset = new Vector3(-0.2f, -0.2f, 0);
+    public Vector3 offset = new Vector3(-0.2f, 0.2f, 0); //nagative y shadows require the shadow be flippedY and moved downwards
 
     private SpriteRenderer sCaster;
     private SpriteRenderer sShadow;
@@ -15,7 +15,7 @@ public class SpriteShadow : MonoBehaviour {
     private Transform tCaster;
     private Transform tShadow;
 
-    public Color shadowColor;
+	public Color shadowColor = new Color(0, 0, 0, 0.5f); //values range from 0f to 1f
 
 
     // Use this for initialization
@@ -31,8 +31,8 @@ public class SpriteShadow : MonoBehaviour {
         sCaster = GetComponent<SpriteRenderer>();
         sShadow = tShadow.gameObject.AddComponent<SpriteRenderer>();
 
-        sShadow.color = shadowColor;
-        sShadow.sortingLayerName = sCaster.sortingLayerName; //probably need to change the sorting layer to "floor"
+		sShadow.color = shadowColor;
+        sShadow.sortingLayerName = sCaster.sortingLayerName; //TODO:probably need to change the sorting layer to "floor"
         sShadow.sortingOrder = sCaster.sortingOrder-1;
         }
 
