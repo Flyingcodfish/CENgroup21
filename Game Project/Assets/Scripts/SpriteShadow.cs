@@ -23,7 +23,7 @@ public class SpriteShadow : MonoBehaviour {
         tCaster = transform;
         tShadow = new GameObject().transform;
         tShadow.parent = tCaster;
-        tShadow.gameObject.name = "shadow";
+		tShadow.gameObject.name = this.name + " (Shadow)";
 
 		tShadow.localScale = Vector3.one;
 		tShadow.localPosition = offset;
@@ -32,7 +32,7 @@ public class SpriteShadow : MonoBehaviour {
         sShadow = tShadow.gameObject.AddComponent<SpriteRenderer>();
 
         sShadow.color = shadowColor;
-        sShadow.sortingLayerName = sCaster.sortingLayerName;
+        sShadow.sortingLayerName = sCaster.sortingLayerName; //probably need to change the sorting layer to "floor"
         sShadow.sortingOrder = sCaster.sortingOrder-1;
         }
 

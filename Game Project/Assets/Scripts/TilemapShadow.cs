@@ -24,11 +24,16 @@ public class TilemapShadow : MonoBehaviour {
 	void Start () {
 		shadowObject = Instantiate(this.gameObject, offset, Quaternion.identity);
 		DestroyImmediate(shadowObject.GetComponent<TilemapShadow>()); //we really don't want recursion here
+		DestroyImmediate(shadowObject.GetComponent<TilemapCollider2D>()); //shadows should not have colliders
+		DestroyImmediate(shadowObject.GetComponent<CompositeCollider2D>()); //be thourough
+		DestroyImmediate(shadowObject.GetComponent<Rigidbody2D>());
+
 		shadowObject.name = this.name + " (Shadow)";
 		shadowObject.transform.parent = this.transform.parent;
 		shadowObject.transform.position = offset;
 
 		shadowRenderer = shadowObject.GetComponent<TilemapRenderer>();
+		//probably need to change the sorting layer to "shadows" or "floor"
 		shadowRenderer.material = shadowMaterial;
 		shadowRenderer.sortingOrder -= 1;
 	}
