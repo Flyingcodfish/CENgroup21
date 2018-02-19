@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//modified from: https://www.youtube.com/watch?v=ft4HUL2bFSQ
 public class DropShadow : MonoBehaviour {
 
-    public Vector2 offset = new Vector2(-3, -3);
+    public Vector3 offset = new Vector3(-0.2f, -0.2f, 0);
 
     private SpriteRenderer sCaster;
     private SpriteRenderer sShadow;
@@ -12,7 +13,6 @@ public class DropShadow : MonoBehaviour {
     private Transform tCaster;
     private Transform tShadow;
 
-    public Material shadowMaterial;
     public Color shadowColor;
 
 
@@ -22,26 +22,23 @@ public class DropShadow : MonoBehaviour {
         tShadow = new GameObject().transform;
         tShadow.parent = tCaster;
         tShadow.gameObject.name = "shadow";
-        //tShadow.localRotation = Quaternion.identity;
+
+		tShadow.localScale = Vector3.one;
+		tShadow.localPosition = offset;
 
         sCaster = GetComponent<SpriteRenderer>();
         sShadow = tShadow.gameObject.AddComponent<SpriteRenderer>();
 
-        sShadow.material = shadowMaterial;
         sShadow.color = shadowColor;
-        //sShadow.sortingLayerName = sCaster.sortingLayerName;
-        //sShadow.sortingOrder = sCaster.sortingOrder-1;
-
+        sShadow.sortingLayerName = sCaster.sortingLayerName;
+        sShadow.sortingOrder = sCaster.sortingOrder-1;
         }
 
 
     void LateUpdate()
     {
-        tShadow.position = new Vector2(tCaster.position.x + offset.x,
-            tCaster.position.y + offset.y);
         sShadow.sprite = sCaster.sprite;
+		sShadow.flipX = sCaster.flipX;
     }
 
-
-    //source: https://www.youtube.com/watch?v=ft4HUL2bFSQ
 }
