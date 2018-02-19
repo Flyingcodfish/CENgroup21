@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //modified from: https://www.youtube.com/watch?v=ft4HUL2bFSQ
-public class DropShadow : MonoBehaviour {
+//[ExecuteInEditMode]
+[RequireComponent(typeof(SpriteRenderer))]
+public class SpriteShadow : MonoBehaviour {
 
     public Vector3 offset = new Vector3(-0.2f, -0.2f, 0);
 
