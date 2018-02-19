@@ -20,20 +20,15 @@ namespace Pathfinding{
 		//final matrix size is determined by tilemaps' bounds. Needs to expand to include all maps' tiles.
 		//tilemaps are "flattened" into one; each boolean matrix is logically AND'd together:
 		//Cells with tiles are not walkable, and convert to false. Cells without tiles convert to true.
-		public static PathMap TilemapArrToPathMap (Tilemap[] maps){
-			if (maps == null || maps.Length == 0){
-				Debug.Log("Error: maps is invalid");
+		public static PathMap TilemapArrToPathMap (Tilemap[] maps, BoundsInt outerBounds){
+			if (maps == null || maps.Length == 0 || outerBounds == null){
+				Debug.Log("Error: Navigator was given invalid references. Add maps to it in the Inspector.");
 				return new PathMap(); //TODO: make this return a completely walkable map
 			}
-			//find largest x, y map dimensions
-			BoundsInt outerBounds = new BoundsInt(); //matrix elements are hereby referred to as "nodes"
+			//outerBounds should be big enough to overlay EVERY tilemap, including the background
 			BoundsInt[] bounds = new BoundsInt[maps.Length];
 			for (int m = 0; m < maps.Length; m++){
 				bounds[m] = maps[m].cellBounds;
-
-				outerBounds.zMin = 0;
-				outerBounds.zMax = 1;
-
 				if (bounds[m].xMin < outerBounds.xMin)
 					outerBounds.xMin = bounds[m].xMin;
 
