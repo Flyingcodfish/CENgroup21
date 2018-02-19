@@ -32,8 +32,7 @@ public class SpriteShadow : MonoBehaviour {
         sShadow = tShadow.gameObject.AddComponent<SpriteRenderer>();
 
 		sShadow.color = shadowColor;
-        sShadow.sortingLayerName = sCaster.sortingLayerName; //TODO:probably need to change the sorting layer to "floor"
-        sShadow.sortingOrder = sCaster.sortingOrder-1;
+		sShadow.sortingLayerName = "Shadows";
         }
 
 

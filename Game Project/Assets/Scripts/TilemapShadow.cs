@@ -41,6 +41,6 @@ public class TilemapShadow : MonoBehaviour {
 		}
 
 		shadowRenderer.material = shadowMaterial;
-		shadowRenderer.sortingOrder -= 1;
+		shadowRenderer.sortingLayerName = "Shadows";
 	}
 }
