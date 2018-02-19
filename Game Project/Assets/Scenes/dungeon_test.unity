@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 284313318}
   - component: {fileID: 284313317}
   - component: {fileID: 284313316}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: holes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,9 +177,9 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -6
+  m_SortingLayerID: -91088917
+  m_SortingLayer: -2
+  m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
@@ -1177,9 +1177,9 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -8
+  m_SortingLayerID: -91088917
+  m_SortingLayer: -2
+  m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
@@ -2135,7 +2135,7 @@ GameObject:
   - component: {fileID: 939110774}
   - component: {fileID: 939110773}
   m_Layer: 0
-  m_Name: upper decoration
+  m_Name: decoration
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2185,9 +2185,9 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -5
+  m_SortingLayerID: -91088917
+  m_SortingLayer: -2
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
@@ -2627,7 +2627,7 @@ GameObject:
   - component: {fileID: 1937573758}
   - component: {fileID: 1937573757}
   m_Layer: 0
-  m_Name: lower decoration
+  m_Name: background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2677,9 +2677,9 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -9
+  m_SortingLayerID: -1846807953
+  m_SortingLayer: -3
+  m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
@@ -13786,7 +13786,7 @@ GameObject:
   - component: {fileID: 1980573016}
   - component: {fileID: 1980573015}
   - component: {fileID: 1980573014}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13839,7 +13839,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -7
+  m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
@@ -13996,23 +13996,9 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 1980573016}
-    m_ColliderPaths:
-    - - X: -30000000
-        Y: 40000000
-      - X: -30000000
-        Y: 20000000
-      - X: 10000000
-        Y: 20000000
-      - X: 10000000
-        Y: 40000000
+  m_ColliderPaths: []
   m_CompositePaths:
-    m_Paths:
-    - - {x: 1, y: 4}
-      - {x: -3, y: 4}
-      - {x: -3, y: 2}
-      - {x: 1, y: 2}
+    m_Paths: []
   m_VertexDistance: 0.0005
 --- !u!50 &1980573015
 Rigidbody2D:
@@ -14045,5 +14031,5 @@ TilemapCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 1
+  m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

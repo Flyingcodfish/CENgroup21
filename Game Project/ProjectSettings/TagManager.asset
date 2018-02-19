@@ -14,8 +14,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Walls
+  - Holes
   - 
   - 
   - 
@@ -39,6 +39,21 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 2448159343
+    locked: 0
+  - name: Floor
+    uniqueID: 4203878379
+    locked: 0
+  - name: Shadows
+    uniqueID: 2375222241
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Elevated
+    uniqueID: 2939269817
+    locked: 0
+  - name: Foreground
+    uniqueID: 2473373715
     locked: 0
