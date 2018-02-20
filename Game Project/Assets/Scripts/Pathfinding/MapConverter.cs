@@ -21,7 +21,7 @@ namespace Pathfinding{
 		//tilemaps are "flattened" into one; each boolean matrix is logically AND'd together:
 		//Cells with tiles are not walkable, and convert to false. Cells without tiles convert to true.
 		public static PathMap TilemapArrToPathMap (Tilemap[] maps, BoundsInt outerBounds){
-			if (maps == null || maps.Length == 0 || outerBounds == null){
+			if (maps == null || maps.Length == 0){
 				Debug.Log("Error: Navigator was given invalid references. Add maps to it in the Inspector.");
 				return new PathMap(); //TODO: make this return a completely walkable map
 			}
