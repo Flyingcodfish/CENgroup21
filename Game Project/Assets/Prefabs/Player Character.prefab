@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 114615287665525474}
   m_Layer: 0
   m_Name: Player Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,7 +132,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &61729896540421648
 BoxCollider2D:
@@ -195,9 +195,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
-  team: 0
+  team: 1
+  drag: 100
   maxSpeed: 500
-  input: {x: 0, y: 0}
+  inVector: {x: 0, y: 0}
 --- !u!114 &114615287665525474
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -3,10 +3,12 @@
  * Based on code and tutorial by Sebastian Lague (https://www.youtube.com/channel/UCmtyQOKKmrMVaKuRXz02jbQ).
  *   
  * Author: Ronen Ness.
- * Since: 2016. 
+ * Since: 2016.
+ * 
+ * Edited by Cody LaFlamme, 2018
 */
 
-namespace NesScripts.Controls.PathFind
+namespace Pathfinding
 {
     
     /// <summary>

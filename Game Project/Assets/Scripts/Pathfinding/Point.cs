@@ -3,10 +3,12 @@
  * Based on code and tutorial by Sebastian Lague (https://www.youtube.com/channel/UCmtyQOKKmrMVaKuRXz02jbQ).
  *   
  * Author: Ronen Ness.
- * Since: 2016. 
+ * Since: 2016.
+ * 
+ * Edited by Cody LaFlamme, 2018
 */
 
-namespace NesScripts.Controls.PathFind
+namespace Pathfinding
 {
     /// <summary>
     /// A 2d point on the grid
@@ -60,7 +62,7 @@ namespace NesScripts.Controls.PathFind
         public override bool Equals(System.Object obj)
         {
             // check type
-            if (!(obj.GetType() == typeof(PathFind.Point)))
+            if (!(obj.GetType() == typeof(Pathfinding.Point)))
                  return false;
 
             // check if other is null
