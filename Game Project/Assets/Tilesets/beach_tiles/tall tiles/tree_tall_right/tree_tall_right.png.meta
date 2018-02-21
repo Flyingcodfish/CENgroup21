@@ -44,12 +44,12 @@ TextureImporter:
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 9
-  spritePivot: {x: 0.5, y: 0.2}
+  spritePivot: {x: 0.5, y: 0.25}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 16
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: 0.49
+  spriteTessellationDetail: 0.5
   textureType: 8
   textureShape: 1
   maxTextureSizeSet: 0
@@ -86,9 +86,9 @@ TextureImporter:
       - {x: 22, y: 2}
       - {x: 23, y: 12}
       - {x: 29, y: 14}
-      - {x: 36, y: 18}
+      - {x: 36, y: 20}
       - {x: 36, y: 22}
-      - {x: 33, y: 28}
+      - {x: 32, y: 26}
       - {x: 30, y: 33}
       - {x: 25, y: 37}
       - {x: 14, y: 37}
@@ -115,7 +115,13 @@ TextureImporter:
       - {x: 9, y: -37}
       - {x: 9, y: -32}
       - {x: 4, y: -14}
-    physicsShape: []
+    physicsShape:
+    - - {x: -1.2354546, y: -29.070126}
+      - {x: -7.5432434, y: -31.658573}
+      - {x: -6.7804756, y: -38.43905}
+      - {x: 0.6009102, y: -40.543247}
+      - {x: 7.057663, y: -38.29489}
+      - {x: 8.0288315, y: -31.676277}
   spritePackingTag: 
   userData: 
   assetBundleName: 

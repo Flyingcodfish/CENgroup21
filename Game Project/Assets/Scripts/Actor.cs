@@ -36,10 +36,6 @@ public abstract class Actor : MonoBehaviour {
 		this.ActorStart();
 	}
 
-	public int getHealth(){
-		return currentHealth;
-	}
-
 	public virtual void takeDamage(int amount){
 		currentHealth -= amount;
 		if (currentHealth <= 0 ) die();

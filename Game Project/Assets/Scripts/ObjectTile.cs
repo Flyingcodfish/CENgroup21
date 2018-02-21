@@ -11,7 +11,7 @@ public class ObjectTile : TileBase {
 
 	//gameObject to spawn
 	public GameObject spawnedPrefab;
-	public Vector3 offset = new Vector3(0.5f, 0.5f, 0);
+	public Vector3 offset = new Vector3(0.5f, 0.5f, 0); //(0.5, 0.5, 0) moves object to center of tile
 
 	//add fields to imitate a normal tile
 	public Color color = Color.white;
