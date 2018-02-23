@@ -57,10 +57,6 @@ namespace Pathfinding{
 			Vector3Int pB_vec = MapConverter.WorldToNode(pMap,pointB);
 			Point pA = new Point(pA_vec.x, pA_vec.y);
 			Point pB = new Point(pB_vec.x, pB_vec.y);
-			//TODO this might be the worst code I've ever written. This is worse than VHDL type conversion.
-			//This is worse than using 4 different graphics adapters in series
-			//This is like putting a box into another box because the bigger box has a nice little rectanlge for you to tape the shipping label onto
-			//I'm tired and this will be changed soon
 			List<Point> pointList = Pathfinder.FindPath(pMap.nodeGrid, pA, pB);
 
 			Vector3[] coordsList = new Vector3[pointList.Count];
@@ -70,6 +66,35 @@ namespace Pathfinding{
 			});
 			return coordsList;
 		}
+
+
+		//HELPER METHODS: used in local obstacle avoidance
+
+		//based on the input blocking type, returns a layer mask used in collision detection.
+		public static LayerMask GetMaskFromBlockingType(BlockingType bType){
+			switch (bType){
+			case BlockingType.walking:
+				return LayerMask.GetMask("Walking", "Walls", "Holes");
+
+			case BlockingType.flying:
+				return LayerMask.GetMask("Walking", "Walls");
+			
+			default:
+			case BlockingType.ghost:
+				return LayerMask.GetMask("Nothing");
+
+			}
+		}
+
+
+		//returns a ContactFilter  from a blocking type. For ultimate convenience
+		public static ContactFilter2D GetFilterFromBlockingType(BlockingType bType){
+			ContactFilter2D cFilter = new ContactFilter2D();
+			cFilter.layerMask = GetMaskFromBlockingType(bType);
+			cFilter.useLayerMask = true;
+			return cFilter;
+		}
+
 
 		/*
 		 * ==== INITIALIZATION ====
@@ -144,5 +169,7 @@ namespace Pathfinding{
 				}
 			}
 		}
-	}
+
+	}//end Navigator class
+
 }
