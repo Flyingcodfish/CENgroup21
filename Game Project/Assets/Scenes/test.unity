@@ -114,6 +114,26 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &552897171 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1539297574017718, guid: 919973eafd18e6b44b8b0515660f3f02,
+    type: 2}
+  m_PrefabInternal: {fileID: 699084424}
+--- !u!114 &552897172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 552897171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f20ac7d2e0176114e9c24b0e4fd8898d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 50
+  team: 1
+  maxSpeed: 500
+  input: {x: 0, y: 0}
 --- !u!1001 &699084424
 Prefab:
   m_ObjectHideFlags: 0
@@ -153,7 +173,32 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 212455947933360400, guid: 919973eafd18e6b44b8b0515660f3f02,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300002, guid: 5ef55ebb0cd1bcd4ea7f157678265c1f,
+        type: 3}
+    - target: {fileID: 4388274420808084, guid: 919973eafd18e6b44b8b0515660f3f02, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4388274420808084, guid: 919973eafd18e6b44b8b0515660f3f02, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 95916619367916440, guid: 919973eafd18e6b44b8b0515660f3f02,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5fc59782dc8edd64fa60929908246e01, type: 2}
+    - target: {fileID: 114615287665525474, guid: 919973eafd18e6b44b8b0515660f3f02,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114092264142251312, guid: 919973eafd18e6b44b8b0515660f3f02, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 919973eafd18e6b44b8b0515660f3f02, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1286964504
