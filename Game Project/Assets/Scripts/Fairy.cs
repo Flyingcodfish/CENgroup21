@@ -6,7 +6,7 @@ using Pathfinding;
 
 public class Fairy : Actor {
 	//navigation fields
-	public bool pathFound;
+	bool pathFound;
 	private Navigator navigator;
 	public Navigator.BlockingType bType = Navigator.BlockingType.flying;
 	private Vector3[] path;
@@ -15,9 +15,8 @@ public class Fairy : Actor {
 	public float avoidDistance = 1.5f;
 	Vector3 avoidVector;
 	Vector2 hitDirection;
-	Vector2 directMove;
 	int maxHits = 1;
-	public int numHits;
+	int numHits;
 	private RaycastHit2D[] castHits;
 	ContactFilter2D obstacleFilter; //sees terrain AND actors
 	ContactFilter2D tileFilter; //only sees terrain
@@ -26,11 +25,12 @@ public class Fairy : Actor {
 	//targeting fields
 	private GameObject targetObject;
 	private Vector3 moveVector;
+	private Vector2 directMove;
 	public float moveDeadZone = 0.1f;
 
 	//attack behavior fields
-	public float hoverDistance = 5f;
-	public float attackRange = 5f;
+	public float hoverDistance = 4f;
+	public float attackRange = 10f;
 	public Projectile bullet_object;
 	public float bulletSpeed = 0.15f;
 	public GameObject flash_object;
@@ -40,9 +40,8 @@ public class Fairy : Actor {
 		targetObject = GameObject.FindWithTag("Player");
 		navigator = GameObject.FindWithTag("Navigator").GetComponent<Navigator>();
 
-		obstacleFilter = Navigator.GetFilterFromBlockingType(bType);
-		tileFilter = Navigator.GetFilterFromBlockingType(bType);//TODO: methodology is a little inconsistent here
-		tileFilter.layerMask = LayerMask.GetMask("Walls");
+		obstacleFilter = Navigator.GetFilterFromBlockingType(bType, true);
+		tileFilter = Navigator.GetFilterFromBlockingType(bType, false);
 		castHits = new RaycastHit2D[maxHits];
 
 		StartCoroutine(AI_Tick());
@@ -70,7 +69,7 @@ public class Fairy : Actor {
 
 	void FixedUpdate(){
 		//add forces to entity's rigidbody
-		rbody.AddForce(moveVector.normalized * this.maxSpeed);
+		rbody.AddForce(Vector3.ClampMagnitude(moveVector, 1f) * this.maxSpeed);
 	}
 
 	//fires bullet at target
@@ -96,14 +95,27 @@ public class Fairy : Actor {
 	//only need to perform pathfinding every ~0.1 second; less CPU intensive
 	IEnumerator AI_Tick(){
 		while (true){
-			for (int i=0; i< 15; i++){
+			//for loop used to attack every 15 ticks: see bottom of loop
+			for (int i=0; i< 20; i++){
 				pathFound = false;
-
-				//check if we can run straight towards player
 				directMove = targetObject.transform.position - transform.position;
-				if (0 == castCollider.Cast(directMove, tileFilter, castHits, directMove.magnitude)){
-					moveVector = directMove; 
+
+				//if within "hover range" of target
+				if (directMove.magnitude <= hoverDistance){
+					//no need to get closer, circle around target
+					avoidVector = new Vector2(directMove.y, -1*directMove.x); //calculate normal to hitVector
+					moveVector = avoidVector.normalized + moveVector.normalized;
+
 					pathFound = true;
+					moveVector = moveVector.normalized * 0.5f; //move slower than normal, for funsies
+				}
+
+				//check if we can (and have to) run straight towards player
+				if (pathFound == false){
+					if (0 == castCollider.Cast(directMove, tileFilter, castHits, directMove.magnitude)){
+						moveVector = directMove; 
+						pathFound = true;
+					}
 				}
 
 				//pathfinding; only if we must
@@ -113,6 +125,7 @@ public class Fairy : Actor {
 						moveVector = (path[0]-transform.position);
 					}
 					else moveVector = Vector3.zero;
+					pathFound = true;
 				}
 
 				//avoid local obstacles
@@ -130,8 +143,10 @@ public class Fairy : Actor {
 				}
 				yield return new WaitForSeconds(0.1f);
 			}
-			//every 1.5 seconds
-			StartCoroutine(FireShot());
+			//every 2 seconds
+			if (directMove.magnitude <= attackRange){
+				StartCoroutine(FireShot());
+			}
 		}
 	}
 }
