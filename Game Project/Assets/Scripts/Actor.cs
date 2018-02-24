@@ -36,13 +36,13 @@ public abstract class Actor : MonoBehaviour {
 		this.ActorStart();
 	}
 
-	public virtual void takeDamage(int amount){
+	public virtual void TakeDamage(int amount){
 		currentHealth -= amount;
-		if (currentHealth <= 0 ) die();
+		if (currentHealth <= 0 ) this.Die();
 	}
 
-	public virtual void die(){
-		Destroy(this);
+	public virtual void Die(){
+		Destroy(this.gameObject);
 	}
 
 	//must be overridden in inherited classes
@@ -52,7 +52,7 @@ public abstract class Actor : MonoBehaviour {
 
 
 
-//makes AI behaviors more flexible/powerful
+//makes AI behaviors more flexible; allows projectiles to ignore friendlies
 public enum Team {
 	neutral, player, enemy, special
 };
