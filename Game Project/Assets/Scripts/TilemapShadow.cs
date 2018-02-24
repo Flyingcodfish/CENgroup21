@@ -33,7 +33,6 @@ public class TilemapShadow : MonoBehaviour {
 		shadowObject.transform.position = offset;
 
 		shadowRenderer = shadowObject.GetComponent<TilemapRenderer>();
-		//TODO: probably need to change the sorting layer to "shadows" or "floor"
 		if (shadowMaterial == null){
 			shadowMaterial = new Material(Shader.Find("Sprites/Default"));
 			shadowMaterial.color = new Color(0, 0, 0, 0.5f);
