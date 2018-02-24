@@ -10,6 +10,9 @@ public class PlayerControl : Actor {
 	public Vector2 input; //only public so it's visible in the inspector; temporary
     private Animator animator;
 	private SpriteRenderer sprite;
+    private float attackTime = 0.3f; // how long it takes to attack
+    private float attackTimer; // time remaining till the attack ends
+    private bool attacking = false;
 
     public override void Start (){
 		base.Start();
@@ -59,6 +62,23 @@ public class PlayerControl : Actor {
             else if (dir == 3) // idle left
                 animator.SetInteger("Direction", 7); 
         }
+        if(Input.GetKeyDown("j") && !attacking)
+        {
+            attacking = true;
+            attackTimer = attackTime;
+        }
+        if (attacking)
+        {
+            if(attackTimer > 0)
+            {
+                attackTimer -= Time.deltaTime;
+            }
+            else
+            {
+                attacking = false; 
+            }
+        }
+        animator.SetBool("Attacking", attacking);
     }
 
 	public PlayerControl() : base(){
