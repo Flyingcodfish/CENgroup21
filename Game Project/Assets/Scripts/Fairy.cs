@@ -50,7 +50,7 @@ public class Fairy : Actor {
 
 		//check if we can run straight towards player
 		directMove = targetObject.transform.position - transform.position;
-		if (0 == castCollider.Cast(directMove, tileFilter, null, directMove.magnitude)){
+		if (0 == castCollider.Cast(directMove, tileFilter, castHits, directMove.magnitude)){
 			moveVector = directMove; 
 			pathFound = true;
 		}
