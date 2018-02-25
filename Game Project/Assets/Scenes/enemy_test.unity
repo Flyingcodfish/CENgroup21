@@ -726,16 +726,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114881781839612842, guid: fc604589873597e4f982ef94de17763b,
-        type: 2}
-      propertyPath: moveDeadZone
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114881781839612842, guid: fc604589873597e4f982ef94de17763b,
-        type: 2}
-      propertyPath: hoverDistance
-      value: 1.2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc604589873597e4f982ef94de17763b, type: 2}
   m_IsPrefabParent: 0
@@ -1298,7 +1288,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4148292453311998, guid: b25b07c21ab0e9249844c97e3cdd2a30, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -4.34
+      value: -3.93
       objectReference: {fileID: 0}
     - target: {fileID: 4148292453311998, guid: b25b07c21ab0e9249844c97e3cdd2a30, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1324,26 +1314,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 212021971468044088, guid: b25b07c21ab0e9249844c97e3cdd2a30,
-        type: 2}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212021971468044088, guid: b25b07c21ab0e9249844c97e3cdd2a30,
-        type: 2}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212021971468044088, guid: b25b07c21ab0e9249844c97e3cdd2a30,
-        type: 2}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212021971468044088, guid: b25b07c21ab0e9249844c97e3cdd2a30,
-        type: 2}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b25b07c21ab0e9249844c97e3cdd2a30, type: 2}
   m_IsPrefabParent: 0
@@ -1357,7 +1327,7 @@ GameObject:
   - component: {fileID: 1040000826}
   - component: {fileID: 1040000825}
   m_Layer: 0
-  m_Name: AI_Controller
+  m_Name: Navigator
   m_TagString: Navigator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

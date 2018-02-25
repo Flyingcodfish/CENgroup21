@@ -32,9 +32,10 @@ public class Slime : Actor {
 	//attacking fields
 	float lastAttackTime;
 	public float attackCooldown = 2f;
-	public int attackDamage = 20;
-	public Collider2D attackCollider;
-	float attackColliderOffset;
+	public Hitbox attackHitbox;
+	private Vector2 hitboxOffset = new Vector2(0.5f, 0);
+	public float slowTime = 1.5f; //how long a target is slowed when hit
+	public float slowRatio = 0.7f; //how much of a target's movespeed remains while slowed
 
 	// Use this for initialization
 	override public void ActorStart () {
@@ -45,7 +46,7 @@ public class Slime : Actor {
 		tileFilter = Navigator.GetFilterFromBlockingType(bType, false);
 		castHits = new RaycastHit2D[maxHits];
 
-		attackColliderOffset = attackCollider.offset.x;
+		attackHitbox.HitActor = this.SlowActor; //assigns the slime's SlowActor method to the hitbox's delegate
 
 		StartCoroutine(AI_Tick());
 	}
@@ -67,31 +68,38 @@ public class Slime : Actor {
 		else{
 			animator.SetBool("Walk", true);
 			sprite.flipX = (moveVector.x > 0); //slime sprite faces left, flip if sprite moving right
-			attackCollider.offset = new Vector2(attackColliderOffset * ((moveVector.x > 0)? -1 : 1), attackCollider.offset.y);
+			attackHitbox.transform.localPosition = new Vector2(hitboxOffset.x * ((moveVector.x > 0)? 1 : -1), hitboxOffset.y);
  		}
 
 		//attack hitbox activation
-		//TODO there *has* to be a better way to do this
+		//TODO there's a better way to do this, but it involves setting up more functions and animation events
+		//this is simpler but can be optimized if need be
 		if (animator.GetBool("AttackActive")){
-			if (attackCollider.enabled == false){
-				attackCollider.enabled = true;
+			if (attackHitbox.isActive == false){
+				attackHitbox.isActive = true;
 			}
 		}
-		else if (attackCollider.enabled){
-			attackCollider.enabled = false;
+		else{
+			attackHitbox.isActive = false;
 		}
-	}
-
-	//attack hitbox hit something
-	public void OnTriggerEnter2D(Collider2D other){
-		Actor hitActor = other.gameObject.GetComponent<Actor>();
-		if (hitActor != null){
-			//nicely ask the target to take damage
-			hitActor.SendMessage("TakeDamage", this.attackDamage);
-		}
-		//else ignore the collision
 	}
 		
+	//function assigned to attack hitbox delegate. Called whenever hitbox hits something.
+	public void SlowActor(Actor actor){
+		StartCoroutine(SlowEffect(actor));
+		Debug.Log(System.String.Format("{0} has been slowed by {1}!", actor.name, this.name));
+	}
+
+	//coroutine used to time the effect of a slime's attacks.
+	//the slime's prey should be slowed for a bit
+	IEnumerator SlowEffect(Actor actor){
+		float baseSpeed = actor.maxSpeed;
+		actor.maxSpeed = baseSpeed * slowRatio;
+		yield return new WaitForSeconds(slowTime);
+
+		actor.maxSpeed = baseSpeed;
+	}
+
 	//only need to perform pathfinding every ~0.1 second; less CPU intensive
 	IEnumerator AI_Tick(){
 		while (true){
