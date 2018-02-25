@@ -26,7 +26,8 @@ public class Slime : Actor {
 	private GameObject targetObject;
 	private Vector3 moveVector;
 	private Vector2 directMove;
-	public float moveDeadZone = 1f;
+	public float hoverDistance = 1.2f;
+	public float moveDeadZone = 0.1f;
 
 	//attacking fields
 	float lastAttackTime;
@@ -90,21 +91,20 @@ public class Slime : Actor {
 		}
 		//else ignore the collision
 	}
-
+		
 	//only need to perform pathfinding every ~0.1 second; less CPU intensive
 	IEnumerator AI_Tick(){
 		while (true){
 			pathFound = false;
 			directMove = targetObject.transform.position - transform.position;
 
-			if (directMove.magnitude <= moveDeadZone){
+			if (directMove.magnitude <= hoverDistance){
 				//no need to get closer, stop moving
 				//attack player if not on cooldown
 				if (Time.time - lastAttackTime >= attackCooldown){
 					lastAttackTime = Time.time;
 					animator.SetTrigger("Attack");
 				}
-
 				pathFound = true;
 				moveVector = Vector3.zero; //move slower than normal, for funsies
 			}
@@ -121,7 +121,7 @@ public class Slime : Actor {
 			if (pathFound == false){
 				path = navigator.GetWorldPath(bType, transform.position, targetObject.transform.position);
 				if (path.Length > 0){
-					moveVector = (path[0]-transform.position);
+					moveVector = (path[0]-transform.position).normalized;
 				}
 				else moveVector = Vector3.zero;
 				pathFound = true;

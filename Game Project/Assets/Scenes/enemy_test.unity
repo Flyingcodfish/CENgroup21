@@ -152,11 +152,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114874049021731688, guid: 93e8d14c18207f64198b251900b950eb,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
   m_IsPrefabParent: 0
@@ -730,6 +725,16 @@ Prefab:
     - target: {fileID: 4614172831000586, guid: fc604589873597e4f982ef94de17763b, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114881781839612842, guid: fc604589873597e4f982ef94de17763b,
+        type: 2}
+      propertyPath: moveDeadZone
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114881781839612842, guid: fc604589873597e4f982ef94de17763b,
+        type: 2}
+      propertyPath: hoverDistance
+      value: 1.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc604589873597e4f982ef94de17763b, type: 2}

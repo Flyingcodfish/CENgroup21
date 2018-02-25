@@ -151,10 +151,12 @@ MonoBehaviour:
   bType: 0
   avoidDistance: 1.5
   castCollider: {fileID: 61256951212187352}
-  moveDeadZone: 1
+  hoverDistance: 1.2
+  moveDeadZone: 0.1
   attackCooldown: 2
   attackDamage: 20
   attackCollider: {fileID: 61383292394483648}
+  isPathfinding: 0
 --- !u!212 &212869940397810062
 SpriteRenderer:
   m_ObjectHideFlags: 1

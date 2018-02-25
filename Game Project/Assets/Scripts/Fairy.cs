@@ -122,7 +122,7 @@ public class Fairy : Actor {
 				if (pathFound == false){
 					path = navigator.GetWorldPath(bType, transform.position, targetObject.transform.position);
 					if (path.Length > 0){
-						moveVector = (path[0]-transform.position);
+						moveVector = (path[0]-transform.position).normalized;
 					}
 					else moveVector = Vector3.zero;
 					pathFound = true;
@@ -145,7 +145,10 @@ public class Fairy : Actor {
 			}
 			//every 2 seconds
 			if (directMove.magnitude <= attackRange){
-				StartCoroutine(FireShot());
+				//only attack if we have line of sight
+				if (0 == Physics2D.Raycast(transform.position, directMove, tileFilter, castHits, directMove.magnitude)){
+					StartCoroutine(FireShot());
+				}
 			}
 		}
 	}
