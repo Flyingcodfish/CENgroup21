@@ -9,6 +9,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator), typeof(SpriteRenderer))]
 public abstract class Actor : MonoBehaviour {
 
+	public bool isInvincible = false;
 	public int maxHealth;
 	public int currentHealth{get; protected set;} //outsiders should not set directly, but use takeDamage()
 	public Team team = Team.neutral; //default team
@@ -19,6 +20,10 @@ public abstract class Actor : MonoBehaviour {
 	public Rigidbody2D rbody {get; private set;}
 	public Animator animator {get; private set;}
 	public SpriteRenderer sprite {get; private set;}
+
+	protected Color hurtColor = new Color32(255, 143, 143, 255);
+	protected float flashPeriod = 0.12f; //period (in seconds) of flashing after getting hurt
+	protected float iFrameTime = 0.3f; //length of invincibility after getting hurt
 
 	//Start is used to initialize important Actor component references
 	//inheritors should use ActorStart()
@@ -37,8 +42,14 @@ public abstract class Actor : MonoBehaviour {
 	}
 
 	public virtual void TakeDamage(int amount){
-		currentHealth -= amount;
-		if (currentHealth <= 0 ) this.Die();
+		if (this.isInvincible == false){
+			currentHealth -= amount;
+
+			StartCoroutine(AnimateDamage());
+
+
+			if (currentHealth <= 0 ) this.Die();
+		}
 	}
 
 	public virtual void Die(){
@@ -48,6 +59,21 @@ public abstract class Actor : MonoBehaviour {
 	//must be overridden in inherited classes
 	public abstract void ActorStart();
 
+
+	IEnumerator AnimateDamage(){
+		Color baseColor = this.sprite.color;
+		int ticker = 0;
+		this.isInvincible = true;
+
+		for (float t = 0; t < iFrameTime; t += flashPeriod/2){
+			//toggle between normal color and hurtColor
+			this.sprite.color = (ticker++ %2 == 0) ? hurtColor : baseColor;
+			yield return new WaitForSeconds(flashPeriod/2);
+		}
+
+		sprite.color = baseColor;
+		this.isInvincible = false;
+	}
 }
 
 

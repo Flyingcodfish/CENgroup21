@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 50001629688679980}
   - component: {fileID: 61988429928416156}
   - component: {fileID: 114319896515579678}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: $Lanto (3)_0
   m_TagString: Player
   m_Icon: {fileID: 0}

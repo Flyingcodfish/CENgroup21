@@ -120,12 +120,12 @@ MonoBehaviour:
   maxHealth: 20
   team: 2
   drag: 100
-  maxSpeed: 250
+  maxSpeed: 200
   bType: 1
   avoidDistance: 1.5
   castCollider: {fileID: 61205247561799628}
   moveDeadZone: 0.5
-  hoverDistance: 4
+  hoverDistance: 7
   attackRange: 10
   bullet_object: {fileID: 114055802189400976, guid: ef2c7b54f7e420e408973aa3e4bc8b32,
     type: 2}

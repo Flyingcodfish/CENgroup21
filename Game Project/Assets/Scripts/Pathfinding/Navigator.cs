@@ -120,7 +120,7 @@ namespace Pathfinding{
 			pathMapDict[t] =  MapConverter.TilemapArrToPathMap(tilemapMatrix[t].tileMaps, background.cellBounds);
 		}
 
-		public void Start(){
+		public void Awake(){
 			pathMapDict = new Dictionary<BlockingType, PathMap>();
 			//for each list of blocking layers (assumes BlockingType enum starts at 0)
 			PathMap pMap;
