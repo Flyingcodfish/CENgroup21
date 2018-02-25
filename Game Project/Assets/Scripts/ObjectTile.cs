@@ -34,6 +34,7 @@ public class ObjectTile : TileBase {
 	override public bool  StartUp(Vector3Int location, ITilemap tilemap, GameObject gObject){
 		if (gObject != null)
 			gObject.transform.position = gObject.transform.position + offset;
-		return true;
+
+		return base.StartUp(location, tilemap, gObject);
 	}
 }
