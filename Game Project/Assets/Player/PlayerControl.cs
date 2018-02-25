@@ -4,22 +4,15 @@ using UnityEngine;
 
 public class PlayerControl : Actor {
 
-	public float maxSpeed;
+	private Vector2 input;
 
-	private Rigidbody2D rbody;
-	public Vector2 input; //only public so it's visible in the inspector; temporary
-    private Animator animator;
-	private SpriteRenderer sprite;
     private float attackTime = 0.3f; // how long it takes to attack
     private float attackTimer; // time remaining till the attack ends
     private bool attacking = false;
 
-    public override void Start (){
-		base.Start();
-		rbody = this.GetComponent<Rigidbody2D>();
-        animator = this.GetComponent<Animator>();
-		sprite = this.GetComponent<SpriteRenderer>();
-    }
+	public override void ActorStart(){
+		//pass
+	}
 		
 	//occurs at a framerate-independant rate; used for physics 
 	void FixedUpdate () {
@@ -80,8 +73,4 @@ public class PlayerControl : Actor {
         }
         animator.SetBool("Attacking", attacking);
     }
-
-	public PlayerControl() : base(){
-		//pass
-	}
 }
