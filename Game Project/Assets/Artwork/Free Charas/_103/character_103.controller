@@ -13,13 +13,13 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Direction
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -281,7 +281,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: walk_down
-  m_Speed: 1
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101436992438474812}
@@ -332,7 +332,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: walk_left
-  m_Speed: 1
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101057268365792896}
@@ -358,7 +358,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: walk_up
-  m_Speed: 1
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101556540710942312}
@@ -434,7 +434,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: walk_right
-  m_Speed: 1
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101016981567561526}
@@ -472,16 +472,16 @@ AnimatorStateMachine:
     m_Position: {x: 12, y: -36, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102294040720123186}
-    m_Position: {x: 240, y: -180, z: 0}
+    m_Position: {x: 252, y: -108, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102145605721364290}
-    m_Position: {x: 252, y: 144, z: 0}
+    m_Position: {x: 252, y: 132, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102028557865975688}
     m_Position: {x: 480, y: 48, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102654709956980838}
-    m_Position: {x: 240, y: -252, z: 0}
+    m_Position: {x: 252, y: -168, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102319313264454398}
     m_Position: {x: 12, y: 48, z: 0}
@@ -495,7 +495,7 @@ AnimatorStateMachine:
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 276, y: -24, z: 0}
-  m_EntryPosition: {x: 48, y: 144, z: 0}
-  m_ExitPosition: {x: 36, y: 192, z: 0}
+  m_EntryPosition: {x: 480, y: 144, z: 0}
+  m_ExitPosition: {x: 60, y: 144, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 1102101082069506924}
+  m_DefaultState: {fileID: 1102145605721364290}
