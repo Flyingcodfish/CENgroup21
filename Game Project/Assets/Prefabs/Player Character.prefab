@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 124293842632662942}
   - component: {fileID: 81549832495441076}
   - component: {fileID: 114898570037935126}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -41,11 +41,12 @@ GameObject:
   - component: {fileID: 212455947933360400}
   - component: {fileID: 50686447822316246}
   - component: {fileID: 61729896540421648}
-  - component: {fileID: 114254772614119772}
   - component: {fileID: 95916619367916440}
-  m_Layer: 0
+  - component: {fileID: 114092264142251312}
+  - component: {fileID: 114615287665525474}
+  m_Layer: 10
   m_Name: Player Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,8 +58,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1539297574017718}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: 0, y: -3.71, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4935728770961556}
   m_Father: {fileID: 0}
@@ -72,7 +73,7 @@ Transform:
   m_GameObject: {fileID: 1320744045874940}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4388274420808084}
   m_RootOrder: 0
@@ -131,7 +132,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &61729896540421648
 BoxCollider2D:
@@ -145,18 +146,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.5337523}
+  m_Offset: {x: 0, y: -0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5, y: 5}
+    oldSize: {x: 2.5, y: 2.5}
     newSize: {x: 1.62, y: 1.25}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.26, y: 1.0124953}
+  m_Size: {x: 0.7, y: 0.6}
   m_EdgeRadius: 0
 --- !u!81 &81549832495441076
 AudioListener:
@@ -182,7 +183,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114254772614119772
+--- !u!114 &114092264142251312
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -190,11 +191,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1539297574017718}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 317a2d2b57eef7347ad0eea49d6152c3, type: 3}
+  m_Script: {fileID: 11500000, guid: 75a4d455d73f6564aace47551e571cb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 50
+  team: 1
+  drag: 100
   maxSpeed: 500
-  input: {x: 0, y: 0}
+  inVector: {x: 0, y: 0}
+--- !u!114 &114615287665525474
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1539297574017718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c6e59e92dd22544fa0de7d331486ca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: -0.2, y: 0.2, z: 0}
+  shadowColor: {r: 0, g: 0, b: 0, a: 0.5}
 --- !u!114 &114898570037935126
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -227,7 +244,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f31eea59e1da2c2479c7f4b5e4f9b2c8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -246,7 +263,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e1915642021fdbd43a1e5be64220f66e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f99e09413fbf5d94791a335e74a9d9f8, type: 3}
+  m_Name: shore_6_3
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 21300246, guid: 2147e0539ce911048a584a8323547e64, type: 3}
+  - {fileID: 21300260, guid: 2147e0539ce911048a584a8323547e64, type: 3}
+  - {fileID: 21300274, guid: 2147e0539ce911048a584a8323547e64, type: 3}
+  - {fileID: 21300288, guid: 2147e0539ce911048a584a8323547e64, type: 3}
+  m_AnimationSpeed: 2
+  m_AnimationStartTime: 0
+  color: {r: 1, g: 1, b: 1, a: 1}
+  colliderType: 1
