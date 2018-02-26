@@ -73,6 +73,25 @@ public class inventory : MonoBehaviour {
             PlaceEmpty(item);
             return true;
         }
+        else
+        {
+            foreach(GameObject slot in allSlots)
+            {
+                slot tmp = slot.GetComponent<slot>();
+                if(!tmp.IsEmpty) 
+                {
+                   if(tmp.CurrentItem.type == item.type && tmp.CanStack)
+                    {
+                        tmp.AddItem(item);
+                        return true;
+                    }
+                }
+            }
+            if (emptySlot > 0)
+            {
+                PlaceEmpty(item);
+            }
+        }
         return false;
     }
     private bool PlaceEmpty(Item item)

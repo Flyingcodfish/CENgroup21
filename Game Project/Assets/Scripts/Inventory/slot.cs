@@ -16,10 +16,19 @@ public class slot : MonoBehaviour {
         get { return items.Count == 0; }
     }
 
+    public Item CurrentItem
+    {
+        get { return items.Peek(); }
+    }
+
+    public bool CanStack
+    {
+        get { return CurrentItem.maxSize > items.Count; }
+    }
 	void Start () {
         items = new Stack<Item>();
         RectTransform slotRect = GetComponent<RectTransform>();
-        RectTransform txtRect = GetComponent<RectTransform>();
+        RectTransform txtRect = stackTxt.GetComponent<RectTransform>();
 
         int txtScaleFactor = (int)(slotRect.sizeDelta.x * 0.60);
         stackTxt.resizeTextMaxSize = txtScaleFactor;

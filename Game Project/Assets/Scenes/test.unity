@@ -296,7 +296,7 @@ MonoBehaviour:
   type: 0
   spriteNeutral: {fileID: 21300010, guid: 84f6c5242dc064c41a61bed0e85f0826, type: 3}
   spriteHighlighted: {fileID: 21300010, guid: bbb243e9a92c05343a852e7c048d246f, type: 3}
-  maxSize: 1
+  maxSize: 5
 --- !u!212 &744407901
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7674,7 +7674,7 @@ MonoBehaviour:
   type: 0
   spriteNeutral: {fileID: 21300008, guid: 84f6c5242dc064c41a61bed0e85f0826, type: 3}
   spriteHighlighted: {fileID: 21300008, guid: bbb243e9a92c05343a852e7c048d246f, type: 3}
-  maxSize: 1
+  maxSize: 2
 --- !u!212 &2100083109
 SpriteRenderer:
   m_ObjectHideFlags: 0
