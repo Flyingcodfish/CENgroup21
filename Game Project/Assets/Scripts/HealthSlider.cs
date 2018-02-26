@@ -8,24 +8,24 @@ public class HealthSlider : MonoBehaviour
 
     private int maxValue;
     private int value;
-    public Player player;
+    public Actor player;
 
     private Slider slider;
 
     // Use this for initialization
     void Start()
     {
-        player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        player = GameObject.FindWithTag("Player").GetComponent<Actor>();
         slider = GetComponent<Slider>();
         maxValue = player.maxHealth;
         slider.maxValue = maxValue;
-        value = player.getHealth();
+		value = player.currentHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
-        value = player.getHealth();
+        value = player.currentHealth;
         slider.value = value;
     }
 }
