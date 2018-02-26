@@ -586,7 +586,7 @@ MonoBehaviour:
   emptySlot: 0
   slotPaddingLeft: 2
   slotPaddingTop: 2
-  slotSize: 20
+  slotSize: 30
   slotPrefab: {fileID: 1903169189990112, guid: 117e2e3452b5a9d4c942d829a8960217, type: 2}
 --- !u!1 &1228616527
 GameObject:
@@ -7671,7 +7671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df6e3e5557870e54b97116c22ee28e24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
   spriteNeutral: {fileID: 21300008, guid: 84f6c5242dc064c41a61bed0e85f0826, type: 3}
   spriteHighlighted: {fileID: 21300008, guid: bbb243e9a92c05343a852e7c048d246f, type: 3}
   maxSize: 2
