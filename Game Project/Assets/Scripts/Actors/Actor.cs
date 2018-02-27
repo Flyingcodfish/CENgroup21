@@ -58,7 +58,7 @@ public abstract class Actor : MonoBehaviour {
 		}
 	}
 
-	private IEnumerator Die(){
+	virtual public IEnumerator Die(){
 		//signal that the actor is dying; AI should halt
 		this.isDying = true;
 //		animator.SetTrigger("Die"); //should be pretty universal

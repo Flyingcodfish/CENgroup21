@@ -57,6 +57,24 @@ public class Skeleton : Actor {
 		}
 	}
 
+	override public IEnumerator Die(){
+		//signal that the actor is dying; AI should halt
+		this.isDying = true;
+		//		animator.SetTrigger("Die"); //should be pretty universal
+		animator.SetTrigger("Die");
+		//turn physics off
+		this.GetComponent<Collider2D>().enabled = false;
+		//this.sprite.enabled = false;
+
+		yield return new WaitForSeconds(5f);
+
+		//wait for important coroutines to finish
+		while (isBusy == true)
+			yield return null;
+
+		Destroy(this.gameObject);
+	}
+
 	void Update(){
 		//animation
 		if (moveVector.magnitude < moveDeadZone){
