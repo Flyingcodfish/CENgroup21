@@ -4,13 +4,13 @@ using UnityEngine;
 
 using Pathfinding;
 
-public class Slime : Actor {
+public class Skeleton : Actor {
 
 	//targeting fields
 	private GameObject targetObject;
 	private Vector3 moveVector;
 	private Vector2 directMove;
-	public float hoverDistance = 1.2f;
+	public float hoverDistance = 2f;
 	public float moveDeadZone = 0.1f;
 
 	//navigation fields
@@ -21,8 +21,8 @@ public class Slime : Actor {
 
 	//obstacle avoidance fields
 	public float avoidDistance = 1.5f;
-	Vector3 avoidVector;
-	Vector2 hitDirection;
+	public Vector3 avoidVector;
+	public Vector2 hitDirection;
 	int maxHits = 1;
 	int numHits;
 	private RaycastHit2D[] castHits;
@@ -35,8 +35,6 @@ public class Slime : Actor {
 	public float attackCooldown = 2f;
 	public Hitbox attackHitbox;
 	private Vector2 hitboxOffset;
-	public float slowTime = 1.5f; //how long a target is slowed when hit
-	public float slowRatio = 0.7f; //how much of a target's movespeed remains while slowed
 
 	// Use this for initialization
 	override public void ActorStart () {
@@ -47,7 +45,6 @@ public class Slime : Actor {
 		tileFilter = Navigator.GetFilterFromBlockingType(bType, false);
 		castHits = new RaycastHit2D[maxHits];
 
-		attackHitbox.HitActor = this.SlowActor; //assigns the slime's SlowActor method to the hitbox's delegate
 		hitboxOffset = attackHitbox.GetOffset();
 
 		StartCoroutine(AI_Tick());
@@ -55,8 +52,7 @@ public class Slime : Actor {
 
 	void FixedUpdate(){
 		//forces
-		//only move if slime is both walking and also not in the middle of a bounce
-		if (!animator.GetBool("Grounded") && !animator.GetBool("Attacking") && !isDying){
+		if (!animator.GetBool("Attacking") && !isDying){
 			rbody.AddForce(Vector3.ClampMagnitude(moveVector, 1f) * this.maxSpeed);
 		}
 	}
@@ -65,21 +61,21 @@ public class Slime : Actor {
 		//animation
 		if (moveVector.magnitude < moveDeadZone){
 			moveVector = Vector3.zero;
-			animator.SetBool("Walk", false);
+			animator.SetBool("Walking", false);
 		}
 		else{
-			animator.SetBool("Walk", true);
- 		}
+			animator.SetBool("Walking", true);
+		}
 
 		//sprite flipping
 		if (!animator.GetBool("Attacking")){
-			sprite.flipX = (directMove.x > 0); //slime sprite faces left, flip if sprite moving right
+			sprite.flipX = (directMove.x < 0); //skeleton sprite faces right, flip if sprite moving left
 			attackHitbox.SetOffset(new Vector2(hitboxOffset.x * ((directMove.x > 0)? 1 : -1), hitboxOffset.y));
 		}
 
 		//attack hitbox activation
 		//TODO there's a better way to do this, but it involves setting up more functions and animation events
-		//this is simpler but can be optimized if need be
+		//this is simpler and can be optimized if need be
 		if (animator.GetBool("AttackActive")){
 			if (attackHitbox.isActive == false){
 				attackHitbox.isActive = true;
@@ -89,23 +85,10 @@ public class Slime : Actor {
 			attackHitbox.isActive = false;
 		}
 	}
-		
-	//function assigned to attack hitbox delegate. Called whenever hitbox hits something.
-	public void SlowActor(Actor actor){
-		StartCoroutine(SlowEffect(actor));
-	}
 
-	//coroutine used to time the effect of a slime's attacks.
-	//the slime's prey should be slowed for a bit
-	IEnumerator SlowEffect(Actor actor){
-		this.isBusy = true;
-
-		float baseSpeed = actor.maxSpeed;
-		actor.maxSpeed = baseSpeed * slowRatio;
-		yield return new WaitForSeconds(slowTime);
-
-		actor.maxSpeed = baseSpeed;
-		this.isBusy = false;
+	override public void TakeDamage(int damage){
+		animator.SetTrigger("TakeDamage");
+		base.TakeDamage(damage);
 	}
 
 	//only need to perform pathfinding every ~0.1 second; less CPU intensive

@@ -58,26 +58,25 @@ public abstract class Actor : MonoBehaviour {
 		}
 	}
 
-	public virtual IEnumerator Die(){
+	private IEnumerator Die(){
 		//signal that the actor is dying; AI should halt
 		this.isDying = true;
-		if (isBusy==true){
-			//turn things off
-			this.sprite.enabled = false;
-			this.rbody.simulated = false;
+//		animator.SetTrigger("Die"); //should be pretty universal
 
-			//wait for important coroutines to finish
-			while (isBusy==true){
-				yield return null;
-			}
-		}
+		//turn physics off
+		this.GetComponent<Collider2D>().enabled = false;
+		this.sprite.enabled = false;
+
+		//wait for important coroutines to finish
+		while (isBusy == true)
+			yield return null;
 
 		Destroy(this.gameObject);
 	}
 
 	//must be overridden in inherited classes
+	//done this way so people don't forget it exists!
 	public abstract void ActorStart();
-
 
 	IEnumerator AnimateDamage(){
 		Color baseColor = this.sprite.color;

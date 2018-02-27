@@ -38,7 +38,7 @@ public class Goblin: Actor {
 		markers = new GameObject[0];
 		pathLine = this.GetComponent<LineRenderer>();
 	}
-
+		
 	public void FixedUpdate(){
 		rbody.AddForce(moveVector.normalized * maxSpeed);
 	}

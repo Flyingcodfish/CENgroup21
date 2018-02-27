@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-public class StateRandom : StateMachineBehaviour
+public class SlimeIdleState : StateMachineBehaviour
 {
 	static int AnimatorRandom = Animator.StringToHash("Random");
 	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

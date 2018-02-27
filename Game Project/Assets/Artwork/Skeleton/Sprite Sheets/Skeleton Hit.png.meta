@@ -91,12 +91,12 @@ TextureImporter:
       name: Skeleton Hit_0
       rect:
         serializedVersion: 2
-        x: 6
+        x: 0
         y: 0
-        width: 22
+        width: 30
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.45, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -105,12 +105,12 @@ TextureImporter:
       name: Skeleton Hit_1
       rect:
         serializedVersion: 2
-        x: 36
+        x: 30
         y: 0
-        width: 22
+        width: 30
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.45, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -119,12 +119,12 @@ TextureImporter:
       name: Skeleton Hit_2
       rect:
         serializedVersion: 2
-        x: 62
+        x: 60
         y: 0
-        width: 23
+        width: 30
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.45, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -135,10 +135,10 @@ TextureImporter:
         serializedVersion: 2
         x: 90
         y: 0
-        width: 24
+        width: 30
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.45, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -147,12 +147,12 @@ TextureImporter:
       name: Skeleton Hit_4
       rect:
         serializedVersion: 2
-        x: 123
+        x: 120
         y: 0
-        width: 23
+        width: 30
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.45, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -161,12 +161,12 @@ TextureImporter:
       name: Skeleton Hit_5
       rect:
         serializedVersion: 2
-        x: 156
+        x: 150
         y: 0
-        width: 24
+        width: 30
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.45, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -175,12 +175,12 @@ TextureImporter:
       name: Skeleton Hit_6
       rect:
         serializedVersion: 2
-        x: 186
+        x: 180
         y: 0
-        width: 23
+        width: 30
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.45, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -189,12 +189,12 @@ TextureImporter:
       name: Skeleton Hit_7
       rect:
         serializedVersion: 2
-        x: 216
+        x: 210
         y: 0
-        width: 22
+        width: 30
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.45, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

@@ -19,7 +19,19 @@ public class Hitbox : MonoBehaviour {
 			this.active = value;
 			this.hitbox.enabled = value;
 		}
-	} 
+	}
+
+	public Vector2 GetOffset(){
+		if (hitbox == null)//start may not have happened yet
+			return this.GetComponent<Collider2D>().offset;
+		return this.hitbox.offset;
+	}
+		
+	public bool SetOffset(Vector2 offset){
+		if (this.hitbox == null) return false;
+		this.hitbox.offset = offset;
+		return true;
+	}
 
 	//declares a delegate method type
 	public delegate void DelegateHitActor(Actor actor);

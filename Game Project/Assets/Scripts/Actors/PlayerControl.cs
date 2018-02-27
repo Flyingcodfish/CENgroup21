@@ -23,11 +23,10 @@ public class PlayerControl : Actor {
 		//pass
 	}
 		
-	override public IEnumerator Die(){
+	void OnDestroy(){
 		//TODO: death animation, game over screen, etc.
-		//currently just does something other than crashing the game
-		UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
-		yield return null;
+		//currently just loads main menu to avoid crashing the game
+		if (isDying) UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
 	}
 
 	//occurs at a framerate-independant rate; used for physics 
@@ -43,42 +42,45 @@ public class PlayerControl : Actor {
 	//src: http://michaelcummings.net/mathoms/creating-2d-animated-sprites-using-unity-4.3
     void Update()
     {
+		animator.SetBool("Walking", true);
         if (input.y > 0) 	//up
         {
-            animator.SetInteger("Direction", 2);
+            animator.SetInteger("Direction", 0);
 			attackHitboxOffset.x = 0;
 			attackHitboxOffset.y = 0.5f;
         }
         else if (input.y < 0) //down
         {
-            animator.SetInteger("Direction", 0);
+            animator.SetInteger("Direction", 1);
 			attackHitboxOffset.x = 0;
 			attackHitboxOffset.y = -0.5f;
         }
         else if (input.x > 0) //right
         {
-            animator.SetInteger("Direction", 1);
+            animator.SetInteger("Direction", 3);
 			attackHitboxOffset.x = 0.5f;
 			attackHitboxOffset.y = -0.25f;
         }
         else if (input.x < 0) //left
         {
-            animator.SetInteger("Direction", 3);
+            animator.SetInteger("Direction", 2);
 			attackHitboxOffset.x = -0.5f;
 			attackHitboxOffset.y = -0.25f;
         }
         else
         {
-            int dir = animator.GetInteger("Direction");
-            if(dir == 0) //idle down
-                animator.SetInteger("Direction", 4);
-            else if (dir == 1) //idle right
-                animator.SetInteger("Direction", 5);
-            else if (dir == 2) //idle up
-                animator.SetInteger("Direction", 6);
-            else if (dir == 3) // idle left
-                animator.SetInteger("Direction", 7); 
+			animator.SetBool("Walking", false);
+//            int dir = animator.GetInteger("Direction");
+//            if(dir == 0) //idle down
+//                animator.SetInteger("Direction", 4);
+//            else if (dir == 1) //idle right
+//                animator.SetInteger("Direction", 5);
+//            else if (dir == 2) //idle up
+//                animator.SetInteger("Direction", 6);
+//            else if (dir == 3) // idle left
+//                animator.SetInteger("Direction", 7); 
         }
+		//TODO: set this to use a bindable key using the input manager
         if(Input.GetKeyDown("j") && !attacking)
         {
 			attacking = true;
@@ -96,6 +98,11 @@ public class PlayerControl : Actor {
                 attacking = false; 
             }
         }
+		//TODO this is ramshackle and temporary
+		if (Input.GetKeyDown(KeyCode.Escape)){
+			UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
+		}
+
         animator.SetBool("Attacking", attacking);
 		attackHitbox.isActive = attacking;
     }

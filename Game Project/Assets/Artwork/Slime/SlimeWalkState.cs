@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class StateWalk : StateMachineBehaviour{
+public class SlimeWalkState : StateMachineBehaviour{
 
 	//the start and end of a slime's mid-bounce air-time in normalized time
 	float airStart = 0.333f;
