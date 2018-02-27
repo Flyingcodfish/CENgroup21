@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Player : Actor {
 
-    public inventory inventory;
-
 	[SerializeField] //makes private "inVector" visible in inspector for testing
 	private Vector2 inVector;
 
@@ -46,12 +44,5 @@ public class Player : Actor {
         }
 		else
 			animator.SetInteger("Direction", 0); //idle
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.tag== "Item")
-        {
-            inventory.AddItem(collision.GetComponent<Item>());
-        }
     }
 }
