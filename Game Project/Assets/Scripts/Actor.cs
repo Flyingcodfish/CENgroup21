@@ -9,29 +9,21 @@ using UnityEngine;
 [RequireComponent(typeof(Animator), typeof(SpriteRenderer))]
 public abstract class Actor : MonoBehaviour {
 
-	//bookkeeping fields
-	protected bool isBusy = false; //death waits for Actor to finish important coroutines
-	protected bool isDying = false; //coroutines that should stop once death starts can use this
-
-	//health and damage fields
 	public bool isInvincible = false;
 	public int maxHealth;
 	public int currentHealth{get; protected set;} //outsiders should not set directly, but use takeDamage()
 	public Team team = Team.neutral; //default team
 
-	protected Color hurtColor = new Color32(255, 143, 143, 255);
-	protected float flashPeriod = 0.12f; //period (in seconds) of flashing after getting hurt
-	protected float iFrameTime = 0.3f; //length of invincibility after getting hurt
-
-	//movement fields
 	public float drag = 100f;
 	public float maxSpeed = 300f;
 
-	//references to required components
 	public Rigidbody2D rbody {get; private set;}
 	public Animator animator {get; private set;}
 	public SpriteRenderer sprite {get; private set;}
 
+	protected Color hurtColor = new Color32(255, 143, 143, 255);
+	protected float flashPeriod = 0.12f; //period (in seconds) of flashing after getting hurt
+	protected float iFrameTime = 0.3f; //length of invincibility after getting hurt
 
 	//Start is used to initialize important Actor component references
 	//inheritors should use ActorStart()
@@ -54,24 +46,13 @@ public abstract class Actor : MonoBehaviour {
 			currentHealth -= amount;
 
 			StartCoroutine(AnimateDamage());
-			if (currentHealth <= 0 ) StartCoroutine(Die());
+
+
+			if (currentHealth <= 0 ) this.Die();
 		}
 	}
 
-	public virtual IEnumerator Die(){
-		//signal that the actor is dying; AI should halt
-		this.isDying = true;
-		if (isBusy==true){
-			//turn things off
-			this.sprite.enabled = false;
-			this.rbody.simulated = false;
-
-			//wait for important coroutines to finish
-			while (isBusy==true){
-				yield return null;
-			}
-		}
-
+	public virtual void Die(){
 		Destroy(this.gameObject);
 	}
 

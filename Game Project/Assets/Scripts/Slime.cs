@@ -5,14 +5,6 @@ using UnityEngine;
 using Pathfinding;
 
 public class Slime : Actor {
-
-	//targeting fields
-	private GameObject targetObject;
-	private Vector3 moveVector;
-	private Vector2 directMove;
-	public float hoverDistance = 1.2f;
-	public float moveDeadZone = 0.1f;
-
 	//navigation fields
 	bool pathFound;
 	private Navigator navigator;
@@ -29,6 +21,13 @@ public class Slime : Actor {
 	ContactFilter2D obstacleFilter; //sees terrain AND actors
 	ContactFilter2D tileFilter; //only sees terrain
 	public Collider2D castCollider;
+
+	//targeting fields
+	private GameObject targetObject;
+	private Vector3 moveVector;
+	private Vector2 directMove;
+	public float hoverDistance = 1.2f;
+	public float moveDeadZone = 0.1f;
 
 	//attacking fields
 	float lastAttackTime;
@@ -94,19 +93,16 @@ public class Slime : Actor {
 	//coroutine used to time the effect of a slime's attacks.
 	//the slime's prey should be slowed for a bit
 	IEnumerator SlowEffect(Actor actor){
-		this.isBusy = true;
-
 		float baseSpeed = actor.maxSpeed;
 		actor.maxSpeed = baseSpeed * slowRatio;
 		yield return new WaitForSeconds(slowTime);
 
 		actor.maxSpeed = baseSpeed;
-		this.isBusy = false;
 	}
 
 	//only need to perform pathfinding every ~0.1 second; less CPU intensive
 	IEnumerator AI_Tick(){
-		while (isDying == false){
+		while (true){
 			pathFound = false;
 			directMove = targetObject.transform.position - transform.position;
 

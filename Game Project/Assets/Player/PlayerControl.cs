@@ -15,17 +15,16 @@ public class PlayerControl : Actor {
 	public Hitbox attackHitbox;
 	private Vector2 attackHitboxOffset;
 
-
 	//behavior begins
+
 	public override void ActorStart(){
 		//pass
 	}
 		
-	override public IEnumerator Die(){
+	override public void Die(){
 		//TODO: death animation, game over screen, etc.
 		//currently just does something other than crashing the game
 		UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
-		yield return null;
 	}
 
 	//occurs at a framerate-independant rate; used for physics 
@@ -63,7 +62,7 @@ public class PlayerControl : Actor {
         {
             animator.SetInteger("Direction", 3);
 			attackHitboxOffset.x = -0.5f;
-			attackHitboxOffset.y = -0.25f;
+			attackHitboxOffset.y = -0;
         }
         else
         {
