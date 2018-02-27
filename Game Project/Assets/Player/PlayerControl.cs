@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class PlayerControl : Actor {
 
-	//control fields
-	private Vector2 input;
+    public inventory inventory;
+
+    //control fields
+    private Vector2 input;
 
 	//attack fields
     private float attackTime = 0.3f; // how long it takes to attack
@@ -96,5 +98,12 @@ public class PlayerControl : Actor {
         }
         animator.SetBool("Attacking", attacking);
 		attackHitbox.isActive = attacking;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Item")
+        {
+            inventory.AddItem(collision.GetComponent<Item>());
+        }
     }
 }
