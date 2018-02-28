@@ -98,10 +98,6 @@ public class PlayerControl : Actor {
                 attacking = false; 
             }
         }
-		//TODO this is ramshackle and temporary
-		if (Input.GetKeyDown(KeyCode.Escape)){
-			UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
-		}
 
         animator.SetBool("Attacking", attacking);
 		attackHitbox.isActive = attacking;
