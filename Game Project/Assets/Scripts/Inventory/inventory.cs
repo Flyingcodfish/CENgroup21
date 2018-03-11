@@ -1,24 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class inventory : MonoBehaviour {
     private RectTransform inventoryRect;
 
     private float inventoryWidth, inventoryHeight;
 
-    public int slots, rows, emptySlot;
+    public int slots, rows;
 
     public float slotPaddingLeft, slotPaddingTop, slotSize;
 
     public GameObject slotPrefab;
 
+    private slot from, to;
+
     private List<GameObject> allSlots;
 
-   
+    private static int emptySlots;
 
-	// Use this for initialization
-	void Start () {
+    public static int EmptySlots
+    {
+        get
+        {
+            return emptySlots;
+        }
+
+        set
+        {
+            emptySlots = value;
+        }
+    }
+
+
+    // Use this for initialization
+    void Start () {
         CreateLayout();
 	}
 	
@@ -30,7 +47,7 @@ public class inventory : MonoBehaviour {
     {
         allSlots = new List<GameObject>();
 
-        emptySlot = slots;
+        emptySlots = slots;
 
         inventoryWidth = (slots / rows) * (slotSize + slotPaddingLeft) + slotPaddingLeft;
 
@@ -87,7 +104,7 @@ public class inventory : MonoBehaviour {
                     }
                 }
             }
-            if (emptySlot > 0)
+            if (emptySlots > 0)
             {
                 PlaceEmpty(item);
             }
@@ -96,7 +113,7 @@ public class inventory : MonoBehaviour {
     }
     private bool PlaceEmpty(Item item)
     {
-        if (emptySlot > 0)
+        if (emptySlots > 0)
         {
             foreach (GameObject slot in allSlots)
             {
@@ -104,11 +121,44 @@ public class inventory : MonoBehaviour {
                 if (tmp.IsEmpty)
                 {
                     tmp.AddItem(item);
-                    emptySlot--;
+                    emptySlots--;
                     return true;
                 }
             }
         }
         return false;
+    }
+    public void MoveItem(GameObject clicked)
+    {
+        if (from == null)
+        {
+            if (!clicked.GetComponent<slot>().IsEmpty)
+            {
+                from = clicked.GetComponent<slot>();
+                from.GetComponent<Image>().color = Color.gray;
+            }
+        }
+        else if(to == null)
+        {
+            to = clicked.GetComponent<slot>();
+        }
+        if(to != null && from != null)
+        {
+            Stack<Item> tmpTo = new Stack<Item>(to.Items);
+            to.Additems(from.Items);
+
+            if(tmpTo.Count == 0)
+            {
+                from.ClearSlot();
+            }
+            else
+            {
+                from.Additems(tmpTo);
+            }
+
+            from.GetComponent<Image>().color = Color.white;
+            to = null;
+            from = null;
+        }
     }
 }
