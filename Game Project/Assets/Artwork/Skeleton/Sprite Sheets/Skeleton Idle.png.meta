@@ -96,10 +96,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 24
+        width: 22
         height: 32
-      alignment: 9
-      pivot: {x: 0.358, y: 0.25}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -110,10 +110,10 @@ TextureImporter:
         serializedVersion: 2
         x: 24
         y: 0
-        width: 24
+        width: 22
         height: 32
-      alignment: 9
-      pivot: {x: 0.358, y: 0.25}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -124,10 +124,10 @@ TextureImporter:
         serializedVersion: 2
         x: 48
         y: 0
-        width: 24
+        width: 22
         height: 32
-      alignment: 9
-      pivot: {x: 0.358, y: 0.25}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -138,10 +138,10 @@ TextureImporter:
         serializedVersion: 2
         x: 72
         y: 0
-        width: 24
+        width: 22
         height: 32
-      alignment: 9
-      pivot: {x: 0.358, y: 0.25}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -150,12 +150,12 @@ TextureImporter:
       name: Skeleton Idle_4
       rect:
         serializedVersion: 2
-        x: 96
+        x: 97
         y: 0
-        width: 24
+        width: 22
         height: 32
-      alignment: 9
-      pivot: {x: 0.358, y: 0.25}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -164,12 +164,12 @@ TextureImporter:
       name: Skeleton Idle_5
       rect:
         serializedVersion: 2
-        x: 120
+        x: 122
         y: 0
-        width: 24
+        width: 22
         height: 32
-      alignment: 9
-      pivot: {x: 0.358, y: 0.25}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -178,12 +178,12 @@ TextureImporter:
       name: Skeleton Idle_6
       rect:
         serializedVersion: 2
-        x: 144
+        x: 146
         y: 0
-        width: 24
+        width: 22
         height: 32
-      alignment: 9
-      pivot: {x: 0.358, y: 0.25}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -192,12 +192,12 @@ TextureImporter:
       name: Skeleton Idle_7
       rect:
         serializedVersion: 2
-        x: 168
+        x: 169
         y: 0
-        width: 24
+        width: 22
         height: 32
-      alignment: 9
-      pivot: {x: 0.358, y: 0.25}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -208,10 +208,10 @@ TextureImporter:
         serializedVersion: 2
         x: 192
         y: 0
-        width: 24
+        width: 22
         height: 32
-      alignment: 9
-      pivot: {x: 0.358, y: 0.25}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -222,10 +222,10 @@ TextureImporter:
         serializedVersion: 2
         x: 216
         y: 0
-        width: 24
+        width: 22
         height: 32
-      alignment: 9
-      pivot: {x: 0.358, y: 0.25}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -236,10 +236,10 @@ TextureImporter:
         serializedVersion: 2
         x: 240
         y: 0
-        width: 24
+        width: 22
         height: 32
-      alignment: 9
-      pivot: {x: 0.358, y: 0.25}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
