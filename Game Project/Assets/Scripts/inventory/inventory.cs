@@ -7,7 +7,7 @@ public class inventory : MonoBehaviour {
 
     private float inventoryWidth, inventoryHeight;
 
-    public int slots, rows, emptySlot;
+    public int slots, rows;
 
     public float slotPaddingLeft, slotPaddingTop, slotSize;
 
@@ -15,10 +15,25 @@ public class inventory : MonoBehaviour {
 
     private List<GameObject> allSlots;
 
-   
+    private static  int emptySlots;
 
-	// Use this for initialization
-	void Start () {
+    public static int EmptySlot
+    {
+        get
+        {
+            return emptySlots;
+        }
+
+        set
+        {
+            emptySlots = value;
+        }
+    }
+
+
+
+    // Use this for initialization
+    void Start () {
         CreateLayout();
 	}
 	
@@ -30,7 +45,7 @@ public class inventory : MonoBehaviour {
     {
         allSlots = new List<GameObject>();
 
-        emptySlot = slots;
+        emptySlots = slots;
 
         inventoryWidth = (slots / rows) * (slotSize + slotPaddingLeft) + slotPaddingLeft;
 
@@ -87,7 +102,7 @@ public class inventory : MonoBehaviour {
                     }
                 }
             }
-            if (emptySlot > 0)
+            if (emptySlots > 0)
             {
                 PlaceEmpty(item);
             }
@@ -96,7 +111,7 @@ public class inventory : MonoBehaviour {
     }
     private bool PlaceEmpty(Item item)
     {
-        if (emptySlot > 0)
+        if (emptySlots > 0)
         {
             foreach (GameObject slot in allSlots)
             {
@@ -104,7 +119,7 @@ public class inventory : MonoBehaviour {
                 if (tmp.IsEmpty)
                 {
                     tmp.AddItem(item);
-                    emptySlot--;
+                    emptySlots--;
                     return true;
                 }
             }

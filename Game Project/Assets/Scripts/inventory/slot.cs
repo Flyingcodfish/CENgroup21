@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class slot : MonoBehaviour {
+public class slot : MonoBehaviour, IPointerClickHandler {
     private Stack<Item> items;
 
     public Text stackTxt;
@@ -65,5 +66,29 @@ public class slot : MonoBehaviour {
         st.pressedSprite = neutral;
 
         GetComponent<Button>().spriteState = st;
+    }
+
+    private void UseItem()
+    {
+        if (!IsEmpty)
+        {
+            items.Pop().Use();
+
+            stackTxt.text = items.Count > 1 ? items.Count.ToString() : string.Empty;
+
+            if (IsEmpty)
+            {
+                ChangeSprite(slotEmpty, slotHighlight);
+                inventory.EmptySlot++;
+            }
+        }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if(eventData.button == PointerEventData.InputButton.Right)
+        {
+            UseItem();
+        }
     }
 }
