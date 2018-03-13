@@ -440,7 +440,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1621778042324258}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.462473, y: -0.5096424, z: 0}
+  m_LocalPosition: {x: -2.87, y: -3.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224993882769391958}
@@ -1586,7 +1586,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slots: 10
   rows: 1
-  emptySlot: 0
   slotPaddingLeft: 2
   slotPaddingTop: 2
   slotSize: 30
