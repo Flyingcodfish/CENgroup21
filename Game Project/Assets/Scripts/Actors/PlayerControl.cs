@@ -80,8 +80,7 @@ public class PlayerControl : Actor {
 //            else if (dir == 3) // idle left
 //                animator.SetInteger("Direction", 7); 
         }
-		//TODO: set this to use a bindable key using the input manager
-        if(Input.GetKeyDown("j") && !attacking)
+        if(Input.GetButtonDown("Attack") && !attacking)
         {
 			attacking = true;
             attackTimer = attackTime;
