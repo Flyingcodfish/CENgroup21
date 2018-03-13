@@ -16,6 +16,7 @@ public class Item : MonoBehaviour {
         switch (type)
         {
             case ItemType.HEALTH:
+
                 break;
             case ItemType.MANA:
                 break;
