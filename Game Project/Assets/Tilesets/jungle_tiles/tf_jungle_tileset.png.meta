@@ -5882,230 +5882,6 @@ TextureImporter:
         - {x: 8, y: 8}
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tf_jungle_tileset_232
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tf_jungle_tileset_233
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tf_jungle_tileset_234
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -4}
-        - {x: -7, y: -7}
-        - {x: -5, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -4}
-        - {x: -7, y: -7}
-        - {x: -5, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tf_jungle_tileset_235
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tf_jungle_tileset_236
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tf_jungle_tileset_237
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tf_jungle_tileset_238
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tf_jungle_tileset_239
-      rect:
-        serializedVersion: 2
-        x: 272
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tf_jungle_tileset_240
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tf_jungle_tileset_241
-      rect:
-        serializedVersion: 2
-        x: 304
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      tessellationDetail: 0
-    - serializedVersion: 2
       name: tf_jungle_tileset_242
       rect:
         serializedVersion: 2
@@ -6282,252 +6058,27 @@ TextureImporter:
         - {x: 8, y: 8}
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tf_jungle_tileset_250
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tf_jungle_tileset_251
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tf_jungle_tileset_252
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -5, y: 8}
-        - {x: -5, y: 7}
-        - {x: 6, y: -6}
-        - {x: 8, y: -6}
-        - {x: 8, y: 8}
-      physicsShape:
-      - - {x: -5, y: 8}
-        - {x: -5, y: 7}
-        - {x: 6, y: -6}
-        - {x: 8, y: -6}
-        - {x: 8, y: 8}
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tf_jungle_tileset_253
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tf_jungle_tileset_254
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tf_jungle_tileset_255
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tf_jungle_tileset_256
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tf_jungle_tileset_257
-      rect:
-        serializedVersion: 2
-        x: 272
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -6}
-        - {x: -5, y: -5}
-        - {x: 5, y: 7}
-        - {x: 5, y: 8}
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -6}
-        - {x: -5, y: -5}
-        - {x: 5, y: 7}
-        - {x: 5, y: 8}
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tf_jungle_tileset_258
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tf_jungle_tileset_259
-      rect:
-        serializedVersion: 2
-        x: 304
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      tessellationDetail: 0
-    - serializedVersion: 2
       name: tf_jungle_tileset_260
       rect:
         serializedVersion: 2
         x: 160
         y: 32
         width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.16666}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -6}
-        - {x: -1, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      - - {x: -8, y: 24}
+        - {x: -8, y: -22}
+        - {x: -1, y: -24}
+        - {x: 8, y: -24}
+        - {x: 8, y: 24}
       physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -6}
-        - {x: -1, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      - - {x: -8, y: -16}
+        - {x: -8, y: -24}
+        - {x: 8, y: -24}
+        - {x: 8, y: -16}
       tessellationDetail: 0
     - serializedVersion: 2
       name: tf_jungle_tileset_261
@@ -6536,22 +6087,21 @@ TextureImporter:
         x: 176
         y: 32
         width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.16666}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -6}
-        - {x: -4, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      - - {x: -8, y: 24}
+        - {x: -8, y: -22}
+        - {x: -4, y: -24}
+        - {x: 8, y: -24}
+        - {x: 8, y: 24}
       physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -6}
-        - {x: -4, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      - - {x: -8, y: -16}
+        - {x: -8, y: -24}
+        - {x: 8, y: -24}
+        - {x: 8, y: -16}
       tessellationDetail: 0
     - serializedVersion: 2
       name: tf_jungle_tileset_262
@@ -6560,24 +6110,26 @@ TextureImporter:
         x: 192
         y: 32
         width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.16666}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 1, y: -4}
-        - {x: 0, y: -7}
-        - {x: 1, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 4}
-        - {x: 5, y: 3}
+      - - {x: 1, y: -20}
+        - {x: 0, y: -23}
+        - {x: 1, y: -24}
+        - {x: 8, y: -24}
+        - {x: 8, y: -12}
+        - {x: 5, y: -13}
+      - - {x: -8, y: 24}
+        - {x: -8, y: 9}
+        - {x: 4, y: -6}
+        - {x: 8, y: -6}
+        - {x: 8, y: 24}
       physicsShape:
-      - - {x: 1, y: -4}
-        - {x: 0, y: -7}
-        - {x: 1, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 4}
-        - {x: 5, y: 3}
+      - - {x: -3, y: -24}
+        - {x: 8, y: -24}
+        - {x: 8, y: -16}
       tessellationDetail: 0
     - serializedVersion: 2
       name: tf_jungle_tileset_263
@@ -6586,20 +6138,20 @@ TextureImporter:
         x: 208
         y: 32
         width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.16666}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      - - {x: -8, y: 24}
+        - {x: -8, y: -24}
+        - {x: 8, y: -24}
+        - {x: 8, y: 24}
       physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      - - {x: -8, y: -16}
+        - {x: -8, y: -24}
+        - {x: 8, y: -24}
+        - {x: 8, y: -16}
       tessellationDetail: 0
     - serializedVersion: 2
       name: tf_jungle_tileset_264
@@ -6608,20 +6160,20 @@ TextureImporter:
         x: 224
         y: 32
         width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.16666}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      - - {x: -8, y: 24}
+        - {x: -8, y: -24}
+        - {x: 8, y: -24}
+        - {x: 8, y: 24}
       physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      - - {x: -8, y: -16}
+        - {x: -8, y: -24}
+        - {x: 8, y: -24}
+        - {x: 8, y: -16}
       tessellationDetail: 0
     - serializedVersion: 2
       name: tf_jungle_tileset_265
@@ -6630,20 +6182,20 @@ TextureImporter:
         x: 240
         y: 32
         width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.16666}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      - - {x: -8, y: 24}
+        - {x: -8, y: -24}
+        - {x: 8, y: -24}
+        - {x: 8, y: 24}
       physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      - - {x: -8, y: -16}
+        - {x: -8, y: -24}
+        - {x: 8, y: -24}
+        - {x: 8, y: -16}
       tessellationDetail: 0
     - serializedVersion: 2
       name: tf_jungle_tileset_266
@@ -6652,20 +6204,20 @@ TextureImporter:
         x: 256
         y: 32
         width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.16666}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      - - {x: -8, y: 24}
+        - {x: -8, y: -24}
+        - {x: 8, y: -24}
+        - {x: 8, y: 24}
       physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      - - {x: -8, y: -16}
+        - {x: -8, y: -24}
+        - {x: 8, y: -24}
+        - {x: 8, y: -16}
       tessellationDetail: 0
     - serializedVersion: 2
       name: tf_jungle_tileset_267
@@ -6674,24 +6226,26 @@ TextureImporter:
         x: 272
         y: 32
         width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.16666}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -6, y: 4}
-        - {x: -8, y: 4}
-        - {x: -8, y: -8}
-        - {x: -1, y: -8}
-        - {x: 0, y: -7}
-        - {x: 0, y: -5}
+      - - {x: -6, y: -12}
+        - {x: -8, y: -12}
+        - {x: -8, y: -24}
+        - {x: -1, y: -24}
+        - {x: 0, y: -23}
+        - {x: 0, y: -21}
+      - - {x: -8, y: 24}
+        - {x: -8, y: -6}
+        - {x: -5, y: -5}
+        - {x: 8, y: 8}
+        - {x: 8, y: 24}
       physicsShape:
-      - - {x: -6, y: 4}
-        - {x: -8, y: 4}
-        - {x: -8, y: -8}
-        - {x: -1, y: -8}
-        - {x: 0, y: -7}
-        - {x: 0, y: -5}
+      - - {x: -8, y: -16}
+        - {x: -8, y: -24}
+        - {x: 3, y: -24}
       tessellationDetail: 0
     - serializedVersion: 2
       name: tf_jungle_tileset_268
@@ -6700,24 +6254,22 @@ TextureImporter:
         x: 288
         y: 32
         width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.16666}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 8, y: 8}
-        - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 0, y: -8}
-        - {x: 7, y: -6}
-        - {x: 8, y: -5}
+      - - {x: 8, y: 24}
+        - {x: -8, y: 24}
+        - {x: -8, y: -24}
+        - {x: 0, y: -24}
+        - {x: 7, y: -22}
+        - {x: 8, y: -21}
       physicsShape:
-      - - {x: 8, y: 8}
-        - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 0, y: -8}
-        - {x: 7, y: -6}
-        - {x: 8, y: -5}
+      - - {x: 8, y: -16}
+        - {x: -8, y: -16}
+        - {x: -8, y: -24}
+        - {x: 8, y: -24}
       tessellationDetail: 0
     - serializedVersion: 2
       name: tf_jungle_tileset_269
@@ -6726,22 +6278,21 @@ TextureImporter:
         x: 304
         y: 32
         width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.16666}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 1, y: -8}
-        - {x: 8, y: -6}
-        - {x: 8, y: 8}
+      - - {x: -8, y: 24}
+        - {x: -8, y: -24}
+        - {x: 1, y: -24}
+        - {x: 8, y: -22}
+        - {x: 8, y: 24}
       physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 1, y: -8}
-        - {x: 8, y: -6}
-        - {x: 8, y: 8}
+      - - {x: -8, y: -16}
+        - {x: -8, y: -24}
+        - {x: 8, y: -24}
+        - {x: 8, y: -16}
       tessellationDetail: 0
     - serializedVersion: 2
       name: tf_jungle_tileset_270
@@ -6887,8 +6438,8 @@ TextureImporter:
       physicsShape:
       - - {x: -3, y: 8}
         - {x: -3, y: -2}
-        - {x: -2, y: -7}
-        - {x: 8, y: -7}
+        - {x: 3, y: -8}
+        - {x: 8, y: -8}
         - {x: 8, y: 8}
       tessellationDetail: 0
     - serializedVersion: 2
@@ -6911,10 +6462,8 @@ TextureImporter:
         - {x: 8, y: 8}
       physicsShape:
       - - {x: -8, y: 8}
-        - {x: -8, y: -6}
-        - {x: -5, y: -7}
-        - {x: 5, y: -7}
-        - {x: 8, y: -6}
+        - {x: -8, y: -8}
+        - {x: 8, y: -8}
         - {x: 8, y: 8}
       tessellationDetail: 0
     - serializedVersion: 2
@@ -6935,8 +6484,8 @@ TextureImporter:
         - {x: 8, y: 8}
       physicsShape:
       - - {x: -8, y: 8}
-        - {x: -8, y: -6}
-        - {x: 8, y: -6}
+        - {x: -8, y: -8}
+        - {x: 8, y: -8}
         - {x: 8, y: 8}
       tessellationDetail: 0
     - serializedVersion: 2
@@ -6959,10 +6508,8 @@ TextureImporter:
         - {x: 8, y: 8}
       physicsShape:
       - - {x: -8, y: 8}
-        - {x: -8, y: -4}
-        - {x: -3, y: -7}
-        - {x: 5, y: -7}
-        - {x: 8, y: -6}
+        - {x: -8, y: -8}
+        - {x: 8, y: -8}
         - {x: 8, y: 8}
       tessellationDetail: 0
     - serializedVersion: 2
@@ -6984,9 +6531,8 @@ TextureImporter:
         - {x: 8, y: 8}
       physicsShape:
       - - {x: -8, y: 8}
-        - {x: -8, y: -6}
-        - {x: 1, y: -7}
-        - {x: 8, y: -7}
+        - {x: -8, y: -8}
+        - {x: 8, y: -8}
         - {x: 8, y: 8}
       tessellationDetail: 0
     - serializedVersion: 2
@@ -7009,7 +6555,7 @@ TextureImporter:
       physicsShape:
       - - {x: -8, y: 8}
         - {x: -8, y: -8}
-        - {x: 2, y: -8}
+        - {x: -1, y: -8}
         - {x: 3, y: -4}
         - {x: 3, y: 8}
       tessellationDetail: 0
