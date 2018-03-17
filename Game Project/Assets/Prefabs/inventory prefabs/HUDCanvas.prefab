@@ -241,6 +241,7 @@ MonoBehaviour:
   slotPrefab: {fileID: 1903169189990112, guid: 117e2e3452b5a9d4c942d829a8960217, type: 2}
   iconPrefab: {fileID: 1042629837953936, guid: e29fc947c641ff247b37cd0bd965e017, type: 2}
   canvas: {fileID: 223772058958100174}
+  eventSystem: {fileID: 0}
 --- !u!114 &114410982685546384
 MonoBehaviour:
   m_ObjectHideFlags: 1

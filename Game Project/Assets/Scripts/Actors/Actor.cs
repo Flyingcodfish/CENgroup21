@@ -20,6 +20,7 @@ public abstract class Actor : MonoBehaviour {
 	public Team team = Team.neutral; //default team
 
 	protected Color hurtColor = new Color32(255, 143, 143, 255);
+    protected Color healColor = Color.green;
 	protected float flashPeriod = 0.12f; //period (in seconds) of flashing after getting hurt
 	protected float iFrameTime = 0.3f; //length of invincibility after getting hurt
 
@@ -49,12 +50,19 @@ public abstract class Actor : MonoBehaviour {
 		this.ActorStart();
 	}
 
-	public virtual void TakeDamage(int amount){
+	public virtual void TakeDamage(int amount){ 
 		if (this.isInvincible == false){
 			currentHealth -= amount;
-
-			StartCoroutine(AnimateDamage());
+            if (amount < 0)
+            {
+                StartCoroutine(AnimateHealth());
+            }
+            else
+            {
+                StartCoroutine(AnimateDamage());
+            }
 			if (currentHealth <= 0 ) StartCoroutine(Die());
+            if (currentHealth > maxHealth) currentHealth = maxHealth; // needed for health potions to not overheal, also was made invincible if overhealed 
 		}
 	}
 
@@ -77,6 +85,20 @@ public abstract class Actor : MonoBehaviour {
 	//must be overridden in inherited classes
 	//done this way so people don't forget it exists!
 	public abstract void ActorStart();
+    IEnumerator AnimateHealth()
+    {
+        Color baseColor = this.sprite.color;
+        int ticker = 0;
+
+        for (float t = 0; t < iFrameTime; t += flashPeriod / 2)
+        {
+            //toggle between normal color and hurtColor
+            this.sprite.color = (ticker++ % 2 == 0) ? healColor : baseColor;
+            yield return new WaitForSeconds(flashPeriod / 2);
+        }
+
+        sprite.color = baseColor;
+    }
 
 	IEnumerator AnimateDamage(){
 		Color baseColor = this.sprite.color;
@@ -92,6 +114,40 @@ public abstract class Actor : MonoBehaviour {
 		sprite.color = baseColor;
 		this.isInvincible = false;
 	}
+    public void ModifyEffect(Actor actor, float Modifier, float Duration, ItemType item) // could make it possible to have effects with non item identifier 
+    {
+        switch (item)
+        {
+            case ItemType.SWIFT:
+                StartCoroutine(SpeedUp(actor, Modifier, Duration));
+                break;
+            case ItemType.STRENGTH:
+                StartCoroutine(StrengthUp(actor, Modifier, Duration));
+                break;
+            case ItemType.POWER:
+                StartCoroutine(PowerUp(actor, Modifier, Duration));
+                break;
+        }
+        
+    }
+    IEnumerator SpeedUp(Actor actor, float speedModifier, float Duration) // speeds up actor 
+    {
+        actor.isBusy = true;
+        float baseSpeed = this.maxSpeed;
+        actor.maxSpeed = baseSpeed * speedModifier;
+        yield return new WaitForSeconds(Duration);
+        actor.maxSpeed = baseSpeed;
+        actor.isBusy = false;
+    }
+    IEnumerator StrengthUp(Actor actor, float strengthModifier, float Duration) // makes actor take less damage
+    {
+        return null;
+    }
+    IEnumerator PowerUp(Actor actor, float powerModifier, float Duration) // makes actor do more damage
+    {
+        return null;
+    }
+
 }
 
 
