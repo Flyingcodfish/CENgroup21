@@ -13,6 +13,11 @@ public abstract class Actor : MonoBehaviour {
 	protected bool isBusy = false; //death waits for Actor to finish important coroutines
 	protected bool isDying = false; //coroutines that should stop once death starts can use this
 
+    //strength fields
+    float strength=1f;
+    protected bool strengthUp = false;
+
+
 	//health and damage fields
 	public bool isInvincible = false;
 	public int maxHealth;
@@ -20,7 +25,7 @@ public abstract class Actor : MonoBehaviour {
 	public Team team = Team.neutral; //default team
 
 	protected Color hurtColor = new Color32(255, 143, 143, 255);
-    protected Color healColor = Color.green;
+    protected Color healColor = Color.green; // *could make cool Color32* 
 	protected float flashPeriod = 0.12f; //period (in seconds) of flashing after getting hurt
 	protected float iFrameTime = 0.3f; //length of invincibility after getting hurt
 
@@ -52,7 +57,15 @@ public abstract class Actor : MonoBehaviour {
 
 	public virtual void TakeDamage(int amount){ 
 		if (this.isInvincible == false){
-			currentHealth -= amount;
+            if (strengthUp)
+            {
+                amount = (int) (amount * strength);
+                currentHealth -= amount;
+            }
+            else
+            {
+                currentHealth -= amount;
+            }
             if (amount < 0)
             {
                 StartCoroutine(AnimateHealth());
@@ -141,7 +154,14 @@ public abstract class Actor : MonoBehaviour {
     }
     IEnumerator StrengthUp(Actor actor, float strengthModifier, float Duration) // makes actor take less damage
     {
-        return null;
+        actor.isBusy = true;
+        actor.strengthUp = true;
+        float baseStrength = this.strength;
+        actor.strength = strengthModifier;
+        yield return new WaitForSeconds(Duration);
+        actor.strength = baseStrength;
+        actor.strengthUp = false;
+        actor.isBusy = false;
     }
     IEnumerator PowerUp(Actor actor, float powerModifier, float Duration) // makes actor do more damage
     {

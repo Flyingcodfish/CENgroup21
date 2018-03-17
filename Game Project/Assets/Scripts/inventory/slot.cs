@@ -14,7 +14,7 @@ public class slot : MonoBehaviour, IPointerClickHandler {
 	// Use this for initialization
 	public bool IsEmpty
 	{
-		get { return Items.Count == 0; }
+		get { return Items.Count == 0; } // checks if slot is empty 
 	}
 
 	public Item CurrentItem
@@ -22,12 +22,12 @@ public class slot : MonoBehaviour, IPointerClickHandler {
 		get { return Items.Peek(); }
 	}
 
-	public bool CanStack
+	public bool CanStack // checks if possible to stack 
 	{
 		get { return CurrentItem.maxSize > Items.Count; }
 	}
 
-	public Stack<Item> Items
+	public Stack<Item> Items // used to get stacks in other classes 
 	{
 		get
 		{
