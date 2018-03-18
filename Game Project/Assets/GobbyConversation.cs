@@ -13,4 +13,12 @@ public class GobbyConversation : MonoBehaviour {
             startConvo.SetActive(true);
         }
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            startConvo.SetActive(false);
+        }
+    }
 }
