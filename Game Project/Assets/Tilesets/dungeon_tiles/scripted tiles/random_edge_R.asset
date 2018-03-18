@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 326885b11fe8bc549a4e8b6dd07bdbe8, type: 3}
+  m_Name: random_edge_R
+  m_EditorClassIdentifier: 
+  choices:
+  - sprite: {fileID: 21300050, guid: 262845d655fe76c4098f52ac39d2ac0f, type: 3}
+    weight: 1
+  - sprite: {fileID: 21300090, guid: 262845d655fe76c4098f52ac39d2ac0f, type: 3}
+    weight: 1
+  - sprite: {fileID: 21300132, guid: 262845d655fe76c4098f52ac39d2ac0f, type: 3}
+    weight: 1
+  totalWeight: 3
+  dirty: 0
+  color: {r: 1, g: 1, b: 1, a: 1}
+  colliderType: 1

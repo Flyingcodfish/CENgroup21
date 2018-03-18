@@ -10,8 +10,11 @@ using UnityEngine;
 public abstract class Actor : MonoBehaviour {
 
 	//bookkeeping fields
-	protected bool isBusy = false; //death waits for Actor to finish important coroutines
-	protected bool isDying = false; //coroutines that should stop once death starts can use this
+	protected bool isBusy = false; //death only destroys object once this is false; used to wait on coroutines that must finish
+	public bool enabledAI = true; //used to pause coroutines/movement (used by freezing effects)
+	protected bool isDying = false; //similar to the above but "stronger," triggered by death
+	public bool IsActive(){return enabledAI && !isDying;} //method for easily checking the last two fields
+
 
     //strength & power fields
 	public float power = 1f;
@@ -29,6 +32,9 @@ public abstract class Actor : MonoBehaviour {
 	protected float flashPeriod = 0.12f; //period (in seconds) of flashing after getting hurt
 	protected float iFrameTime = 0.3f; //length of invincibility after getting hurt
 
+	//status effect fields
+	public int frozenStatus = 0; //integer: +1 when frozen, -1 when freezes end. Allows multiple sources to overlap freeze duration, but not stack effects.
+
 	//movement fields
 	public float drag = 100f;
 	public float maxSpeed = 300f;
@@ -36,7 +42,7 @@ public abstract class Actor : MonoBehaviour {
 	//references to required components
 	public Rigidbody2D rbody {get; private set;}
 	public Animator animator {get; private set;}
-	public SpriteRenderer sprite {get; private set;}
+	public SpriteRenderer spriteRenderer {get; private set;}
 
 
 	//Start is used to initialize important Actor component references
@@ -46,7 +52,7 @@ public abstract class Actor : MonoBehaviour {
 		currentHealth = maxHealth;
 		rbody = this.GetComponent<Rigidbody2D>();
 		animator = this.GetComponent<Animator>();
-		sprite = this.GetComponent<SpriteRenderer>();
+		spriteRenderer = this.GetComponent<SpriteRenderer>();
 
 		rbody.drag = this.drag;
 		rbody.gravityScale = 0;
@@ -80,13 +86,17 @@ public abstract class Actor : MonoBehaviour {
 	}
 
 	virtual public IEnumerator Die(){
-		//signal that the actor is dying; AI should halt
+		//AI should halt
 		this.isDying = true;
-//		animator.SetTrigger("Die"); //should be pretty universal
+//		animator.SetTrigger("Die"); //trigger death animation, should be pretty universal
+
+		//wait for freeze effect to wear off
+		while (frozenStatus > 0)
+			yield return null;
 
 		//turn physics off
 		this.GetComponent<Collider2D>().enabled = false;
-		this.sprite.enabled = false;
+		this.spriteRenderer.enabled = false;
 
 		//wait for important coroutines to finish
 		while (isBusy == true)
@@ -114,17 +124,17 @@ public abstract class Actor : MonoBehaviour {
     }
 
 	IEnumerator AnimateDamage(){
-		Color baseColor = this.sprite.color;
+		Color baseColor = this.spriteRenderer.color;
 		int ticker = 0;
 		this.isInvincible = true;
 
 		for (float t = 0; t < iFrameTime; t += flashPeriod/2){
 			//toggle between normal color and hurtColor
-			this.sprite.color = (ticker++ %2 == 0) ? hurtColor : baseColor;
+			this.spriteRenderer.color = (ticker++ %2 == 0) ? hurtColor : baseColor;
 			yield return new WaitForSeconds(flashPeriod/2);
 		}
 
-		sprite.color = baseColor;
+		spriteRenderer.color = baseColor;
 		this.isInvincible = false;
 	}
     public void ModifyEffect(Actor actor, float Modifier, float Duration, string item) // uses string to allow for non items to call modify effects 

@@ -22,17 +22,6 @@ public class Hitbox : MonoBehaviour {
 		}
 	}
 
-	public Vector2 GetOffset(){
-		if (hitbox == null)//start may not have happened yet
-			return this.GetComponent<Collider2D>().offset;
-		return this.hitbox.offset;
-	}
-		
-	public bool SetOffset(Vector2 offset){
-		if (this.hitbox == null) return false;
-		this.hitbox.offset = offset;
-		return true;
-	}
 
 	//declares a delegate method type
 	public delegate void DelegateHitActor(Actor actor);
@@ -45,6 +34,7 @@ public class Hitbox : MonoBehaviour {
 		this.parentActor = this.GetComponentInParent<Actor>();
 		this.team = parentActor.team;
 		this.hitbox = this.GetComponent<Collider2D>();
+		hitbox.gameObject.layer = LayerMask.NameToLayer("Hitboxes");
 		this.isActive = false;
 	}
 

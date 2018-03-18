@@ -54,7 +54,7 @@ namespace UnityEngine.Tilemaps{
 		}
 
 		private Sprite GetSprite(){
-			//if sprite list is empty, generate it; only happens once
+			//if sprite list is empty, generate it; happens every resize
 			if (sprites == null || dirty == true){
 				totalWeight = 0;
 				dirty = false;
