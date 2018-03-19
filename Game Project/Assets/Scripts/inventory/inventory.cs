@@ -54,7 +54,7 @@ public class inventory : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () { // doesnt follow mouse
+	void Update () { 
         if (Input.GetMouseButtonUp(0))
         {
             if (!eventSystem.IsPointerOverGameObject(-1) && from != null) // if mouse pointer not over game object 
@@ -73,7 +73,34 @@ public class inventory : MonoBehaviour {
             float ym = Input.mousePosition.y;
             hoverObject.transform.position = new Vector2(xm + 1, ym + 1); // makes object follow mouse 
         }
-	}
+        // use specific items based on which num is used 
+        if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Debug.Log("1 is Pressed");
+            allSlots[0].SendMessage("UseItem");
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Debug.Log("2 is Pressed");
+            allSlots[1].SendMessage("UseItem");
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Debug.Log("3 is Pressed");
+            allSlots[2].SendMessage("UseItem");
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            Debug.Log("4 is Pressed");
+            allSlots[3].SendMessage("UseItem");
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad5) || Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            Debug.Log("5 is Pressed");
+            allSlots[4].SendMessage("UseItem");
+        }
+        // end hot bar keys 
+    }
 	private void CreateLayout() // creates the inventory layout based on fields and formulas 
 	{
 		allSlots = new List<GameObject>();
