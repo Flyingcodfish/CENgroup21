@@ -13,10 +13,10 @@ public abstract class Actor : MonoBehaviour {
 	protected bool isBusy = false; //death waits for Actor to finish important coroutines
 	protected bool isDying = false; //coroutines that should stop once death starts can use this
 
-    //strength fields
-    float strength=1f;
+    //strength & power fields
+	public float power = 1f;
+	float strength=1f;
     protected bool strengthUp = false;
-
 
 	//health and damage fields
 	public bool isInvincible = false;
@@ -165,7 +165,12 @@ public abstract class Actor : MonoBehaviour {
     }
     IEnumerator PowerUp(Actor actor, float powerModifier, float Duration) // makes actor do more damage
     {
-        return null;
+		actor.isBusy = true;
+		float basePower = this.power;
+		actor.power = powerModifier;
+		yield return new WaitForSeconds(Duration);
+		actor.power = basePower;
+		actor.isBusy = false;
     }
 
 }

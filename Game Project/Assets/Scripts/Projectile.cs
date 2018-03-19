@@ -36,11 +36,10 @@ public class Projectile : MonoBehaviour {
 		Destroy(this.gameObject);
 	}
 
-	public void Initialize(Vector2 velocity, Team team, int layer = -1){
+	public void Initialize(Vector2 velocity, Team team, float dmgMod){
 		this.velocity = velocity;
 		this.team = team;
-		//set physics layer: if no argument given, set to "Flying," else use what was given 
-		this.gameObject.layer = (layer == -1) ? LayerMask.NameToLayer("Flying") : layer;
+		this.damage = Mathf.RoundToInt(damage * dmgMod);
 
 		StartCoroutine(LifespanCountdown()); //begin the inevitable spiral towards death
 	}
