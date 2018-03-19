@@ -79,9 +79,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
-  spriteNeutral: {fileID: 21300010, guid: 84f6c5242dc064c41a61bed0e85f0826, type: 3}
-  spriteHighlighted: {fileID: 21300010, guid: bbb243e9a92c05343a852e7c048d246f, type: 3}
-  potionTime: 1.5
+  spriteNeutral: {fileID: 21300008, guid: d18258736171abe449a6b76bbcc002d1, type: 3}
+  spriteHighlighted: {fileID: 21300008, guid: d3e807d92ad3fc642931052b5ac6f701, type: 3}
+  speedTime: 20
+  speedModifier: 2
+  strengthTime: 15
+  strengthModifier: 0.5
   maxSize: 5
 --- !u!212 &212312760344757900
 SpriteRenderer:
@@ -117,8 +120,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300010, guid: 84f6c5242dc064c41a61bed0e85f0826, type: 3}
-  m_Color: {r: 0.9705882, g: 0, b: 0.78316396, a: 1}
+  m_Sprite: {fileID: 21300008, guid: d18258736171abe449a6b76bbcc002d1, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

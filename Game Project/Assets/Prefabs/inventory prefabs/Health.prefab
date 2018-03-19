@@ -80,7 +80,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   spriteNeutral: {fileID: 21300008, guid: 84f6c5242dc064c41a61bed0e85f0826, type: 3}
-  spriteHighlighted: {fileID: 21300008, guid: bbb243e9a92c05343a852e7c048d246f, type: 3}
+  spriteHighlighted: {fileID: 21300006, guid: 48c78c2299affef4dac7f1fee2b39ddd, type: 3}
+  speedTime: 20
+  speedModifier: 2
+  strengthTime: 15
+  strengthModifier: 0.5
   maxSize: 2
 --- !u!212 &212193590064674304
 SpriteRenderer:
