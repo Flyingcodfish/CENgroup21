@@ -2,23 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType { MANA,HEALTH}; // creates types for specific in game items 
+public enum ItemType { MANA,HEALTH,SWIFT,STRENGTH,POWER}; // creates types for specific in game items 
 
-public class Item : MonoBehaviour {
+public class Item : MonoBehaviour
+{
     public ItemType type;
 
     public Sprite spriteNeutral, spriteHighlighted;
 
+    private Actor player;
+
+    public float speedTime = 20f, speedModifier = 2.0f;
+
+    public float strengthTime = 15f, strengthModifier = 0.5f;
+
     public int maxSize;
 
-	public void Use()
+    public void Use()
     {
+        player = GameObject.FindWithTag("Player").GetComponent<Actor>();
         switch (type)
         {
             case ItemType.HEALTH:
-
+                player.TakeDamage(-50);
                 break;
             case ItemType.MANA:
+                break;
+            case ItemType.SWIFT:
+                player.ModifyEffect(player, speedModifier, speedTime, type);
+                break;
+            case ItemType.STRENGTH:
+                player.ModifyEffect(player, strengthModifier, strengthTime, type);
+                break;
+            case ItemType.POWER:
                 break;
         }
     }

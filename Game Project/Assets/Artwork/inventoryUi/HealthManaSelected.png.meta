@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: bbb243e9a92c05343a852e7c048d246f
-timeCreated: 1519609400
+guid: 48c78c2299affef4dac7f1fee2b39ddd
+timeCreated: 1521420735
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: selected sword
-    21300002: selected dagger
-    21300004: FreeIconSet_selected_2
-    21300006: FreeIconSet_selected_3
-    21300008: selected health
-    21300010: selected mana
-    21300012: FreeIconSet_selected_6
-    21300014: FreeIconSet_selected_7
+    21300000: HealthManaSelected_1
+    21300002: HealthManaSelected_2
+    21300004: HealthManaSelected_3
+    21300006: Health_Select
+    21300008: Mana_Select
+    21300010: HealthManaSelected_6
+    21300012: HealthManaSelected_7
+    21300014: HealthManaSelected_0
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -88,35 +88,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: selected sword
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 33
-        width: 30
-        height: 30
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: selected dagger
-      rect:
-        serializedVersion: 2
-        x: 33
-        y: 33
-        width: 17
-        height: 17
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: selected health
+      name: Health_Select
       rect:
         serializedVersion: 2
         x: 8
@@ -126,21 +98,33 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -6, y: 13.5}
+        - {x: -8, y: 9.5}
+        - {x: -8, y: -13.5}
+        - {x: 8, y: -13.5}
+        - {x: 8, y: 10.5}
+        - {x: 7, y: 13.5}
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: selected mana
+      name: Mana_Select
       rect:
         serializedVersion: 2
-        x: 40
+        x: 39
         y: 2
         width: 16
         height: 27
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -6, y: 13.5}
+        - {x: -8, y: 9.5}
+        - {x: -8, y: -13.5}
+        - {x: 8, y: -13.5}
+        - {x: 8, y: 10.5}
+        - {x: 7, y: 13.5}
       physicsShape: []
       tessellationDetail: 0
     outline: []
