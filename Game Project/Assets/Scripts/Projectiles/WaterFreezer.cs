@@ -7,7 +7,7 @@ public class WaterFreezer : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other){
 		WaterTileObject waterObj = other.GetComponent<WaterTileObject>();
 		if (waterObj != null){
-			//hit some water, freeze it and do not destroy self
+			//hit some water, freeze it
 			waterObj.Freeze();
 		}
 	}

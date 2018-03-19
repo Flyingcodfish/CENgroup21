@@ -94,6 +94,7 @@ public class IceShardSpell : MonoBehaviour {
 
 	IEnumerator Die(){
 		if (isBusy){
+			Destroy(transform.GetComponentInChildren<WaterFreezer>().gameObject);
 			this.GetComponent<SpriteRenderer>().enabled = false;
 			this.GetComponent<Collider2D>().enabled = false;
 			ParticleSystem.EmissionModule pSysEmitter = this.GetComponent<ParticleSystem>().emission;

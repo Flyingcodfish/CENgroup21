@@ -110,17 +110,17 @@ public abstract class Actor : MonoBehaviour {
 	public abstract void ActorStart();
     IEnumerator AnimateHealth()
     {
-        Color baseColor = this.sprite.color;
+        Color baseColor = this.spriteRenderer.color;
         int ticker = 0;
 
         for (float t = 0; t < iFrameTime; t += flashPeriod / 2)
         {
             //toggle between normal color and hurtColor
-            this.sprite.color = (ticker++ % 2 == 0) ? healColor : baseColor;
+            this.spriteRenderer.color = (ticker++ % 2 == 0) ? healColor : baseColor;
             yield return new WaitForSeconds(flashPeriod / 2);
         }
 
-        sprite.color = baseColor;
+        spriteRenderer.color = baseColor;
     }
 
 	IEnumerator AnimateDamage(){

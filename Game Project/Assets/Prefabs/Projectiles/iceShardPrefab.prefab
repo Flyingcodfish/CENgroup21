@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 58336804638396694}
   - component: {fileID: 114439089348473670}
   - component: {fileID: 50417303734547446}
-  m_Layer: 15
+  m_Layer: 13
   m_Name: WaterFreezer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -319,11 +319,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1621778042324258}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-<<<<<<< HEAD
   m_LocalPosition: {x: 326.13, y: 284.82, z: 0}
-=======
-  m_LocalPosition: {x: 2.510281, y: -2.103468, z: 0}
->>>>>>> Added Ice shard spell.
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224573240398283848}
@@ -625,12 +621,9 @@ MonoBehaviour:
   maxSpeed: 500
   inventory: {fileID: 114385308227976608}
   attackHitbox: {fileID: 114657046412538298}
-<<<<<<< HEAD
---- !u!114 &114345998326252930
-=======
   iceShardPrefab: {fileID: 114786623454023892, guid: cedb58da92376044e9c413c619a0a6d6,
     type: 2}
---- !u!114 &114319938636702294
+--- !u!114 &114345998326252930
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -743,7 +736,6 @@ MonoBehaviour:
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &114383039415608356
->>>>>>> Added Ice shard spell.
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
