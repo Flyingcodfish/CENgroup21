@@ -129,7 +129,14 @@ public class inventory : MonoBehaviour {
 
 				RectTransform slotRect = newSlot.GetComponent<RectTransform>();
 
-				newSlot.name = "Slot";
+                if ((x + y) < 3)// first three slots for Spell items
+                {
+                    newSlot.name = "Spell";
+                }
+                else
+                {
+                    newSlot.name = "Slot";
+                }
 
 				newSlot.transform.SetParent(this.transform.parent); // sets parent to canvas 
 

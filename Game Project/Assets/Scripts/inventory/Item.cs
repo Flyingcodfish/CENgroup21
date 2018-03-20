@@ -31,13 +31,13 @@ public class Item : MonoBehaviour
             case ItemType.MANA:
                 break;
             case ItemType.SWIFT:
-                player.ModifyEffect(player, speedModifier, speedTime, type);
+                player.ModifyEffect(player, speedModifier, speedTime, "SWIFT");
                 break;
             case ItemType.STRENGTH:
-                player.ModifyEffect(player, strengthModifier, strengthTime, type);
+                player.ModifyEffect(player, strengthModifier, strengthTime, "STRENGTH");
                 break;
             case ItemType.POWER:
-			player.ModifyEffect(player, powerModifier, powerTime, type);
+			player.ModifyEffect(player, powerModifier, powerTime, "POWER");
                 break;
         }
     }

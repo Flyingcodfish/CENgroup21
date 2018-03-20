@@ -127,17 +127,17 @@ public abstract class Actor : MonoBehaviour {
 		sprite.color = baseColor;
 		this.isInvincible = false;
 	}
-    public void ModifyEffect(Actor actor, float Modifier, float Duration, ItemType item) // could make it possible to have effects with non item identifier 
+    public void ModifyEffect(Actor actor, float Modifier, float Duration, string item) // uses string to allow for non items to call modify effects 
     {
         switch (item)
         {
-            case ItemType.SWIFT:
+            case "SWIFT":
                 StartCoroutine(SpeedUp(actor, Modifier, Duration));
                 break;
-            case ItemType.STRENGTH:
+            case "STRENGTH":
                 StartCoroutine(StrengthUp(actor, Modifier, Duration));
                 break;
-            case ItemType.POWER:
+            case "POWER":
                 StartCoroutine(PowerUp(actor, Modifier, Duration));
                 break;
         }
