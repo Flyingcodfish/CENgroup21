@@ -16,11 +16,6 @@ public class Item : MonoBehaviour
 
     public float strengthTime = 15f, strengthModifier = 0.5f;
 
-<<<<<<< HEAD
-=======
-	public float powerTime = 5f, powerModifier = 1.5f;
-
->>>>>>> master
     public int maxSize;
 
     public void Use()
@@ -40,10 +35,6 @@ public class Item : MonoBehaviour
                 player.ModifyEffect(player, strengthModifier, strengthTime, type);
                 break;
             case ItemType.POWER:
-<<<<<<< HEAD
-=======
-			player.ModifyEffect(player, powerModifier, powerTime, type);
->>>>>>> master
                 break;
         }
     }

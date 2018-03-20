@@ -8,7 +8,6 @@ public class Hitbox : MonoBehaviour {
 	private Collider2D hitbox;
 
 	public float damage;
-	private Actor parentActor;
 	private Team team;
 
 	private bool active;
@@ -42,8 +41,7 @@ public class Hitbox : MonoBehaviour {
 	public DelegateHitActor HitActor; 
 
 	public void Start(){
-		this.parentActor = this.GetComponentInParent<Actor>();
-		this.team = parentActor.team;
+		this.team = this.GetComponentInParent<Actor>().team;
 		this.hitbox = this.GetComponent<Collider2D>();
 		this.isActive = false;
 	}
@@ -55,7 +53,7 @@ public class Hitbox : MonoBehaviour {
 			//nicely ask the target to take damage
 			if (HitActor != null)
 				HitActor(hitActor);
-			hitActor.SendMessage("TakeDamage", this.damage * parentActor.power);
+			hitActor.SendMessage("TakeDamage", this.damage);
 		}
 		//else ignore the collision
 	}
