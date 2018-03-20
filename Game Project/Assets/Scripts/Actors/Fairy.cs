@@ -89,7 +89,7 @@ public class Fairy : Actor {
 		Destroy(flash);
 		Projectile bullet = Instantiate<Projectile>(bullet_object, transform.position, Quaternion.identity); //no rotation for now
 		Vector2 shotDirection = targetObject.transform.position - transform.position;
-		bullet.Initialize(shotDirection.normalized * bulletSpeed, this.team);
+		bullet.Initialize(shotDirection.normalized * bulletSpeed, this.team, this.power);
 	}
 
 	//only need to perform pathfinding every ~0.1 second; less CPU intensive
