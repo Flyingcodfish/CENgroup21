@@ -71,6 +71,7 @@ public class slot : MonoBehaviour, IPointerClickHandler {
 	}
 
 	public void Additems(Stack<Item> items)
+    
 	{
 		this.Items = new Stack<Item>(items);
 

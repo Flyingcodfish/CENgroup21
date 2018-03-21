@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType { MANA,HEALTH,SWIFT,STRENGTH,POWER}; // creates types for specific in game items 
+public enum ItemType { MANA,HEALTH,SWIFT,STRENGTH,POWER,SPELL}; // creates types for specific in game items 
 
 public class Item : MonoBehaviour
 {
@@ -40,5 +40,9 @@ public class Item : MonoBehaviour
 			player.ModifyEffect(player, powerModifier, powerTime, "POWER");
                 break;
         }
+    }
+    public bool isSpell()
+    {
+        return type == ItemType.SPELL;
     }
 }

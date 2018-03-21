@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: 48c78c2299affef4dac7f1fee2b39ddd
-timeCreated: 1521420735
+guid: 818301652a98f704c9c8107b5d2a4347
+timeCreated: 1521585643
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: HealthManaSelected_1
-    21300002: HealthManaSelected_2
-    21300004: HealthManaSelected_3
-    21300006: Health_Select
-    21300008: Mana_Select
-    21300010: book_Select
-    21300012: HealthManaSelected_7
-    21300014: HealthManaSelected_0
-    21300016: HealthManaSelected_4
-    21300018: HealthManaSelected_5
+    21300000: Slot
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -90,41 +81,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HealthManaSelected_4
-      rect:
-        serializedVersion: 2
-        x: 8
-        y: 2
-        width: 16
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: HealthManaSelected_5
+      name: Slot
       rect:
         serializedVersion: 2
         x: 40
         y: 2
         width: 16
         height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: book_Select
-      rect:
-        serializedVersion: 2
-        x: 70
-        y: 5
-        width: 18
-        height: 21
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
