@@ -67,30 +67,41 @@ namespace Pathfinding{
 			return coordsList;
 		}
 
-
-		//HELPER METHODS: used in local obstacle avoidance
+		/*
+		 * 
+		 * ==== HELPER METHODS ====
+		 *
+		 * Layer interaction shortcuts.
+		 * 
+		 */
 
 		//based on the input blocking type, returns a layer mask used in collision detection.
-		public static LayerMask GetMaskFromBlockingType(BlockingType bType){
+		public static LayerMask GetMaskFromBlockingType(BlockingType bType, bool includeActors = true){
+			int mask;
 			switch (bType){
 			case BlockingType.walking:
-				return LayerMask.GetMask("Walking", "Walls", "Holes");
+				mask = LayerMask.GetMask("Walls", "Holes");
+				if (includeActors) mask = mask | (int)LayerMask.GetMask("Walking");
+				break;
 
 			case BlockingType.flying:
-				return LayerMask.GetMask("Walking", "Walls");
-			
+				mask = LayerMask.GetMask("Walls");
+				if (includeActors) mask = mask | (int)LayerMask.GetMask("Walking");
+				break;
+
 			default:
 			case BlockingType.ghost:
-				return LayerMask.GetMask("Nothing");
-
+				mask = LayerMask.GetMask("Nothing");
+				break;
 			}
+			return mask;
 		}
 
 
-		//returns a ContactFilter  from a blocking type. For ultimate convenience
-		public static ContactFilter2D GetFilterFromBlockingType(BlockingType bType){
+		//returns a ContactFilter from a blocking type. For convenience.
+		public static ContactFilter2D GetFilterFromBlockingType(BlockingType bType, bool includeActors = true){
 			ContactFilter2D cFilter = new ContactFilter2D();
-			cFilter.layerMask = GetMaskFromBlockingType(bType);
+			cFilter.layerMask = GetMaskFromBlockingType(bType, includeActors);
 			cFilter.useLayerMask = true;
 			return cFilter;
 		}
@@ -109,7 +120,7 @@ namespace Pathfinding{
 			pathMapDict[t] =  MapConverter.TilemapArrToPathMap(tilemapMatrix[t].tileMaps, background.cellBounds);
 		}
 
-		public void Start(){
+		public void Awake(){
 			pathMapDict = new Dictionary<BlockingType, PathMap>();
 			//for each list of blocking layers (assumes BlockingType enum starts at 0)
 			PathMap pMap;
