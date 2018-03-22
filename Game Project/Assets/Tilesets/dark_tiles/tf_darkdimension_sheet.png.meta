@@ -372,6 +372,22 @@ TextureImporter:
     21300730: tf_darkdimension_sheet_365
     21300732: tf_darkdimension_sheet_366
     21300734: tf_darkdimension_sheet_367
+    21300736: tf_darkdimension_sheet_368
+    21300738: tf_darkdimension_sheet_369
+    21300740: tf_darkdimension_sheet_370
+    21300742: tf_darkdimension_sheet_371
+    21300744: tf_darkdimension_sheet_372
+    21300746: tf_darkdimension_sheet_373
+    21300748: tf_darkdimension_sheet_374
+    21300750: tf_darkdimension_sheet_375
+    21300752: tf_darkdimension_sheet_376
+    21300754: tf_darkdimension_sheet_377
+    21300756: tf_darkdimension_sheet_378
+    21300758: tf_darkdimension_sheet_379
+    21300760: tf_darkdimension_sheet_380
+    21300762: tf_darkdimension_sheet_381
+    21300764: tf_darkdimension_sheet_382
+    21300766: tf_darkdimension_sheet_383
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -5317,8 +5333,8 @@ TextureImporter:
       name: tf_darkdimension_sheet_344
       rect:
         serializedVersion: 2
-        x: 16
-        y: 32
+        x: 400
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -5331,8 +5347,8 @@ TextureImporter:
       name: tf_darkdimension_sheet_345
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
+        x: 416
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -5345,8 +5361,8 @@ TextureImporter:
       name: tf_darkdimension_sheet_346
       rect:
         serializedVersion: 2
-        x: 48
-        y: 32
+        x: 432
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -5359,7 +5375,7 @@ TextureImporter:
       name: tf_darkdimension_sheet_347
       rect:
         serializedVersion: 2
-        x: 64
+        x: 16
         y: 32
         width: 16
         height: 16
@@ -5373,7 +5389,7 @@ TextureImporter:
       name: tf_darkdimension_sheet_348
       rect:
         serializedVersion: 2
-        x: 80
+        x: 32
         y: 32
         width: 16
         height: 16
@@ -5387,7 +5403,7 @@ TextureImporter:
       name: tf_darkdimension_sheet_349
       rect:
         serializedVersion: 2
-        x: 96
+        x: 48
         y: 32
         width: 16
         height: 16
@@ -5401,7 +5417,7 @@ TextureImporter:
       name: tf_darkdimension_sheet_350
       rect:
         serializedVersion: 2
-        x: 112
+        x: 64
         y: 32
         width: 16
         height: 16
@@ -5415,7 +5431,7 @@ TextureImporter:
       name: tf_darkdimension_sheet_351
       rect:
         serializedVersion: 2
-        x: 128
+        x: 80
         y: 32
         width: 16
         height: 16
@@ -5429,7 +5445,7 @@ TextureImporter:
       name: tf_darkdimension_sheet_352
       rect:
         serializedVersion: 2
-        x: 160
+        x: 96
         y: 32
         width: 16
         height: 16
@@ -5443,7 +5459,7 @@ TextureImporter:
       name: tf_darkdimension_sheet_353
       rect:
         serializedVersion: 2
-        x: 176
+        x: 112
         y: 32
         width: 16
         height: 16
@@ -5457,7 +5473,7 @@ TextureImporter:
       name: tf_darkdimension_sheet_354
       rect:
         serializedVersion: 2
-        x: 192
+        x: 128
         y: 32
         width: 16
         height: 16
@@ -5471,7 +5487,7 @@ TextureImporter:
       name: tf_darkdimension_sheet_355
       rect:
         serializedVersion: 2
-        x: 208
+        x: 160
         y: 32
         width: 16
         height: 16
@@ -5485,7 +5501,7 @@ TextureImporter:
       name: tf_darkdimension_sheet_356
       rect:
         serializedVersion: 2
-        x: 224
+        x: 176
         y: 32
         width: 16
         height: 16
@@ -5499,7 +5515,7 @@ TextureImporter:
       name: tf_darkdimension_sheet_357
       rect:
         serializedVersion: 2
-        x: 240
+        x: 192
         y: 32
         width: 16
         height: 16
@@ -5513,7 +5529,7 @@ TextureImporter:
       name: tf_darkdimension_sheet_358
       rect:
         serializedVersion: 2
-        x: 256
+        x: 208
         y: 32
         width: 16
         height: 16
@@ -5527,7 +5543,7 @@ TextureImporter:
       name: tf_darkdimension_sheet_359
       rect:
         serializedVersion: 2
-        x: 272
+        x: 224
         y: 32
         width: 16
         height: 16
@@ -5541,8 +5557,8 @@ TextureImporter:
       name: tf_darkdimension_sheet_360
       rect:
         serializedVersion: 2
-        x: 160
-        y: 16
+        x: 240
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -5555,8 +5571,8 @@ TextureImporter:
       name: tf_darkdimension_sheet_361
       rect:
         serializedVersion: 2
-        x: 176
-        y: 16
+        x: 256
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -5569,8 +5585,8 @@ TextureImporter:
       name: tf_darkdimension_sheet_362
       rect:
         serializedVersion: 2
-        x: 192
-        y: 16
+        x: 272
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -5583,8 +5599,8 @@ TextureImporter:
       name: tf_darkdimension_sheet_363
       rect:
         serializedVersion: 2
-        x: 208
-        y: 16
+        x: 400
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -5597,8 +5613,8 @@ TextureImporter:
       name: tf_darkdimension_sheet_364
       rect:
         serializedVersion: 2
-        x: 224
-        y: 16
+        x: 416
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -5611,8 +5627,8 @@ TextureImporter:
       name: tf_darkdimension_sheet_365
       rect:
         serializedVersion: 2
-        x: 240
-        y: 16
+        x: 432
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -5625,7 +5641,7 @@ TextureImporter:
       name: tf_darkdimension_sheet_366
       rect:
         serializedVersion: 2
-        x: 256
+        x: 160
         y: 16
         width: 16
         height: 16
@@ -5639,7 +5655,133 @@ TextureImporter:
       name: tf_darkdimension_sheet_367
       rect:
         serializedVersion: 2
+        x: 176
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tf_darkdimension_sheet_368
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tf_darkdimension_sheet_369
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tf_darkdimension_sheet_370
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tf_darkdimension_sheet_371
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tf_darkdimension_sheet_372
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tf_darkdimension_sheet_373
+      rect:
+        serializedVersion: 2
         x: 272
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tf_darkdimension_sheet_374
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tf_darkdimension_sheet_375
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tf_darkdimension_sheet_376
+      rect:
+        serializedVersion: 2
+        x: 432
         y: 16
         width: 16
         height: 16
