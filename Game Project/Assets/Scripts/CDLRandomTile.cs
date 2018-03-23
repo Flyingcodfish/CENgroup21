@@ -30,8 +30,8 @@ namespace UnityEngine.Tilemaps{
 
 		//return a random sprite from the array of choices
 		public override void GetTileData(Vector3Int location, ITilemap tileMap, ref TileData tileData){
-			//hash code modified from https://github.com/Unity-Technologies/2d-extras/blob/master/Assets/Tilemap/Tiles/Random%20Tile/Scripts/RandomTile.cs
-			//makes tile choice random, but uses tile location as a seed:
+			//hash code from https://github.com/Unity-Technologies/2d-extras/blob/master/Assets/Tilemap/Tiles/Random%20Tile/Scripts/RandomTile.cs
+			//makes tile choice random, but uses tile location as a seed, thus:
 			//tiles will not change every time the scene is updated
 			if ((choices != null) && (choices.Length > 0))
 			{
@@ -70,8 +70,12 @@ namespace UnityEngine.Tilemaps{
 					}
 				}
 			}
-
-			return sprites[Random.Range(0, totalWeight)];
+			if (sprites.Length != totalWeight){
+				Debug.Log("Error: Random tile not updated properly. Actual Total Weight: " + sprites.Length + "; Expected Total Weight: " + totalWeight);
+			}
+			if (sprites.Length > 0)
+				return sprites[Random.Range(0, totalWeight)];
+			else return null; //only happens in the same case where the above error message prints. Neither should happen anymore though
 		}
 
 		//pair of values: sprite for tile, and weight of tile.
@@ -112,7 +116,7 @@ namespace UnityEngine.Tilemaps{
 			for (int i = 0; i < count; i++)
 			{
 				tile.choices[i].sprite = (Sprite) EditorGUILayout.ObjectField("Sprite " + (i+1), tile.choices[i].sprite, typeof(Sprite), false, null);
-				tile.choices[i].weight = (int) EditorGUILayout.IntField("Weight " + (i+1), tile.choices[i].weight);
+				tile.choices[i].weight = (int) EditorGUILayout.IntField("Weight " + (i+1), (tile.choices[i].weight <= 0) ? 1 : tile.choices[i].weight); //prevent zero weight: bad things happen
 				EditorGUILayout.LabelField(String.Format("Sprite {0} chance: {1:P}", i+1, (float)tile.choices[i].weight / tile.totalWeight));
 				EditorGUILayout.Space();
 			}

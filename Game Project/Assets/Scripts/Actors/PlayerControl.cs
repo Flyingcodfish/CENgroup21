@@ -8,7 +8,7 @@ public class PlayerControl : Actor {
 
     //control fields
     private Vector2 input;
-	private Vector2 facing = Vector2.down;
+	private Vector2 facing = Vector2.up;
 
 	//attack fields
     private float attackTime = 0.3f; // how long it takes to attack
@@ -39,22 +39,11 @@ public class PlayerControl : Actor {
 		input = Vector2.ClampMagnitude(input, 1f); //prevents diagonal movement from being faster than orthogonal movement
 		rbody.AddForce(input * maxSpeed);
 	}
-    
-	//TODO will probably move this field over to the Item that is Used
-	public IceShardSpell iceShardPrefab;
 
 	//occurs every frame
 	//src: http://michaelcummings.net/mathoms/creating-2d-animated-sprites-using-unity-4.3
     void Update()
     {
-		//frost shard spell
-		//TODO attach this to a hotbar use "item"
-		if (Input.GetKeyDown(KeyCode.P)){
-			IceShardSpell iceShardInstance = Instantiate(iceShardPrefab, this.transform.position + (Vector3)facing*spellSpawnDistance, Quaternion.identity);
-			iceShardInstance.transform.up = facing;
-			iceShardInstance.Initialize(facing * 0.15f, Team.player);
-		}
-
 		animator.SetBool("Walking", true);
         if (input.y > 0) 	//up
         {
@@ -118,6 +107,14 @@ public class PlayerControl : Actor {
         animator.SetBool("Attacking", attacking);
 		attackHitbox.isActive = attacking;
     }
+
+	public IceShardSpell iceShardPrefab;
+	//probably a pretty bad method name
+	public void CastIce(){
+		IceShardSpell iceShardInstance = Instantiate(iceShardPrefab, this.transform.position + (Vector3)facing*spellSpawnDistance, Quaternion.identity);
+		iceShardInstance.transform.up = facing;
+		iceShardInstance.Initialize(facing * 0.15f, Team.player);
+	}
 
 
     private void OnTriggerEnter2D(Collider2D collision)

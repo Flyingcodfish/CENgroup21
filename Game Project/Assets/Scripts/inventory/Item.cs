@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType { MANA,HEALTH,SWIFT,STRENGTH,POWER}; // creates types for specific in game items 
+public enum ItemType {MANA,HEALTH,SWIFT,STRENGTH,POWER, SPELL_ICE}; // creates types for specific in game items 
 
 public class Item : MonoBehaviour
 {
@@ -10,7 +10,7 @@ public class Item : MonoBehaviour
 
     public Sprite spriteNeutral, spriteHighlighted;
 
-    private Actor player;
+    private PlayerControl player;
 
     public float speedTime = 20f, speedModifier = 2.0f;
 
@@ -22,23 +22,27 @@ public class Item : MonoBehaviour
 
     public void Use()
     {
-        player = GameObject.FindWithTag("Player").GetComponent<Actor>();
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
         switch (type)
         {
-            case ItemType.HEALTH:
-                player.TakeDamage(-50);
-                break;
-            case ItemType.MANA:
-                break;
-            case ItemType.SWIFT:
-                player.ModifyEffect(player, speedModifier, speedTime, "SWIFT");
-                break;
-            case ItemType.STRENGTH:
-                player.ModifyEffect(player, strengthModifier, strengthTime, "STRENGTH");
-                break;
-            case ItemType.POWER:
-			player.ModifyEffect(player, powerModifier, powerTime, "POWER");
-                break;
+        case ItemType.HEALTH:
+			player.TakeDamage(-50);
+            break;
+        case ItemType.MANA:
+			//TODO
+            break;
+        case ItemType.SWIFT:
+			player.ModifyEffect(Actor.Effect.SpeedUp, speedTime, speedModifier);
+            break;
+        case ItemType.STRENGTH:
+			player.ModifyEffect(Actor.Effect.StrengthUp, strengthTime, strengthModifier);
+            break;
+        case ItemType.POWER:
+			player.ModifyEffect(Actor.Effect.PowerUp, powerTime, powerModifier);
+            break;
+		case ItemType.SPELL_ICE:
+			player.CastIce();
+			break;
         }
     }
 }

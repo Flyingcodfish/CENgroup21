@@ -14,7 +14,7 @@ public class WaterTileObject : MonoBehaviour {
 	private SpriteRenderer spriteRenderer;
 	//TODO: DEBUG; handle actors standing on thawing platforms
 	[SerializeField]
-	private bool isStoodOn;
+	private int stoodOnCount = 0;
 
 	public void Start(){
 		col = this.GetComponent<Collider2D>();
@@ -28,7 +28,7 @@ public class WaterTileObject : MonoBehaviour {
 		//turn into a platform
 		//TODO: some sort of animation
 		spriteRenderer.sprite = frozenSprite;
-		col.enabled = false;
+		col.isTrigger = true;
 		StartCoroutine(Thaw());
 	}
 
@@ -36,23 +36,22 @@ public class WaterTileObject : MonoBehaviour {
 	IEnumerator Thaw(){
 		yield return new WaitForSeconds(thawTime);
 		//wait for actors to step off before thawing; matter of convenience
-		while (isStoodOn == true) yield return null;
+		while (stoodOnCount > 0) yield return null;
 
 		//TODO: some animation
 		spriteRenderer.sprite = liquidSprite;
-		col.enabled = true;
-		//TODO throw actors off if they're standing on me
+		col.isTrigger = false;
 	}
 
 
-	void OnCollisionEnter2D(Collision2D coll){
+	void OnTriggerEnter2D(Collider2D coll){
 		if (coll.gameObject.GetComponent<Actor>() != null)
-			isStoodOn = true;
+			stoodOnCount++;
 	}
 
-	void OnCollisionExit2D(Collision2D coll){
+	void OnTriggerExit2D(Collider2D coll){
 		if (coll.gameObject.GetComponent<Actor>() != null)
-			isStoodOn = false;
+			stoodOnCount--;
 	}
 
 }

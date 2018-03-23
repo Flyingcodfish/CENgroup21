@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour {
 		}
 		else if (hitActor.team != this.team){
 			//nicely ask the target to take damage
-			hitActor.SendMessage("TakeDamage", this.damage);
+			hitActor.TakeDamage(this.damage); //damage increased by power in Initialize()
 			this.Die();
 		}
 		//else ignore the collision
@@ -37,7 +37,7 @@ public class Projectile : MonoBehaviour {
 		Destroy(this.gameObject);
 	}
 
-	public void Initialize(Vector2 velocity, Team team, float dmgMod){
+	public void Initialize(Vector2 velocity, Team team, float dmgMod = 1f){
 		this.velocity = velocity;
 		this.team = team;
 		this.damage = Mathf.RoundToInt(damage * dmgMod);

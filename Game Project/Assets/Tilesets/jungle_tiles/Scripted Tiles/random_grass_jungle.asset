@@ -25,6 +25,6 @@ MonoBehaviour:
   - sprite: {fileID: 21300010, guid: 7baf2a360390ea5419a9c1fe26f1c83e, type: 3}
     weight: 1
   totalWeight: 14
-  dirty: 0
+  dirty: 1
   color: {r: 1, g: 1, b: 1, a: 1}
   colliderType: 1
