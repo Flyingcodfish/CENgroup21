@@ -482,10 +482,11 @@ TextureImporter:
         - {x: 8, y: -8}
         - {x: 8, y: 8}
       physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
+      - - {x: 1, y: 4}
+        - {x: -4, y: -1}
+        - {x: -4, y: -8}
         - {x: 8, y: -8}
-        - {x: 8, y: 8}
+        - {x: 8, y: 4}
       tessellationDetail: 0
     - serializedVersion: 2
       name: dungeon_tiles_compact_and_varied_13
@@ -504,10 +505,10 @@ TextureImporter:
         - {x: 8, y: -8}
         - {x: 8, y: 8}
       physicsShape:
-      - - {x: -8, y: 8}
+      - - {x: -8, y: 4}
         - {x: -8, y: -8}
         - {x: 8, y: -8}
-        - {x: 8, y: 8}
+        - {x: 8, y: 4}
       tessellationDetail: 0
     - serializedVersion: 2
       name: dungeon_tiles_compact_and_varied_14
@@ -526,10 +527,11 @@ TextureImporter:
         - {x: 8, y: -8}
         - {x: 8, y: 8}
       physicsShape:
-      - - {x: -8, y: 8}
+      - - {x: -1, y: 4}
+        - {x: -8, y: 4}
         - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+        - {x: 4, y: -8}
+        - {x: 4, y: -1}
       tessellationDetail: 0
     - serializedVersion: 2
       name: dungeon_tiles_compact_and_varied_15
@@ -550,7 +552,9 @@ TextureImporter:
       physicsShape:
       - - {x: -8, y: 8}
         - {x: -8, y: -8}
-        - {x: 8, y: -8}
+        - {x: 4, y: -8}
+        - {x: 4, y: -4}
+        - {x: 8, y: -4}
         - {x: 8, y: 8}
       tessellationDetail: 0
     - serializedVersion: 2
@@ -571,7 +575,9 @@ TextureImporter:
         - {x: 8, y: 8}
       physicsShape:
       - - {x: -8, y: 8}
-        - {x: -8, y: -8}
+        - {x: -8, y: -4}
+        - {x: -4, y: -4}
+        - {x: -4, y: -8}
         - {x: 8, y: -8}
         - {x: 8, y: 8}
       tessellationDetail: 0
@@ -922,8 +928,8 @@ TextureImporter:
         - {x: 8, y: -8}
         - {x: 8, y: 8}
       physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
+      - - {x: -4, y: 8}
+        - {x: -4, y: -8}
         - {x: 8, y: -8}
         - {x: 8, y: 8}
       tessellationDetail: 0
@@ -966,10 +972,10 @@ TextureImporter:
         - {x: 8, y: -8}
         - {x: 8, y: 8}
       physicsShape:
-      - - {x: -8, y: 8}
+      - - {x: 4, y: 8}
+        - {x: 4, y: -8}
         - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+        - {x: -8, y: 8}
       tessellationDetail: 0
     - serializedVersion: 2
       name: dungeon_tiles_compact_and_varied_35
@@ -988,10 +994,12 @@ TextureImporter:
         - {x: 8, y: -8}
         - {x: 8, y: 8}
       physicsShape:
-      - - {x: -8, y: 8}
+      - - {x: 4, y: 8}
+        - {x: -8, y: 8}
         - {x: -8, y: -8}
         - {x: 8, y: -8}
-        - {x: 8, y: 8}
+        - {x: 8, y: 4}
+        - {x: 4, y: 4}
       tessellationDetail: 0
     - serializedVersion: 2
       name: dungeon_tiles_compact_and_varied_36
@@ -1010,7 +1018,9 @@ TextureImporter:
         - {x: 8, y: -8}
         - {x: 8, y: 8}
       physicsShape:
-      - - {x: -8, y: 8}
+      - - {x: -4, y: 8}
+        - {x: -4, y: 4}
+        - {x: -8, y: 4}
         - {x: -8, y: -8}
         - {x: 8, y: -8}
         - {x: 8, y: 8}
@@ -1384,9 +1394,10 @@ TextureImporter:
         - {x: 8, y: -8}
         - {x: 8, y: 8}
       physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
+      - - {x: -4, y: 8}
+        - {x: -4, y: 0}
+        - {x: 0, y: -4}
+        - {x: 8, y: -4}
         - {x: 8, y: 8}
       tessellationDetail: 0
     - serializedVersion: 2
@@ -1407,8 +1418,8 @@ TextureImporter:
         - {x: 8, y: 8}
       physicsShape:
       - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
+        - {x: -8, y: -4}
+        - {x: 8, y: -4}
         - {x: 8, y: 8}
       tessellationDetail: 0
     - serializedVersion: 2
@@ -1429,9 +1440,10 @@ TextureImporter:
         - {x: 8, y: 8}
       physicsShape:
       - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+        - {x: -8, y: -4}
+        - {x: -1, y: -4}
+        - {x: 4, y: 1}
+        - {x: 4, y: 8}
       tessellationDetail: 0
     - serializedVersion: 2
       name: dungeon_tiles_compact_and_varied_56

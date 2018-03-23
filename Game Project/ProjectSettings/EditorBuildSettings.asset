@@ -9,17 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: 3005fd900808d6a4d8c62c122bdd7517
   - enabled: 1
-    path: Assets/Scenes/sorting_test.unity
-    guid: c0eec81ed1612f043a7d7ad44aa5fba1
+    path: Assets/Scenes/test.unity
+    guid: 39ca12b982c5b4642a7f6fbd3d405b92
   - enabled: 1
     path: Assets/Scenes/enemy_test.unity
     guid: cf7fae499de3199438fadd8a5c0a2dbb
   - enabled: 1
     path: Assets/Scenes/dungeon_test.unity
     guid: 4c1c7bca0878c924fb3aefcddb8d432b
-  - enabled: 1
-    path: Assets/Scenes/beach_test.unity
-    guid: 778f0f111b5f78f429641e2619ffa0a6
-  - enabled: 1
-    path: Assets/Scenes/test.unity
-    guid: 39ca12b982c5b4642a7f6fbd3d405b92

@@ -9,19 +9,19 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1018241514745346}
+  m_RootGameObject: {fileID: 1649788822974070}
   m_IsPrefabParent: 1
---- !u!1 &1018241514745346
+--- !u!1 &1649788822974070
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 224522554878396768}
-  - component: {fileID: 222717189038858410}
-  - component: {fileID: 114623916957394548}
-  - component: {fileID: 114722286668275560}
+  - component: {fileID: 224453094222580598}
+  - component: {fileID: 222598431227668638}
+  - component: {fileID: 114412301771390064}
+  - component: {fileID: 114130777761990014}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -29,12 +29,32 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114623916957394548
+--- !u!114 &114130777761990014
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1018241514745346}
+  m_GameObject: {fileID: 1649788822974070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8898bbac2c55a56429d92962f961a8c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slots: 10
+  rows: 1
+  slotPaddingLeft: 2
+  slotPaddingTop: 2
+  slotSize: 30
+  slotPrefab: {fileID: 1903169189990112, guid: 117e2e3452b5a9d4c942d829a8960217, type: 2}
+  iconPrefab: {fileID: 1042629837953936, guid: e29fc947c641ff247b37cd0bd965e017, type: 2}
+  canvas: {fileID: 0}
+  eventSystem: {fileID: 0}
+--- !u!114 &114412301771390064
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1649788822974070}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -56,36 +76,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114722286668275560
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1018241514745346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8898bbac2c55a56429d92962f961a8c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slots: 10
-  rows: 1
-  emptySlot: 0
-  slotPaddingLeft: 2
-  slotPaddingTop: 2
-  slotSize: 30
-  slotPrefab: {fileID: 1903169189990112, guid: 117e2e3452b5a9d4c942d829a8960217, type: 2}
---- !u!222 &222717189038858410
+--- !u!222 &222598431227668638
 CanvasRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1018241514745346}
---- !u!224 &224522554878396768
+  m_GameObject: {fileID: 1649788822974070}
+--- !u!224 &224453094222580598
 RectTransform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1018241514745346}
+  m_GameObject: {fileID: 1649788822974070}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -95,6 +97,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 61, y: -48}
-  m_SizeDelta: {x: 48.8, y: 48.440002}
+  m_AnchoredPosition: {x: 35.773804, y: -28}
+  m_SizeDelta: {x: 39.226, y: 40.6}
   m_Pivot: {x: 0.000000052154064, y: 1.0000001}

@@ -20,9 +20,9 @@ TagManager:
   - Walking
   - Flying
   - minimap
-  - 
-  - 
-  - 
+  - WaterTiles
+  - Projectiles
+  - Hitboxes
   - 
   - 
   - 
