@@ -22,6 +22,8 @@ public class PlayerControl : Actor {
 
 	private float spellSpawnDistance = 1f;
 
+    public FireBomb bomb_object;
+
 	//behavior begins
 	public override void ActorStart(){
 		//pass
@@ -128,6 +130,10 @@ public class PlayerControl : Actor {
             {
                 attacking = false; 
             }
+        }
+        if (bombTimer >= 0)
+        {
+            bombTimer -= Time.deltaTime;
         }
 
         animator.SetBool("Attacking", attacking);

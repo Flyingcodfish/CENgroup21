@@ -385,6 +385,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 291701185}
+  settingsMenuUI: {fileID: 0}
+  saveGameUI: {fileID: 0}
+  QuitUI: {fileID: 0}
+  ReturnMainUI: {fileID: 0}
 --- !u!114 &158266583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -731,6 +735,9 @@ MonoBehaviour:
   slotPaddingTop: 2
   slotSize: 30
   slotPrefab: {fileID: 1903169189990112, guid: 117e2e3452b5a9d4c942d829a8960217, type: 2}
+  iconPrefab: {fileID: 0}
+  canvas: {fileID: 0}
+  eventSystem: {fileID: 0}
 --- !u!114 &202227568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2911,7 +2918,7 @@ Tilemap:
   - serializedVersion: 1
     m_DirtyIndex: 0
   - serializedVersion: 1
-    m_DirtyIndex: 1
+    m_DirtyIndex: 0
   - serializedVersion: 1
     m_DirtyIndex: 0
   - serializedVersion: 1
@@ -4526,6 +4533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20ac7d2e0176114e9c24b0e4fd8898d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enabledAI: 1
   isInvincible: 0
   maxHealth: 50
   team: 1
@@ -4533,6 +4541,9 @@ MonoBehaviour:
   maxSpeed: 500
   inventory: {fileID: 202227567}
   attackHitbox: {fileID: 1723463417}
+  bomb_object: {fileID: 114925543551872718, guid: 090ec3340aa92634a9acfef58eec598f,
+    type: 2}
+  iceShardPrefab: {fileID: 0}
 --- !u!61 &1726423478
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16512,7 +16523,7 @@ Sprite:
         format: 0
         dimension: 0
       m_DataSize: 80
-      _typelessdata: 000000bf0000003f0000000000000000000000000000003f0000003f000000000000000000000000000000bf000000bf0000000000000000000000000000003f000000bf000000000000000000000000
+      _typelessdata: 000000bf0000003f00000000000000000000803f0000003f0000003f000000000000803f0000803f000000bf000000bf0000000000000000000000000000003f000000bf000000000000803f00000000
     textureRect:
       serializedVersion: 2
       x: 0
