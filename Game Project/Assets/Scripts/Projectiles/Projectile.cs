@@ -44,7 +44,7 @@ public class Projectile : MonoBehaviour {
 
 		StartCoroutine(LifespanCountdown()); //begin the inevitable spiral towards death
 	}
-		
+	
 	public void FixedUpdate(){
 		transform.position = transform.position + (Vector3)velocity;
 	}

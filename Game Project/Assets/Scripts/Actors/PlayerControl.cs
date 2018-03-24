@@ -13,6 +13,8 @@ public class PlayerControl : Actor {
 	//attack fields
     private float attackTime = 0.3f; // how long it takes to attack
     private float attackTimer; // time remaining till the attack ends
+    private float bombTime = 3.0f; //cooldown on firing a bomb
+    private float bombTimer; // time remaining until bomb explodes
     private bool attacking = false;
 
 	public Hitbox attackHitbox;
@@ -91,6 +93,30 @@ public class PlayerControl : Actor {
 			attacking = true;
             attackTimer = attackTime;
 			attackHitbox.transform.localPosition = attackHitboxOffset;
+        }
+
+        if(Input.GetKeyDown("h") && bombTimer <= 0)
+        {
+            bombTimer = bombTime;
+            Vector2 direction;
+            if (animator.GetInteger("Direction") == 0)
+            {
+                direction = new Vector2(0.0f, 0.12f);
+            }
+            else if (animator.GetInteger("Direction") == 1)
+            {
+                direction = new Vector2(0.0f, -0.12f);
+            }
+            else if (animator.GetInteger("Direction") == 2)
+            {
+                direction = new Vector2(-0.12f, 0.0f);
+            }
+            else
+            {
+                direction = new Vector2(0.12f, 0.0f);
+            }
+            FireBomb bomb = Instantiate<FireBomb>(bomb_object, transform.position, Quaternion.identity);
+            bomb.Initialize(direction, this.team);
         }
         if (attacking)
         {
