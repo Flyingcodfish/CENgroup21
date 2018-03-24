@@ -55,7 +55,7 @@ namespace UnityEngine.Tilemaps{
 
 		private Sprite GetSprite(){
 			//if sprite list is empty, generate it; happens every resize
-			if (sprites == null || dirty == true){
+			if (sprites == null || dirty == true || sprites.Length != totalWeight){
 				totalWeight = 0;
 				dirty = false;
 				for (int i=0; i<choices.Length; i++){
@@ -71,7 +71,7 @@ namespace UnityEngine.Tilemaps{
 				}
 			}
 			if (sprites.Length != totalWeight){
-				Debug.Log("Error: Random tile not updated properly. Actual Total Weight: " + sprites.Length + "; Expected Total Weight: " + totalWeight);
+				Debug.Log("Error: Random tile not loaded properly. Try re-loading the scene. Actual Total Weight: " + sprites.Length + "; Expected Total Weight: " + totalWeight);
 			}
 			if (sprites.Length > 0)
 				return sprites[Random.Range(0, totalWeight)];
