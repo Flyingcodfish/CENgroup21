@@ -113,8 +113,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stackTxt: {fileID: 114930896273092564}
-  slotEmpty: {fileID: 21300000, guid: f5361327e630d66488415174ccbec3e3, type: 3}
-  slotHighlight: {fileID: 21300000, guid: b7f23ade26ee5394bb2666aa516ff580, type: 3}
+  slotEmpty: {fileID: 21300012, guid: 84f6c5242dc064c41a61bed0e85f0826, type: 3}
+  slotHighlight: {fileID: 21300010, guid: 48c78c2299affef4dac7f1fee2b39ddd, type: 3}
 --- !u!114 &114930896273092564
 MonoBehaviour:
   m_ObjectHideFlags: 1
