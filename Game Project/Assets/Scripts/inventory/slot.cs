@@ -95,15 +95,21 @@ public class slot : MonoBehaviour, IPointerClickHandler {
 	{
 		if (!IsEmpty)
 		{
-			Items.Pop().Use();
-			stackTxt.text = Items.Count > 1 ? Items.Count.ToString() : string.Empty;
+            if (Items.Peek().isSpell())
+            {
+                Items.Peek().Use();
+            }
+            else
+            {
+                Items.Pop().Use();
+                stackTxt.text = Items.Count > 1 ? Items.Count.ToString() : string.Empty;
 
-			if (IsEmpty)
-			{
-				ChangeSprite(slotEmpty, slotHighlight);
-				inventory.EmptySlots++;
-			}
-
+                if (IsEmpty)
+                {
+                    ChangeSprite(slotEmpty, slotHighlight);
+                    inventory.EmptySlots++;
+                }
+            }
 		}
 	}
 	public void OnPointerClick(PointerEventData eventData)

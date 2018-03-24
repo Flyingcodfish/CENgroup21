@@ -39,6 +39,9 @@ public class Item : MonoBehaviour
             case ItemType.POWER:
 			player.ModifyEffect(player, powerModifier, powerTime, "POWER");
                 break;
+            case ItemType.SPELL:
+                Debug.Log("USING A SPELL");
+                break;
         }
     }
     public bool isSpell()
