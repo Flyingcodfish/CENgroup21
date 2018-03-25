@@ -37,75 +37,77 @@ public class PlayerControl : Actor {
 		input.y = Input.GetAxisRaw("Vertical");
 
 		input = Vector2.ClampMagnitude(input, 1f); //prevents diagonal movement from being faster than orthogonal movement
-		rbody.AddForce(input * maxSpeed);
+		if (IsActive())rbody.AddForce(input * maxSpeed);
 	}
 
 	//occurs every frame
 	//src: http://michaelcummings.net/mathoms/creating-2d-animated-sprites-using-unity-4.3
     void Update()
     {
-		animator.SetBool("Walking", true);
-        if (input.y > 0) 	//up
-        {
-			facing = Vector2.up;
-			animator.SetInteger("Direction", 0);
-			attackHitboxOffset.x = 0;
-			attackHitboxOffset.y = 0.5f;
-        }
-        else if (input.y < 0) //down
-        {
-			facing = Vector2.down;
-            animator.SetInteger("Direction", 1);
-			attackHitboxOffset.x = 0;
-			attackHitboxOffset.y = -0.5f;
-        }
-        else if (input.x > 0) //right
-        {
-			facing = Vector2.right;
-            animator.SetInteger("Direction", 3);
-			attackHitboxOffset.x = 0.5f;
-			attackHitboxOffset.y = -0.25f;
-        }
-        else if (input.x < 0) //left
-        {
-			facing = Vector2.left;
-            animator.SetInteger("Direction", 2);
-			attackHitboxOffset.x = -0.5f;
-			attackHitboxOffset.y = -0.25f;
-        }
-        else
-        {
-			animator.SetBool("Walking", false);
-//            int dir = animator.GetInteger("Direction");
-//            if(dir == 0) //idle down
-//                animator.SetInteger("Direction", 4);
-//            else if (dir == 1) //idle right
-//                animator.SetInteger("Direction", 5);
-//            else if (dir == 2) //idle up
-//                animator.SetInteger("Direction", 6);
-//            else if (dir == 3) // idle left
-//                animator.SetInteger("Direction", 7); 
-        }
-        if(Input.GetButtonDown("Attack") && !attacking)
-        {
-			attacking = true;
-            attackTimer = attackTime;
-			attackHitbox.transform.localPosition = attackHitboxOffset;
-        }
-        if (attacking)
-        {
-            if(attackTimer > 0)
-            {
-                attackTimer -= Time.deltaTime;
-            }
-            else
-            {
-                attacking = false; 
-            }
-        }
+		if (IsActive()){
+			animator.SetBool("Walking", true);
+	        if (input.y > 0) 	//up
+	        {
+				facing = Vector2.up;
+				animator.SetInteger("Direction", 0);
+				attackHitboxOffset.x = 0;
+				attackHitboxOffset.y = 0.5f;
+	        }
+	        else if (input.y < 0) //down
+	        {
+				facing = Vector2.down;
+	            animator.SetInteger("Direction", 1);
+				attackHitboxOffset.x = 0;
+				attackHitboxOffset.y = -0.5f;
+	        }
+	        else if (input.x > 0) //right
+	        {
+				facing = Vector2.right;
+	            animator.SetInteger("Direction", 3);
+				attackHitboxOffset.x = 0.5f;
+				attackHitboxOffset.y = -0.25f;
+	        }
+	        else if (input.x < 0) //left
+	        {
+				facing = Vector2.left;
+	            animator.SetInteger("Direction", 2);
+				attackHitboxOffset.x = -0.5f;
+				attackHitboxOffset.y = -0.25f;
+	        }
+	        else
+	        {
+				animator.SetBool("Walking", false);
+	//            int dir = animator.GetInteger("Direction");
+	//            if(dir == 0) //idle down
+	//                animator.SetInteger("Direction", 4);
+	//            else if (dir == 1) //idle right
+	//                animator.SetInteger("Direction", 5);
+	//            else if (dir == 2) //idle up
+	//                animator.SetInteger("Direction", 6);
+	//            else if (dir == 3) // idle left
+	//                animator.SetInteger("Direction", 7); 
+	        }
+	        if(Input.GetButtonDown("Attack") && !attacking)
+	        {
+				attacking = true;
+	            attackTimer = attackTime;
+				attackHitbox.transform.localPosition = attackHitboxOffset;
+	        }
+	        if (attacking)
+	        {
+	            if(attackTimer > 0)
+	            {
+	                attackTimer -= Time.deltaTime;
+	            }
+	            else
+	            {
+	                attacking = false; 
+	            }
+	        }
 
-        animator.SetBool("Attacking", attacking);
-		attackHitbox.isActive = attacking;
+	        animator.SetBool("Attacking", attacking);
+			attackHitbox.isActive = attacking;
+		}
     }
 
 	public IceShardSpell iceShardPrefab;
