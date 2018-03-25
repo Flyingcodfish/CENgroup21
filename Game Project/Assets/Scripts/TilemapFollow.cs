@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class TilemapFollow : MonoBehaviour {
 
-	public Transform follow;
+	private Transform follow;
+
+	void Start(){
+		follow = GameObject.FindWithTag("Player").transform;
+	}
 
 	// Update is called once per frame
 	void Update () {
