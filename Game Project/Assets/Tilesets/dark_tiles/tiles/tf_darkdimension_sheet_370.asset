@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: tf_darkdimension_sheet_363
+  m_Name: tf_darkdimension_sheet_370
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300726, guid: 595c3d90acc4eba4195b8387d121f5ab, type: 3}
+  m_Sprite: {fileID: 21300740, guid: 595c3d90acc4eba4195b8387d121f5ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
