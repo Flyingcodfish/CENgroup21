@@ -319,7 +319,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1621778042324258}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.87, y: -3.18, z: 0}
+  m_LocalPosition: {x: -7.3162317, y: -9.8494005, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224573240398283848}
@@ -622,6 +622,8 @@ MonoBehaviour:
   maxSpeed: 500
   inventory: {fileID: 114385308227976608}
   attackHitbox: {fileID: 114657046412538298}
+  bomb_object: {fileID: 114925543551872718, guid: 090ec3340aa92634a9acfef58eec598f,
+    type: 2}
   iceShardPrefab: {fileID: 114786623454023892, guid: cedb58da92376044e9c413c619a0a6d6,
     type: 2}
 --- !u!114 &114345998326252930

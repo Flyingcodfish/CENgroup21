@@ -13,12 +13,16 @@ public class PlayerControl : Actor {
 	//attack fields
     private float attackTime = 0.3f; // how long it takes to attack
     private float attackTimer; // time remaining till the attack ends
+    private float bombTime = 3.0f; //cooldown on firing a bomb
+    private float bombTimer; // time remaining until bomb explodes
     private bool attacking = false;
 
 	public Hitbox attackHitbox;
 	private Vector2 attackHitboxOffset;
 
-	private float spellSpawnDistance = 1f;
+	private float spellDistance = 0.15f;
+
+    public FireBomb bomb_object;
 
 	//behavior begins
 	public override void ActorStart(){
@@ -105,17 +109,44 @@ public class PlayerControl : Actor {
 	            }
 	        }
 
+			if(Input.GetKeyDown("h") && bombTimer <= 0)
+			{
+				bombTimer = bombTime;
+				FireBomb bomb = Instantiate<FireBomb>(bomb_object, transform.position + (Vector3)facing*spellDistance, Quaternion.identity);
+				bomb.Initialize(facing * 0.12f, this.team, this.power);
+			}
+
 	        animator.SetBool("Attacking", attacking);
-			attackHitbox.isActive = attacking;
 		}
+
+		//timers continue regardless of whether the player is active or not
+		//
+		if (attacking)
+		{
+			if(attackTimer > 0)
+			{
+				attackTimer -= Time.deltaTime;
+			}
+			else
+			{
+				attacking = false; 
+			}
+		}
+		if (bombTimer >= 0)
+		{
+			bombTimer -= Time.deltaTime;
+		}
+		//attack hitbox should not stay on if frozen
+		attackHitbox.isActive = attacking && this.IsActive();
+
     }
 
 	public IceShardSpell iceShardPrefab;
 	//probably a pretty bad method name
 	public void CastIce(){
-		IceShardSpell iceShardInstance = Instantiate(iceShardPrefab, this.transform.position + (Vector3)facing*spellSpawnDistance, Quaternion.identity);
+		IceShardSpell iceShardInstance = Instantiate(iceShardPrefab, transform.position + (Vector3)facing*spellDistance, Quaternion.identity);
 		iceShardInstance.transform.up = facing;
-		iceShardInstance.Initialize(facing * 0.15f, Team.player);
+		iceShardInstance.Initialize(facing * 0.15f, Team.player, this.power);
 	}
 
 
