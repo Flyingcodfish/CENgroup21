@@ -22,7 +22,7 @@ public class PlayerControl : Actor {
 
 	//behavior begins
 	public override void ActorStart(){
-		//pass
+		Object.DontDestroyOnLoad(this); //player object should be persistent
 	}
 		
 	void OnDestroy(){
