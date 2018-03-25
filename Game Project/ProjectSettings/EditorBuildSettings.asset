@@ -17,3 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/dungeon_test.unity
     guid: 4c1c7bca0878c924fb3aefcddb8d432b
+  - enabled: 1
+    path: Assets/Scenes/hub.unity
+    guid: f62a2bb4970ddf84abc9b5783aeb3c98
+  - enabled: 1
+    path: Assets/Scenes/lato's_house.unity
+    guid: 84b230868684929459da3b3fc2747c26
