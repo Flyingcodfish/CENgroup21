@@ -45,6 +45,8 @@ MonoBehaviour:
   slotPaddingLeft: 2
   slotPaddingTop: 2
   slotSize: 30
+  spellSlotPrefab: {fileID: 1062933552398306, guid: 11933fbaf55329440a01dcb8ae802c49,
+    type: 2}
   slotPrefab: {fileID: 1903169189990112, guid: 117e2e3452b5a9d4c942d829a8960217, type: 2}
   iconPrefab: {fileID: 1042629837953936, guid: e29fc947c641ff247b37cd0bd965e017, type: 2}
   canvas: {fileID: 0}
@@ -68,8 +70,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 3388d820439160b449597128d4de2e3a, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
