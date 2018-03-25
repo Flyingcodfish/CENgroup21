@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public enum ItemType {MANA,HEALTH,SWIFT,STRENGTH,POWER, SPELL_ICE}; // creates types for specific in game items 
 
 public class Item : MonoBehaviour
@@ -44,5 +45,9 @@ public class Item : MonoBehaviour
 			player.CastIce();
 			break;
         }
+    }
+    public bool isSpell()
+    {
+        return type == ItemType.SPELL_ICE;// just have or for each spell type 
     }
 }

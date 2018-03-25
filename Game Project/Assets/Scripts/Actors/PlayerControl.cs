@@ -122,6 +122,7 @@ public class PlayerControl : Actor {
         if(collision.tag == "Item")
         {
             inventory.AddItem(collision.GetComponent<Item>());
+            Destroy(collision.gameObject);
         }
     }
 }

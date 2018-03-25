@@ -85,6 +85,8 @@ MonoBehaviour:
   speedModifier: 2
   strengthTime: 15
   strengthModifier: 0.5
+  powerTime: 5
+  powerModifier: 1.5
   maxSize: 2
 --- !u!212 &212193590064674304
 SpriteRenderer:

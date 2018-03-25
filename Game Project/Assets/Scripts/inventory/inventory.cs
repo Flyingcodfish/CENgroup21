@@ -15,6 +15,7 @@ public class inventory : MonoBehaviour {
 	public float slotPaddingLeft, slotPaddingTop, slotSize;
 
     // used for moving stuff around and maintaining inventory 
+    public GameObject spellSlotPrefab;
 
 	public GameObject slotPrefab;
 
@@ -60,7 +61,10 @@ public class inventory : MonoBehaviour {
             if (!eventSystem.IsPointerOverGameObject(-1) && from != null) // if mouse pointer not over game object 
             {
                 from.GetComponent<Image>().color = Color.white;
-                from.ClearSlot();
+                if (!from.Items.Peek().isSpell())// if its not a spell its safe to clear the slot 
+                {
+                    from.ClearSlot();
+                }
                 Destroy(GameObject.Find("Hover"));
                 to = null;
                 from = null;
@@ -125,20 +129,22 @@ public class inventory : MonoBehaviour {
 		{
 			for(int x = 0; x < columns; x++)
 			{
-				GameObject newSlot = (GameObject)Instantiate(slotPrefab);
-
-				RectTransform slotRect = newSlot.GetComponent<RectTransform>();
+                GameObject newSlot;
 
                 if ((x + y) < 3)// first three slots for Spell items
                 {
+                    newSlot = (GameObject)Instantiate(spellSlotPrefab);
                     newSlot.name = "Spell";
                 }
                 else
                 {
+                    newSlot = (GameObject)Instantiate(slotPrefab);
                     newSlot.name = "Slot";
                 }
 
-				newSlot.transform.SetParent(this.transform.parent); // sets parent to canvas 
+                RectTransform slotRect = newSlot.GetComponent<RectTransform>();
+
+                newSlot.transform.SetParent(this.transform.parent); // sets parent to canvas 
 
 				slotRect.localPosition = inventoryRect.localPosition + new Vector3(slotPaddingLeft * (x + 1) + (slotSize * x), -slotPaddingTop * (y + 1) - (slotSize * y));
 
@@ -187,9 +193,20 @@ public class inventory : MonoBehaviour {
 				slot tmp = slot.GetComponent<slot>();
 				if (tmp.IsEmpty)
 				{
-					tmp.AddItem(item);
-					emptySlots--;
-					return true;
+                    if (tmp.name == "Spell" && item.isSpell()) // checks if its a slot spell and item is a spell 
+                    {
+                        Debug.Log("slot is spell and item is spell");
+                        tmp.AddItem(item);
+                        emptySlots--;
+                        return true;
+                    }
+                    else if (tmp.name == "Slot" && !item.isSpell())
+                    {
+                        Debug.Log("slot is slot and item is not spell");
+                        tmp.AddItem(item);
+                        emptySlots--;
+                        return true;
+                    }
 				}
 			}
 		}
@@ -223,24 +240,34 @@ public class inventory : MonoBehaviour {
 			to = clicked.GetComponent<slot>();
             Destroy(GameObject.Find("Hover"));
 		}
-		if(to != null && from != null) // switches the item stacks arround if one slot empty clears from and adds it to to 
+		if(to != null && from != null) // switches the item stacks arround if one slot empty clears from and adds it to to, only does so if the slots are same type 
 		{
-			Stack<Item> tmpTo = new Stack<Item>(to.Items);
-			to.Additems(from.Items);
+            if (to.GetComponent<slot>().name == from.GetComponent<slot>().name)
+            {
+                Stack<Item> tmpTo = new Stack<Item>(to.Items);
+                to.Additems(from.Items);
 
-			if(tmpTo.Count == 0)
-			{
-				from.ClearSlot();
-			}
-			else
-			{
-				from.Additems(tmpTo);
-			}
+                if (tmpTo.Count == 0)
+                {
+                    from.ClearSlot();
+                }
+                else
+                {
+                    from.Additems(tmpTo);
+                }
 
-			from.GetComponent<Image>().color = Color.white; // resets color 
-			to = null; // sets to null to allow for other objects to be moved 
-			from = null;
-            hoverObject = null;
+                from.GetComponent<Image>().color = Color.white; // resets color 
+                to = null; // sets to null to allow for other objects to be moved 
+                from = null;
+                hoverObject = null;
+            }
+            else
+            {
+                from.GetComponent<Image>().color = Color.white; // resets color 
+                to = null; // resets to null to allow for other objects to be moved and doesnt move anything since of different slot type
+                from = null;
+                hoverObject = null;
+            }
 		}
-	}
+    }
 }
