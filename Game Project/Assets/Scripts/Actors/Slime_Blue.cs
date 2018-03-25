@@ -4,7 +4,7 @@ using UnityEngine;
 
 using Pathfinding;
 
-public class Slime : Actor {
+public class Slime_Blue : Actor {
 
 	//targeting fields
 	private GameObject targetObject;
@@ -34,8 +34,7 @@ public class Slime : Actor {
 	float lastAttackTime;
 	public float attackCooldown = 2f;
 	public Hitbox attackHitbox;
-	public float slowTime = 1.5f; //how long a target is slowed when hit
-	public float slowRatio = 0.7f; //how much of a target's movespeed remains while slowed
+	public float freezeTime = 0.75f; //how long a target is slowed when hit
 
 	// Use this for initialization
 	override public void ActorStart () {
@@ -46,7 +45,7 @@ public class Slime : Actor {
 		tileFilter = Navigator.GetFilterFromBlockingType(bType, false);
 		castHits = new RaycastHit2D[maxHits];
 
-		attackHitbox.HitActor = this.SlowActor; //assigns the slime's SlowActor method to the hitbox's delegate
+		attackHitbox.HitActor = this.FreezeActor; //assigns the slime's SlowActor method to the hitbox's delegate
 
 		StartCoroutine(AI_Tick());
 	}
@@ -88,8 +87,8 @@ public class Slime : Actor {
 	}
 		
 	//function assigned to attack hitbox delegate. Called whenever hitbox hits something.
-	public void SlowActor(Actor actor){
-		actor.ModifyEffect(Effect.SpeedUp, slowTime, slowRatio);
+	public void FreezeActor(Actor actor){
+		actor.ModifyEffect(Effect.Freeze, freezeTime);
 	}
 
 	//only need to perform pathfinding every ~0.1 second; less CPU intensive
