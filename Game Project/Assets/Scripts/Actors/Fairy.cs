@@ -38,7 +38,7 @@ public class Fairy : Actor {
 	// Use this for initialization
 	override public void ActorStart () {
 		targetObject = GameObject.FindWithTag("Player");
-		navigator = GameObject.FindWithTag("Navigator").GetComponent<Navigator>();
+		navigator = GameObject.FindObjectOfType<Navigator>();
 
 		obstacleFilter = Navigator.GetFilterFromBlockingType(bType, true);
 		tileFilter = Navigator.GetFilterFromBlockingType(bType, false);
@@ -69,7 +69,8 @@ public class Fairy : Actor {
 
 	void FixedUpdate(){
 		//add forces to entity's rigidbody
-		rbody.AddForce(Vector3.ClampMagnitude(moveVector, 1f) * this.maxSpeed);
+		if (this.IsActive())
+			rbody.AddForce(Vector3.ClampMagnitude(moveVector, 1f) * this.maxSpeed);
 	}
 
 	//fires bullet at target
@@ -94,9 +95,9 @@ public class Fairy : Actor {
 
 	//only need to perform pathfinding every ~0.1 second; less CPU intensive
 	IEnumerator AI_Tick(){
+		int attackTicker = 0;
 		while (true){
-			//for loop used to attack every 15 ticks: see bottom of loop
-			for (int i=0; i< 20; i++){
+			if (this.IsActive()){
 				pathFound = false;
 				directMove = targetObject.transform.position - transform.position;
 
@@ -141,15 +142,17 @@ public class Fairy : Actor {
 					avoidVector = new Vector2(sign*hitDirection.y, -1*sign*hitDirection.x); //calculate normal to hitVector
 					moveVector = avoidVector.normalized + moveVector.normalized;
 				}
-				yield return new WaitForSeconds(0.1f);
-			}
-			//every 2 seconds
-			if (directMove.magnitude <= attackRange){
-				//only attack if we have line of sight
-				if (0 == Physics2D.Raycast(transform.position, directMove, tileFilter, castHits, directMove.magnitude)){
-					StartCoroutine(FireShot());
+
+				attackTicker++;
+				if (attackTicker >= 15 && directMove.magnitude <= attackRange){
+					//only attack if we have line of sight
+					if (0 == Physics2D.Raycast(transform.position, directMove, tileFilter, castHits, directMove.magnitude)){
+						StartCoroutine(FireShot());
+						attackTicker = 0;
+					}
 				}
 			}
+			yield return new WaitForSeconds(0.1f);
 		}
 	}
 }

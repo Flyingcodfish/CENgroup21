@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 58986970686237784}
   - component: {fileID: 114055802189400976}
   - component: {fileID: 50561808111624686}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: green fairy bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

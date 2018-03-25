@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 4482240240570414}
   - component: {fileID: 114657046412538298}
   - component: {fileID: 61552736776896934}
-  m_Layer: 10
+  m_Layer: 15
   m_Name: attackHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -614,7 +614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20ac7d2e0176114e9c24b0e4fd8898d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 1
+  enabledAI: 1
   isInvincible: 0
   maxHealth: 50
   team: 1
@@ -622,6 +622,8 @@ MonoBehaviour:
   maxSpeed: 500
   inventory: {fileID: 114385308227976608}
   attackHitbox: {fileID: 114657046412538298}
+  iceShardPrefab: {fileID: 114786623454023892, guid: cedb58da92376044e9c413c619a0a6d6,
+    type: 2}
 --- !u!114 &114345998326252930
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -634,15 +636,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8848665, g: 0.87662196, b: 0.9852941, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 3388d820439160b449597128d4de2e3a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

@@ -15,10 +15,8 @@ namespace Pathfinding{
 		}
 
 		//see TilemapMatrix class declaration below
-		[SerializeField] //makes the value visible in inspector but still private
-		private TilemapMatrix tilemapMatrix;
-		[SerializeField]
-		private Tilemap background; //the largest tilemap in a scene: used to size node grids
+		public TilemapMatrix tilemapMatrix;
+		public Tilemap background; //the largest tilemap in a scene: used to size node grids
 		//stores generated PathMap (value) for each blocking type (key)
 		private Dictionary<BlockingType, PathMap> pathMapDict;
 
@@ -120,15 +118,18 @@ namespace Pathfinding{
 			pathMapDict[t] =  MapConverter.TilemapArrToPathMap(tilemapMatrix[t].tileMaps, background.cellBounds);
 		}
 
+
 		public void Awake(){
 			pathMapDict = new Dictionary<BlockingType, PathMap>();
 			//for each list of blocking layers (assumes BlockingType enum starts at 0)
 			PathMap pMap;
 			for (int t=0; t<tilemapMatrix.lists.Length; t++){
-				//generate a PathMap
-				pMap = MapConverter.TilemapArrToPathMap(tilemapMatrix[(BlockingType)t].tileMaps, background.cellBounds);
-				//add to dictionary, with the current BlockingType as a key
-				pathMapDict.Add((BlockingType)t, pMap);
+				if (tilemapMatrix.lists[t].tileMaps.Length != 0){
+					//generate a PathMap
+					pMap = MapConverter.TilemapArrToPathMap(tilemapMatrix[(BlockingType)t].tileMaps, background.cellBounds);
+					//add to dictionary, with the current BlockingType as a key
+					pathMapDict.Add((BlockingType)t, pMap);
+				}
 			}
 		}
 

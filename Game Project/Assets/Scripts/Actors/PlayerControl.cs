@@ -8,6 +8,7 @@ public class PlayerControl : Actor {
 
     //control fields
     private Vector2 input;
+	private Vector2 facing = Vector2.up;
 
 	//attack fields
     private float attackTime = 0.3f; // how long it takes to attack
@@ -17,6 +18,7 @@ public class PlayerControl : Actor {
 	public Hitbox attackHitbox;
 	private Vector2 attackHitboxOffset;
 
+	private float spellSpawnDistance = 1f;
 
 	//behavior begins
 	public override void ActorStart(){
@@ -26,7 +28,7 @@ public class PlayerControl : Actor {
 	void OnDestroy(){
 		//TODO: death animation, game over screen, etc.
 		//currently just loads main menu to avoid crashing the game
-		if (isDying) UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
+		if (enabledAI) UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
 	}
 
 	//occurs at a framerate-independant rate; used for physics 
@@ -37,7 +39,7 @@ public class PlayerControl : Actor {
 		input = Vector2.ClampMagnitude(input, 1f); //prevents diagonal movement from being faster than orthogonal movement
 		rbody.AddForce(input * maxSpeed);
 	}
-    
+
 	//occurs every frame
 	//src: http://michaelcummings.net/mathoms/creating-2d-animated-sprites-using-unity-4.3
     void Update()
@@ -45,24 +47,28 @@ public class PlayerControl : Actor {
 		animator.SetBool("Walking", true);
         if (input.y > 0) 	//up
         {
-            animator.SetInteger("Direction", 0);
+			facing = Vector2.up;
+			animator.SetInteger("Direction", 0);
 			attackHitboxOffset.x = 0;
 			attackHitboxOffset.y = 0.5f;
         }
         else if (input.y < 0) //down
         {
+			facing = Vector2.down;
             animator.SetInteger("Direction", 1);
 			attackHitboxOffset.x = 0;
 			attackHitboxOffset.y = -0.5f;
         }
         else if (input.x > 0) //right
         {
+			facing = Vector2.right;
             animator.SetInteger("Direction", 3);
 			attackHitboxOffset.x = 0.5f;
 			attackHitboxOffset.y = -0.25f;
         }
         else if (input.x < 0) //left
         {
+			facing = Vector2.left;
             animator.SetInteger("Direction", 2);
 			attackHitboxOffset.x = -0.5f;
 			attackHitboxOffset.y = -0.25f;
@@ -101,6 +107,16 @@ public class PlayerControl : Actor {
         animator.SetBool("Attacking", attacking);
 		attackHitbox.isActive = attacking;
     }
+
+	public IceShardSpell iceShardPrefab;
+	//probably a pretty bad method name
+	public void CastIce(){
+		IceShardSpell iceShardInstance = Instantiate(iceShardPrefab, this.transform.position + (Vector3)facing*spellSpawnDistance, Quaternion.identity);
+		iceShardInstance.transform.up = facing;
+		iceShardInstance.Initialize(facing * 0.15f, Team.player);
+	}
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Item")

@@ -61,7 +61,10 @@ public class inventory : MonoBehaviour {
             if (!eventSystem.IsPointerOverGameObject(-1) && from != null) // if mouse pointer not over game object 
             {
                 from.GetComponent<Image>().color = Color.white;
-                from.ClearSlot();
+                if (!from.Items.Peek().isSpell())// if its not a spell its safe to clear the slot 
+                {
+                    from.ClearSlot();
+                }
                 Destroy(GameObject.Find("Hover"));
                 to = null;
                 from = null;
