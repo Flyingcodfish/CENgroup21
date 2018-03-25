@@ -26,8 +26,8 @@ public class IceShardSpell : MonoBehaviour {
 		}
 		else if (hitActor.team != this.team){
 			//nicely ask the target to take damage and get frozen
-			hitActor.TakeDamage(this.damage);
 			hitActor.ModifyEffect(Actor.Effect.Freeze, freezeTime);
+			hitActor.TakeDamage(this.damage);
 
 			StartCoroutine(Die());
 		}
