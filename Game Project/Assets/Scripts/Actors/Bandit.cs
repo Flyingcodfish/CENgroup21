@@ -34,7 +34,6 @@ public class Bandit : Actor {
 	float lastAttackTime;
 	public float attackCooldown = 2f;
 	public Hitbox attackHitbox;
-	private Vector2 hitboxOffset;
 
 	// Use this for initialization
 	override public void ActorStart () {
@@ -44,8 +43,6 @@ public class Bandit : Actor {
 		obstacleFilter = Navigator.GetFilterFromBlockingType(bType, true);
 		tileFilter = Navigator.GetFilterFromBlockingType(bType, false);
 		castHits = new RaycastHit2D[maxHits];
-
-		hitboxOffset = attackHitbox.GetOffset();
 
 		StartCoroutine(AI_Tick());
 	}
@@ -69,8 +66,7 @@ public class Bandit : Actor {
 
 		//sprite flipping
 		if (!animator.GetBool("Attacking")){
-			sprite.flipX = (directMove.x < 0); //skeleton sprite faces right, flip if sprite moving left
-			attackHitbox.SetOffset(new Vector2(hitboxOffset.x * ((directMove.x > 0)? 1 : -1), hitboxOffset.y));
+			transform.localScale = new Vector3(Mathf.Sign(directMove.x), transform.localScale.y, transform.localScale.z);
 		}
 
 		//attack hitbox activation
@@ -130,7 +126,7 @@ public class Bandit : Actor {
 			numHits = castCollider.Cast((Vector2)moveVector, obstacleFilter, castHits, avoidDistance);
 
 			//if we would run into something if we kept moving forward
-			if (numHits > 0){
+			if (numHits > 0 && !castHits[0].collider.gameObject.Equals(targetObject)){
 				//add a force that is perpendicular to the path we take to hit an obstacle.
 				//This moves simultaneously away from the obstacle, and towards our goal.
 				hitDirection = castHits[0].point - ((Vector2)transform.position + castCollider.offset);
