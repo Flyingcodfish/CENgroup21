@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 61303093096892888}
   - component: {fileID: 114237311175095508}
   m_Layer: 10
-  m_Name: Player ($Lanto 3)
+  m_Name: test player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
