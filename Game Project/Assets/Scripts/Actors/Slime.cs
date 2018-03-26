@@ -131,8 +131,8 @@ public class Slime : Actor {
 				//avoid local obstacles
 				numHits = castCollider.Cast((Vector2)moveVector, obstacleFilter, castHits, avoidDistance);
 
-				//if we would run into something if we kept moving forward
-				if (numHits > 0){
+				//if we would run into something if we kept moving forward, and it isn't our target
+				if (numHits > 0 && !castHits[0].collider.gameObject.Equals(targetObject)){
 					//add a force that is perpendicular to the path we take to hit an obstacle.
 					//This moves simultaneously away from the obstacle, and towards our goal.
 					hitDirection = castHits[0].point - ((Vector2)transform.position + castCollider.offset);

@@ -70,7 +70,7 @@ public class Slime_Blue : Actor {
 
 		//sprite flipping: setting negative X scale flips EVERYTHING (sprite, but also children objects like colliders)
 		if (!animator.GetBool("Attacking")){
-			transform.localScale = new Vector3(-1*Mathf.Sign(directMove.x), transform.localScale.y, transform.localScale.z);
+			transform.localScale = new Vector3(-1*Mathf.Sign(directMove.x)*transform.localScale.x, transform.localScale.y, transform.localScale.z);
 		}
 
 		//attack hitbox activation
@@ -131,7 +131,7 @@ public class Slime_Blue : Actor {
 				numHits = castCollider.Cast((Vector2)moveVector, obstacleFilter, castHits, avoidDistance);
 
 				//if we would run into something if we kept moving forward
-				if (numHits > 0){
+				if (numHits > 0 && !castHits[0].collider.gameObject.Equals(targetObject)){
 					//add a force that is perpendicular to the path we take to hit an obstacle.
 					//This moves simultaneously away from the obstacle, and towards our goal.
 					hitDirection = castHits[0].point - ((Vector2)transform.position + castCollider.offset);
