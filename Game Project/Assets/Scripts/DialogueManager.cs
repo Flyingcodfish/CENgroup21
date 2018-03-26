@@ -8,6 +8,8 @@ public class DialogueManager : MonoBehaviour {
     public Text nameText;
     public Text dialogueText;
     public GameObject chatBox;
+    [SerializeField]
+    private InputField input;
 
     private Queue<string> sentences;
 
@@ -16,9 +18,17 @@ public class DialogueManager : MonoBehaviour {
         sentences = new Queue<string>();
 	}
 
+    public void GetInput(string name)
+    {
+        nameText.text = name;
+    }
+
     public void StartDialogue(Dialogue dialogue)
     {
-        nameText.text = dialogue.name;
+        if (dialogue.name != "")
+        {
+            nameText.text = dialogue.name;
+        }
         sentences.Clear();
 
         foreach(string sentence in dialogue.sentences)
