@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum ItemType {MANA,HEALTH,SWIFT,STRENGTH,POWER, SPELL_ICE}; // creates types for specific in game items 
+public enum ItemType {MANA,HEALTH,SWIFT,STRENGTH,POWER, SPELL_ICE, SPELL_FIRE}; // creates types for specific in game items 
 
 public class Item : MonoBehaviour
 {
@@ -44,10 +44,13 @@ public class Item : MonoBehaviour
 		case ItemType.SPELL_ICE:
 			player.CastIce();
 			break;
+		case ItemType.SPELL_FIRE:
+			player.CastFire();
+			break;
         }
     }
     public bool isSpell()
     {
-        return type == ItemType.SPELL_ICE;// just have or for each spell type 
+		return (type == ItemType.SPELL_ICE || type == ItemType.SPELL_FIRE);// just have or for each spell type 
     }
 }

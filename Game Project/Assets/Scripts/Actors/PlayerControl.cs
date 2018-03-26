@@ -22,8 +22,6 @@ public class PlayerControl : Actor {
 
 	private float spellDistance = 0.15f;
 
-    public FireBomb bomb_object;
-
 	//behavior begins
 	public override void ActorStart(){
 		Object.DontDestroyOnLoad(this); //player object should be persistent
@@ -109,13 +107,6 @@ public class PlayerControl : Actor {
 	            }
 	        }
 
-			if(Input.GetKeyDown("h") && bombTimer <= 0)
-			{
-				bombTimer = bombTime;
-				FireBomb bomb = Instantiate<FireBomb>(bomb_object, transform.position + (Vector3)facing*spellDistance, Quaternion.identity);
-				bomb.Initialize(facing * 0.12f, this.team, this.power);
-			}
-
 	        animator.SetBool("Attacking", attacking);
 		}
 
@@ -149,6 +140,14 @@ public class PlayerControl : Actor {
 		iceShardInstance.Initialize(facing * 0.15f, Team.player, this.power);
 	}
 
+	public FireBomb bomb_object;
+	public void CastFire(){
+		if (bombTimer <= 0){
+			bombTimer = bombTime;
+			FireBomb bomb = Instantiate<FireBomb>(bomb_object, transform.position + (Vector3)facing*spellDistance, Quaternion.identity);
+			bomb.Initialize(facing * 0.12f, this.team, this.power);
+		}
+	}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
