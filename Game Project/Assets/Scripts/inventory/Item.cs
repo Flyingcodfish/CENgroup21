@@ -30,7 +30,7 @@ public class Item : MonoBehaviour
 			player.TakeDamage(-50);
             break;
         case ItemType.MANA:
-			//TODO
+			player.SpendMana(-50);
             break;
         case ItemType.SWIFT:
 			player.ModifyEffect(Actor.Effect.SpeedUp, speedTime, speedModifier);

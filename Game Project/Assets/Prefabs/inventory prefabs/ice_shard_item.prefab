@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212215559464238204}
   - component: {fileID: 114859521765742262}
   - component: {fileID: 61514061427613172}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: ice_shard_item
   m_TagString: Item
   m_Icon: {fileID: 0}

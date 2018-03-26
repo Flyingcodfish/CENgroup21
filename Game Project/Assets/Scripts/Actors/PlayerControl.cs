@@ -6,6 +6,26 @@ public class PlayerControl : Actor {
 
     public inventory inventory;
 
+	//status fields
+	public int hasKeys = 0; //number of door keys owned by the player.
+	public int hasMoney = 0; //amount of generic currency owned by the player.
+	public int currentMana {get; private set;} //used to cast spells
+	public int maxMana = 49; //this is a joke
+
+	//spell fields
+	private float spellDistance = 0.15f;
+
+	public FireBomb bomb_object;
+	int bomb_manaCost = 14;
+	private float bombTime = 3.0f; //cooldown on firing a bomb
+	private float bombTimer; // time remaining until bomb explodes
+
+	public IceShardSpell iceShardPrefab;
+	int ice_manaCost =  7;
+	private float iceTime = 0.2f;
+	private float iceTimer;
+
+
     //control fields
     private Vector2 input;
 	private Vector2 facing = Vector2.up;
@@ -13,18 +33,15 @@ public class PlayerControl : Actor {
 	//attack fields
     private float attackTime = 0.3f; // how long it takes to attack
     private float attackTimer; // time remaining till the attack ends
-    private float bombTime = 3.0f; //cooldown on firing a bomb
-    private float bombTimer; // time remaining until bomb explodes
     private bool attacking = false;
-
 	public Hitbox attackHitbox;
 	private Vector2 attackHitboxOffset;
 
-	private float spellDistance = 0.15f;
 
 	//behavior begins
 	public override void ActorStart(){
 		Object.DontDestroyOnLoad(this); //player object should be persistent
+		currentMana = maxMana;
 	}
 		
 	void OnDestroy(){
@@ -111,38 +128,56 @@ public class PlayerControl : Actor {
 		}
 
 		//timers continue regardless of whether the player is active or not
-		//
-		if (attacking)
-		{
-			if(attackTimer > 0)
-			{
+		if (attacking) {
+			if(attackTimer > 0) {
 				attackTimer -= Time.deltaTime;
 			}
-			else
-			{
+			else {
 				attacking = false; 
 			}
 		}
-		if (bombTimer >= 0)
-		{
+
+		//attack hitbox should not stay on if frozen; status updated outside IsActive block
+		attackHitbox.isActive = attacking && this.IsActive();
+
+		if (bombTimer >= 0) {
 			bombTimer -= Time.deltaTime;
 		}
-		//attack hitbox should not stay on if frozen
-		attackHitbox.isActive = attacking && this.IsActive();
+
+		if (iceTimer >= 0){
+			iceTimer -= Time.deltaTime;
+		}
+
 
     }
 
-	public IceShardSpell iceShardPrefab;
-	//probably a pretty bad method name
-	public void CastIce(){
-		IceShardSpell iceShardInstance = Instantiate(iceShardPrefab, transform.position + (Vector3)facing*spellDistance, Quaternion.identity);
-		iceShardInstance.transform.up = facing;
-		iceShardInstance.Initialize(facing * 0.15f, Team.player, this.power);
+	//returns true if the amount was available to spend, else false
+	public bool SpendMana(int amount){
+		if (currentMana >= amount){
+			currentMana -= amount;
+		}
+		else {
+			//TODO sound effect or something, maybe even flash the mana bar
+			return false;
+		}
+
+		if (currentMana > maxMana) currentMana = maxMana; //may have been given a negative amount; mana gain potions
+		return true;
 	}
 
-	public FireBomb bomb_object;
+
+	public void CastIce(){
+		if (iceTimer <= 0 && SpendMana(ice_manaCost)){
+			iceTimer = iceTime;
+			IceShardSpell iceShardInstance = Instantiate(iceShardPrefab, transform.position + (Vector3)facing*spellDistance, Quaternion.identity);
+			iceShardInstance.transform.up = facing;
+			iceShardInstance.Initialize(facing * 0.15f, Team.player, this.power);
+		}
+	}
+
+
 	public void CastFire(){
-		if (bombTimer <= 0){
+		if (bombTimer <= 0 && SpendMana(bomb_manaCost)){
 			bombTimer = bombTime;
 			FireBomb bomb = Instantiate<FireBomb>(bomb_object, transform.position + (Vector3)facing*spellDistance, Quaternion.identity);
 			bomb.Initialize(facing * 0.12f, this.team, this.power);

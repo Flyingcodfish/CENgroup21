@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212654237197074588}
   - component: {fileID: 114376286106110772}
   - component: {fileID: 61417200487716586}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Swift
   m_TagString: Item
   m_Icon: {fileID: 0}
