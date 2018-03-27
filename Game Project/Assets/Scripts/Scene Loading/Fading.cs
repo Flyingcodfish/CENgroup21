@@ -6,8 +6,9 @@ public class Fading : MonoBehaviour {
     public Texture2D fadeOutTexture;
     public float fadeSpeed = 0.8f;
     private int drawDepth = -1000;
-    private float alpha = 1.0f;
+    private float alpha = 0f;
     private int fadeDir = -1;
+
 
     private void OnGUI()
     {

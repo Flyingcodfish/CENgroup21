@@ -1,4 +1,4 @@
-﻿﻿using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -35,6 +35,8 @@ public class inventory : MonoBehaviour {
 
 	private static int emptySlots;
 
+	private PlayerControl player;
+
 	public static int EmptySlots // used to get emptySlots in other scripts 
 	{
 		get
@@ -52,58 +54,61 @@ public class inventory : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		CreateLayout();
+		player = gameObject.GetComponentInParent<PlayerControl>();
 	}
 
 	// Update is called once per frame
 	void Update () { 
-        if (Input.GetMouseButtonUp(0))
-        {
-            if (!eventSystem.IsPointerOverGameObject(-1) && from != null) // if mouse pointer not over game object 
-            {
-                from.GetComponent<Image>().color = Color.white;
-                if (!from.Items.Peek().isSpell())// if its not a spell its safe to clear the slot 
-                {
-                    from.ClearSlot();
-                }
-                Destroy(GameObject.Find("Hover"));
-                to = null;
-                from = null;
-                hoverObject = null;
-            }
-        }
-        if(hoverObject != null)
-        {
-            float xm = Input.mousePosition.x; // finds mouse position 
-            float ym = Input.mousePosition.y;
-            hoverObject.transform.position = new Vector2(xm + 1, ym + 1); // makes object follow mouse 
-        }
-        // use specific items based on which num is used 
-        if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            Debug.Log("1 is Pressed");
-            allSlots[0].SendMessage("UseItem");
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            Debug.Log("2 is Pressed");
-            allSlots[1].SendMessage("UseItem");
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            Debug.Log("3 is Pressed");
-            allSlots[2].SendMessage("UseItem");
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            Debug.Log("4 is Pressed");
-            allSlots[3].SendMessage("UseItem");
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad5) || Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            Debug.Log("5 is Pressed");
-            allSlots[4].SendMessage("UseItem");
-        }
-        // end hot bar keys 
+		if (player.IsActive()){
+			if (Input.GetMouseButtonUp(0))
+	        {
+	            if (!eventSystem.IsPointerOverGameObject(-1) && from != null) // if mouse pointer not over game object 
+	            {
+	                from.GetComponent<Image>().color = Color.white;
+	                if (!from.Items.Peek().isSpell())// if its not a spell its safe to clear the slot 
+	                {
+	                    from.ClearSlot();
+	                }
+	                Destroy(GameObject.Find("Hover"));
+	                to = null;
+	                from = null;
+	                hoverObject = null;
+	            }
+	        }
+	        if(hoverObject != null)
+	        {
+	            float xm = Input.mousePosition.x; // finds mouse position 
+	            float ym = Input.mousePosition.y;
+	            hoverObject.transform.position = new Vector2(xm + 1, ym + 1); // makes object follow mouse 
+	        }
+	        // use specific items based on which num is used 
+	        if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
+	        {
+	            Debug.Log("1 is Pressed");
+	            allSlots[0].SendMessage("UseItem");
+	        }
+	        if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
+	        {
+	            Debug.Log("2 is Pressed");
+	            allSlots[1].SendMessage("UseItem");
+	        }
+	        if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3))
+	        {
+	            Debug.Log("3 is Pressed");
+	            allSlots[2].SendMessage("UseItem");
+	        }
+	        if (Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Alpha4))
+	        {
+	            Debug.Log("4 is Pressed");
+	            allSlots[3].SendMessage("UseItem");
+	        }
+	        if (Input.GetKeyDown(KeyCode.Keypad5) || Input.GetKeyDown(KeyCode.Alpha5))
+	        {
+	            Debug.Log("5 is Pressed");
+	            allSlots[4].SendMessage("UseItem");
+	        }
+	        // end hot bar keys 
+		}
     }
 	private void CreateLayout() // creates the inventory layout based on fields and formulas 
 	{

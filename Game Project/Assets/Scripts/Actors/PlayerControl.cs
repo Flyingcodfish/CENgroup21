@@ -29,6 +29,8 @@ public class PlayerControl : Actor {
     //control fields
     private Vector2 input;
 	private Vector2 facing = Vector2.up;
+	private bool devConsoleEnabled = false;
+	public GameObject devConsole;
 
 	//attack fields
     private float attackTime = 0.3f; // how long it takes to attack
@@ -63,6 +65,15 @@ public class PlayerControl : Actor {
 	//src: http://michaelcummings.net/mathoms/creating-2d-animated-sprites-using-unity-4.3
     void Update()
     {
+		if (Input.GetKeyDown(KeyCode.BackQuote)){
+			devConsoleEnabled = !devConsoleEnabled;
+
+			Time.timeScale = devConsoleEnabled ? 0f : 1f;
+			devConsole.SetActive(devConsoleEnabled);
+			if (devConsoleEnabled) devConsole.GetComponent<UnityEngine.UI.InputField>().ActivateInputField();
+			this.enabledAI = !devConsoleEnabled;
+		}
+
 		if (IsActive()){
 			animator.SetBool("Walking", true);
 	        if (input.y > 0) 	//up
