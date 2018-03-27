@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 50637172542570634}
   - component: {fileID: 61400951611872138}
   - component: {fileID: 114333487254057442}
+  - component: {fileID: 114921015628976632}
   m_Layer: 10
   m_Name: Axe Bandit
   m_TagString: Untagged
@@ -176,7 +177,6 @@ MonoBehaviour:
   enabledAI: 1
   isInvincible: 0
   maxHealth: 30
-  team: 2
   drag: 100
   maxSpeed: 300
   hoverDistance: 1.2
@@ -200,6 +200,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 25
+--- !u!114 &114921015628976632
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1298863165376464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8733780be8ed5134ba84b8c62e74b018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 2
 --- !u!212 &212932283187589472
 SpriteRenderer:
   m_ObjectHideFlags: 1

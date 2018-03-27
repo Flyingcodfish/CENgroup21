@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(TeamComponent))]
 public class FireBomb : MonoBehaviour {
 
-    public Team team;
+    public TeamComponent teamComponent;
     public Vector2 velocity;
     public int damage = 30;
     private float explodetimer = 3.0f;
@@ -16,21 +17,16 @@ public class FireBomb : MonoBehaviour {
     public void OnTriggerEnter2D(Collider2D other)
     {
         //we hit something. if it is a wall, or on another team, "hit" it and destroy the bullet.
-        Actor hitActor = other.gameObject.GetComponent<Actor>();
+		TeamComponent otherTeam = other.GetComponent<TeamComponent>();
 
         if (other.tag == "Torch")
         {
             other.GetComponent<SpriteRenderer>().sprite = littorch;
         }
-
-        else if (hitActor == null)
-        {
-            this.Die();
-        }
-        else if (hitActor.team != this.team)
+		else if (otherTeam == null || otherTeam.team != this.teamComponent.team)
         {
             //nicely ask the target to take damage
-            hitActor.SendMessage("TakeDamage", this.damage);
+            other.gameObject.SendMessage("TakeDamage", this.damage);
             this.Die();
         }
         //else ignore the collision
@@ -48,7 +44,8 @@ public class FireBomb : MonoBehaviour {
     public void Initialize(Vector2 velocity, Team team, float dmgMod = 1f)
     {
         this.velocity = velocity;
-        this.team = team;
+		this.teamComponent = this.GetComponent<TeamComponent>();
+		teamComponent.team = team;
 		this.damage = (int) (this.damage * dmgMod);
 		this.gameObject.layer = LayerMask.NameToLayer("Projectiles");
     }

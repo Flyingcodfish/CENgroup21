@@ -9,7 +9,7 @@ public class Hitbox : MonoBehaviour {
 
 	public float damage;
 	private Actor parentActor;
-	private Team team;
+	private Team parentTeam; //doesn't need a team component, that's a little overkill? Might be better to be consistent, but this'll do for now.
 
 	private bool active;
 	public bool isActive{
@@ -24,15 +24,15 @@ public class Hitbox : MonoBehaviour {
 
 
 	//declares a delegate method type
-	public delegate void DelegateHitActor(Actor actor);
+	public delegate void DelegateHitGameObject(GameObject hitObj);
 	//an instance of the delegate type: can be assigned to by parents
 	//a parent can assign a method to this delegate, which will be called whenever the delegate is called
 	//allows actors can impose special effects on their targets, or know whether their attacks hit
-	public DelegateHitActor HitActor; 
+	public DelegateHitGameObject HitObject; 
 
 	public void Start(){
 		this.parentActor = this.GetComponentInParent<Actor>();
-		this.team = parentActor.team;
+		this.parentTeam = this.GetComponentInParent<TeamComponent>().team;
 		this.hitbox = this.GetComponent<Collider2D>();
 		hitbox.gameObject.layer = LayerMask.NameToLayer("Hitboxes");
 		this.isActive = false;
@@ -40,12 +40,14 @@ public class Hitbox : MonoBehaviour {
 
 	//attack hitbox hit something
 	public void OnTriggerEnter2D(Collider2D other){
-		Actor hitActor = other.gameObject.GetComponent<Actor>();
-		if (hitActor != null && hitActor.team != this.team){
+		TeamComponent otherTeam = other.gameObject.GetComponent<TeamComponent>();
+
+		if (otherTeam == null || otherTeam.team != this.parentTeam){
+			//apply any special on-hit effects
+			if (HitObject != null)
+				HitObject(other.gameObject);
 			//nicely ask the target to take damage
-			if (HitActor != null)
-				HitActor(hitActor);
-			hitActor.SendMessage("TakeDamage", this.damage * parentActor.GetPower());
+			other.gameObject.SendMessage("TakeDamage", this.damage * parentActor.GetPower());
 		}
 		//else ignore the collision
 	}

@@ -45,7 +45,7 @@ public class Slime_Blue : Actor {
 		tileFilter = Navigator.GetFilterFromBlockingType(bType, false);
 		castHits = new RaycastHit2D[maxHits];
 
-		attackHitbox.HitActor = this.FreezeActor; //assigns the slime's SlowActor method to the hitbox's delegate
+		attackHitbox.HitObject = this.FreezeObject; //assigns the slime's SlowActor method to the hitbox's delegate
 
 		StartCoroutine(AI_Tick());
 	}
@@ -70,7 +70,7 @@ public class Slime_Blue : Actor {
 
 		//sprite flipping: setting negative X scale flips EVERYTHING (sprite, but also children objects like colliders)
 		if (!animator.GetBool("Attacking")){
-			transform.localScale = new Vector3(-1*Mathf.Sign(directMove.x)*transform.localScale.x, transform.localScale.y, transform.localScale.z);
+			transform.localScale = new Vector3(-1*Mathf.Sign(directMove.x), transform.localScale.y, transform.localScale.z);
 		}
 
 		//attack hitbox activation
@@ -87,8 +87,13 @@ public class Slime_Blue : Actor {
 	}
 		
 	//function assigned to attack hitbox delegate. Called whenever hitbox hits something.
-	public void FreezeActor(Actor actor){
-		actor.ModifyEffect(Effect.Freeze, freezeTime);
+	public void FreezeObject(GameObject hitObj){
+		Actor actor = hitObj.GetComponent<Actor>();
+		WaterTileObject waterObj = hitObj.GetComponent<WaterTileObject>();
+		if (actor != null)
+			actor.ModifyEffect(Effect.Freeze, freezeTime);
+		if (waterObj != null)
+			waterObj.Freeze();
 	}
 
 	//only need to perform pathfinding every ~0.1 second; less CPU intensive

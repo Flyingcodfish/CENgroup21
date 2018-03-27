@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 50140955345618528}
   - component: {fileID: 61205247561799628}
   - component: {fileID: 114874049021731688}
+  - component: {fileID: 114191650740472390}
   m_Layer: 11
   m_Name: green_fairy
   m_TagString: Untagged
@@ -106,6 +107,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114191650740472390
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1664597029957464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8733780be8ed5134ba84b8c62e74b018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 2
 --- !u!114 &114874049021731688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -117,9 +130,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 355712cb924169344a8d15fe78086742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enabledAI: 1
   isInvincible: 0
   maxHealth: 20
-  team: 2
   drag: 100
   maxSpeed: 200
   bType: 1

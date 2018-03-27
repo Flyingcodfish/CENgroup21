@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 61842741084441528}
   - component: {fileID: 120648994221927628}
   - component: {fileID: 212991309135117278}
+  - component: {fileID: 114572734735878654}
   m_Layer: 10
   m_Name: goblin
   m_TagString: Untagged
@@ -89,6 +90,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114572734735878654
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1256380683358202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8733780be8ed5134ba84b8c62e74b018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 2
 --- !u!114 &114696136392012264
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -100,9 +113,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fcdf2b7a874d634489c03fb21aa1a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enabledAI: 1
   isInvincible: 0
   maxHealth: 50
-  team: 2
   drag: 100
   maxSpeed: 300
   moveTarget: {x: 0, y: 0, z: 0}
