@@ -5,9 +5,10 @@ using UnityEngine.Rendering;
 
 
 //base class for anything that breathes (and then some)
-//set some requirements: all actors should have a body/collider in the world, and should be animated sprites
+//set some requirements: all actors should have a body/collider in the world, and should be animated sprites. They should all be on a team as well.
 [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 [RequireComponent(typeof(Animator), typeof(SpriteRenderer))]
+[RequireComponent(typeof(TeamComponent))]
 public abstract class Actor : MonoBehaviour {
 
 	//bookkeeping fields
@@ -26,7 +27,6 @@ public abstract class Actor : MonoBehaviour {
 	public bool isInvincible = false;
 	public int maxHealth;
 	public int currentHealth{get; protected set;} //outsiders should not set directly, but use takeDamage()
-	public Team team = Team.neutral; //default team
 
 	protected Color hurtColor = new Color32(255, 143, 143, 255);
     protected Color healColor = Color.green; // *could make cool Color32* 
@@ -41,6 +41,7 @@ public abstract class Actor : MonoBehaviour {
 	public Rigidbody2D rbody {get; private set;}
 	public Animator animator {get; private set;}
 	public SpriteRenderer spriteRenderer {get; private set;}
+	public TeamComponent teamComponent{get; private set;}
 	private static GameObject iceBlockPrefab;
 
 	//Start is used to initialize important Actor component references
@@ -51,6 +52,7 @@ public abstract class Actor : MonoBehaviour {
 		rbody = this.GetComponent<Rigidbody2D>();
 		animator = this.GetComponent<Animator>();
 		spriteRenderer = this.GetComponent<SpriteRenderer>();
+		teamComponent = this.GetComponent<TeamComponent>();
 		if (iceBlockPrefab == null)	iceBlockPrefab = Resources.Load<GameObject>("IceBlock");
 
 		rbody.drag = this.drag;
@@ -236,10 +238,3 @@ public abstract class Actor : MonoBehaviour {
 	}
 
 }
-
-
-
-//makes AI behaviors more flexible; allows projectiles to ignore friendlies
-public enum Team {
-	neutral, player, enemy, special
-};

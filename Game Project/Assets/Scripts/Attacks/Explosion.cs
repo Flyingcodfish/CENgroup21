@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Explosion : MonoBehaviour {
-
-    private Collider2D hitbox;
-
+	
     public float damage;
-    public Team team;
     public Sprite littorch;
 
     //declares a delegate method type
@@ -19,27 +16,21 @@ public class Explosion : MonoBehaviour {
 
     public void Start()
     {
-        this.hitbox = this.GetComponent<Collider2D>();
         Destroy(this.gameObject, 1.0f);
     }
 
-    //attack hitbox hit something
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        Actor hitActor = other.gameObject.GetComponent<Actor>();
-
-        if (other.tag == "Torch")
-        {
-            other.GetComponent<SpriteRenderer>().sprite = littorch;
-        }
-
-        if (hitActor != null && hitActor.team != this.team)
-        {
-            //nicely ask the target to take damage
-            if (HitActor != null)
-                HitActor(hitActor);
-            hitActor.SendMessage("TakeDamage", this.damage);
-        }
-        //else ignore the collision
-    }
+	public void OnTriggerEnter2D(Collider2D other)
+	{
+		//we hit something. We're an explosion, and we hate everyone. deal damage to everyone.
+		if (other.tag == "Torch")
+		{
+			other.GetComponent<SpriteRenderer>().sprite = littorch;
+		}
+		else
+		{
+			//nicely ask the target to take damage
+			other.gameObject.SendMessage("TakeDamage", this.damage);
+		}
+		//else ignore the collision
+	}
 }

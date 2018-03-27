@@ -6,9 +6,9 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 //projectile should have a kinematic rigidbody, so it can collide with static terrain
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(TeamComponent))]
 public class IceShardSpell : MonoBehaviour {
 
-	Team team;
 	Vector2 velocity;
 	int damage = 10;
 	float lifespan = 5f;
@@ -16,18 +16,17 @@ public class IceShardSpell : MonoBehaviour {
 	float freezeTime = 3f;
 
 	public GameObject death_object;
+	private TeamComponent teamComponent;
 
 	public void OnTriggerEnter2D(Collider2D other){
 		//we hit something. if it is a wall, or on another team, "hit" it
-		Actor hitActor = other.gameObject.GetComponent<Actor>();
-		if (hitActor == null){
-			//we hit a wall; shatter
-			StartCoroutine(Die());
-		}
-		else if (hitActor.team != this.team){
-			//nicely ask the target to take damage and get frozen
-			hitActor.ModifyEffect(Actor.Effect.Freeze, freezeTime);
-			hitActor.TakeDamage(this.damage);
+		TeamComponent otherTeam = other.gameObject.GetComponent<TeamComponent>();
+		if (otherTeam == null || otherTeam.team != this.teamComponent.team){
+			//nicely ask the target to freeze and then take damage
+			Actor hitActor = other.gameObject.GetComponent<Actor>();
+			if (hitActor != null)
+				hitActor.ModifyEffect(Actor.Effect.Freeze, freezeTime);
+			other.gameObject.SendMessage("TakeDamage", this.damage);
 
 			StartCoroutine(Die());
 		}
@@ -58,7 +57,8 @@ public class IceShardSpell : MonoBehaviour {
 
 	public void Initialize(Vector2 velocity, Team team, float dmgMod = 1f){
 		this.velocity = velocity;
-		this.team = team;
+		this.teamComponent = this.GetComponent<TeamComponent>();
+		this.teamComponent.team = team;
 		this.damage = (int) (damage * dmgMod);
 		StartCoroutine(LifespanCountdown()); //begin the inevitable spiral towards death
 	}

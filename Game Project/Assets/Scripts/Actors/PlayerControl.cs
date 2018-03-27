@@ -171,7 +171,7 @@ public class PlayerControl : Actor {
 			iceTimer = iceTime;
 			IceShardSpell iceShardInstance = Instantiate(iceShardPrefab, transform.position + (Vector3)facing*spellDistance, Quaternion.identity);
 			iceShardInstance.transform.up = facing;
-			iceShardInstance.Initialize(facing * 0.15f, Team.player, this.power);
+			iceShardInstance.Initialize(facing * 0.15f, this.teamComponent.team, this.power);
 		}
 	}
 
@@ -180,7 +180,7 @@ public class PlayerControl : Actor {
 		if (bombTimer <= 0 && SpendMana(bomb_manaCost)){
 			bombTimer = bombTime;
 			FireBomb bomb = Instantiate<FireBomb>(bomb_object, transform.position + (Vector3)facing*spellDistance, Quaternion.identity);
-			bomb.Initialize(facing * 0.12f, this.team, this.power);
+			bomb.Initialize(facing * 0.12f, this.teamComponent.team, this.power);
 		}
 	}
 

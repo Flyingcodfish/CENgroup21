@@ -278,6 +278,7 @@ GameObject:
   - component: {fileID: 50001629688679980}
   - component: {fileID: 61988429928416156}
   - component: {fileID: 114319896515579678}
+  - component: {fileID: 114113132943291530}
   m_Layer: 10
   m_Name: Player ($Lanto 3)
   m_TagString: Player
@@ -732,6 +733,18 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &114113132943291530
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1621778042324258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8733780be8ed5134ba84b8c62e74b018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 1
 --- !u!114 &114220493394682658
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -808,7 +821,6 @@ MonoBehaviour:
   enabledAI: 1
   isInvincible: 0
   maxHealth: 50
-  team: 1
   drag: 100
   maxSpeed: 500
   inventory: {fileID: 114385308227976608}

@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 61639525059928992}
   - component: {fileID: 95557754884379386}
   - component: {fileID: 114958653394427414}
+  - component: {fileID: 114983385861595948}
   m_Layer: 10
   m_Name: Slime_Blue
   m_TagString: Untagged
@@ -188,7 +189,6 @@ MonoBehaviour:
   enabledAI: 1
   isInvincible: 0
   maxHealth: 70
-  team: 2
   drag: 100
   maxSpeed: 200
   hoverDistance: 1.2
@@ -199,6 +199,18 @@ MonoBehaviour:
   attackCooldown: 2
   attackHitbox: {fileID: 114187382874297042}
   freezeTime: 0.75
+--- !u!114 &114983385861595948
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1804366817685974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8733780be8ed5134ba84b8c62e74b018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 2
 --- !u!212 &212562127496584410
 SpriteRenderer:
   m_ObjectHideFlags: 1
