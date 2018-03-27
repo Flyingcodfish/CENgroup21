@@ -12,6 +12,7 @@ public class Skeleton : Actor {
 	private Vector2 directMove;
 	public float hoverDistance = 2f;
 	public float moveDeadZone = 0.1f;
+	public float sightRange = 15f;			//Enemies will remain passive until player within sight range 
 
 	//navigation fields
 	bool pathFound;
@@ -156,6 +157,10 @@ public class Skeleton : Actor {
 					float sign = Mathf.Sign(phi); //determines which of two perpendicular paths to take
 					avoidVector = new Vector2(sign*hitDirection.y, -1*sign*hitDirection.x); //calculate normal to hitVector
 					moveVector = avoidVector.normalized + moveVector.normalized;
+				}
+
+				if (directMove.magnitude > sightRange) {
+					moveVector = Vector3.zero;
 				}
 			}
 			yield return new WaitForSeconds(0.1f);

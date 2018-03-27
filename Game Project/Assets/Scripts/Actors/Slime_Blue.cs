@@ -12,7 +12,7 @@ public class Slime_Blue : Actor {
 	private Vector2 directMove;
 	public float hoverDistance = 1.2f;
 	public float moveDeadZone = 0.1f;
-	public float visionDistance = 15f;
+
 
 	//navigation fields
 	bool pathFound;
@@ -147,9 +147,7 @@ public class Slime_Blue : Actor {
 					moveVector = avoidVector.normalized + moveVector.normalized;
 				}
 
-				if (directMove.magnitude > visionDistance) {
-					moveVector = Vector3.zero;
-				}
+
 			}
 			yield return new WaitForSeconds(0.1f);
 		}

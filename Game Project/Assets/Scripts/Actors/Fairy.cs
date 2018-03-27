@@ -27,6 +27,7 @@ public class Fairy : Actor {
 	private Vector3 moveVector;
 	private Vector2 directMove;
 	public float moveDeadZone = 0.1f;
+	public float sightRange = 15f;			//Enemies will remain passive until player within sight range 
 
 	//attack behavior fields
 	public float hoverDistance = 4f;
@@ -150,6 +151,9 @@ public class Fairy : Actor {
 						StartCoroutine(FireShot());
 						attackTicker = 0;
 					}
+				}
+				if (directMove.magnitude > sightRange) {
+					moveVector = Vector3.zero;
 				}
 			}
 			yield return new WaitForSeconds(0.1f);
