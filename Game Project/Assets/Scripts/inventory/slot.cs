@@ -114,7 +114,8 @@ public class slot : MonoBehaviour, IPointerClickHandler {
 	}
 	public void OnPointerClick(PointerEventData eventData)
 	{
-		if(eventData.button == PointerEventData.InputButton.Right)
+		if(eventData.button == PointerEventData.InputButton.Right && !GameObject.Find("Hover")
+            && inventory.CanvasGroup.alpha>0 )// can only use when not moving items and when hud is showing 
 		{
 			UseItem();
 		}

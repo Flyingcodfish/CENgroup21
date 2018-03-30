@@ -1000,6 +1000,8 @@ MonoBehaviour:
   iconPrefab: {fileID: 1042629837953936, guid: e29fc947c641ff247b37cd0bd965e017, type: 2}
   canvas: {fileID: 223896718159497120}
   eventSystem: {fileID: 114910975685678124}
+  canvasGroup: {fileID: 225324459417434660}
+  fadeTime: 1
 --- !u!114 &114406976714241050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2200,7 +2202,7 @@ CanvasGroup:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1923769403589512}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
