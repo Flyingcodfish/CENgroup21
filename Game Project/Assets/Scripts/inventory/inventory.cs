@@ -33,7 +33,15 @@ public class inventory : MonoBehaviour {
 
 	private List<GameObject> allSlots;
 
-	private static int emptySlots;
+	private static int emptySlots; // made static to have only one instance of empty slots and ref without instance 
+    // used for fading HUD elements in and out 
+    private static CanvasGroup canvasGroup; // made static to make sure only one instance of canvasGroup 
+
+    private bool fadingIn;
+
+    private bool fadingOut;
+
+    public float fadeTime;
 
 	public static int EmptySlots // used to get emptySlots in other scripts 
 	{
@@ -48,14 +56,24 @@ public class inventory : MonoBehaviour {
 		}
 	}
 
+    public static CanvasGroup CanvasGroup // used to get canvas group in other scripts 
+    {
+        get
+        {
+            return canvasGroup;
+        }
+    }
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
+        canvasGroup = transform.parent.GetComponent<CanvasGroup>();// gets reference to specific canvas used for inv 
 		CreateLayout();
 	}
 
 	// Update is called once per frame
 	void Update () { 
+        // used for removing items 
         if (Input.GetMouseButtonUp(0))
         {
             if (!eventSystem.IsPointerOverGameObject(-1) && from != null) // if mouse pointer not over game object 
@@ -64,13 +82,14 @@ public class inventory : MonoBehaviour {
                 if (!from.Items.Peek().isSpell())// if its not a spell its safe to clear the slot 
                 {
                     from.ClearSlot();
+                    emptySlots++;
                 }
                 Destroy(GameObject.Find("Hover"));
                 to = null;
                 from = null;
-                hoverObject = null;
             }
         }
+        // hover object follows 
         if(hoverObject != null)
         {
             float xm = Input.mousePosition.x; // finds mouse position 
@@ -104,6 +123,19 @@ public class inventory : MonoBehaviour {
             allSlots[4].SendMessage("UseItem");
         }
         // end hot bar keys 
+        // fade in/out  HUD elements
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if (CanvasGroup.alpha > 0)
+            {
+                StartCoroutine("FadeOut");
+                PutItemBack();
+            }
+            else
+            {
+                StartCoroutine("FadeIn");
+            }
+        }
     }
 	private void CreateLayout() // creates the inventory layout based on fields and formulas 
 	{
@@ -149,7 +181,7 @@ public class inventory : MonoBehaviour {
 				slotRect.localPosition = inventoryRect.localPosition + new Vector3(slotPaddingLeft * (x + 1) + (slotSize * x), -slotPaddingTop * (y + 1) - (slotSize * y));
 
 				slotRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, slotSize);
-				slotRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, slotSize);
+				slotRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, slotSize); // multiply by canvas.scaleFactor to maybe allow scaling on diff screen sizes **not working**
 
 				allSlots.Add(newSlot);
 			}
@@ -214,7 +246,7 @@ public class inventory : MonoBehaviour {
 	}
 	public void MoveItem(GameObject clicked) // first gets from object from first click then to object and moves the item stacks if possible 
 	{
-		if (from == null)
+		if (from == null && canvasGroup.alpha ==1)
 		{
 			if (!clicked.GetComponent<slot>().IsEmpty)
 			{
@@ -256,18 +288,71 @@ public class inventory : MonoBehaviour {
                     from.Additems(tmpTo);
                 }
 
-                from.GetComponent<Image>().color = Color.white; // resets color 
-                to = null; // sets to null to allow for other objects to be moved 
-                from = null;
-                hoverObject = null;
             }
-            else
-            {
                 from.GetComponent<Image>().color = Color.white; // resets color 
                 to = null; // resets to null to allow for other objects to be moved and doesnt move anything since of different slot type
                 from = null;
-                hoverObject = null;
+                Destroy(GameObject.Find("Hover"));
+
+        }
+    }
+    private void PutItemBack() // if inventory faded when moving an item around 
+    {
+        if(from != null)
+        {
+            Destroy(GameObject.Find("Hover"));
+            from.GetComponent<Image>().color = Color.white;
+            from = null; // resets from 
+        }
+    }
+    public IEnumerator FadeOut()
+    {
+        if (!fadingOut)
+        {
+            fadingOut = true;
+            fadingIn = false;
+            StopCoroutine("FadeIn");
+
+            float startAlpha = CanvasGroup.alpha;// gets current alpha value of canvas group 
+
+            float rate = 1.0f / fadeTime;
+
+            float progress = 0.0f;
+
+            while (progress < 1.0)
+            {
+                CanvasGroup.alpha = Mathf.Lerp(startAlpha, 0, progress); // makes alpha linearly interpolated from start to 0 by progress
+                progress += rate * Time.deltaTime;
+                yield return null;
             }
-		}
+
+            CanvasGroup.alpha = 0;
+            fadingOut = false;
+        }
+    }
+    public IEnumerator FadeIn()
+    {
+        if (!fadingOut)
+        {
+            fadingOut = false;
+            fadingIn = true;
+            StopCoroutine("FadeOut");
+
+            float startAlpha = CanvasGroup.alpha;// gets current alpha value of canvas group 
+
+            float rate = 1.0f / fadeTime;
+
+            float progress = 0.0f;
+
+            while (progress < 1.0)
+            {
+                CanvasGroup.alpha = Mathf.Lerp(startAlpha, 1, progress);// makes alpha linearly interpolated from start to 1 by progress
+                progress += rate * Time.deltaTime;
+                yield return null;
+            }
+
+            CanvasGroup.alpha = 1;
+            fadingIn = false;
+        }
     }
 }
