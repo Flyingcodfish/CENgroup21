@@ -89,14 +89,17 @@ public class Maze_Fairy : Actor {
 			yield return new WaitForSeconds(1/fadeFramerate);
 		}
 		Destroy(flash);
-
 		Projectile bullet = Instantiate<Projectile>(bullet_object, transform.position, Quaternion.identity); //no rotation for now
-		Vector2 shotDirection = targetObject.transform.position - transform.position;
-		bullet.Initialize(shotDirection.normalized * bulletSpeed, this.teamComponent.team, this.power);
-
 		Projectile bullet2 = Instantiate<Projectile>(bullet_object, transform.position, Quaternion.identity); //no rotation for now
-		Vector2 shotDirection2 = targetObject.transform.position - transform.position + Vector2.one;
+		Projectile bullet3 = Instantiate<Projectile>(bullet_object, transform.position, Quaternion.identity); //no rotation for now
+		Vector2 shotDirection = targetObject.transform.position - transform.position;
+		Vector2 shotDirection2 = targetObject.transform.position - transform.position;
+		Vector2 shotDirection3 = targetObject.transform.position - transform.position;
+		shotDirection2.x += 2;
+		shotDirection3.x -= 3;
 		bullet2.Initialize(shotDirection2.normalized * bulletSpeed, this.teamComponent.team, this.power);
+		bullet.Initialize(shotDirection.normalized * bulletSpeed, this.teamComponent.team, this.power);
+		bullet3.Initialize(shotDirection3.normalized * bulletSpeed, this.teamComponent.team, this.power);
 	}
 
 	//only need to perform pathfinding every ~0.1 second; less CPU intensive
