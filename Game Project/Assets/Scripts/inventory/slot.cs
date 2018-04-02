@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class slot : MonoBehaviour, IPointerClickHandler {
 	private Stack<Item> items;
 
+    private CanvasGroup canvasGroup;
+
 	public Text stackTxt;
 
 	public Sprite slotEmpty;
@@ -51,6 +53,11 @@ public class slot : MonoBehaviour, IPointerClickHandler {
 
 		txtRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, slotRect.sizeDelta.y);
 		txtRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, slotRect.sizeDelta.x);
+
+        if(transform.parent != null) // makes canvasGroup the same as parent if regular slot 
+        {
+            canvasGroup = transform.parent.GetComponent<CanvasGroup>();
+        }
 
 	}
 
@@ -115,7 +122,7 @@ public class slot : MonoBehaviour, IPointerClickHandler {
 	public void OnPointerClick(PointerEventData eventData)
 	{
 		if(eventData.button == PointerEventData.InputButton.Right && !GameObject.Find("Hover")
-            && inventory.CanvasGroup.alpha>0 )// can only use when not moving items and when hud is showing 
+            && canvasGroup.alpha>0 )// can only use when not moving items and when hud is showing 
 		{
 			UseItem();
 		}

@@ -17,7 +17,7 @@ public class Item : MonoBehaviour
 
     public float strengthTime = 15f, strengthModifier = 0.5f;
 
-	public float powerTime = 5f, powerModifier = 1.5f;
+    public float powerTime = 5f, powerModifier = 1.5f;
 
     public int maxSize;
 
@@ -26,24 +26,24 @@ public class Item : MonoBehaviour
         player = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
         switch (type)
         {
-        case ItemType.HEALTH:
-			player.TakeDamage(-50);
-            break;
-        case ItemType.MANA:
-			//TODO
-            break;
-        case ItemType.SWIFT:
-			player.ModifyEffect(Actor.Effect.SpeedUp, speedTime, speedModifier);
-            break;
-        case ItemType.STRENGTH:
-			player.ModifyEffect(Actor.Effect.StrengthUp, strengthTime, strengthModifier);
-            break;
-        case ItemType.POWER:
-			player.ModifyEffect(Actor.Effect.PowerUp, powerTime, powerModifier);
-            break;
-		case ItemType.SPELL_ICE:
-			player.CastIce();
-			break;
+            case ItemType.HEALTH:
+                player.TakeDamage(-50);
+                break;
+            case ItemType.MANA:
+                //TODO
+                break;
+            case ItemType.SWIFT:
+                player.ModifyEffect(Actor.Effect.SpeedUp, speedTime, speedModifier);
+                break;
+            case ItemType.STRENGTH:
+                player.ModifyEffect(Actor.Effect.StrengthUp, strengthTime, strengthModifier);
+                break;
+            case ItemType.POWER:
+                player.ModifyEffect(Actor.Effect.PowerUp, powerTime, powerModifier);
+                break;
+            case ItemType.SPELL_ICE:
+                player.CastIce();
+                break;
         }
     }
     public bool isSpell()
@@ -51,3 +51,4 @@ public class Item : MonoBehaviour
         return type == ItemType.SPELL_ICE;// just have or for each spell type 
     }
 }
+    

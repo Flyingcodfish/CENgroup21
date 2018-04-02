@@ -35,7 +35,9 @@ public class inventory : MonoBehaviour {
 
 	private static int emptySlots; // made static to have only one instance of empty slots and ref without instance 
     // used for fading HUD elements in and out 
-    private static CanvasGroup canvasGroup; // made static to make sure only one instance of canvasGroup 
+    private  CanvasGroup canvasGroup; 
+
+    private static CanvasGroup hudGroup;
 
     private bool fadingIn;
 
@@ -56,18 +58,23 @@ public class inventory : MonoBehaviour {
 		}
 	}
 
-    public static CanvasGroup CanvasGroup // used to get canvas group in other scripts 
+    public static CanvasGroup HudGroup // used to get hud group in other scripts 
     {
         get
         {
-            return canvasGroup;
+            return hudGroup;
+        }
+        set
+        {
+            hudGroup = value;
         }
     }
 
 
     // Use this for initialization
     void Start () {
-        canvasGroup = transform.parent.GetComponent<CanvasGroup>();// gets reference to specific canvas used for inv 
+        canvasGroup = GetComponent<CanvasGroup>();// gets reference to specific canvas used for inv 
+        hudGroup = transform.parent.GetComponent<CanvasGroup>();// gets reference to canvas group of HUD 
 		CreateLayout();
 	}
 
@@ -96,48 +103,26 @@ public class inventory : MonoBehaviour {
             float ym = Input.mousePosition.y;
             hoverObject.transform.position = new Vector2(xm + 1, ym + 1); // makes object follow mouse 
         }
-        // use specific items based on which num is used 
-        if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            Debug.Log("1 is Pressed");
-            allSlots[0].SendMessage("UseItem");
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            Debug.Log("2 is Pressed");
-            allSlots[1].SendMessage("UseItem");
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            Debug.Log("3 is Pressed");
-            allSlots[2].SendMessage("UseItem");
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            Debug.Log("4 is Pressed");
-            allSlots[3].SendMessage("UseItem");
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad5) || Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            Debug.Log("5 is Pressed");
-            allSlots[4].SendMessage("UseItem");
-        }
-        // end hot bar keys 
+    }
+    public void Open()
+    {
         // fade in/out  HUD elements
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            if (CanvasGroup.alpha > 0)
+            if (canvasGroup.alpha > 0)
             {
-                StartCoroutine("FadeOut");
+                StartCoroutine("FadeOut",0);
                 PutItemBack();
             }
             else
             {
-                StartCoroutine("FadeIn");
+                StartCoroutine("FadeIn",0);
             }
-        }
+        
     }
-	private void CreateLayout() // creates the inventory layout based on fields and formulas 
+    public void UseItem(int x)
+    {
+        allSlots[x].SendMessage("UseItem");
+    }
+    private void CreateLayout() // creates the inventory layout based on fields and formulas 
 	{
 		allSlots = new List<GameObject>();
 
@@ -178,10 +163,12 @@ public class inventory : MonoBehaviour {
 
                 newSlot.transform.SetParent(this.transform.parent); // sets parent to canvas 
 
+
 				slotRect.localPosition = inventoryRect.localPosition + new Vector3(slotPaddingLeft * (x + 1) + (slotSize * x), -slotPaddingTop * (y + 1) - (slotSize * y));
 
 				slotRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, slotSize);
 				slotRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, slotSize); // multiply by canvas.scaleFactor to maybe allow scaling on diff screen sizes **not working**
+                newSlot.transform.SetParent(this.transform); // sets parent to inventory 
 
 				allSlots.Add(newSlot);
 			}
@@ -313,7 +300,7 @@ public class inventory : MonoBehaviour {
             fadingIn = false;
             StopCoroutine("FadeIn");
 
-            float startAlpha = CanvasGroup.alpha;// gets current alpha value of canvas group 
+            float startAlpha = canvasGroup.alpha;// gets current alpha value of canvas group 
 
             float rate = 1.0f / fadeTime;
 
@@ -321,12 +308,12 @@ public class inventory : MonoBehaviour {
 
             while (progress < 1.0)
             {
-                CanvasGroup.alpha = Mathf.Lerp(startAlpha, 0, progress); // makes alpha linearly interpolated from start to 0 by progress
+                canvasGroup.alpha = Mathf.Lerp(startAlpha, 0, progress); // makes alpha linearly interpolated from start to 0 by progress
                 progress += rate * Time.deltaTime;
                 yield return null;
             }
 
-            CanvasGroup.alpha = 0;
+            canvasGroup.alpha = 0;
             fadingOut = false;
         }
     }
@@ -338,7 +325,7 @@ public class inventory : MonoBehaviour {
             fadingIn = true;
             StopCoroutine("FadeOut");
 
-            float startAlpha = CanvasGroup.alpha;// gets current alpha value of canvas group 
+            float startAlpha = canvasGroup.alpha;// gets current alpha value of canvas group 
 
             float rate = 1.0f / fadeTime;
 
@@ -346,12 +333,12 @@ public class inventory : MonoBehaviour {
 
             while (progress < 1.0)
             {
-                CanvasGroup.alpha = Mathf.Lerp(startAlpha, 1, progress);// makes alpha linearly interpolated from start to 1 by progress
+                canvasGroup.alpha = Mathf.Lerp(startAlpha, 1, progress);// makes alpha linearly interpolated from start to 1 by progress
                 progress += rate * Time.deltaTime;
                 yield return null;
             }
 
-            CanvasGroup.alpha = 1;
+            canvasGroup.alpha = 1;
             fadingIn = false;
         }
     }

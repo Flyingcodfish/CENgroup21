@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Navigator
   - Item
+  - Chest
   layers:
   - Default
   - TransparentFX
