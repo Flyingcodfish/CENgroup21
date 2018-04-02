@@ -17,7 +17,7 @@ public class Item : MonoBehaviour
 
     public float strengthTime = 15f, strengthModifier = 0.5f;
 
-	public float powerTime = 5f, powerModifier = 1.5f;
+    public float powerTime = 5f, powerModifier = 1.5f;
 
     public int maxSize;
 
@@ -54,3 +54,4 @@ public class Item : MonoBehaviour
 		return (type == ItemType.SPELL_ICE || type == ItemType.SPELL_FIRE);// just have or for each spell type 
     }
 }
+    
