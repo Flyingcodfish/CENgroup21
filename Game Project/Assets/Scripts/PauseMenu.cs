@@ -18,10 +18,12 @@ public class PauseMenu : MonoBehaviour {
         {
             if (GameIsPaused)
             {
+                inventory.HudGroup.alpha = 1;
                 Resume();
             }
             else
             {
+                inventory.HudGroup.alpha = 0;
                 Pause();
             }
         }

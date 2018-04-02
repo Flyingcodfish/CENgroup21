@@ -7,6 +7,7 @@ TagManager:
   - Navigator
   - Item
   - Torch
+  - Chest
   layers:
   - Default
   - TransparentFX
