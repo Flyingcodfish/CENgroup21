@@ -7,6 +7,9 @@ TagManager:
   - Navigator
   - Item
   - Chest
+  - Inventory
+  - Coins
+  - Shop
   layers:
   - Default
   - TransparentFX
