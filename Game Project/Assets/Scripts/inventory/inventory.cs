@@ -1,4 +1,5 @@
-﻿﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -10,7 +11,7 @@ public class inventory : MonoBehaviour {
 
 	private float inventoryWidth, inventoryHeight;
 
-	public int slots, rows;
+	public int slots, rows, spells;
 
 	public float slotPaddingLeft, slotPaddingTop, slotSize;
 
@@ -45,6 +46,14 @@ public class inventory : MonoBehaviour {
 
     public float fadeTime;
 
+    // used for chests and vendors opening inventory
+
+    private bool isOpen;
+
+    // used for saving and loading 
+
+    public GameObject mana,health,power,iceSpell,strength,swift;
+
 	public static int EmptySlots // used to get emptySlots in other scripts 
 	{
 		get
@@ -70,9 +79,23 @@ public class inventory : MonoBehaviour {
         }
     }
 
+    public bool IsOpen // used to get isOpen from other scripts 
+    {
+        get
+        {
+            return isOpen;
+        }
+
+        set
+        {
+            isOpen = value;
+        }
+    }
+
 
     // Use this for initialization
     void Start () {
+        isOpen = false; // defaults to inventory being closed
         canvasGroup = GetComponent<CanvasGroup>();// gets reference to specific canvas used for inv 
         hudGroup = transform.parent.GetComponent<CanvasGroup>();// gets reference to canvas group of HUD 
 		CreateLayout();
@@ -103,6 +126,16 @@ public class inventory : MonoBehaviour {
             float ym = Input.mousePosition.y;
             hoverObject.transform.position = new Vector2(xm + 1, ym + 1); // makes object follow mouse 
         }
+        // used for debugging save and load **********************
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            SaveInventory();
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LoadInventory();
+        }
+        // ******************************************************
     }
     public void Open()
     {
@@ -111,10 +144,14 @@ public class inventory : MonoBehaviour {
             {
                 StartCoroutine("FadeOut",0);
                 PutItemBack();
+
+                isOpen = false; // inventory closes 
             }
             else
             {
                 StartCoroutine("FadeIn",0);
+
+                isOpen = true; // inventory opens 
             }
         
     }
@@ -124,15 +161,23 @@ public class inventory : MonoBehaviour {
     }
     private void CreateLayout() // creates the inventory layout based on fields and formulas 
 	{
-		allSlots = new List<GameObject>();
+        if(allSlots != null) // clears list if loading to not stack slots per load 
+        {
+            foreach(GameObject slot in allSlots)
+            {
+                Destroy(slot);
+            }
+        }
 
+		allSlots = new List<GameObject>();
+        
         hoverYOffset = slotSize * 0.01f;
 
 		emptySlots = slots;
 
-		inventoryWidth = (slots / rows) * (slotSize + slotPaddingLeft) + slotPaddingLeft;
+		inventoryWidth = (slots / rows) * (slotSize + slotPaddingLeft) + slotPaddingLeft; // calcs width 
 
-		inventoryHeight = rows * (slotSize + slotPaddingTop) + slotPaddingTop;
+		inventoryHeight = rows * (slotSize + slotPaddingTop) + slotPaddingTop; // calcs height 
 
 		inventoryRect = GetComponent<RectTransform>();
 
@@ -140,7 +185,9 @@ public class inventory : MonoBehaviour {
 
 		inventoryRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, inventoryHeight);
 
-		int columns = slots / rows;
+		int columns = slots / rows; // calcs columns 
+
+        int count = 0;
 
 		for(int y = 0; y < rows; y++)
 		{
@@ -148,10 +195,11 @@ public class inventory : MonoBehaviour {
 			{
                 GameObject newSlot;
 
-                if ((x + y) < 3)// first three slots for Spell items
+                if (count < spells)// first slots for Spell items designated by member field 
                 {
                     newSlot = (GameObject)Instantiate(spellSlotPrefab);
                     newSlot.name = "Spell";
+                    count++;
                 }
                 else
                 {
@@ -233,8 +281,9 @@ public class inventory : MonoBehaviour {
 	}
 	public void MoveItem(GameObject clicked) // first gets from object from first click then to object and moves the item stacks if possible 
 	{
-		if (from == null && canvasGroup.alpha ==1)
+		if (from == null && clicked.transform.parent.GetComponent<inventory>().isOpen) // can only  move if inventory shown, Open
 		{
+            Debug.Log("Clicked and is Open");
 			if (!clicked.GetComponent<slot>().IsEmpty)
 			{
 				from = clicked.GetComponent<slot>();
@@ -341,5 +390,75 @@ public class inventory : MonoBehaviour {
             canvasGroup.alpha = 1;
             fadingIn = false;
         }
+    }
+   public void SaveInventory()
+    {
+        Debug.Log("Saving");
+        string content = string.Empty;
+        for(int i =0; i< allSlots.Count; i++) // goes through allslots and concatentates string with each index, type, and amount
+        {
+            slot tmp = allSlots[i].GetComponent<slot>();
+            if (!tmp.IsEmpty)
+            {
+                content += i + "-" + tmp.CurrentItem.type.ToString() + "-" + tmp.Items.Count.ToString() + ";";
+            }
+        }
+
+        PlayerPrefs.SetString("content", content);
+        PlayerPrefs.SetInt("slots", slots);
+        PlayerPrefs.SetInt("rows", rows);
+        PlayerPrefs.SetFloat("slotPaddingLeft", slotPaddingLeft);
+        PlayerPrefs.SetFloat("slotPaddingTop", slotPaddingTop);
+        PlayerPrefs.SetFloat("slotSize", slotSize);
+        PlayerPrefs.Save(); // saves all the data member fields in playerprefs to be used for load 
+    }
+    public void LoadInventory()
+    {
+        Debug.Log("Loading");
+        string content = PlayerPrefs.GetString("content");
+        slots = PlayerPrefs.GetInt("slots");
+        rows = PlayerPrefs.GetInt("rows");
+        slotPaddingLeft = PlayerPrefs.GetFloat("slotPaddingLeft");
+        slotPaddingTop = PlayerPrefs.GetFloat("slotPaddingTop");
+        slotSize = PlayerPrefs.GetFloat("slotSize");
+
+        CreateLayout();
+
+        string[] splitContent = content.Split(';'); // delims by each slot 
+
+        for(int i=0; i < splitContent.Length - 1; i++)
+        {
+            string[] splitValues = splitContent[i].Split('-'); // delims by each subsection saved 
+            int index = Int32.Parse(splitValues[0]); // gets slot number, index 
+            ItemType type = (ItemType)Enum.Parse(typeof(ItemType), splitValues[1]); // gets item type 
+            Debug.Log(splitValues[1]);
+            int amount = Int32.Parse(splitValues[2]); // gets amount 
+            for (int j = 0; j< amount; j++)
+            {
+                switch (type) // for the amount goes through and add items based on prefab member fields 
+                {
+                    case ItemType.MANA:
+                        allSlots[index].GetComponent<slot>().AddItem(mana.GetComponent<Item>());
+                        break;
+                    case ItemType.HEALTH:
+                        allSlots[index].GetComponent<slot>().AddItem(health.GetComponent<Item>());
+                        break;
+                    case ItemType.POWER:
+                        allSlots[index].GetComponent<slot>().AddItem(power.GetComponent<Item>());
+                        break;
+                    case ItemType.SPELL_ICE:
+                        allSlots[index].GetComponent<slot>().AddItem(iceSpell.GetComponent<Item>());
+                        break;
+                    case ItemType.SWIFT:
+                        allSlots[index].GetComponent<slot>().AddItem(swift.GetComponent<Item>());
+                        break;
+                    case ItemType.STRENGTH:
+                        allSlots[index].GetComponent<slot>().AddItem(strength.GetComponent<Item>());
+                        break;
+                }
+            }
+
+        }
+
     }
 }

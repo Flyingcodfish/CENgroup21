@@ -1,12 +1,17 @@
 ﻿using System.Collections;
+using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerControl : Actor {
 
+    // inventory and items
+
     public inventory inventory;
 
     private inventory chest;
+
+    public CoinScript coinPurse;
 
     //control fields
     private Vector2 input;
@@ -22,8 +27,8 @@ public class PlayerControl : Actor {
 
 	private float spellSpawnDistance = 1f;
 
-	//behavior begins
-	public override void ActorStart(){
+    //behavior begins
+    public override void ActorStart(){
 		//pass
 	}
 		
@@ -189,12 +194,31 @@ public class PlayerControl : Actor {
     {
         if(collision.tag == "Item")
         {
-            inventory.AddItem(collision.GetComponent<Item>());
+            inventory.AddItem(collision.GetComponent<Item>()); // gets item and destroys the old copy in scene
             Destroy(collision.gameObject);
         }
         if(collision.tag == "Chest")
         {
-            chest = collision.GetComponent<ChestScript>().chestInventory;
+            chest = collision.GetComponent<ChestScript>().chestInventory; // gets inventory of chest 
+        }
+        if(collision.tag == "Coins")
+        {
+           CoinType tmp = collision.GetComponent<CoinScript>().type;
+            coinPurse.AddCoins(tmp);
+            Destroy(collision.gameObject);
+           
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Chest")
+        {
+            if (chest.IsOpen) // if open 
+            {
+                chest.Open(); // closes 
+            }
+            chest = null; // resets to null to make unable to access unless by chest 
         }
     }
 }

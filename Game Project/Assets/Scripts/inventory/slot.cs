@@ -41,9 +41,11 @@ public class slot : MonoBehaviour, IPointerClickHandler {
 			items = value;
 		}
 	}
-
+    void Awake()
+    {
+        Items = new Stack<Item>();// instantiates items upon awake 
+    }
 	void Start () {
-		Items = new Stack<Item>();
 		RectTransform slotRect = GetComponent<RectTransform>();
 		RectTransform txtRect = stackTxt.GetComponent<RectTransform>();
 
@@ -66,7 +68,7 @@ public class slot : MonoBehaviour, IPointerClickHandler {
 
 	}
 
-	public void AddItem(Item item)
+	public void AddItem(Item item) // adds item to slot and changes its sprite to the new items 
 	{
 		Items.Push(item);
 
@@ -77,7 +79,7 @@ public class slot : MonoBehaviour, IPointerClickHandler {
 		ChangeSprite(item.spriteNeutral, item.spriteHighlighted);
 	}
 
-	public void Additems(Stack<Item> items)
+	public void Additems(Stack<Item> items) // adds items to a slot from a stack of items
     
 	{
 		this.Items = new Stack<Item>(items);
@@ -87,7 +89,7 @@ public class slot : MonoBehaviour, IPointerClickHandler {
 		ChangeSprite(CurrentItem.spriteNeutral, CurrentItem.spriteHighlighted);
 	}
 
-	private void ChangeSprite(Sprite neutral,Sprite highlight)
+	private void ChangeSprite(Sprite neutral,Sprite highlight) //changes the sprite for the slot 
 	{
 		GetComponent<Image>().sprite = neutral;
 
@@ -100,15 +102,15 @@ public class slot : MonoBehaviour, IPointerClickHandler {
 	}
 	private void UseItem()
 	{
-		if (!IsEmpty)
+		if (!IsEmpty) 
 		{
-            if (Items.Peek().isSpell())
+            if (Items.Peek().isSpell()) 
             {
-                Items.Peek().Use();
+                Items.Peek().Use(); // doesnt destroy item if spell 
             }
             else
             {
-                Items.Pop().Use();
+                Items.Pop().Use(); // destroys one item off stack 
                 stackTxt.text = Items.Count > 1 ? Items.Count.ToString() : string.Empty;
 
                 if (IsEmpty)
@@ -119,7 +121,7 @@ public class slot : MonoBehaviour, IPointerClickHandler {
             }
 		}
 	}
-	public void OnPointerClick(PointerEventData eventData)
+	public void OnPointerClick(PointerEventData eventData) // used for use items 
 	{
 		if(eventData.button == PointerEventData.InputButton.Right && !GameObject.Find("Hover")
             && canvasGroup.alpha>0 )// can only use when not moving items and when hud is showing 
@@ -128,7 +130,7 @@ public class slot : MonoBehaviour, IPointerClickHandler {
 		}
 	}
 	public void ClearSlot()
-	{
+	{ // clears the slot and resets the sprite to default 
 		items.Clear();
 		ChangeSprite(slotEmpty, slotHighlight);
 		stackTxt.text = string.Empty;
