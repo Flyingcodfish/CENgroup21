@@ -17,6 +17,7 @@ public class PlayerControl : Actor {
 	//spell fields
 	private float spellDistance = 0.15f;
 
+<<<<<<< HEAD
 	public FireBomb bomb_object;
 	int bomb_manaCost = 14;
 	private float bombTime = 3.0f; //cooldown on firing a bomb
@@ -28,6 +29,11 @@ public class PlayerControl : Actor {
 	private float iceTimer;
 
     private inventory chest;
+=======
+    private inventory shop;
+
+    public int coins;
+>>>>>>> Added manager to make working with multiple inventories easier
 
 	public PushSpell pushPrefab;
 	int push_manaCost = 10;
@@ -328,7 +334,38 @@ public class PlayerControl : Actor {
         }
         if(collision.tag == "Chest")
         {
-            chest = collision.GetComponent<ChestScript>().chestInventory;
+            chest = collision.GetComponent<ChestScript>().chestInventory; // gets inventory of chest 
+        }
+        if(collision.tag == "Shop")
+        {
+            shop = collision.GetComponent<ShopScript>().shopInventory;
+        }
+        if(collision.tag == "Coins")
+        {
+           CoinType tmp = collision.GetComponent<CoinScript>().type;
+            collision.GetComponent<CoinScript>().AddCoins(tmp);
+            Destroy(collision.gameObject);
+           
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Chest")
+        {
+            if (chest.IsOpen) // if open 
+            {
+                chest.Open(); // closes 
+            }
+            chest = null; // resets to null to make unable to access unless by chest 
+        }
+        if (collision.tag == "Shop")
+        {
+            if (shop.IsOpen) // if open 
+            {
+                shop.Open(); // closes 
+            }
+            shop = null; // resets to null to make unable to access unless by chest 
         }
     }
 

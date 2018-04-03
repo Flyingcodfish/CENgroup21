@@ -8,6 +8,9 @@ TagManager:
   - Item
   - Torch
   - Chest
+  - Inventory
+  - Coins
+  - Shop
   layers:
   - Default
   - TransparentFX
