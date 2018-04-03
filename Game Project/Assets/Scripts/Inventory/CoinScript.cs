@@ -8,24 +8,27 @@ public enum CoinType { LargeCoin };  // have different types of coins for variet
 public class CoinScript : MonoBehaviour {
     public CoinType type;
 
-    private static int coins;
+    private PlayerControl player;
 
     public Text coinText;
     // Use this for initialization
-    void Start() {
-        coins = 0;
+    void Awake() {
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
+        player.coins = 0;
         SetText();
     }
     private void SetText(){
-        coinText.text = "Coins: " + coins.ToString();
+        coinText.text = "Coins: " + player.coins.ToString();
     }
-    public void AddCoins(CoinType coin)
+    public void AddCoins(CoinType coin) // easy add different coin values with additional cases 
     {
+        Debug.Log("Adding Coins");
         switch (coin)
         {
             case CoinType.LargeCoin:
-                coins += 500;
+                player.coins += 500;
                 break;
         }
+        SetText();
     }
 }

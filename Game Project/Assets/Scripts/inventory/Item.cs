@@ -7,11 +7,13 @@ public enum ItemType {MANA,HEALTH,SWIFT,STRENGTH,POWER, SPELL_ICE}; // creates t
 
 public class Item : MonoBehaviour
 {
+    
     public ItemType type;
 
     public Sprite spriteNeutral, spriteHighlighted;
 
     private PlayerControl player;
+    // modifiers for each type
 
     public float speedTime = 20f, speedModifier = 2.0f;
 
@@ -19,7 +21,10 @@ public class Item : MonoBehaviour
 
     public float powerTime = 5f, powerModifier = 1.5f;
 
-    public int maxSize;
+    //
+
+
+    public int maxSize; // decides how large can stack
 
     public void Use()
     {

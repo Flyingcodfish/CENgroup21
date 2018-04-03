@@ -16,21 +16,8 @@ public class inventory : MonoBehaviour {
 	public float slotPaddingLeft, slotPaddingTop, slotSize;
 
     // used for moving stuff around and maintaining inventory 
-    public GameObject spellSlotPrefab;
-
-	public GameObject slotPrefab;
-
-    public GameObject iconPrefab;
-
-    private static GameObject hoverObject;
-
-    public Canvas canvas;
 
     private float hoverYOffset;
-
-	private static slot from, to;
-
-    public EventSystem eventSystem;
 
 	private List<GameObject> allSlots;
 
@@ -52,7 +39,7 @@ public class inventory : MonoBehaviour {
 
     // used for saving and loading 
 
-    public GameObject mana,health,power,iceSpell,strength,swift;
+    private Manager manager;
 
 	public static int EmptySlots // used to get emptySlots in other scripts 
 	{
@@ -98,6 +85,7 @@ public class inventory : MonoBehaviour {
         isOpen = false; // defaults to inventory being closed
         canvasGroup = GetComponent<CanvasGroup>();// gets reference to specific canvas used for inv 
         hudGroup = transform.parent.GetComponent<CanvasGroup>();// gets reference to canvas group of HUD 
+        manager = GameObject.Find("InventoryManager").GetComponent<Manager>();// gets reference to manager of inventories 
 		CreateLayout();
 	}
 
@@ -106,27 +94,29 @@ public class inventory : MonoBehaviour {
         // used for removing items 
         if (Input.GetMouseButtonUp(0))
         {
-            if (!eventSystem.IsPointerOverGameObject(-1) && from != null) // if mouse pointer not over game object 
+            if (!Manager.Instance.eventSystem.IsPointerOverGameObject(-1) && Manager.Instance.From != null) // if mouse pointer not over game object 
             {
-                from.GetComponent<Image>().color = Color.white;
-                if (!from.Items.Peek().isSpell())// if its not a spell its safe to clear the slot 
+                Manager.Instance.From.GetComponent<Image>().color = Color.white;
+                if (!Manager.Instance.From.Items.Peek().isSpell())// if its not a spell its safe to clear the slot 
                 {
-                    from.ClearSlot();
+                    Manager.Instance.From.ClearSlot();
                     emptySlots++;
                 }
                 Destroy(GameObject.Find("Hover"));
-                to = null;
-                from = null;
+                Manager.Instance.To = null;
+                Manager.Instance.From = null;
             }
         }
         // hover object follows 
-        if(hoverObject != null)
+        if(Manager.Instance.HoverObject != null)
         {
             float xm = Input.mousePosition.x; // finds mouse position 
             float ym = Input.mousePosition.y;
-            hoverObject.transform.position = new Vector2(xm + 1, ym + 1); // makes object follow mouse 
+            Manager.Instance.HoverObject.transform.position = new Vector2(xm + 1, ym + 1); // makes object follow mouse 
         }
         // used for debugging save and load **********************
+        // weird problems when i use key for saving, reads in string and then saves null string right after 
+        /*
         if (Input.GetKeyDown(KeyCode.K))
         {
             SaveInventory();
@@ -135,6 +125,7 @@ public class inventory : MonoBehaviour {
         {
             LoadInventory();
         }
+        */
         // ******************************************************
     }
     public void Open()
@@ -197,13 +188,13 @@ public class inventory : MonoBehaviour {
 
                 if (count < spells)// first slots for Spell items designated by member field 
                 {
-                    newSlot = (GameObject)Instantiate(spellSlotPrefab);
+                    newSlot = (GameObject)Instantiate(Manager.Instance.spellSlotPrefab);
                     newSlot.name = "Spell";
                     count++;
                 }
                 else
                 {
-                    newSlot = (GameObject)Instantiate(slotPrefab);
+                    newSlot = (GameObject)Instantiate(Manager.Instance.slotPrefab);
                     newSlot.name = "Slot";
                 }
 
@@ -281,64 +272,64 @@ public class inventory : MonoBehaviour {
 	}
 	public void MoveItem(GameObject clicked) // first gets from object from first click then to object and moves the item stacks if possible 
 	{
-		if (from == null && clicked.transform.parent.GetComponent<inventory>().isOpen) // can only  move if inventory shown, Open
+		if (Manager.Instance.From == null && clicked.transform.parent.GetComponent<inventory>().isOpen) // can only  move if inventory shown, Open
 		{
             Debug.Log("Clicked and is Open");
 			if (!clicked.GetComponent<slot>().IsEmpty)
 			{
-				from = clicked.GetComponent<slot>();
-				from.GetComponent<Image>().color = Color.gray; // shows selected 
+				Manager.Instance.From = clicked.GetComponent<slot>();
+				Manager.Instance.From.GetComponent<Image>().color = Color.gray; // shows selected 
 
-                hoverObject = (GameObject)Instantiate(iconPrefab);
-                hoverObject.GetComponent<Image>().sprite = clicked.GetComponent<Image>().sprite;
-                hoverObject.name = "Hover";
+                Manager.Instance.HoverObject = (GameObject)Instantiate(Manager.Instance.iconPrefab);
+                Manager.Instance.HoverObject.GetComponent<Image>().sprite = clicked.GetComponent<Image>().sprite;
+                Manager.Instance.HoverObject.name = "Hover";
 
-                RectTransform hoverTransform = hoverObject.GetComponent<RectTransform>();
+                RectTransform hoverTransform = Manager.Instance.HoverObject.GetComponent<RectTransform>();
                 RectTransform clickedTransform = clicked.GetComponent<RectTransform>();
 
                 hoverTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, clickedTransform.sizeDelta.x);
                 hoverTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, clickedTransform.sizeDelta.y);
 
-                hoverObject.transform.SetParent(GameObject.Find("HUDCanvas").transform, true);
-                hoverObject.transform.localScale = from.gameObject.transform.localScale;
+                Manager.Instance.HoverObject.transform.SetParent(GameObject.Find("HUDCanvas").transform, true);
+                Manager.Instance.HoverObject.transform.localScale = Manager.Instance.From.gameObject.transform.localScale;
             }
 		}
-		else if(to == null)
+		else if(Manager.Instance.To == null)
 		{
-			to = clicked.GetComponent<slot>();
+			Manager.Instance.To = clicked.GetComponent<slot>();
             Destroy(GameObject.Find("Hover"));
 		}
-		if(to != null && from != null) // switches the item stacks arround if one slot empty clears from and adds it to to, only does so if the slots are same type 
+		if(Manager.Instance.To != null && Manager.Instance.From != null) // switches the item stacks arround if one slot empty clears from and adds it to to, only does so if the slots are same type 
 		{
-            if (to.GetComponent<slot>().name == from.GetComponent<slot>().name)
+            if (Manager.Instance.To.GetComponent<slot>().name == Manager.Instance.From.GetComponent<slot>().name)
             {
-                Stack<Item> tmpTo = new Stack<Item>(to.Items);
-                to.Additems(from.Items);
+                Stack<Item> tmpTo = new Stack<Item>(Manager.Instance.To.Items);
+                Manager.Instance.To.Additems(Manager.Instance.From.Items);
 
                 if (tmpTo.Count == 0)
                 {
-                    from.ClearSlot();
+                    Manager.Instance.From.ClearSlot();
                 }
                 else
                 {
-                    from.Additems(tmpTo);
+                    Manager.Instance.From.Additems(tmpTo);
                 }
 
             }
-                from.GetComponent<Image>().color = Color.white; // resets color 
-                to = null; // resets to null to allow for other objects to be moved and doesnt move anything since of different slot type
-                from = null;
+                Manager.Instance.From.GetComponent<Image>().color = Color.white; // resets color 
+                Manager.Instance.To = null; // resets to null to allow for other objects to be moved and doesnt move anything since of different slot type
+                Manager.Instance.From = null;
                 Destroy(GameObject.Find("Hover"));
 
         }
     }
     private void PutItemBack() // if inventory faded when moving an item around 
     {
-        if(from != null)
+        if(Manager.Instance.From != null)
         {
             Destroy(GameObject.Find("Hover"));
-            from.GetComponent<Image>().color = Color.white;
-            from = null; // resets from 
+            Manager.Instance.From.GetComponent<Image>().color = Color.white;
+            Manager.Instance.From = null; // resets from 
         }
     }
     public IEnumerator FadeOut()
@@ -391,7 +382,7 @@ public class inventory : MonoBehaviour {
             fadingIn = false;
         }
     }
-   public void SaveInventory()
+   public void SaveInventory() // uses gameObject.name to differentiate inventories in the scene
     {
         Debug.Log("Saving");
         string content = string.Empty;
@@ -403,30 +394,35 @@ public class inventory : MonoBehaviour {
                 content += i + "-" + tmp.CurrentItem.type.ToString() + "-" + tmp.Items.Count.ToString() + ";";
             }
         }
-
-        PlayerPrefs.SetString("content", content);
-        PlayerPrefs.SetInt("slots", slots);
-        PlayerPrefs.SetInt("rows", rows);
-        PlayerPrefs.SetFloat("slotPaddingLeft", slotPaddingLeft);
-        PlayerPrefs.SetFloat("slotPaddingTop", slotPaddingTop);
-        PlayerPrefs.SetFloat("slotSize", slotSize);
+       // Debug.Log("Contents is: " + content);
+        PlayerPrefs.SetString(gameObject.name + "content", content);
+        Debug.Log("Set Content is: " + content);
+        PlayerPrefs.SetInt(gameObject.name + "slots", slots);
+        PlayerPrefs.SetInt(gameObject.name + "rows", rows);
+        PlayerPrefs.SetFloat(gameObject.name + "slotPaddingLeft", slotPaddingLeft);
+        PlayerPrefs.SetFloat(gameObject.name + "slotPaddingTop", slotPaddingTop);
+        PlayerPrefs.SetFloat(gameObject.name + "slotSize", slotSize);
         PlayerPrefs.Save(); // saves all the data member fields in playerprefs to be used for load 
     }
-    public void LoadInventory()
+    public void LoadInventory(string arg) // uses gameObject.name to differentiate inventories in the scene, and arg string to load specific contents
     {
         Debug.Log("Loading");
-        string content = PlayerPrefs.GetString("content");
-        slots = PlayerPrefs.GetInt("slots");
-        rows = PlayerPrefs.GetInt("rows");
-        slotPaddingLeft = PlayerPrefs.GetFloat("slotPaddingLeft");
-        slotPaddingTop = PlayerPrefs.GetFloat("slotPaddingTop");
-        slotSize = PlayerPrefs.GetFloat("slotSize");
+        string content = PlayerPrefs.GetString(gameObject.name + "content");
+        if(arg != string.Empty)
+        { // need to format string like: index-Type-amount;
+            content = arg;
+        }
+        slots = PlayerPrefs.GetInt(gameObject.name + "slots");
+        rows = PlayerPrefs.GetInt(gameObject.name + "rows");
+        slotPaddingLeft = PlayerPrefs.GetFloat(gameObject.name + "slotPaddingLeft");
+        slotPaddingTop = PlayerPrefs.GetFloat(gameObject.name + "slotPaddingTop");
+        slotSize = PlayerPrefs.GetFloat(gameObject.name + "slotSize");
 
         CreateLayout();
 
         string[] splitContent = content.Split(';'); // delims by each slot 
-
-        for(int i=0; i < splitContent.Length - 1; i++)
+        Debug.Log("Loaded Content is: " + content);
+        for (int i=0; i < splitContent.Length - 1; i++)
         {
             string[] splitValues = splitContent[i].Split('-'); // delims by each subsection saved 
             int index = Int32.Parse(splitValues[0]); // gets slot number, index 
@@ -435,25 +431,26 @@ public class inventory : MonoBehaviour {
             int amount = Int32.Parse(splitValues[2]); // gets amount 
             for (int j = 0; j< amount; j++)
             {
+               // Debug.Log("Loading Slot: "+ i +" With " + j);
                 switch (type) // for the amount goes through and add items based on prefab member fields 
                 {
                     case ItemType.MANA:
-                        allSlots[index].GetComponent<slot>().AddItem(mana.GetComponent<Item>());
+                        allSlots[index].GetComponent<slot>().AddItem(Manager.Instance.mana.GetComponent<Item>());
                         break;
                     case ItemType.HEALTH:
-                        allSlots[index].GetComponent<slot>().AddItem(health.GetComponent<Item>());
+                        allSlots[index].GetComponent<slot>().AddItem(Manager.Instance.health.GetComponent<Item>());
                         break;
                     case ItemType.POWER:
-                        allSlots[index].GetComponent<slot>().AddItem(power.GetComponent<Item>());
+                        allSlots[index].GetComponent<slot>().AddItem(Manager.Instance.power.GetComponent<Item>());
                         break;
                     case ItemType.SPELL_ICE:
-                        allSlots[index].GetComponent<slot>().AddItem(iceSpell.GetComponent<Item>());
+                        allSlots[index].GetComponent<slot>().AddItem(Manager.Instance.iceSpell.GetComponent<Item>());
                         break;
                     case ItemType.SWIFT:
-                        allSlots[index].GetComponent<slot>().AddItem(swift.GetComponent<Item>());
+                        allSlots[index].GetComponent<slot>().AddItem(Manager.Instance.swift.GetComponent<Item>());
                         break;
                     case ItemType.STRENGTH:
-                        allSlots[index].GetComponent<slot>().AddItem(strength.GetComponent<Item>());
+                        allSlots[index].GetComponent<slot>().AddItem(Manager.Instance.strength.GetComponent<Item>());
                         break;
                 }
             }

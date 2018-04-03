@@ -8,6 +8,7 @@ TagManager:
   - Item
   - Chest
   - Inventory
+  - Coins
   layers:
   - Default
   - TransparentFX

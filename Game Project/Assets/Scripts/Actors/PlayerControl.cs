@@ -11,7 +11,9 @@ public class PlayerControl : Actor {
 
     private inventory chest;
 
-    public CoinScript coinPurse;
+    private inventory shop;
+
+    public int coins;
 
     //control fields
     private Vector2 input;
@@ -201,10 +203,14 @@ public class PlayerControl : Actor {
         {
             chest = collision.GetComponent<ChestScript>().chestInventory; // gets inventory of chest 
         }
+        if(collision.tag == "Shop")
+        {
+            shop = collision.GetComponent<ShopScript>().shopInventory;
+        }
         if(collision.tag == "Coins")
         {
            CoinType tmp = collision.GetComponent<CoinScript>().type;
-            coinPurse.AddCoins(tmp);
+            collision.GetComponent<CoinScript>().AddCoins(tmp);
             Destroy(collision.gameObject);
            
         }
@@ -219,6 +225,14 @@ public class PlayerControl : Actor {
                 chest.Open(); // closes 
             }
             chest = null; // resets to null to make unable to access unless by chest 
+        }
+        if (collision.tag == "Shop")
+        {
+            if (shop.IsOpen) // if open 
+            {
+                shop.Open(); // closes 
+            }
+            shop = null; // resets to null to make unable to access unless by chest 
         }
     }
 }
