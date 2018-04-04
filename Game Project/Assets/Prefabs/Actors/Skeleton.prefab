@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 50437438801008582}
   - component: {fileID: 114524588115922088}
   - component: {fileID: 114494420027906454}
+  - component: {fileID: 114686777579567118}
   m_Layer: 10
   m_Name: Skeleton
   m_TagString: Untagged
@@ -56,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1151195912627918}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.942543, y: -0.082840204, z: 0}
+  m_LocalPosition: {x: 17.53276, y: -0.557045, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4859179046031416}
@@ -207,11 +208,29 @@ MonoBehaviour:
   moveDeadZone: 0.1
   bType: 0
   avoidDistance: 1.5
-  avoidVector: {x: 0, y: 0, z: 0}
-  hitDirection: {x: 0, y: 0}
   castCollider: {fileID: 61312603099206846}
   attackCooldown: 3
   attackHitbox: {fileID: 114074139940968830}
+--- !u!114 &114686777579567118
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1151195912627918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e2567cdde69ac48bb1f6775fe55086, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropList:
+  - weight: 3
+    drop: {fileID: 0}
+  - weight: 1
+    drop: {fileID: 1247982857437918, guid: d35faf583712cba458b7c9e8558905ec, type: 2}
+  - weight: 1
+    drop: {fileID: 1252703268272378, guid: f414730855f0aa94c9101914a6b90460, type: 2}
+  totalWeight: 5
+  dirty: 0
 --- !u!212 &212296447975896450
 SpriteRenderer:
   m_ObjectHideFlags: 1
