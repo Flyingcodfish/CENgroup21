@@ -74,7 +74,7 @@ public class Manager : MonoBehaviour { // used to manage all inventories and pre
 
     private GameObject hoverObject;
 
-    public GameObject mana, health, power, iceSpell, strength, swift; // types of itemPrefabs available
+    public GameObject mana, health, power, iceSpell, strength, swift,shop_mana; // types of itemPrefabs available // add sjop_mana item to test shop function******** START HERE 
 
     // Use this for initialization
     void Start () {

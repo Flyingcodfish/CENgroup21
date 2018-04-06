@@ -87,6 +87,8 @@ MonoBehaviour:
   strengthModifier: 0.5
   powerTime: 5
   powerModifier: 1.5
+  value: 10
+  description: 'Mana potion: adds 50 to mana '
   maxSize: 5
 --- !u!212 &212199462910987134
 SpriteRenderer:

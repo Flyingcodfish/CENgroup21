@@ -9,6 +9,7 @@ TagManager:
   - Chest
   - Inventory
   - Coins
+  - Shop
   layers:
   - Default
   - TransparentFX

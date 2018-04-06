@@ -180,6 +180,10 @@ public class PlayerControl : Actor {
             {
                 chest.Open();
             }
+            if(shop != null)
+            {
+                shop.Open();
+            }
         }
     }
 
@@ -205,9 +209,9 @@ public class PlayerControl : Actor {
         }
         if(collision.tag == "Shop")
         {
-            shop = collision.GetComponent<ShopScript>().shopInventory;
+            shop = collision.GetComponent<ShopScript>().shopInventory;// gets inventory of any shops 
         }
-        if(collision.tag == "Coins")
+        if(collision.tag == "Coins") // gets the type of coin and then adds to total 
         {
            CoinType tmp = collision.GetComponent<CoinScript>().type;
             collision.GetComponent<CoinScript>().AddCoins(tmp);
