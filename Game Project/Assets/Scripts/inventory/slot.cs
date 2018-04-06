@@ -9,6 +9,8 @@ public class slot : MonoBehaviour, IPointerClickHandler {
 
     private CanvasGroup canvasGroup;
 
+    private ShopScript shop;
+
 	public Text stackTxt;
 
 	public Sprite slotEmpty;
@@ -41,6 +43,13 @@ public class slot : MonoBehaviour, IPointerClickHandler {
 			items = value;
 		}
 	}
+
+	
+    void Awake()
+    {
+        Items = new Stack<Item>();// instantiates items upon awake 
+         shop = GameObject.FindObjectOfType<ShopScript>().GetComponent<ShopScript>(); // gets shop script from shop in scene 
+    }
 
 	void Start () {
 		Items = new Stack<Item>();
@@ -105,6 +114,10 @@ public class slot : MonoBehaviour, IPointerClickHandler {
             if (Items.Peek().isSpell())
             {
                 Items.Peek().Use();
+            }
+            else if (Items.Peek().isShop())// goes into shop options if shop item 
+            {
+                shop.Buy(Items.Peek());
             }
             else
             {

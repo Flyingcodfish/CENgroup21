@@ -30,7 +30,7 @@ public class Hitbox : MonoBehaviour {
 	//allows actors can impose special effects on their targets, or know whether their attacks hit
 	public DelegateHitGameObject HitObject; 
 
-	public void Start(){
+	public void Awake(){
 		this.parentActor = this.GetComponentInParent<Actor>();
 		this.parentTeam = this.GetComponentInParent<TeamComponent>().team;
 		this.hitbox = this.GetComponent<Collider2D>();

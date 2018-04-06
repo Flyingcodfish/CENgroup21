@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum ItemType {MANA,HEALTH,SWIFT,STRENGTH,POWER, SPELL_ICE, SPELL_FIRE, SPELL_PUSH}; // creates types for specific in game items 
+
+public enum ItemType {MANA,HEALTH,SWIFT,STRENGTH,POWER, SPELL_ICE, SPELL_FIRE, SPELL_PUSH, ARMOR, SHOP_HEALTH}; // creates types for specific in game items 
 
 public class Item : MonoBehaviour
-{
-    
+{   
     public ItemType type;
 
     public Sprite spriteNeutral, spriteHighlighted;
@@ -22,13 +22,19 @@ public class Item : MonoBehaviour
     public float powerTime = 5f, powerModifier = 1.5f;
 
     //
+    // used for item descriptions and shop 
+    public int value;
 
+    public string description;
 
+    public void Awake()
+    {
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
+    }
     public int maxSize; // decides how large can stack
 
     public void Use()
     {
-        player = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
         switch (type)
         {
         case ItemType.HEALTH:
@@ -72,5 +78,9 @@ public class Item : MonoBehaviour
 		}
 	}
 
+    public bool isShop()
+    {
+       return  type == ItemType.ARMOR || type == ItemType.SHOP_HEALTH ? true : false; // have one for each shop item type 
+    }
 }
     
