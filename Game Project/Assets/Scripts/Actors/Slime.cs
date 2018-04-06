@@ -46,7 +46,7 @@ public class Slime : Actor {
 		tileFilter = Navigator.GetFilterFromBlockingType(bType, false);
 		castHits = new RaycastHit2D[maxHits];
 
-		attackHitbox.HitActor = this.SlowActor; //assigns the slime's SlowActor method to the hitbox's delegate
+		attackHitbox.HitObject = this.SlowObject; //assigns the slime's SlowActor method to the hitbox's delegate
 
 		StartCoroutine(AI_Tick());
 	}
@@ -88,8 +88,10 @@ public class Slime : Actor {
 	}
 		
 	//function assigned to attack hitbox delegate. Called whenever hitbox hits something.
-	public void SlowActor(Actor actor){
-		actor.ModifyEffect(Effect.SpeedUp, slowTime, slowRatio);
+	public void SlowObject(GameObject hitObject){
+		Actor hitActor = hitObject.GetComponent<Actor>();
+		if (hitActor != null)
+			hitActor.ModifyEffect(Effect.SpeedUp, slowTime, slowRatio);
 	}
 
 	//only need to perform pathfinding every ~0.1 second; less CPU intensive
@@ -131,8 +133,8 @@ public class Slime : Actor {
 				//avoid local obstacles
 				numHits = castCollider.Cast((Vector2)moveVector, obstacleFilter, castHits, avoidDistance);
 
-				//if we would run into something if we kept moving forward
-				if (numHits > 0){
+				//if we would run into something if we kept moving forward, and it isn't our target
+				if (numHits > 0 && !castHits[0].collider.gameObject.Equals(targetObject)){
 					//add a force that is perpendicular to the path we take to hit an obstacle.
 					//This moves simultaneously away from the obstacle, and towards our goal.
 					hitDirection = castHits[0].point - ((Vector2)transform.position + castCollider.offset);

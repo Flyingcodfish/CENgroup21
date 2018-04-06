@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 61312603099206846}
   - component: {fileID: 50437438801008582}
   - component: {fileID: 114524588115922088}
+  - component: {fileID: 114494420027906454}
   m_Layer: 10
   m_Name: Skeleton
   m_TagString: Untagged
@@ -174,6 +175,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 25
+--- !u!114 &114494420027906454
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1151195912627918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8733780be8ed5134ba84b8c62e74b018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 2
 --- !u!114 &114524588115922088
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -185,9 +198,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcbfb5ac289292946af9cb4d4f0a3201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enabledAI: 1
   isInvincible: 0
   maxHealth: 50
-  team: 2
   drag: 100
   maxSpeed: 300
   hoverDistance: 1.5

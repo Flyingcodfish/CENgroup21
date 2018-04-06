@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 61256951212187352}
   - component: {fileID: 95950960298393710}
   - component: {fileID: 114881781839612842}
+  - component: {fileID: 114505408538795208}
   m_Layer: 10
   m_Name: Slime
   m_TagString: Untagged
@@ -162,6 +163,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114505408538795208
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1184144956337326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8733780be8ed5134ba84b8c62e74b018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 2
 --- !u!114 &114755399719107752
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -188,7 +201,6 @@ MonoBehaviour:
   enabledAI: 1
   isInvincible: 0
   maxHealth: 60
-  team: 2
   drag: 100
   maxSpeed: 250
   hoverDistance: 1.2

@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212199462910987134}
   - component: {fileID: 114320603581000402}
   - component: {fileID: 61298937513368678}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Mana
   m_TagString: Item
   m_Icon: {fileID: 0}
