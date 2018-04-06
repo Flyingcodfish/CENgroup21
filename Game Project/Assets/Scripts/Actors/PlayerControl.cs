@@ -17,7 +17,6 @@ public class PlayerControl : Actor {
 	//spell fields
 	private float spellDistance = 0.15f;
 
-<<<<<<< HEAD
 	public FireBomb bomb_object;
 	int bomb_manaCost = 14;
 	private float bombTime = 3.0f; //cooldown on firing a bomb
@@ -29,11 +28,9 @@ public class PlayerControl : Actor {
 	private float iceTimer;
 
     private inventory chest;
-=======
     private inventory shop;
 
     public int coins;
->>>>>>> Added manager to make working with multiple inventories easier
 
     //control fields
     private Vector2 input;
@@ -235,6 +232,10 @@ public class PlayerControl : Actor {
             {
                 chest.Open();
             }
+            if(shop != null)
+            {
+                shop.Open();
+            }
         }
     }
 
@@ -288,9 +289,9 @@ public class PlayerControl : Actor {
         }
         if(collision.tag == "Shop")
         {
-            shop = collision.GetComponent<ShopScript>().shopInventory;
+            shop = collision.GetComponent<ShopScript>().shopInventory;// gets inventory of any shops 
         }
-        if(collision.tag == "Coins")
+        if(collision.tag == "Coins") // gets the type of coin and then adds to total 
         {
            CoinType tmp = collision.GetComponent<CoinScript>().type;
             collision.GetComponent<CoinScript>().AddCoins(tmp);
