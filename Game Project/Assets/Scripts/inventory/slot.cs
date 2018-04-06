@@ -52,7 +52,6 @@ public class slot : MonoBehaviour, IPointerClickHandler {
     }
 
 	void Start () {
-		Items = new Stack<Item>();
 		RectTransform slotRect = GetComponent<RectTransform>();
 		RectTransform txtRect = stackTxt.GetComponent<RectTransform>();
 
@@ -122,6 +121,7 @@ public class slot : MonoBehaviour, IPointerClickHandler {
             else
             {
                 Items.Pop().Use();
+                Debug.Log("Used");
                 stackTxt.text = Items.Count > 1 ? Items.Count.ToString() : string.Empty;
 
                 if (IsEmpty)

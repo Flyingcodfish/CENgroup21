@@ -12,6 +12,8 @@ public class Item : MonoBehaviour
     public Sprite spriteNeutral, spriteHighlighted;
 
     private PlayerControl player;
+
+    public int maxSize; // decides how large can stack
     // modifiers for each type
 
     public float speedTime = 20f, speedModifier = 2.0f;
@@ -30,10 +32,14 @@ public class Item : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
     }
-    public int maxSize; // decides how large can stack
 
     public void Use()
     {
+        Debug.Log("player is: " + player);
+        if (player == null) // makes sure the player is not null when using, if loading during gameplay
+        {
+            player = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
+        }
         switch (type)
         {
         case ItemType.HEALTH:

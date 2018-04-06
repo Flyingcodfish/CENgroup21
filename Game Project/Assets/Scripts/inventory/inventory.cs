@@ -275,8 +275,13 @@ public class inventory : MonoBehaviour {
 		if (Manager.Instance.From == null && clicked.transform.parent.GetComponent<inventory>().isOpen) // can only  move if inventory shown, Open
 		{
             Debug.Log("Clicked and is Open");
+            if (clicked.GetComponent<slot>().IsEmpty)
+            {
+                Debug.Log(" empty lets move");
+            }
 			if (!clicked.GetComponent<slot>().IsEmpty)
 			{
+                Debug.Log("Not empty lets move");
 				Manager.Instance.From = clicked.GetComponent<slot>();
 				Manager.Instance.From.GetComponent<Image>().color = Color.gray; // shows selected 
 
@@ -296,7 +301,8 @@ public class inventory : MonoBehaviour {
 		}
 		else if(Manager.Instance.To == null)
 		{
-			Manager.Instance.To = clicked.GetComponent<slot>();
+            Debug.Log(" getting the to");
+            Manager.Instance.To = clicked.GetComponent<slot>();
             Destroy(GameObject.Find("Hover"));
 		}
 		if(Manager.Instance.To != null && Manager.Instance.From != null) // switches the item stacks arround if one slot empty clears from and adds it to to, only does so if the slots are same type 
