@@ -29,7 +29,7 @@ public class Explosion : MonoBehaviour {
 		else
 		{
 			//nicely ask the target to take damage
-			other.gameObject.SendMessage("TakeDamage", this.damage);
+			other.gameObject.SendMessage("TakeDamage", this.damage, SendMessageOptions.DontRequireReceiver);
 		}
 		//else ignore the collision
 	}

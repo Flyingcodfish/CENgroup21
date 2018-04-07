@@ -4,52 +4,28 @@ using UnityEngine;
 
 using Pathfinding;
 
-public class Fairy : Actor {
-	//navigation fields
-	bool pathFound;
-	private Navigator navigator;
-	public Navigator.BlockingType bType = Navigator.BlockingType.flying;
-	private Vector3[] path;
-
-	//obstacle avoidance fields
-	public float avoidDistance = 1.5f;
-	Vector3 avoidVector;
-	Vector2 hitDirection;
-	int maxHits = 1;
-	int numHits;
-	private RaycastHit2D[] castHits;
-	ContactFilter2D obstacleFilter; //sees terrain AND actors
-	ContactFilter2D tileFilter; //only sees terrain
-	public Collider2D castCollider;
-
-	//targeting fields
-	private GameObject targetObject;
-	private Vector3 moveVector;
-	private Vector2 directMove;
-	public float moveDeadZone = 0.1f;
+public class Fairy : AI_Actor {
 
 	//attack behavior fields
-	public float hoverDistance = 4f;
 	public float attackRange = 10f;
 	public Projectile bullet_object;
 	public float bulletSpeed = 0.15f;
 	public GameObject flash_object;
+	public float attackCooldown = 1.5f; //in seconds
+	private float attackTimer; //used to track attack cooldowns
+
+	//hovering fields; preallocating for performance (or is this made pointless  by the use of the 'new' keyword in the relevant code???)
+	Vector3 hoverVector;
 
 	// Use this for initialization
-	override public void ActorStart () {
-		targetObject = GameObject.FindWithTag("Player");
-		navigator = GameObject.FindObjectOfType<Navigator>();
-
-		obstacleFilter = Navigator.GetFilterFromBlockingType(bType, true);
-		tileFilter = Navigator.GetFilterFromBlockingType(bType, false);
-		castHits = new RaycastHit2D[maxHits];
-
-		StartCoroutine(AI_Tick());
+	override public void AI_Start () {
+		//pass
 	}
 
 	// Update is called once per frame
 	void Update () {
-			
+		if (attackTimer > 0) attackTimer -= Time.deltaTime;
+
 		if (rbody.velocity.y > moveDeadZone){ 	//up
 			animator.SetInteger("Direction", 0);
 		}
@@ -93,66 +69,21 @@ public class Fairy : Actor {
 		bullet.Initialize(shotDirection.normalized * bulletSpeed, this.teamComponent.team, this.power);
 	}
 
-	//only need to perform pathfinding every ~0.1 second; less CPU intensive
-	IEnumerator AI_Tick(){
-		int attackTicker = 0;
-		while (true){
-			if (this.IsActive()){
-				pathFound = false;
-				directMove = targetObject.transform.position - transform.position;
+	override protected void OnInHoverDistance(){
+		//no need to get closer, circle around target
+		hoverVector = new Vector2(directMove.y, -1*directMove.x); //calculate normal to hitVector
+		moveVector = hoverVector.normalized + moveVector.normalized;
+		moveVector = moveVector.normalized * 0.5f; //move slower than normal, for funsies
+	}
 
-				//if within "hover range" of target
-				if (directMove.magnitude <= hoverDistance){
-					//no need to get closer, circle around target
-					avoidVector = new Vector2(directMove.y, -1*directMove.x); //calculate normal to hitVector
-					moveVector = avoidVector.normalized + moveVector.normalized;
-
-					pathFound = true;
-					moveVector = moveVector.normalized * 0.5f; //move slower than normal, for funsies
-				}
-
-				//check if we can (and have to) run straight towards player
-				if (pathFound == false){
-					if (0 == castCollider.Cast(directMove, tileFilter, castHits, directMove.magnitude)){
-						moveVector = directMove; 
-						pathFound = true;
-					}
-				}
-
-				//pathfinding; only if we must
-				if (pathFound == false){
-					path = navigator.GetWorldPath(bType, transform.position, targetObject.transform.position);
-					if (path.Length > 0){
-						moveVector = (path[0]-transform.position).normalized;
-					}
-					else moveVector = Vector3.zero;
-					pathFound = true;
-				}
-
-				//avoid local obstacles
-				numHits = castCollider.Cast((Vector2)moveVector, obstacleFilter, castHits, avoidDistance);
-
-				//if we would run into something if we kept moving forward
-				if (numHits > 0){
-					//add a force that is perpendicular to the path we take to hit an obstacle.
-					//This moves simultaneously away from the obstacle, and towards our goal.
-					hitDirection = castHits[0].point - ((Vector2)transform.position + castCollider.offset);
-					float phi = Vector2.SignedAngle(moveVector, hitDirection);
-					float sign = Mathf.Sign(phi); //choose which of two perpendicular paths to take
-					avoidVector = new Vector2(sign*hitDirection.y, -1*sign*hitDirection.x); //calculate normal to hitVector
-					moveVector = avoidVector.normalized + moveVector.normalized;
-				}
-
-				attackTicker++;
-				if (attackTicker >= 15 && directMove.magnitude <= attackRange){
-					//only attack if we have line of sight
-					if (0 == Physics2D.Raycast(transform.position, directMove, tileFilter, castHits, directMove.magnitude)){
-						StartCoroutine(FireShot());
-						attackTicker = 0;
-					}
-				}
+	override protected void OnTickEnd(){
+		if (attackTimer <= 0 && directMove.magnitude <= attackRange) {
+			//only attack if we have line of sight
+			if (0 == Physics2D.Raycast(transform.position, directMove, tileFilter, castHits, directMove.magnitude)){
+				attackTimer = attackCooldown;
+				StartCoroutine(FireShot());
 			}
-			yield return new WaitForSeconds(0.1f);
 		}
 	}
+
 }
