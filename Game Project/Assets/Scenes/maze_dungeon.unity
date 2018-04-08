@@ -219,129 +219,6 @@ Tilemap:
     e32: 0
     e33: 1
   m_TileRefreshArray: []
---- !u!1 &53543970 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1664597029957464, guid: 93e8d14c18207f64198b251900b950eb,
-    type: 2}
-  m_PrefabInternal: {fileID: 128924205}
---- !u!114 &53543972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 53543970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00fbc55be00f9f446bcd107d7eba130b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enabledAI: 1
-  isInvincible: 0
-  maxHealth: 20
-  drag: 100
-  maxSpeed: 200
-  bType: 1
-  avoidDistance: 1.5
-  castCollider: {fileID: 53543974}
-  moveDeadZone: 0.1
-  sightRange: 15
-  hoverDistance: 4
-  attackRange: 10
-  bullet_object: {fileID: 114055802189400976, guid: ef2c7b54f7e420e408973aa3e4bc8b32,
-    type: 2}
-  bulletSpeed: 0.15
-  flash_object: {fileID: 1379247231026680, guid: 3ef1948ba08d16c4da8065e90ef49c8c,
-    type: 2}
---- !u!61 &53543974 stripped
-BoxCollider2D:
-  m_PrefabParentObject: {fileID: 61205247561799628, guid: 93e8d14c18207f64198b251900b950eb,
-    type: 2}
-  m_PrefabInternal: {fileID: 128924205}
---- !u!1 &73548013 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1664597029957464, guid: 93e8d14c18207f64198b251900b950eb,
-    type: 2}
-  m_PrefabInternal: {fileID: 782705513}
---- !u!114 &73548014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 73548013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00fbc55be00f9f446bcd107d7eba130b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enabledAI: 1
-  isInvincible: 0
-  maxHealth: 20
-  drag: 100
-  maxSpeed: 200
-  bType: 1
-  avoidDistance: 1.5
-  castCollider: {fileID: 73548016}
-  moveDeadZone: 0.1
-  sightRange: 15
-  hoverDistance: 4
-  attackRange: 10
-  bullet_object: {fileID: 114055802189400976, guid: ef2c7b54f7e420e408973aa3e4bc8b32,
-    type: 2}
-  bulletSpeed: 0.15
-  flash_object: {fileID: 1379247231026680, guid: 3ef1948ba08d16c4da8065e90ef49c8c,
-    type: 2}
---- !u!61 &73548016 stripped
-BoxCollider2D:
-  m_PrefabParentObject: {fileID: 61205247561799628, guid: 93e8d14c18207f64198b251900b950eb,
-    type: 2}
-  m_PrefabInternal: {fileID: 782705513}
---- !u!1001 &128924205
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 61
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 1664597029957464, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_Name
-      value: maze_fairy (4)
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114874049021731688, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-  m_ParentPrefab: {fileID: 100100000, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1001 &153667831
 Prefab:
   m_ObjectHideFlags: 0
@@ -384,44 +261,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c8bcc826ce0465a4cb90d373ff4086bf, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &398814944 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1664597029957464, guid: 93e8d14c18207f64198b251900b950eb,
-    type: 2}
-  m_PrefabInternal: {fileID: 1302855891}
---- !u!114 &398814946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 398814944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00fbc55be00f9f446bcd107d7eba130b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enabledAI: 1
-  isInvincible: 0
-  maxHealth: 20
-  drag: 100
-  maxSpeed: 200
-  bType: 1
-  avoidDistance: 1.5
-  castCollider: {fileID: 398814948}
-  moveDeadZone: 0.1
-  sightRange: 15
-  hoverDistance: 4
-  attackRange: 10
-  bullet_object: {fileID: 114055802189400976, guid: ef2c7b54f7e420e408973aa3e4bc8b32,
-    type: 2}
-  bulletSpeed: 0.15
-  flash_object: {fileID: 1379247231026680, guid: 3ef1948ba08d16c4da8065e90ef49c8c,
-    type: 2}
---- !u!61 &398814948 stripped
-BoxCollider2D:
-  m_PrefabParentObject: {fileID: 61205247561799628, guid: 93e8d14c18207f64198b251900b950eb,
-    type: 2}
-  m_PrefabInternal: {fileID: 1302855891}
 --- !u!114 &429269877 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114074139940968830, guid: af6aa9fd5245cd84c8f6399b39516cc2,
@@ -1508,53 +1347,6 @@ Tilemap:
     m_DirtyIndex: 0
   - serializedVersion: 1
     m_DirtyIndex: 0
---- !u!1001 &769975311
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 71
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 29.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1664597029957464, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_Name
-      value: maze_fairy (6)
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114874049021731688, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-  m_ParentPrefab: {fileID: 100100000, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &774198315
 GameObject:
   m_ObjectHideFlags: 0
@@ -8152,53 +7944,6 @@ Tilemap:
     m_DirtyIndex: 0
   - serializedVersion: 1
     m_DirtyIndex: 0
---- !u!1001 &782705513
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 39.98
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 30.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1664597029957464, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_Name
-      value: maze_fairy (2)
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114874049021731688, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-  m_ParentPrefab: {fileID: 100100000, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &850517437
 GameObject:
   m_ObjectHideFlags: 0
@@ -8245,44 +7990,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &905215327 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1664597029957464, guid: 93e8d14c18207f64198b251900b950eb,
-    type: 2}
-  m_PrefabInternal: {fileID: 1537194062}
---- !u!114 &905215328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 905215327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00fbc55be00f9f446bcd107d7eba130b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enabledAI: 1
-  isInvincible: 0
-  maxHealth: 20
-  drag: 100
-  maxSpeed: 200
-  bType: 1
-  avoidDistance: 1.5
-  castCollider: {fileID: 905215330}
-  moveDeadZone: 0.1
-  sightRange: 15
-  hoverDistance: 4
-  attackRange: 10
-  bullet_object: {fileID: 114055802189400976, guid: ef2c7b54f7e420e408973aa3e4bc8b32,
-    type: 2}
-  bulletSpeed: 0.15
-  flash_object: {fileID: 1379247231026680, guid: 3ef1948ba08d16c4da8065e90ef49c8c,
-    type: 2}
---- !u!61 &905215330 stripped
-BoxCollider2D:
-  m_PrefabParentObject: {fileID: 61205247561799628, guid: 93e8d14c18207f64198b251900b950eb,
-    type: 2}
-  m_PrefabInternal: {fileID: 1537194062}
 --- !u!1 &1017963702
 GameObject:
   m_ObjectHideFlags: 0
@@ -9087,6 +8794,26 @@ CompositeCollider2D:
         Y: -480000000
       - X: 400000000
         Y: -480000000
+    - - X: -270000000
+        Y: -420000000
+      - X: -270000000
+        Y: -350000000
+      - X: -210000000
+        Y: -350000000
+      - X: -210000000
+        Y: -220000000
+      - X: -40000000
+        Y: -220000000
+      - X: -40000000
+        Y: -290000000
+      - X: -110000000
+        Y: -290000000
+      - X: -110000000
+        Y: -330000000
+      - X: -190000000
+        Y: -330000000
+      - X: -190000000
+        Y: -420000000
     - - X: 20000000
         Y: -470000000
       - X: 20000000
@@ -9111,26 +8838,6 @@ CompositeCollider2D:
         Y: -400000000
       - X: 390000000
         Y: -470000000
-    - - X: -270000000
-        Y: -420000000
-      - X: -270000000
-        Y: -350000000
-      - X: -210000000
-        Y: -350000000
-      - X: -210000000
-        Y: -220000000
-      - X: -40000000
-        Y: -220000000
-      - X: -40000000
-        Y: -290000000
-      - X: -110000000
-        Y: -290000000
-      - X: -110000000
-        Y: -330000000
-      - X: -190000000
-        Y: -330000000
-      - X: -190000000
-        Y: -420000000
     - - X: -20000000
         Y: -420000000
       - X: -100000000
@@ -9533,6 +9240,16 @@ CompositeCollider2D:
       - {x: 1, y: -42}
       - {x: 1, y: -48}
       - {x: 40, y: -48}
+    - - {x: -27, y: -42}
+      - {x: -27, y: -35}
+      - {x: -21, y: -35}
+      - {x: -21, y: -22}
+      - {x: -4, y: -22}
+      - {x: -4, y: -29}
+      - {x: -11, y: -29}
+      - {x: -11, y: -33}
+      - {x: -19, y: -33}
+      - {x: -19, y: -42}
     - - {x: 2, y: -47}
       - {x: 2, y: -43}
       - {x: 11, y: -43}
@@ -9545,16 +9262,6 @@ CompositeCollider2D:
       - {x: 30, y: -40}
       - {x: 39, y: -40}
       - {x: 39, y: -47}
-    - - {x: -27, y: -42}
-      - {x: -27, y: -35}
-      - {x: -21, y: -35}
-      - {x: -21, y: -22}
-      - {x: -4, y: -22}
-      - {x: -4, y: -29}
-      - {x: -11, y: -29}
-      - {x: -11, y: -33}
-      - {x: -19, y: -33}
-      - {x: -19, y: -42}
     - - {x: -2, y: -42}
       - {x: -10, y: -42}
       - {x: -10, y: -37}
@@ -31190,11 +30897,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4082522025411204, guid: 615f8c462f998ab4fa8feb66f702fa74, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 84.57
+      value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4082522025411204, guid: 615f8c462f998ab4fa8feb66f702fa74, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 11.81
+      value: -3.7
       objectReference: {fileID: 0}
     - target: {fileID: 4082522025411204, guid: 615f8c462f998ab4fa8feb66f702fa74, type: 2}
       propertyPath: m_LocalPosition.z
@@ -31246,11 +30953,8 @@ MonoBehaviour:
   maxSpeed: 400
   hoverDistance: 1.5
   moveDeadZone: 0.1
-  sightRange: 15
   bType: 0
   avoidDistance: 1.5
-  avoidVector: {x: 0, y: 0, z: 0}
-  hitDirection: {x: 0, y: 0}
   castCollider: {fileID: 1296882090}
   attackCooldown: 1
   attackHitbox: {fileID: 429269877}
@@ -31259,91 +30963,6 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 61312603099206846, guid: af6aa9fd5245cd84c8f6399b39516cc2,
     type: 2}
   m_PrefabInternal: {fileID: 1444786861}
---- !u!1001 &1302855891
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 50.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1664597029957464, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_Name
-      value: maze_fairy (2)
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114874049021731688, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-  m_ParentPrefab: {fileID: 100100000, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-  m_IsPrefabParent: 0
---- !u!1 &1355301742 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1664597029957464, guid: 93e8d14c18207f64198b251900b950eb,
-    type: 2}
-  m_PrefabInternal: {fileID: 1519988022}
---- !u!114 &1355301744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1355301742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00fbc55be00f9f446bcd107d7eba130b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enabledAI: 1
-  isInvincible: 0
-  maxHealth: 20
-  drag: 100
-  maxSpeed: 200
-  bType: 1
-  avoidDistance: 1.5
-  castCollider: {fileID: 1355301745}
-  moveDeadZone: 0.1
-  sightRange: 15
-  hoverDistance: 4
-  attackRange: 10
-  bullet_object: {fileID: 114055802189400976, guid: ef2c7b54f7e420e408973aa3e4bc8b32,
-    type: 2}
-  bulletSpeed: 0.15
-  flash_object: {fileID: 1379247231026680, guid: 3ef1948ba08d16c4da8065e90ef49c8c,
-    type: 2}
---- !u!61 &1355301745 stripped
-BoxCollider2D:
-  m_PrefabParentObject: {fileID: 61205247561799628, guid: 93e8d14c18207f64198b251900b950eb,
-    type: 2}
-  m_PrefabInternal: {fileID: 1519988022}
 --- !u!1001 &1444786861
 Prefab:
   m_ObjectHideFlags: 0
@@ -31452,100 +31071,6 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d23fa542b1076e4fadfb3cf482c30fd, type: 2}
-  m_IsPrefabParent: 0
---- !u!1001 &1519988022
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -5.42
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 14.89
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1664597029957464, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_Name
-      value: maze_fairy
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114874049021731688, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-  m_ParentPrefab: {fileID: 100100000, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-  m_IsPrefabParent: 0
---- !u!1001 &1537194062
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 3.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 15.36
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479451109805774, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1664597029957464, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-      propertyPath: m_Name
-      value: maze_fairy (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114874049021731688, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
-  m_ParentPrefab: {fileID: 100100000, guid: 93e8d14c18207f64198b251900b950eb, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1597818830
 GameObject:
@@ -91339,41 +90864,3 @@ CompositeCollider2D:
       - {x: 29, y: 36}
       - {x: 30, y: 36}
   m_VertexDistance: 0.0005
---- !u!1 &2086120200 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1664597029957464, guid: 93e8d14c18207f64198b251900b950eb,
-    type: 2}
-  m_PrefabInternal: {fileID: 769975311}
---- !u!114 &2086120202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2086120200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00fbc55be00f9f446bcd107d7eba130b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enabledAI: 1
-  isInvincible: 0
-  maxHealth: 20
-  drag: 100
-  maxSpeed: 200
-  bType: 1
-  avoidDistance: 1.5
-  castCollider: {fileID: 2086120204}
-  moveDeadZone: 0.1
-  sightRange: 15
-  hoverDistance: 4
-  attackRange: 10
-  bullet_object: {fileID: 114055802189400976, guid: ef2c7b54f7e420e408973aa3e4bc8b32,
-    type: 2}
-  bulletSpeed: 0.15
-  flash_object: {fileID: 1379247231026680, guid: 3ef1948ba08d16c4da8065e90ef49c8c,
-    type: 2}
---- !u!61 &2086120204 stripped
-BoxCollider2D:
-  m_PrefabParentObject: {fileID: 61205247561799628, guid: 93e8d14c18207f64198b251900b950eb,
-    type: 2}
-  m_PrefabInternal: {fileID: 769975311}
