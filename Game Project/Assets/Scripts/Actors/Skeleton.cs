@@ -46,6 +46,16 @@ public class Skeleton : AI_Actor {
 		Destroy(this.gameObject);
 	}
 
+	override protected void OnInHoverDistance(){
+		//no need to get closer, stop moving
+		//attack player if not on cooldown
+		if (Time.time - lastAttackTime >= attackCooldown){
+			lastAttackTime = Time.time;
+			animator.SetBool("Attacking", true);
+		}
+		moveVector = Vector3.zero; //move slower than normal, for funsies
+	}
+
 	//control animation and attacking
 	void Update(){
 		//animation
