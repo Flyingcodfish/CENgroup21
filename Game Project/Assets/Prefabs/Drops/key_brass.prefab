@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4298510938907838}
   - component: {fileID: 212878477931037904}
   - component: {fileID: 61791240375336020}
+  - component: {fileID: 114701042815348626}
   m_Layer: 0
   m_Name: key_brass
   m_TagString: Untagged
@@ -66,6 +67,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.58383465, y: 0.9537921}
   m_EdgeRadius: 0
+--- !u!114 &114701042815348626
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1130565458690150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6773edc0d7ff7734e9855bc4ecae249a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropType: 1
 --- !u!212 &212878477931037904
 SpriteRenderer:
   m_ObjectHideFlags: 1

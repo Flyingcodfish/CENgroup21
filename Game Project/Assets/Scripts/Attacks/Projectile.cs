@@ -21,7 +21,7 @@ public class Projectile : MonoBehaviour {
 		TeamComponent otherTeam = other.gameObject.GetComponent<TeamComponent>();
 		if (otherTeam == null || otherTeam.team != this.teamComponent.team){
 			//nicely ask the target to take damage
-			other.gameObject.SendMessage("TakeDamage", this.damage); //damage increased by power in Initialize()
+			other.gameObject.SendMessage("TakeDamage", this.damage, SendMessageOptions.DontRequireReceiver); //damage increased by power in Initialize()
 			this.Die();
 		}
 		//else ignore the collision

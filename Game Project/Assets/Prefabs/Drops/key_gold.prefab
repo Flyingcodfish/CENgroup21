@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4694205667350346}
   - component: {fileID: 212161911177062184}
   - component: {fileID: 61969145546965972}
+  - component: {fileID: 114566666861378046}
   m_Layer: 0
   m_Name: key_gold
   m_TagString: Untagged
@@ -66,6 +67,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 0.74141884}
   m_EdgeRadius: 0
+--- !u!114 &114566666861378046
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1140809917305766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6773edc0d7ff7734e9855bc4ecae249a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropType: 1
 --- !u!212 &212161911177062184
 SpriteRenderer:
   m_ObjectHideFlags: 1

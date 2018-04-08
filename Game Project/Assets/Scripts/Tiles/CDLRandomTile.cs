@@ -55,12 +55,7 @@ namespace UnityEngine.Tilemaps{
 
 		private Sprite GetSprite(){
 			//if sprite list is empty, generate it; happens every resize
-			if (sprites == null || dirty == true || sprites.Length != totalWeight){
-				totalWeight = 0;
-				dirty = false;
-				for (int i=0; i<choices.Length; i++){
-					totalWeight += choices[i].weight;
-				}
+			if (sprites == null || sprites.Length != totalWeight){
 				sprites = new Sprite[totalWeight];
 
 				int n = 0;
@@ -101,9 +96,14 @@ namespace UnityEngine.Tilemaps{
 			int count = EditorGUILayout.DelayedIntField("Number of Sprites", tile.choices != null ? tile.choices.Length : 0);
 			if (count < 0)
 				count = 0;
-			if (tile.choices == null || tile.choices.Length != count)
+			if (tile.choices == null || tile.choices.Length != count || tile.dirty)
 			{
+				tile.dirty = false;
 				Array.Resize<CDLRandomTile.SpriteAndWeight>(ref tile.choices, count);
+				tile.totalWeight = 0;
+				for (int i=0; i<tile.choices.Length; i++){
+					tile.totalWeight += tile.choices[i].weight;
+				}
 			}
 
 			if (count == 0)

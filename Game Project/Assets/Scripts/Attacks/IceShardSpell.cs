@@ -26,7 +26,7 @@ public class IceShardSpell : MonoBehaviour {
 			Actor hitActor = other.gameObject.GetComponent<Actor>();
 			if (hitActor != null)
 				hitActor.ModifyEffect(Actor.Effect.Freeze, freezeTime);
-			other.gameObject.SendMessage("TakeDamage", this.damage);
+			other.gameObject.SendMessage("TakeDamage", this.damage, SendMessageOptions.DontRequireReceiver);
 
 			StartCoroutine(Die());
 		}

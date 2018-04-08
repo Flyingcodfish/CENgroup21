@@ -47,7 +47,7 @@ public class Hitbox : MonoBehaviour {
 			if (HitObject != null)
 				HitObject(other.gameObject);
 			//nicely ask the target to take damage
-			other.gameObject.SendMessage("TakeDamage", this.damage * parentActor.GetPower());
+			other.gameObject.SendMessage("TakeDamage", this.damage * parentActor.GetPower(), SendMessageOptions.DontRequireReceiver);
 		}
 		//else ignore the collision
 	}

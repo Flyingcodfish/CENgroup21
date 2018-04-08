@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class ManaSlider : MonoBehaviour
 {
 
-	private int maxValue;
-	private int value;
+	private float maxValue;
+	private float value;
 	public PlayerControl player;
 
 	private Slider slider;

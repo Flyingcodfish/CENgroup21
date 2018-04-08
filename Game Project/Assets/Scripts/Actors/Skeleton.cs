@@ -4,50 +4,19 @@ using UnityEngine;
 
 using Pathfinding;
 
-public class Skeleton : Actor {
-
-	//targeting fields
-	private GameObject targetObject;
-	private Vector3 moveVector;
-	private Vector2 directMove;
-	public float hoverDistance = 2f;
-	public float moveDeadZone = 0.1f;
-	public float sightRange = 15f;			//Enemies will remain passive until player within sight range 
-
-	//navigation fields
-	bool pathFound;
-	private Navigator navigator;
-	public Navigator.BlockingType bType = Navigator.BlockingType.walking;
-	private Vector3[] path;
-
-	//obstacle avoidance fields
-	public float avoidDistance = 1.5f;
-	public Vector3 avoidVector;
-	public Vector2 hitDirection;
-	int maxHits = 1;
-	int numHits;
-	private RaycastHit2D[] castHits;
-	ContactFilter2D obstacleFilter; //sees terrain AND actors
-	ContactFilter2D tileFilter; //only sees terrain
-	public Collider2D castCollider;
+public class Skeleton : AI_Actor {
 
 	//attacking fields
 	float lastAttackTime;
 	public float attackCooldown = 2f;
 	public Hitbox attackHitbox;
 
-	// Use this for initialization
-	override public void ActorStart () {
-		targetObject = GameObject.FindWithTag("Player");
-		navigator = GameObject.FindWithTag("Navigator").GetComponent<Navigator>();
-
-		obstacleFilter = Navigator.GetFilterFromBlockingType(bType, true);
-		tileFilter = Navigator.GetFilterFromBlockingType(bType, false);
-		castHits = new RaycastHit2D[maxHits];
-
-		StartCoroutine(AI_Tick());
+	//I childproofed my own code, because I am a child :^)
+	override public void AI_Start () {
+		//pass
 	}
 
+	//apply forces based on movement trajectory
 	void FixedUpdate(){
 		//forces
 		if (!animator.GetBool("Attacking") && this.IsActive()){
@@ -55,6 +24,7 @@ public class Skeleton : Actor {
 		}
 	}
 
+	//define behavior on death, adds death animation
 	override public IEnumerator Die(){
 		//signal that the actor is dying; AI should halt
 		this.isDying = true;
@@ -67,7 +37,7 @@ public class Skeleton : Actor {
 		//turn physics off
 		this.GetComponent<Collider2D>().enabled = false;
 
-		yield return new WaitForSeconds(5f); //wait for death animation to finish; TODO: BAD SOLUTION
+		yield return new WaitForSeconds(5f); //wait for death animation to finish; TODO: THIS IS A BAD SOLUTION
 
 		//wait for important coroutines to finish
 		while (isBusy == true)
@@ -76,6 +46,7 @@ public class Skeleton : Actor {
 		Destroy(this.gameObject);
 	}
 
+	//control animation and attacking
 	void Update(){
 		//animation
 		if (moveVector.magnitude < moveDeadZone){
@@ -104,66 +75,10 @@ public class Skeleton : Actor {
 		}
 	}
 
+	//add damage taking animation
 	override public void TakeDamage(int damage){
 		animator.SetTrigger("TakeDamage");
 		base.TakeDamage(damage);
 	}
-
-	//only need to perform pathfinding every ~0.1 second; less CPU intensive
-	IEnumerator AI_Tick(){
-		while (true){
-			if (this.IsActive()){
-				pathFound = false;
-				directMove = targetObject.transform.position - transform.position;
-
-				if (directMove.magnitude <= hoverDistance){
-					//no need to get closer, stop moving
-					//attack player if not on cooldown
-					if (Time.time - lastAttackTime >= attackCooldown){
-						lastAttackTime = Time.time;
-						animator.SetBool("Attacking", true);
-					}
-					pathFound = true;
-					moveVector = Vector3.zero; //move slower than normal, for funsies
-				}
-
-				//check if we can (and have to) run straight towards player
-				if (pathFound == false){
-					if (0 == castCollider.Cast(directMove, tileFilter, castHits, directMove.magnitude)){
-						moveVector = directMove; 
-						pathFound = true;
-					}
-				}
-
-				//pathfinding; only if we must
-				if (pathFound == false){
-					path = navigator.GetWorldPath(bType, transform.position, targetObject.transform.position);
-					if (path.Length > 0){
-						moveVector = (path[0]-transform.position).normalized;
-					}
-					else moveVector = Vector3.zero;
-					pathFound = true;
-				}
-
-				//avoid local obstacles
-				numHits = castCollider.Cast((Vector2)moveVector, obstacleFilter, castHits, avoidDistance);
-
-				//if we would run into something if we kept moving forward
-				if (numHits > 0 && !castHits[0].collider.gameObject.Equals(targetObject)){
-					//add a force that is perpendicular to the path we take to hit an obstacle.
-					//This moves simultaneously away from the obstacle, and towards our goal.
-					hitDirection = castHits[0].point - ((Vector2)transform.position + castCollider.offset);
-					float phi = Vector2.SignedAngle(moveVector, hitDirection);
-					float sign = Mathf.Sign(phi); //determines which of two perpendicular paths to take
-					avoidVector = new Vector2(sign*hitDirection.y, -1*sign*hitDirection.x); //calculate normal to hitVector
-					moveVector = avoidVector.normalized + moveVector.normalized;
-				}
-
-				if (directMove.magnitude > sightRange) {
-					moveVector = Vector3.zero;
-				}
-			}
-			yield return new WaitForSeconds(0.1f);
-		}
-	}
+		
 }

@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 61205247561799628}
   - component: {fileID: 114874049021731688}
   - component: {fileID: 114191650740472390}
+  - component: {fileID: 114902173205917094}
   m_Layer: 11
   m_Name: green_fairy
   m_TagString: Untagged
@@ -39,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1664597029957464}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.244, y: -3.676, z: 0}
+  m_LocalPosition: {x: 7.339663, y: 0.48225164, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -135,17 +136,38 @@ MonoBehaviour:
   maxHealth: 20
   drag: 100
   maxSpeed: 200
+  hoverDistance: 7
+  moveDeadZone: 0.5
   bType: 1
   avoidDistance: 1.5
   castCollider: {fileID: 61205247561799628}
-  moveDeadZone: 0.5
-  hoverDistance: 7
   attackRange: 10
   bullet_object: {fileID: 114055802189400976, guid: ef2c7b54f7e420e408973aa3e4bc8b32,
     type: 2}
   bulletSpeed: 0.15
   flash_object: {fileID: 1379247231026680, guid: 3ef1948ba08d16c4da8065e90ef49c8c,
     type: 2}
+  attackCooldown: 1.5
+--- !u!114 &114902173205917094
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1664597029957464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e2567cdde69ac48bb1f6775fe55086, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropList:
+  - weight: 3
+    drop: {fileID: 0}
+  - weight: 1
+    drop: {fileID: 1247982857437918, guid: d35faf583712cba458b7c9e8558905ec, type: 2}
+  - weight: 1
+    drop: {fileID: 1252703268272378, guid: f414730855f0aa94c9101914a6b90460, type: 2}
+  totalWeight: 5
+  dirty: 0
 --- !u!212 &212420266937493896
 SpriteRenderer:
   m_ObjectHideFlags: 1

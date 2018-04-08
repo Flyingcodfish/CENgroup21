@@ -26,7 +26,7 @@ public class FireBomb : MonoBehaviour {
 		else if (otherTeam == null || otherTeam.team != this.teamComponent.team)
         {
             //nicely ask the target to take damage
-            other.gameObject.SendMessage("TakeDamage", this.damage);
+			other.gameObject.SendMessage("TakeDamage", this.damage, SendMessageOptions.DontRequireReceiver);
             this.Die();
         }
         //else ignore the collision

@@ -85,7 +85,8 @@ public abstract class Actor : MonoBehaviour {
 		while (frozenStatus > 0)
 			yield return null;
 
-		//turn physics off
+		//turn physics off, drop stuff if we (or a child object) have a DeathDropper component
+		this.BroadcastMessage("Drop", SendMessageOptions.DontRequireReceiver);
 		this.GetComponent<Collider2D>().enabled = false;
 		this.spriteRenderer.enabled = false;
 

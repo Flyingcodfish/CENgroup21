@@ -9,8 +9,10 @@ public class PlayerControl : Actor {
 	//status fields
 	public int hasKeys = 0; //number of door keys owned by the player.
 	public int hasMoney = 0; //amount of generic currency owned by the player.
-	public int currentMana {get; private set;} //used to cast spells
-	public int maxMana = 49; //this is a joke
+	public float currentMana {get; private set;} //used to cast spells
+	public float maxMana = 49; //this is a joke
+	public float manaRegen = 100f * 60 / 30; //implemented as "percent of max mana restored per minute." This completely fills the bar in 30 seconds.
+	private float manaTickTime = 0.1f; // how often in seconds should mana be regenerated? larger values make mana regen more visible, but also choppier
 
 	//spell fields
 	private float spellDistance = 0.15f;
@@ -44,6 +46,7 @@ public class PlayerControl : Actor {
 	public override void ActorStart(){
 		Object.DontDestroyOnLoad(this); //player object should be persistent
 		currentMana = maxMana;
+		StartCoroutine (ManaRegen ());
 	}
 		
 	void OnDestroy(){
@@ -162,8 +165,13 @@ public class PlayerControl : Actor {
 
     }
 
-	//returns true if the amount was available to spend, else false
+
+	//returns true if the amount was available to spend, else false.
+	//accepts either ints or floats, just for simplicity
 	public bool SpendMana(int amount){
+		return SpendMana ((float)amount);
+	}
+	public bool SpendMana(float amount){
 		if (currentMana >= amount){
 			currentMana -= amount;
 		}
@@ -175,7 +183,6 @@ public class PlayerControl : Actor {
 		if (currentMana > maxMana) currentMana = maxMana; //may have been given a negative amount; mana gain potions
 		return true;
 	}
-
 
 	public void CastIce(){
 		if (iceTimer <= 0 && SpendMana(ice_manaCost)){
@@ -203,4 +210,14 @@ public class PlayerControl : Actor {
             Destroy(collision.gameObject);
         }
     }
+
+	IEnumerator ManaRegen(){
+		while (true) {
+			if (currentMana < maxMana) {
+				currentMana += (manaRegen / 100f) * maxMana / 60 * manaTickTime; //weird math; makes mana regen operate as "percent of max mana restored per minute"
+			}
+			yield return new WaitForSeconds (manaTickTime);
+		}
+	}
+
 }
