@@ -9,7 +9,7 @@ public abstract class AI_Actor : Actor {
 
 	//targeting & movement fields: useable by inheritors
 	protected GameObject targetObject;
-	protected Vector3 moveVector;
+	public Vector3 moveVector;
 	protected Vector2 directMove;
 	public float hoverDistance = 1.2f;
 	public float moveDeadZone = 0.1f;
@@ -40,6 +40,8 @@ public abstract class AI_Actor : Actor {
 		tileFilter = Navigator.GetFilterFromBlockingType(bType, false);
 		castHits = new RaycastHit2D[maxHits];
 		StartCoroutine (AI_Tick ());
+		enabledAI = false;
+		moveVector = Vector2.zero;
 		this.AI_Start ();
 	}
 
