@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerControl : Actor {
-
+    // inventory fields 
     public inventory inventory;
+    private inventory chest;
+    private inventory shop;
 
-	//status fields
-	public int hasKeys = 0; //number of door keys owned by the player.
+    public int coins;
+
+    //status fields
+    public int hasKeys = 0; //number of door keys owned by the player.
 	public int hasMoney = 0; //amount of generic currency owned by the player.
 	public float currentMana {get; private set;} //used to cast spells
 	public float maxMana = 49; //this is a joke
@@ -27,10 +31,6 @@ public class PlayerControl : Actor {
 	private float iceTime = 0.2f;
 	private float iceTimer;
 
-    private inventory chest;
-    private inventory shop;
-
-    public int coins;
 
 	public PushSpell pushPrefab;
 	int push_manaCost = 10;
@@ -267,6 +267,17 @@ public class PlayerControl : Actor {
                 shop.Open();
             }
         }
+        // used for debugging save and load **********************
+        // weird problems when i use key for saving, reads in string and then saves null string right after 
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            inventory.SaveInventory();
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            inventory.LoadInventory(string.Empty); // set to empty to load from pref 
+        }
+        // ******************************************************
     }
 		
 	private void AnimateCast(){
@@ -276,9 +287,9 @@ public class PlayerControl : Actor {
 		animator.SetBool ("Casting", true); //used to slow down animation for a distinction between attacks/casts
 	}
 
-	//returns true if the amount was available to spend, else false.
-	//accepts either ints or floats, just for simplicity
-	public bool SpendMana(int amount){
+    //returns true if the amount was available to spend, else false.
+    //accepts either ints or floats, just for simplicity
+    public bool SpendMana(int amount){
 		return SpendMana ((float)amount);
 	}
 	public bool SpendMana(float amount){

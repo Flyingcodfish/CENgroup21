@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
-public enum ItemType {MANA,HEALTH,SWIFT,STRENGTH,POWER, SPELL_ICE, SPELL_FIRE, SPELL_PUSH, ARMOR, SHOP_HEALTH}; // creates types for specific in game items 
+public enum ItemType {MANA,HEALTH,SWIFT,STRENGTH,POWER, SPELL_ICE, SPELL_FIRE, SPELL_PUSH, ARMOR, SHOP_HEALTH, SHOP_MANA}; // creates types for specific in game items 
 
 public class Item : MonoBehaviour
 {   
@@ -26,6 +25,8 @@ public class Item : MonoBehaviour
     public int value;
 
     public string description;
+
+    public bool shopItem;
 
     public void Awake()
     {
@@ -80,7 +81,11 @@ public class Item : MonoBehaviour
 
     public bool isShop()
     {
-       return  type == ItemType.ARMOR || type == ItemType.SHOP_HEALTH ? true : false; // have one for each shop item type 
+       return  shopItem; 
+    }
+    public bool isUpgrade()
+    {
+        return (type == ItemType.ARMOR); // just have one for each upgrade type 
     }
 }
     

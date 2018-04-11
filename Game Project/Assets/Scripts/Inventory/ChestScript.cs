@@ -6,13 +6,17 @@ public class ChestScript : MonoBehaviour {
 
     public inventory chestInventory;
 
+    private PlayerControl player;
+
     // Use this for initialization
     void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Vector2 pos = Camera.main.WorldToScreenPoint(this.transform.position); // gets position of obj in scene 
+        chestInventory.transform.position = pos; // sets its position to always be on scene obj 
+    }
 }

@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1752239998093280}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 1, z: 0}
+  m_LocalPosition: {x: 1.5947698, y: -2.9977188, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -81,13 +81,16 @@ MonoBehaviour:
   type: 4
   spriteNeutral: {fileID: 21300010, guid: c0ea5a6df785f954da229fd790313675, type: 3}
   spriteHighlighted: {fileID: 21300010, guid: 0ec0641d80ad9694d9995a34b5856b14, type: 3}
+  maxSize: 1
   speedTime: 20
   speedModifier: 2
   strengthTime: 15
   strengthModifier: 0.5
   powerTime: 5
   powerModifier: 1.5
-  maxSize: 1
+  value: 0
+  description: 
+  shopItem: 0
 --- !u!212 &212682414334396474
 SpriteRenderer:
   m_ObjectHideFlags: 1
