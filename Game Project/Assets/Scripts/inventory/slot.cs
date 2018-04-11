@@ -116,6 +116,7 @@ public class slot : MonoBehaviour, IPointerClickHandler {
             }
             else if (Items.Peek().isShop())// goes into shop options if shop item 
             {
+                Debug.Log("About to Buy");
                 shop.Buy(Items.Peek());
             }
             else

@@ -97,7 +97,8 @@ public class inventory : MonoBehaviour {
             if (!Manager.Instance.eventSystem.IsPointerOverGameObject(-1) && Manager.Instance.From != null) // if mouse pointer not over game object 
             {
                 Manager.Instance.From.GetComponent<Image>().color = Color.white;
-                if (!Manager.Instance.From.Items.Peek().isSpell())// if its not a spell its safe to clear the slot 
+                Debug.Log("Shop Item" + Manager.Instance.From.Items.Peek().isShop());
+                if (!Manager.Instance.From.Items.Peek().isSpell() && !Manager.Instance.From.Items.Peek().isShop())// if its not a spell and shop item its safe to clear the slot 
                 {
                     Manager.Instance.From.ClearSlot();
                     emptySlots++;
@@ -114,19 +115,6 @@ public class inventory : MonoBehaviour {
             float ym = Input.mousePosition.y;
             Manager.Instance.HoverObject.transform.position = new Vector2(xm + 1, ym + 1); // makes object follow mouse 
         }
-        // used for debugging save and load **********************
-        // weird problems when i use key for saving, reads in string and then saves null string right after 
-        /*
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            SaveInventory();
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            LoadInventory();
-        }
-        */
-        // ******************************************************
     }
     public void Open()
     {
@@ -214,6 +202,30 @@ public class inventory : MonoBehaviour {
 		}
 
 	}
+    public void RenameSlots(string name) //used to rename slots to disable moving between slots/other identifiers 
+    {
+        if (allSlots != null)
+        {
+            foreach (GameObject slot in allSlots)
+            {
+                slot.name = name;
+            }
+        }
+    }
+    public void SetShopItems() // used to set items shopItem bool to true when in a shop 
+    {
+        if(allSlots != null)
+        {
+            foreach (GameObject slot in allSlots)
+            {
+                slot tmp = slot.GetComponent<slot>();
+                if (!tmp.IsEmpty)
+                {
+                    slot.GetComponent<slot>().CurrentItem.shopItem = true;
+                }
+            }
+        }
+    }
 	public bool AddItem(Item item)// inventory on player and then call when wanting to add item
 	{
 		if (item.maxSize == 1)
@@ -275,13 +287,8 @@ public class inventory : MonoBehaviour {
 		if (Manager.Instance.From == null && clicked.transform.parent.GetComponent<inventory>().isOpen) // can only  move if inventory shown, Open
 		{
             Debug.Log("Clicked and is Open");
-            if (clicked.GetComponent<slot>().IsEmpty)
-            {
-                Debug.Log(" empty lets move");
-            }
 			if (!clicked.GetComponent<slot>().IsEmpty)
 			{
-                Debug.Log("Not empty lets move");
 				Manager.Instance.From = clicked.GetComponent<slot>();
 				Manager.Instance.From.GetComponent<Image>().color = Color.gray; // shows selected 
 

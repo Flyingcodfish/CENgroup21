@@ -31,4 +31,9 @@ public class CoinScript : MonoBehaviour {
         }
         SetText();
     }
+    public void MinusCoins(int value)
+    {
+        player.coins -= value;
+        SetText();
+    }
 }
