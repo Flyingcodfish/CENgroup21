@@ -29,7 +29,10 @@ public class ObjectTile : TileBase {
 		this.hideFlags = HideFlags.None;
 
 		if (instance != null){
-            instance.GetComponent<SpriteRenderer>().material = tilemap.GetComponent<TilemapRenderer>().material;
+			SpriteRenderer objRenderer = instance.GetComponent<SpriteRenderer> ();
+			TilemapRenderer mapRenderer = tilemap.GetComponent<TilemapRenderer> ();
+			objRenderer.color = mapRenderer.GetComponent<Tilemap> ().color;
+			objRenderer.material = mapRenderer.material;
 			instance.transform.position += offset;
 			instance.hideFlags = HideFlags.DontSaveInEditor;
 		}
