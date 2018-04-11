@@ -8,6 +8,8 @@ public class DialogueManager : MonoBehaviour {
     public Text nameText;
     public Text dialogueText;
     public GameObject chatBox;
+    public GameObject arrow1;
+    public GameObject arrow2;
     [SerializeField]
     private InputField input;
 
@@ -65,6 +67,8 @@ public class DialogueManager : MonoBehaviour {
     void EndDialogue()
     {
         chatBox.SetActive(false);
+        arrow1.SetActive(true);
+        arrow2.SetActive(true);
     }
 	
 }

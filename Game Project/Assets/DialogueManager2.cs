@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager2 : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class DialogueManager2 : MonoBehaviour
     public Text dialogueText;
     public GameObject chatBox;
     public GameObject IntroBox;
+    public GameObject arrow1;
+    public GameObject arrow2;
+    public GameObject exclamation;
     private int iterator = 0;
     [SerializeField]
     private InputField input;
@@ -31,6 +35,8 @@ public class DialogueManager2 : MonoBehaviour
         if (iterator == 0)
         {
             if (IntroBox.activeSelf) IntroBox.SetActive(false);
+            arrow1.SetActive(false);
+            arrow2.SetActive(false);
             nameText.text = "Gobby";
             dialogueText.text = playerName + "! What are you doing here? Weren’t you supposed to be back in the mainland?";
             return;
@@ -76,21 +82,25 @@ public class DialogueManager2 : MonoBehaviour
             return;
         }
 
-        //!!!
         if (iterator == 7)
         {
+            exclamation.SetActive(true);
             dialogueText.text = "Sorry! I know you’re a state sorcerer now, and you can probably take care of yourself. But... strange things have been happening. The temples aren’t even safe anymore.";
             return;
         }
 
         if (iterator == 8)
         {
+            exclamation.SetActive(false);
             dialogueText.text = "Anyways, follow me.";
         }
         
         if (iterator == 9)
         {
             chatBox.SetActive(false);
+            //StartCoroutine(Fade());
+            SceneManager.LoadScene("lato's_house");
         }
     }
 }
+
