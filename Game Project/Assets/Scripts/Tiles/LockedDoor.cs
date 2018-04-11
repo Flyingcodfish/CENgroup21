@@ -16,6 +16,7 @@ public class LockedDoor : MonoBehaviour {
 	void Start () {
 		sRenderer = this.GetComponent<SpriteRenderer>();
 		coll = this.GetComponent<Collider2D>();
+        doorwayRenderer.material = sRenderer.material;
 	}
 
 
