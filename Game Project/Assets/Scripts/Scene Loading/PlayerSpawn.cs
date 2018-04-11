@@ -4,23 +4,27 @@ using UnityEngine;
 
 public class PlayerSpawn : MonoBehaviour {
 
-	public PlayerControl playerPrefab;
+	public GameObject playerPrefab;
 	private GameObject playerInstance;
 
-	public bool isDefaultSpawnPoint = true; //when there are multiple spawn points in a scene, default to this one if none were explicitly chosen by level loader
+	public Material sceneMaterial;
+
+	public bool isDefaultSpawnPoint = true; //TODO: field for when there are multiple spawnPoints in a scene, for scene transitions or loading a saved game in a certain location
 
 	// Use this for initialization
 	void Awake () {
 		playerInstance = GameObject.FindWithTag("Player");
 		//spawn player if none present
 		if ( playerInstance == null){
-			Instantiate(playerPrefab, transform.position, Quaternion.identity);
+			playerInstance = Instantiate(playerPrefab, transform.position, Quaternion.identity);
 		}
 		//else spawn player at this location
 		//TODO: interface with level loader to make scene loads choose a spawn point to teleport the player to.
 		else{
 			playerInstance.transform.position = this.transform.position;
 		}
+
+		playerInstance.GetComponent<SpriteRenderer> ().material = sceneMaterial; //allows scenes to use dynamic lighting
 
 		//turn off preview sprite
 		this.GetComponent<SpriteRenderer>().enabled = false;

@@ -35,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1445906307977058}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.84, y: -5.34, z: 0.0234375}
+  m_LocalPosition: {x: 0.5, y: -1, z: 0.0234375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -52,8 +52,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27bc5b4fb5c285342afe5c78178a9c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 114319896515579678, guid: b25b07c21ab0e9249844c97e3cdd2a30,
+  playerPrefab: {fileID: 1621778042324258, guid: b25b07c21ab0e9249844c97e3cdd2a30,
     type: 2}
+  sceneMaterial: {fileID: 2100000, guid: f31eea59e1da2c2479c7f4b5e4f9b2c8, type: 2}
+  isDefaultSpawnPoint: 1
 --- !u!212 &212433836047488210
 SpriteRenderer:
   m_ObjectHideFlags: 1
