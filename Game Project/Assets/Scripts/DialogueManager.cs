@@ -23,6 +23,11 @@ public class DialogueManager : MonoBehaviour {
     public void GetInput(string name)
     {
         nameText.text = name;
+		//this sets the "live" save's player name to be whatever we just retreived.
+		//can be referenced from anywhere, in exactly the way it was assigned to here.
+		//the fields available in liveSave can be seen/edited in GameSaver.cs, at the bottom.
+		//There is a class SavedGame, with all save-able fields, of which liveSave is an instance.
+		GameSaver.gameSaverInstance.liveSave.playerName = name;
     }
 
     public void StartDialogue(Dialogue dialogue)
