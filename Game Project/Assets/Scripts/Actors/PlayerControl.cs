@@ -35,12 +35,17 @@ public class PlayerControl : Actor {
 	public GameObject devConsole;
 
 	//attack fields
-    private float attackTime = 0.3f; // how long it takes to attack
+    private float attackTime = 0.25f; // how long it takes to attack
     private float attackTimer; // time remaining till the attack ends
     private bool attacking = false;
 	public Hitbox attackHitbox;
 	private Vector2 attackHitboxOffset;
 
+	//casting animation fields
+	bool casting = false;
+	float castSlowdown = 0.8f;
+	float castTime = 0.25f / 0.8f; // = attackTime / castSlowdown;
+	float castTimer;
 
 	//behavior begins
 	public override void ActorStart(){
@@ -48,11 +53,18 @@ public class PlayerControl : Actor {
 		currentMana = maxMana;
 		StartCoroutine (ManaRegen ());
 	}
-		
-	void OnDestroy(){
-		//TODO: death animation, game over screen, etc.
-		//currently just loads main menu to avoid crashing the game
-		if (enabledAI) UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
+
+	override public IEnumerator Die(){
+		//AI should halt
+		this.isDying = true;
+		//		animator.SetTrigger("Die"); //trigger death animation, should be pretty universal
+
+		//wait for important coroutines to finish (???)
+		while (isBusy == true)
+			yield return null;
+
+		UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
+		Destroy(this.gameObject); //destroys player instance, must load game
 	}
 
 	//occurs at a framerate-independant rate; used for physics 
@@ -126,19 +138,9 @@ public class PlayerControl : Actor {
 	            attackTimer = attackTime;
 				attackHitbox.transform.localPosition = attackHitboxOffset;
 	        }
-	        if (attacking)
-	        {
-	            if(attackTimer > 0)
-	            {
-	                attackTimer -= Time.deltaTime;
-	            }
-	            else
-	            {
-	                attacking = false; 
-	            }
-	        }
 
-	        animator.SetBool("Attacking", attacking);
+			//TODO crappy way of doing this; I'm too lazy to make extensive changes to the controller untiol we know for sure what we're doing with these animations
+			animator.SetBool("Attacking", attacking || casting);
 		}
 
 		//timers continue regardless of whether the player is active or not
@@ -148,6 +150,17 @@ public class PlayerControl : Actor {
 			}
 			else {
 				attacking = false; 
+			}
+		}
+
+		if (casting) {
+			if (castTimer > 0) {
+				castTimer -= Time.deltaTime;
+			}
+			else {
+				animator.speed = 1f;
+				animator.SetBool ("Casting", false);
+				casting = false;
 			}
 		}
 
@@ -164,7 +177,13 @@ public class PlayerControl : Actor {
 
 
     }
-
+		
+	private void AnimateCast(){
+		casting = true;
+		animator.speed = castSlowdown; //small distinction between attacking and casting
+		castTimer = castTime;
+		animator.SetBool ("Casting", true); //used to slow down animation for a distinction between attacks/casts
+	}
 
 	//returns true if the amount was available to spend, else false.
 	//accepts either ints or floats, just for simplicity
@@ -185,6 +204,7 @@ public class PlayerControl : Actor {
 	}
 
 	public void CastIce(){
+		AnimateCast ();
 		if (iceTimer <= 0 && SpendMana(ice_manaCost)){
 			iceTimer = iceTime;
 			IceShardSpell iceShardInstance = Instantiate(iceShardPrefab, transform.position + (Vector3)facing*spellDistance, Quaternion.identity);
@@ -195,7 +215,9 @@ public class PlayerControl : Actor {
 
 
 	public void CastFire(){
+		AnimateCast ();
 		if (bombTimer <= 0 && SpendMana(bomb_manaCost)){
+			//animator.
 			bombTimer = bombTime;
 			FireBomb bomb = Instantiate<FireBomb>(bomb_object, transform.position + (Vector3)facing*spellDistance, Quaternion.identity);
 			bomb.Initialize(facing * 0.12f, this.teamComponent.team, this.power);
