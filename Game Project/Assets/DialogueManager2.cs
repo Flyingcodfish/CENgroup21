@@ -99,7 +99,7 @@ public class DialogueManager2 : MonoBehaviour
         {
             chatBox.SetActive(false);
             //StartCoroutine(Fade());
-            SceneManager.LoadScene("lato's_house");
+            SceneManager.LoadScene("hub");
         }
     }
 }
