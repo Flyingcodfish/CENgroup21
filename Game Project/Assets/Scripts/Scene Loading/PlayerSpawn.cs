@@ -13,6 +13,11 @@ public class PlayerSpawn : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+		//creates a gameSaver if none is present, pretty much only used when launching the game from NOT the main menu
+		if (GameSaver.gameSaverInstance == null) {
+			new GameSaver (); //no need to store it anywhere, the GameSaver constructor assigns itself to the static reference used in the previous line
+		}
+
 		playerInstance = GameObject.FindWithTag("Player");
 		//spawn player if none present
 		if ( playerInstance == null){
@@ -25,6 +30,9 @@ public class PlayerSpawn : MonoBehaviour {
 		}
 
 		playerInstance.GetComponent<SpriteRenderer> ().material = sceneMaterial; //allows scenes to use dynamic lighting
+
+		//TODO test code showing how we can read live save data anywhere
+		Debug.Log("Loaded scene with player. Playername is " + GameSaver.gameSaverInstance.liveSave.playerName);
 
 		//turn off preview sprite
 		this.GetComponent<SpriteRenderer>().enabled = false;
