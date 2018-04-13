@@ -53,14 +53,13 @@ public class PlayerControl : Actor {
 		currentMana = maxMana;
 		StartCoroutine (ManaRegen ());
 
-		//load information from game save, if we loaded a save.
-		SavedGame save = GameSaver.gameSaverInstance.liveSave;
 		//we're loading a save, rather than starting a new game. Set some values from the save file.
-		if (save.hasBeenSaved == true) {
-			currentHealth = save.currentHealth;
-			currentMana = save.currentMana;
-			hasKeys = save.hasKeys;
-			hasMoney = save.hasMoney;
+		if (GameSaver.liveSave.hasBeenSaved == true) {
+			Debug.Log ("Player is loading values from live saved game.");
+			currentHealth = GameSaver.liveSave.currentHealth;
+			currentMana = GameSaver.liveSave.currentMana;
+			hasKeys = GameSaver.liveSave.hasKeys;
+			hasMoney = GameSaver.liveSave.hasMoney;
 		}
 	}
 

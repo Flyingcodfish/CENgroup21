@@ -7,46 +7,34 @@ using System.IO;
 
 //not static, but there should only be one.
 //It's a way of implenting a singleton class. Basically static, but it can store instances (like liveSave).
-public class GameSaver {
+public static class GameSaver {
 
-	public static GameSaver gameSaverInstance; 	//global field: rather than using FindObjectWithTag or something,
-												//a permanent reference to the singleton GameSaver instance is at "GameSaver.gameSaverInstance"
-
-	public SavedGame liveSave; //the "live" version (in RAM) of the most recently loaded or created save. Written to disk when game is saved, changed when game is loaded.
-	//public List<SavedGame> savesList;
-
-	public GameSaver(){
-		if (gameSaverInstance == null) {
-			gameSaverInstance = this;
-			liveSave = new SavedGame ();
-		}
-		else {
-			Debug.Log ("Error: there should never be more than one gameSaver. Deleting the newer instance.");
-		}
-	}
+	//this is a global field: GameSaver.liveSave can be reference anywhere to access/change the current game state.
+	public static SavedGame liveSave; //the "live" version (in RAM) of the most recently loaded or created save. Written to disk when game is saved, changed when game is loaded.
 
 	public static bool SaveGame(/*int saveSlot*/) {
 		//tell the save file that it's been saved. If it's loaded later, PlayerControl will see this fact and load traits from the live save.
-		gameSaverInstance.liveSave.hasBeenSaved = true;
-		//save the current scene name. Should we save actual location? probably not.
-		gameSaverInstance.liveSave.sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name;
+		liveSave.hasBeenSaved = true;
+		//save the current scene name. Should we save actual x,y location? probably not.
+		liveSave.sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name;
 
 		//write PlayerControl fields to liveSave, and stage for writing to disk.
 		PlayerControl player = Object.FindObjectOfType<PlayerControl>();
 		Debug.Log ("Saving. Player found? " + ((player == null) ? "N" : "Y"));
 		if (player != null){
-			gameSaverInstance.liveSave.currentMana = player.currentMana;
-			gameSaverInstance.liveSave.currentHealth = player.currentHealth;
-			gameSaverInstance.liveSave.hasKeys = player.hasKeys;
-			gameSaverInstance.liveSave.hasMoney = player.hasMoney; //TODO: integrate with tyler's stuff. is this the correct field name?
+			liveSave.currentMana = player.currentMana;
+			liveSave.currentHealth = player.currentHealth;
+			liveSave.hasKeys = player.hasKeys;
+			liveSave.hasMoney = player.hasMoney; //TODO: integrate with tyler's stuff. is this the correct field name?
 		}
 
 		//serialize data from live save. write to a file.
 		BinaryFormatter serializer = new BinaryFormatter();
-		FileStream saveFile = File.Create (Application.persistentDataPath + "/save.mg21");
-		serializer.Serialize (saveFile, gameSaverInstance.liveSave);
+		Directory.CreateDirectory (Application.dataPath + "/Saves/"); //creates saves directory if it's not already present
+		FileStream saveFile = File.Create (Application.dataPath + "/Saves/save.mg21");
+		serializer.Serialize (saveFile, liveSave);
 		saveFile.Close ();
-		Debug.Log ("Saved game to " + Application.persistentDataPath + "/save.mg21");
+		Debug.Log ("Saved game to " + Application.dataPath + "/Saves/save.mg21");
 		return true;
 	}
 
@@ -54,8 +42,8 @@ public class GameSaver {
 	public static bool LoadGame(/*int saveSlot*/) {
 		//read and deserialize saved game data from file
 		BinaryFormatter deserializer = new BinaryFormatter();
-		FileStream saveFile = File.OpenRead (Application.persistentDataPath + "/save.mg21");
-		gameSaverInstance.liveSave = (SavedGame)deserializer.Deserialize (saveFile);
+		FileStream saveFile = File.OpenRead (Application.dataPath + "/Saves/save.mg21");
+		liveSave = (SavedGame)deserializer.Deserialize (saveFile);
 		saveFile.Close ();
 		return true; //returns true if successful
 	}
@@ -95,4 +83,8 @@ public class SavedGame {
 	//TODO: add even more bools that represent progress in dialogues, in case we want some things to not be repeated ever
 	//to make characters say different thigns as the game progresses, we can either use the above boss-killed flags to determine what a character says,
 	//or determine what is said using flags that are declared here (for more granular control)
+
+
+	//TODO: give all keys and spell items fields here so that the player cannot pick up a key/spell, save/load, and have it respawn.
+	//TODO: give all locked door fields here so that an unlocked door will stay unlocked
 }
