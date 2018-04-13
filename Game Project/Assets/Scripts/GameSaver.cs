@@ -77,14 +77,16 @@ public class SavedGame {
 	//story progression fields
 	public bool[] bossKilled = new bool[3]; //array of three bools, indexed by boss number. Default values are false
 	public bool[] padUnlocked = new bool[3]; //array of three bools, indexed by teleport pad number. Default values are false
+	//TODO: integrate with tyler's inventory. Set spellTaken flags when spells are picked up.
+	public bool[] spellTaken = new bool[3]; //0 - ice spell; 1 - fireball; 2 - push spell. False: not yet picked up, item should spawn. True: item claimed, should not be present on ground.
+
+	//used to make doors stay unlocked, and keys stay picked up when a game is loaded. Currently only supports having up to 4,294,967,296 unique doors or keys.
+	public List<int> unlockedDoors = new List<int>(); //dictionary of which doors have been unlocked. If a door is unlocked, it will generate a unique int hash and add itself to this dictionary, with a value of true.
+	public List<int> pickedUpKeys = new List<int>(); //dictionary of which keys have been picked up. If a key is picked up, it will generate a unique int hash and add itself to this dictionary, with a value of true.
 
 	//if upgrades are implemented, we can have a set of flags indicating which have been unlocked
 
 	//TODO: add even more bools that represent progress in dialogues, in case we want some things to not be repeated ever
 	//to make characters say different thigns as the game progresses, we can either use the above boss-killed flags to determine what a character says,
 	//or determine what is said using flags that are declared here (for more granular control)
-
-
-	//TODO: give all keys and spell items fields here so that the player cannot pick up a key/spell, save/load, and have it respawn.
-	//TODO: give all locked door fields here so that an unlocked door will stay unlocked
 }
