@@ -8,7 +8,7 @@ using System.Globalization;
 public class DevConsole : MonoBehaviour {
 
 	private enum Command {
-		none, echo, load, takeDamage, spendMana
+		none, echo, loadScene, takeDamage, spendMana, save
 	}
 
 	private Command currentMode;
@@ -23,7 +23,8 @@ public class DevConsole : MonoBehaviour {
 					currentMode = Command.echo;
 					break;
 				case "load":
-					currentMode = Command.load;
+				case "loadscene":
+					currentMode = Command.loadScene;
 					break;
 				case "takedamage":
 				case "dmg":
@@ -32,6 +33,9 @@ public class DevConsole : MonoBehaviour {
 				case "spendmana":
 				case "lmana":
 					currentMode = Command.spendMana;
+					break;
+				case "save":
+					currentMode = Command.save;
 					break;
 				default:
 					Debug.Log("Error: '" + word + "' is not a recognzed command.");
@@ -45,7 +49,7 @@ public class DevConsole : MonoBehaviour {
 			case Command.echo:
 				Debug.Log(word);
 				return;
-			case Command.load:
+			case Command.loadScene:
 				DevLoadLevel(word);
 				return;
 			case Command.takeDamage:
@@ -53,6 +57,9 @@ public class DevConsole : MonoBehaviour {
 				break;
 			case Command.spendMana:
 				gameObject.SendMessageUpwards("SpendMana", Int32.Parse(word, NumberStyles.AllowLeadingSign));
+				break;
+			case Command.save:
+				GameSaver.SaveGame ();
 				break;
 			}
 		}
