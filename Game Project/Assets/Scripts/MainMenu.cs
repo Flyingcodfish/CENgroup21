@@ -6,16 +6,19 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour {
 
 	GameObject player;
+	LevelLoader loader;
 
 	void Start (){
+		loader = FindObjectOfType<LevelLoader> ();
 		player = GameObject.FindWithTag("Player");
 		Destroy (player);
 	}
 
     public void NewGame()
     {
-		GameSaver.liveSave = new SavedGame (); //resets current saved data
-		SceneManager.LoadScene("test");
+		Debug.Log ("Starting new game.");
+		GameSaver.liveSave = new SavedGame(); //resets current saved data
+		loader.LoadLevel(SceneUtility.GetBuildIndexByScenePath("test")); //fight me
     }
 
 	public void LoadGame()
