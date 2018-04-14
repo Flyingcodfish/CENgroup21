@@ -223,7 +223,7 @@ public class DialogueManager4 : MonoBehaviour
         if (iterator == 26)
         {
             nameText.text = "";
-            dialogueText.text = "You can now access the Fire Dungeon by stepping on the orange teleport pad at the beach";
+            dialogueText.text = "You can now access the Fire Dungeon by stepping on the orange teleport at the hub.";
             GameSaver.liveSave.firetutorialpoint = true;
             return;
         }
@@ -231,7 +231,7 @@ public class DialogueManager4 : MonoBehaviour
         if (iterator == 27)
         {
             nameText.text = "Gobby";
-            dialogueText.text = GameSaver.liveSave.playerName + ", let's go back to the beach! Bye, Lato!";
+            dialogueText.text = GameSaver.liveSave.playerName + ", time to head out! Bye, Lato!";
             return;
         }
 
@@ -244,7 +244,7 @@ public class DialogueManager4 : MonoBehaviour
 
         if (iterator == 29)
         {
-            SceneManager.LoadScene("test");
+            SceneManager.LoadScene("hub");
         }
     }
 }

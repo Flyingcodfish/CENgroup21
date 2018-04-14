@@ -10,11 +10,45 @@ public class DialogueManager3 : MonoBehaviour
     public Text nameText;
     public Text dialogueText;
     public GameObject chatBox;
+    public GameObject arrow1;
+    public GameObject exclamation;
+    public GameObject exclamation2;
+    public GameObject question;
+    public GameObject question2;
+    public GameObject firearrow;
+    public GameObject firearrow2;
+    public GameObject waterarrow;
+    public GameObject waterarrow2;
+    public GameObject mazearrow;
+    public GameObject mazearrow2;
     private int iterator = 0;
 
     void Start()
     {
-        DisplayDialogue();
+        if (!GameSaver.liveSave.firetutorialpoint) DisplayDialogue();
+        else
+        {
+            arrow1.SetActive(false);
+            exclamation.SetActive(false);
+            exclamation2.SetActive(false);
+            question.SetActive(false);
+            question2.SetActive(false);
+            if (!GameSaver.liveSave.watertutorialpoint)
+            {
+                firearrow.SetActive(true);
+                firearrow2.SetActive(true);
+            }
+            else if (GameSaver.liveSave.watertutorialpoint && !GameSaver.liveSave.mazetutorialpoint)
+            {
+                waterarrow.SetActive(true);
+                waterarrow2.SetActive(true);
+            }
+            else if (GameSaver.liveSave.mazetutorialpoint)
+            {
+                mazearrow.SetActive(true);
+                mazearrow2.SetActive(true);
+            }
+        }
     }
 
     public void iterate()

@@ -99,4 +99,5 @@ public class SavedGame {
 	public bool firespell = false;
 	public bool firetutorialpoint = false;
 	public bool watertutorialpoint = false;
+    public bool mazetutorialpoint = false;
 }
