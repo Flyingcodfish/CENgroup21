@@ -14,6 +14,7 @@ public class KeyText : MonoBehaviour {
 		player = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
 		text = GetComponent<Text>();
 		count = player.hasKeys;
+		text.text = count.ToString ();
 	}
 	
 	// Update is called once per frame

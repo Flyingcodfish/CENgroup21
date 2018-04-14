@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum ItemType {MANA,HEALTH,SWIFT,STRENGTH,POWER, SPELL_ICE, SPELL_FIRE}; // creates types for specific in game items 
+public enum ItemType {MANA,HEALTH,SWIFT,STRENGTH,POWER, SPELL_ICE, SPELL_FIRE, SPELL_PUSH}; // creates types for specific in game items 
 
 public class Item : MonoBehaviour
 {
@@ -51,6 +51,17 @@ public class Item : MonoBehaviour
     }
     public bool isSpell()
     {
-		return (type == ItemType.SPELL_ICE || type == ItemType.SPELL_FIRE);// just have or for each spell type 
+		return (type == ItemType.SPELL_ICE || type == ItemType.SPELL_FIRE || type == ItemType.SPELL_PUSH);// just have or for each spell type 
     }
+
+	//if this spell item has been picked up before, pretend it doesn't exist.
+	public void Start(){
+		if (type == ItemType.SPELL_ICE  && GameSaver.liveSave.spellTaken [0] ||
+		    type == ItemType.SPELL_FIRE && GameSaver.liveSave.spellTaken [1] ||
+		    type == ItemType.SPELL_PUSH && GameSaver.liveSave.spellTaken [2])
+		{
+			Destroy (this.gameObject);
+		}
+	}
+
 }

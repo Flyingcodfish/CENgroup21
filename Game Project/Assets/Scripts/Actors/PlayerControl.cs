@@ -52,6 +52,15 @@ public class PlayerControl : Actor {
 		Object.DontDestroyOnLoad(this); //player object should be persistent
 		currentMana = maxMana;
 		StartCoroutine (ManaRegen ());
+
+		//we're loading a save, rather than starting a new game. Set some values from the save file.
+		if (GameSaver.liveSave.hasBeenSaved == true) {
+			Debug.Log ("Player is loading values from live saved game.");
+			currentHealth = GameSaver.liveSave.currentHealth;
+			currentMana = GameSaver.liveSave.currentMana;
+			hasKeys = GameSaver.liveSave.hasKeys;
+			hasMoney = GameSaver.liveSave.hasMoney;
+		}
 	}
 
 	override public IEnumerator Die(){

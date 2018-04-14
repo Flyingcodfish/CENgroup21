@@ -2,35 +2,49 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+
 //not static, but there should only be one.
 //It's a way of implenting a singleton class. Basically static, but it can store instances (like liveSave).
-public class GameSaver {
+public static class GameSaver {
 
-	public static GameSaver gameSaverInstance; 	//global field: rather than using FindObjectWithTag or something,
-												//a permanent reference to the singleton GameSaver instance is at "GameSaver.gameSaverInstance"
+	//this is a global field: GameSaver.liveSave can be reference anywhere to access/change the current game state.
+	public static SavedGame liveSave; //the "live" version (in RAM) of the most recently loaded or created save. Written to disk when game is saved, changed when game is loaded.
 
-	public SavedGame liveSave; //the "live" version (in RAM) of the most recently loaded or created save. Written to disk when game is saved, changed when game is loaded.
+	public static bool SaveGame(/*int saveSlot*/) {
+		//tell the save file that it's been saved. If it's loaded later, PlayerControl will see this fact and load traits from the live save.
+		liveSave.hasBeenSaved = true;
+		//save the current scene name. Should we save actual x,y location? probably not.
+		liveSave.sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name;
 
-
-	public GameSaver(){
-		if (gameSaverInstance == null) {
-			gameSaverInstance = this;
-			liveSave = new SavedGame ();
+		//write PlayerControl fields to liveSave, and stage for writing to disk.
+		PlayerControl player = Object.FindObjectOfType<PlayerControl>();
+		Debug.Log ("Saving. Player found? " + ((player == null) ? "N" : "Y"));
+		if (player != null){
+			liveSave.currentMana = player.currentMana;
+			liveSave.currentHealth = player.currentHealth;
+			liveSave.hasKeys = player.hasKeys;
+			liveSave.hasMoney = player.hasMoney; //TODO: integrate with tyler's stuff. is this the correct field name?
 		}
-		else {
-			Debug.Log ("Error: there should never be more than one gameSaver. Deleting the newer instance.");
-		}
-	}
 
-	public bool SaveGame(/*int saveSlot*/) {
-		//TODO: collect data from live save passed in. encrypt data and write it to a file
+		//serialize data from live save. write to a file.
+		BinaryFormatter serializer = new BinaryFormatter();
+		Directory.CreateDirectory (Application.dataPath + "/Saves/"); //creates saves directory if it's not already present
+		FileStream saveFile = File.Create (Application.dataPath + "/Saves/save.mg21");
+		serializer.Serialize (saveFile, liveSave);
+		saveFile.Close ();
+		Debug.Log ("Saved game to " + Application.dataPath + "/Saves/save.mg21");
 		return true;
 	}
 
 
-	public bool LoadGame(/*int saveSlot*/) {
-		//TODO: read and decrypt saved game data from file; write it to the passed SavedGame object reference
-		//TODO: add code to playerControl script that sets all relevant PlayerControl fields
+	public static bool LoadGame(/*int saveSlot*/) {
+		//read and deserialize saved game data from file
+		BinaryFormatter deserializer = new BinaryFormatter();
+		FileStream saveFile = File.OpenRead (Application.dataPath + "/Saves/save.mg21");
+		liveSave = (SavedGame)deserializer.Deserialize (saveFile);
+		saveFile.Close ();
 		return true; //returns true if successful
 	}
 
@@ -42,22 +56,43 @@ public class GameSaver {
 
 }
 
+//serializable: can be converted into straight binary data, which we will read from / write to a file on disk
+[System.Serializable]
 public class SavedGame {
 	//stores data of a saved game. Instantiated and filled with data on load.
 	public string playerName = "(name not assigned)";
+<<<<<<< HEAD
     public bool firespell = false;
     public bool firetutorialpoint = false;
     public bool watertutorialpoint = false;
 	public int slot; //only used if we want to have multiple save slots, requires more work and an extra main menu screen
 	public string[] playerInventory; //TODO: integrate with Tyler's existing inventory saving/loading (rather than using playerPrefs). Can be something other than a string array
+=======
+	public bool hasBeenSaved = false; //used by playerControl to determine if it should load traits from this saved file (true) or use its own default values (false).
 
-	//fields we'll want but aren't yet functional
-	public float mana;
-	public float currentHealth;
-	public string location; //scene player last entered; we might want more granular control with multiple spawnPoints per scene
+	//public int saveSlot; //only used if we want to have multiple save slots, requires more work and an extra main menu screen
+	public string[] playerInventory; //TODO: integrate with Tyler's existing inventory saving/loading (rather than using playerPrefs). Can of course be something other than a string array.
 
-	public bool[] bossKilled; //array of three bools, indexed by boss
-	public bool[] padUnlocked; //array of three bools, indexed by teleoport pad
+	//PlayerControl fields
+	public float currentMana;
+	public int currentHealth;
+	public int hasKeys;
+	public int hasMoney; //TODO: integrate with tyler's stuff. is this the correct field name?
+	public string sceneName; //scene player last entered; we might want more granular control with multiple spawnPoints per scene
+//	public string location; //more specific location; for when there are multiple spawnpoints in a scene. Not currently implemented
+
+	//story progression fields
+	public bool[] bossKilled = new bool[3]; //array of three bools, indexed by boss number. Default values are false
+	public bool[] padUnlocked = new bool[3]; //array of three bools, indexed by teleport pad number. Default values are false
+	//TODO: integrate with tyler's inventory. Set spellTaken flags when spells are picked up.
+	public bool[] spellTaken = new bool[3]; //0 - ice spell; 1 - fireball; 2 - push spell. False: not yet picked up, item should spawn. True: item claimed, should not be present on ground.
+>>>>>>> 0bf4f7ee6cb000bae7d39a170c4de468a4e6e95a
+
+	//used to make doors stay unlocked, and keys stay picked up when a game is loaded. Currently only supports having up to 4,294,967,296 unique doors or keys.
+	public List<int> unlockedDoors = new List<int>(); //dictionary of which doors have been unlocked. If a door is unlocked, it will generate a unique int hash and add itself to this dictionary, with a value of true.
+	public List<int> pickedUpKeys = new List<int>(); //dictionary of which keys have been picked up. If a key is picked up, it will generate a unique int hash and add itself to this dictionary, with a value of true.
+
+	//if upgrades are implemented, we can have a set of flags indicating which have been unlocked
 
 	//TODO: add even more bools that represent progress in dialogues, in case we want some things to not be repeated ever
 	//to make characters say different thigns as the game progresses, we can either use the above boss-killed flags to determine what a character says,
