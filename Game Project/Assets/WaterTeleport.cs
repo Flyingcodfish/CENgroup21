@@ -14,7 +14,7 @@ public class WaterTeleport : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if (!GameSaver.gameSaverInstance.liveSave.watertutorialpoint)
+            if (!GameSaver.liveSave.watertutorialpoint)
             {
                 warning.SetActive(true);
             }
@@ -31,7 +31,7 @@ public class WaterTeleport : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if (!GameSaver.gameSaverInstance.liveSave.watertutorialpoint)
+            if (!GameSaver.liveSave.watertutorialpoint)
             {
                 warning.SetActive(false);
             }

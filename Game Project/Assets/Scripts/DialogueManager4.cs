@@ -33,7 +33,7 @@ public class DialogueManager4 : MonoBehaviour
         if (iterator == 0)
         {
             chatBox.SetActive(true);
-            nameText.text = GameSaver.gameSaverInstance.liveSave.playerName;
+            nameText.text = GameSaver.liveSave.playerName;
             dialogueText.text = "(Gobby takes you into a house, where another unfamiliar face greets you with familiarity.)";
             return;
         }
@@ -55,7 +55,7 @@ public class DialogueManager4 : MonoBehaviour
         if (iterator == 3)
         {
             exclamation.SetActive(true);
-            dialogueText.text = "Gobby and " + GameSaver.gameSaverInstance.liveSave.playerName + "! That’s a duo I wasn’t expecting to see again.";
+            dialogueText.text = "Gobby and " + GameSaver.liveSave.playerName + "! That’s a duo I wasn’t expecting to see again.";
             return;
         }
 
@@ -78,7 +78,7 @@ public class DialogueManager4 : MonoBehaviour
         if (iterator == 6)
         {
             elipses.SetActive(false);
-            nameText.text = GameSaver.gameSaverInstance.liveSave.playerName;
+            nameText.text = GameSaver.liveSave.playerName;
             dialogueText.text = "(Lato steps closer and examines you.)";
             return;
         }
@@ -86,7 +86,7 @@ public class DialogueManager4 : MonoBehaviour
         if (iterator == 7)
         {
             nameText.text = "Lato";
-            dialogueText.text = GameSaver.gameSaverInstance.liveSave.playerName + ", mind lighting a fire for me?";
+            dialogueText.text = GameSaver.liveSave.playerName + ", mind lighting a fire for me?";
             return;
         }
 
@@ -98,7 +98,7 @@ public class DialogueManager4 : MonoBehaviour
 
         if (iterator == 9)
         {
-            if (!GameSaver.gameSaverInstance.liveSave.firespell) DisplayDialogue();
+            if (!GameSaver.liveSave.firespell) DisplayDialogue();
             else
             {
                 iterator++;
@@ -116,7 +116,7 @@ public class DialogueManager4 : MonoBehaviour
         if (iterator == 11)
         {
             nameText.text = "Gobby";
-            dialogueText.text = "So you’re saying " + GameSaver.gameSaverInstance.liveSave.playerName + " doesn’t remember me? Or you?";
+            dialogueText.text = "So you’re saying " + GameSaver.liveSave.playerName + " doesn’t remember me? Or you?";
             return;
         }
 
@@ -143,7 +143,7 @@ public class DialogueManager4 : MonoBehaviour
 
         if (iterator == 15)
         {
-            nameText.text = GameSaver.gameSaverInstance.liveSave.playerName;
+            nameText.text = GameSaver.liveSave.playerName;
             dialogueText.text = "M-me..?";
             return;
         }
@@ -202,13 +202,13 @@ public class DialogueManager4 : MonoBehaviour
         if (iterator == 23)
         {
             nameText.text = "Gobby";
-            dialogueText.text = GameSaver.gameSaverInstance.liveSave.playerName + ", is this okay with you? You don’t have to do this.";
+            dialogueText.text = GameSaver.liveSave.playerName + ", is this okay with you? You don’t have to do this.";
             return;
         }
 
         if (iterator == 24)
         {
-            nameText.text = GameSaver.gameSaverInstance.liveSave.playerName;
+            nameText.text = GameSaver.liveSave.playerName;
             dialogueText.text = "I guess..?";
             return;
         }
@@ -224,21 +224,21 @@ public class DialogueManager4 : MonoBehaviour
         {
             nameText.text = "";
             dialogueText.text = "You can now access the Fire Dungeon by stepping on the orange teleport pad at the beach";
-            GameSaver.gameSaverInstance.liveSave.firetutorialpoint = true;
+            GameSaver.liveSave.firetutorialpoint = true;
             return;
         }
 
         if (iterator == 27)
         {
             nameText.text = "Gobby";
-            dialogueText.text = GameSaver.gameSaverInstance.liveSave.playerName + ", let's go back to the beach! Bye, Lato!";
+            dialogueText.text = GameSaver.liveSave.playerName + ", let's go back to the beach! Bye, Lato!";
             return;
         }
 
         if (iterator == 28)
         {
             nameText.text = "Lato";
-            dialogueText.text = "(waves) Take care, Gobby! And best of luck to you, Sorcerer " + GameSaver.gameSaverInstance.liveSave.playerName + ".";
+            dialogueText.text = "(waves) Take care, Gobby! And best of luck to you, Sorcerer " + GameSaver.liveSave.playerName + ".";
             return;
         }
 

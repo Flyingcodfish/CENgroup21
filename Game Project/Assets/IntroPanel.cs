@@ -7,10 +7,10 @@ public class IntroPanel : MonoBehaviour {
     public GameObject fireArrow;
 	// Use this for initialization
 	void Start () {
-        if (GameSaver.gameSaverInstance.liveSave.firetutorialpoint)
+        if (GameSaver.liveSave.firetutorialpoint)
         {
             gameObject.SetActive(false);
-            if (!GameSaver.gameSaverInstance.liveSave.watertutorialpoint)
+            if (!GameSaver.liveSave.watertutorialpoint)
             {
                 fireArrow.SetActive(true);
             }

@@ -28,7 +28,7 @@ public class DialogueManager3 : MonoBehaviour
         if (iterator == 0)
         {
             chatBox.SetActive(true);
-            nameText.text = GameSaver.gameSaverInstance.liveSave.playerName;
+            nameText.text = GameSaver.liveSave.playerName;
             dialogueText.text = "(You find yourself in a quaint town. Villagers seem to perk up at the news of your arrival, and you’re met with hopeful smiles from unfamiliar people.)";
             return;
         }
@@ -36,7 +36,7 @@ public class DialogueManager3 : MonoBehaviour
         if (iterator == 1)
         {
             nameText.text = "Gobby";
-            dialogueText.text = GameSaver.gameSaverInstance.liveSave.playerName + ", over here!";
+            dialogueText.text = GameSaver.liveSave.playerName + ", over here!";
             return;
         }
 

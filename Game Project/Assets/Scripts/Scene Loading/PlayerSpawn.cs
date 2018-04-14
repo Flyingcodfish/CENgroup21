@@ -31,8 +31,6 @@ public class PlayerSpawn : MonoBehaviour {
 
 		playerInstance.GetComponent<SpriteRenderer> ().material = sceneMaterial; //allows scenes to use dynamic lighting
 
-		Debug.Log("Loaded scene with player. Player name is '" + GameSaver.liveSave.playerName + ".'");
-
 		//turn off preview sprite
 		this.GetComponent<SpriteRenderer>().enabled = false;
 

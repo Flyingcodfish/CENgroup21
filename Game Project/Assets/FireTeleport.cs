@@ -14,7 +14,7 @@ public class FireTeleport : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if (!GameSaver.gameSaverInstance.liveSave.firetutorialpoint)
+            if (!GameSaver.liveSave.firetutorialpoint)
             {
                 warning.SetActive(true);
             }
@@ -31,7 +31,7 @@ public class FireTeleport : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if (!GameSaver.gameSaverInstance.liveSave.firetutorialpoint)
+            if (!GameSaver.liveSave.firetutorialpoint)
             {
                 warning.SetActive(false);
             }
