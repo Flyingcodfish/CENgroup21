@@ -224,10 +224,9 @@ public class PlayerControl : Actor {
 
 
 	public void CastFire(){
-        GameSaver.gameSaverInstance.liveSave.firespell = true;
+        GameSaver.liveSave.firespell = true;
 		AnimateCast ();
 		if (bombTimer <= 0 && SpendMana(bomb_manaCost)){
-			//animator.
 			bombTimer = bombTime;
 			FireBomb bomb = Instantiate<FireBomb>(bomb_object, transform.position + (Vector3)facing*spellDistance, Quaternion.identity);
 			bomb.Initialize(facing * 0.12f, this.teamComponent.team, this.power);

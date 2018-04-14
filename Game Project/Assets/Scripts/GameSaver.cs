@@ -57,21 +57,15 @@ public static class GameSaver {
 }
 
 //serializable: can be converted into straight binary data, which we will read from / write to a file on disk
+//stores data of a saved game. Instantiated and filled with data on load.
 [System.Serializable]
 public class SavedGame {
-	//stores data of a saved game. Instantiated and filled with data on load.
+
+	//basic save data
 	public string playerName = "(name not assigned)";
-<<<<<<< HEAD
-    public bool firespell = false;
-    public bool firetutorialpoint = false;
-    public bool watertutorialpoint = false;
-	public int slot; //only used if we want to have multiple save slots, requires more work and an extra main menu screen
-	public string[] playerInventory; //TODO: integrate with Tyler's existing inventory saving/loading (rather than using playerPrefs). Can be something other than a string array
-=======
+//	public int slot; //only used if we want to have multiple save slots, requires more work and an extra main menu screen
 	public bool hasBeenSaved = false; //used by playerControl to determine if it should load traits from this saved file (true) or use its own default values (false).
 
-	//public int saveSlot; //only used if we want to have multiple save slots, requires more work and an extra main menu screen
-	public string[] playerInventory; //TODO: integrate with Tyler's existing inventory saving/loading (rather than using playerPrefs). Can of course be something other than a string array.
 
 	//PlayerControl fields
 	public float currentMana;
@@ -81,20 +75,28 @@ public class SavedGame {
 	public string sceneName; //scene player last entered; we might want more granular control with multiple spawnPoints per scene
 //	public string location; //more specific location; for when there are multiple spawnpoints in a scene. Not currently implemented
 
-	//story progression fields
+
+	//player inventory
+	public string[] playerInventory; //TODO: integrate with Tyler's existing inventory saving/loading (rather than using playerPrefs). Can of course be something other than a string array.
+
+
+	//unlocks and mechanical progression
 	public bool[] bossKilled = new bool[3]; //array of three bools, indexed by boss number. Default values are false
 	public bool[] padUnlocked = new bool[3]; //array of three bools, indexed by teleport pad number. Default values are false
 	//TODO: integrate with tyler's inventory. Set spellTaken flags when spells are picked up.
 	public bool[] spellTaken = new bool[3]; //0 - ice spell; 1 - fireball; 2 - push spell. False: not yet picked up, item should spawn. True: item claimed, should not be present on ground.
->>>>>>> 0bf4f7ee6cb000bae7d39a170c4de468a4e6e95a
+
 
 	//used to make doors stay unlocked, and keys stay picked up when a game is loaded. Currently only supports having up to 4,294,967,296 unique doors or keys.
 	public List<int> unlockedDoors = new List<int>(); //dictionary of which doors have been unlocked. If a door is unlocked, it will generate a unique int hash and add itself to this dictionary, with a value of true.
 	public List<int> pickedUpKeys = new List<int>(); //dictionary of which keys have been picked up. If a key is picked up, it will generate a unique int hash and add itself to this dictionary, with a value of true.
 
+
 	//if upgrades are implemented, we can have a set of flags indicating which have been unlocked
 
-	//TODO: add even more bools that represent progress in dialogues, in case we want some things to not be repeated ever
-	//to make characters say different thigns as the game progresses, we can either use the above boss-killed flags to determine what a character says,
-	//or determine what is said using flags that are declared here (for more granular control)
+
+	//story progression flags
+	public bool firespell = false;
+	public bool firetutorialpoint = false;
+	public bool watertutorialpoint = false;
 }
