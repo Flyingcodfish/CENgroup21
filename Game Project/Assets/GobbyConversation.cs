@@ -10,7 +10,7 @@ public class GobbyConversation : MonoBehaviour {
     {
         if (collision.CompareTag("Player"))
         {
-            startConvo.SetActive(true);
+            if (!GameSaver.gameSaverInstance.liveSave.firetutorialpoint) startConvo.SetActive(true);
         }
     }
 

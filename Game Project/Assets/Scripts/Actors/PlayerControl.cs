@@ -215,6 +215,7 @@ public class PlayerControl : Actor {
 
 
 	public void CastFire(){
+        GameSaver.gameSaverInstance.liveSave.firespell = true;
 		AnimateCast ();
 		if (bombTimer <= 0 && SpendMana(bomb_manaCost)){
 			//animator.

@@ -45,6 +45,9 @@ public class GameSaver {
 public class SavedGame {
 	//stores data of a saved game. Instantiated and filled with data on load.
 	public string playerName = "(name not assigned)";
+    public bool firespell = false;
+    public bool firetutorialpoint = false;
+    public bool watertutorialpoint = false;
 	public int slot; //only used if we want to have multiple save slots, requires more work and an extra main menu screen
 	public string[] playerInventory; //TODO: integrate with Tyler's existing inventory saving/loading (rather than using playerPrefs). Can be something other than a string array
 
