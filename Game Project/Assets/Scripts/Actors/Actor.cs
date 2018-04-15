@@ -20,7 +20,9 @@ public abstract class Actor : MonoBehaviour {
 	//status effect fields; protected so there's no temptation for other objects to set them directly
 	protected float power = 1f;
 	public float GetPower(){return power;} //used by hitboxes
-	protected float strength = 1f;
+    public void AddPower(float value) { strength += value; } // used to upgrade power of actor 
+    protected float strength = 1f;
+    public void AddStrength(float value) { strength -= value; Debug.Log("Strength is: " + strength); } // used to upgrade strength of actor
 	protected int frozenStatus = 0; //integer: +1 when frozen, -1 when freezes end. Allows multiple sources to overlap freeze duration, but not stack effects.
 
 	//health and damage fields

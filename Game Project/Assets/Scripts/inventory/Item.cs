@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public enum ItemType {MANA,HEALTH,SWIFT,STRENGTH,POWER, SPELL_ICE, SPELL_FIRE, SPELL_PUSH, ARMOR, SHOP_HEALTH, SHOP_MANA}; // creates types for specific in game items 
 
 public class Item : MonoBehaviour
@@ -38,7 +37,7 @@ public class Item : MonoBehaviour
     {
         switch (type)
         {
-        case ItemType.HEALTH:
+        case ItemType.HEALTH: // Potion uses 
 			player.TakeDamage(-50);
             break;
         case ItemType.MANA:
@@ -53,7 +52,7 @@ public class Item : MonoBehaviour
         case ItemType.POWER:
 			player.ModifyEffect(Actor.Effect.PowerUp, powerTime, powerModifier);
             break;
-		case ItemType.SPELL_ICE:
+		case ItemType.SPELL_ICE: // Spell uses 
 			player.CastIce();
 			break;
 		case ItemType.SPELL_FIRE:
@@ -61,6 +60,9 @@ public class Item : MonoBehaviour
 			break;
 		case ItemType.SPELL_PUSH:
 			player.CastPush();
+			break;
+		case ItemType.ARMOR: // Upgrade uses
+                	player.AddStrength(0.1f); 
 			break;
         }
     }
