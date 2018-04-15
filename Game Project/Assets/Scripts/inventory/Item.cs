@@ -47,6 +47,9 @@ public class Item : MonoBehaviour
 		case ItemType.SPELL_FIRE:
 			player.CastFire();
 			break;
+		case ItemType.SPELL_PUSH:
+			player.CastPush();
+			break;
         }
     }
     public bool isSpell()
