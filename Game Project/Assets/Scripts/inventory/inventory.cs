@@ -11,7 +11,7 @@ public class inventory : MonoBehaviour {
 
 	private float inventoryWidth, inventoryHeight;
 
-	public int slots, rows, spells;
+	public int slots, rows, spells, chests;
 
 	public float slotPaddingLeft, slotPaddingTop, slotSize;
 
@@ -97,8 +97,8 @@ public class inventory : MonoBehaviour {
             if (!Manager.Instance.eventSystem.IsPointerOverGameObject(-1) && Manager.Instance.From != null) // if mouse pointer not over game object 
             {
                 Manager.Instance.From.GetComponent<Image>().color = Color.white;
-                Debug.Log("Shop Item" + Manager.Instance.From.Items.Peek().isShop());
-                if (!Manager.Instance.From.Items.Peek().isSpell() && !Manager.Instance.From.Items.Peek().isShop())// if its not a spell and shop item its safe to clear the slot 
+                Debug.Log("Shop Item" + Manager.Instance.From.Shop);
+                if (!Manager.Instance.From.Items.Peek().isSpell() && !Manager.Instance.From.Shop)// if its not a spell and shop item its safe to clear the slot 
                 {
                     Manager.Instance.From.ClearSlot();
                     emptySlots++;
@@ -177,12 +177,20 @@ public class inventory : MonoBehaviour {
                 if (count < spells)// first slots for Spell items designated by member field 
                 {
                     newSlot = (GameObject)Instantiate(Manager.Instance.spellSlotPrefab);
+                    newSlot.GetComponent<slot>().useTxt.text = "[" + UseSlotNum(x, y).ToString() + "]";
                     newSlot.name = "Spell";
+                    count++;
+                }
+                else if(count < chests) // else is a chest inventory 
+                {
+                    newSlot = (GameObject)Instantiate(Manager.Instance.chestSlotPrefab);
+                    newSlot.name = "Slot";
                     count++;
                 }
                 else
                 {
                     newSlot = (GameObject)Instantiate(Manager.Instance.slotPrefab);
+                    newSlot.GetComponent<slot>().useTxt.text = "[" + UseSlotNum(x,y).ToString() + "]"; 
                     newSlot.name = "Slot";
                 }
 
@@ -221,10 +229,21 @@ public class inventory : MonoBehaviour {
                 slot tmp = slot.GetComponent<slot>();
                 if (!tmp.IsEmpty)
                 {
-                    slot.GetComponent<slot>().CurrentItem.shopItem = true;
+                   tmp.Shop = true;
+                    tmp.useTxt.text =  tmp.Items.Peek().value.ToString();
+                    tmp.useTxt.color = Color.magenta;
+                    tmp.useTxt.fontSize = 3;
+                }
+                else
+                {
+                    tmp.useTxt.text = string.Empty;
                 }
             }
         }
+    }
+    private int UseSlotNum(int x, int y)
+    {
+        return (x + y + 1) >= 10 ? 0 : x + y + 1;
     }
 	public bool AddItem(Item item)// inventory on player and then call when wanting to add item
 	{
@@ -425,11 +444,30 @@ public class inventory : MonoBehaviour {
             content = arg;
         }
         slots = PlayerPrefs.GetInt(gameObject.name + "slots");
+        if(slots == 0)
+        {
+            slots = 10;
+        }
         rows = PlayerPrefs.GetInt(gameObject.name + "rows");
+        if(rows == 0)
+        {
+            rows = 1;
+        }
         slotPaddingLeft = PlayerPrefs.GetFloat(gameObject.name + "slotPaddingLeft");
+        if(slotPaddingLeft == 0)
+        {
+            slotPaddingLeft = 2;
+        }
         slotPaddingTop = PlayerPrefs.GetFloat(gameObject.name + "slotPaddingTop");
+        if(slotPaddingTop == 0)
+        {
+            slotPaddingTop = 2;
+        }
         slotSize = PlayerPrefs.GetFloat(gameObject.name + "slotSize");
-
+        if(slotSize == 0)
+        {
+            slotSize = 30;
+        }
         CreateLayout();
 
         string[] splitContent = content.Split(';'); // delims by each slot 
@@ -466,6 +504,12 @@ public class inventory : MonoBehaviour {
                         break;
                     case ItemType.ARMOR:
                         allSlots[index].GetComponent<slot>().AddItem(Manager.Instance.armor.GetComponent<Item>());
+                        break;
+                    case ItemType.SWORD:
+                        allSlots[index].GetComponent<slot>().AddItem(Manager.Instance.sword.GetComponent<Item>());
+                        break;
+                    case ItemType.BOOTS:
+                        allSlots[index].GetComponent<slot>().AddItem(Manager.Instance.boots.GetComponent<Item>());
                         break;
                 }
             }
