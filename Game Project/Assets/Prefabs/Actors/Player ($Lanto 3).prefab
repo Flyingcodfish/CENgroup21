@@ -525,7 +525,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1621778042324258}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.2798996, y: -5.083654, z: 0}
+  m_LocalPosition: {x: -4.680606, y: -2.5129068, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224573240398283848}
@@ -928,6 +928,8 @@ MonoBehaviour:
   bomb_object: {fileID: 114925543551872718, guid: 090ec3340aa92634a9acfef58eec598f,
     type: 2}
   iceShardPrefab: {fileID: 114786623454023892, guid: cedb58da92376044e9c413c619a0a6d6,
+    type: 2}
+  pushPrefab: {fileID: 114372811209995004, guid: 7187d751c11709046801d4decaab08e0,
     type: 2}
   devConsole: {fileID: 1266974962456854}
   attackHitbox: {fileID: 114657046412538298}

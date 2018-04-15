@@ -28,6 +28,11 @@ public class PlayerControl : Actor {
 	private float iceTimer;
 
 
+	public PushSpell pushPrefab;
+	int push_manaCost = 10;
+	private float pushTime = 1f;
+	private float pushTimer; 
+
     //control fields
     private Vector2 input;
 	private Vector2 facing = Vector2.up;
@@ -184,7 +189,9 @@ public class PlayerControl : Actor {
 			iceTimer -= Time.deltaTime;
 		}
 
-
+		if (pushTimer >= 0){
+			pushTimer -= Time.deltaTime;
+		}
     }
 		
 	private void AnimateCast(){
@@ -225,11 +232,22 @@ public class PlayerControl : Actor {
 
 	public void CastFire(){
         GameSaver.liveSave.firespell = true;
-		AnimateCast ();
+
 		if (bombTimer <= 0 && SpendMana(bomb_manaCost)){
 			bombTimer = bombTime;
 			FireBomb bomb = Instantiate<FireBomb>(bomb_object, transform.position + (Vector3)facing*spellDistance, Quaternion.identity);
 			bomb.Initialize(facing * 0.12f, this.teamComponent.team, this.power);
+		}
+	}
+
+	public void CastPush() {
+		AnimateCast();
+
+		if (pushTimer <= 0 && SpendMana(push_manaCost)){
+			pushTimer = pushTime;
+			PushSpell push = Instantiate<PushSpell>(pushPrefab, transform.position + (Vector3)facing*spellDistance, Quaternion.identity);
+			push.transform.right = facing;
+			push.Initialize(facing * 0.12f, this.teamComponent.team, this.power);
 		}
 	}
 
