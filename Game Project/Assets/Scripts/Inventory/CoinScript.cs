@@ -14,7 +14,7 @@ public class CoinScript : MonoBehaviour {
     // Use this for initialization
     void Awake() {
         player = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
-        player.coins = 0;
+        player.coins = 1000000;
         SetText();
     }
     private void SetText(){
@@ -26,7 +26,7 @@ public class CoinScript : MonoBehaviour {
         switch (coin)
         {
             case CoinType.LargeCoin:
-                player.coins += 500;
+                player.coins += 50;
                 break;
         }
         SetText();

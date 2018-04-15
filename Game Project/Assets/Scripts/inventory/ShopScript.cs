@@ -16,7 +16,7 @@ public class ShopScript : MonoBehaviour {
     }
     public void Start()
     {
-        Manager.Instance.LoadSpecific("1-MANA-1;2-HEALTH-1;0-ARMOR-1;", "Shop Inventory"); // loads contents into specific inventory (contents,name)
+        Manager.Instance.LoadSpecific("0-ARMOR-1;1-BOOTS-1;2-SWORD-1;3-HEALTH-1;4-MANA-1;5-SWIFT-1;6-POWER-1;7-STRENGTH-1;", "Shop Inventory"); // loads contents into specific inventory (contents,name)
         shopInventory.RenameSlots("Shop");
         shopInventory.SetShopItems();
     }

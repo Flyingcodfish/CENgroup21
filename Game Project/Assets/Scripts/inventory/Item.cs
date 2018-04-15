@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum ItemType {MANA,HEALTH,SWIFT,STRENGTH,POWER, SPELL_ICE, SPELL_FIRE, ARMOR}; // creates types for specific in game items 
+public enum ItemType {MANA,HEALTH,SWIFT,STRENGTH,POWER, SPELL_ICE, SPELL_FIRE, ARMOR,SWORD,BOOTS}; // creates types for specific in game items 
 
 public class Item : MonoBehaviour
 {   
@@ -27,8 +27,6 @@ public class Item : MonoBehaviour
     public int value;
 
     public string description;
-
-    public bool shopItem;
 
     public void Awake()
     {
@@ -68,19 +66,23 @@ public class Item : MonoBehaviour
         case ItemType.ARMOR: // Upgrade uses
                 player.AddStrength(0.1f); 
             break;
+        case ItemType.SWORD:
+                Debug.Log("SWORD");
+                player.AddPower(0.1f);
+            break;
+        case ItemType.BOOTS:
+                player.AddSpeed(50f);
+            break;
+
         }
     }
     public bool isSpell()
     {
 		return (type == ItemType.SPELL_ICE || type == ItemType.SPELL_FIRE);// just have or for each spell type 
     }
-    public bool isShop()
-    {
-       return  shopItem; 
-    }
     public bool isUpgrade()
     {
-        return (type == ItemType.ARMOR); // just have one for each upgrade type 
+        return (type == ItemType.ARMOR || type == ItemType.SWORD || type == ItemType.BOOTS); // just have one for each upgrade type 
     }
 }
     

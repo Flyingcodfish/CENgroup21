@@ -11,7 +11,17 @@ public class slot : MonoBehaviour, IPointerClickHandler {
 
     private ShopScript shop;
 
-	public Text stackTxt;
+    private bool shopItem;
+
+    public bool Shop
+    {
+        get { return shopItem; }
+        set { shopItem = value; }
+    }
+
+    public Text stackTxt;
+
+    public Text useTxt;
 
 	public Sprite slotEmpty;
 	public Sprite slotHighlight;
@@ -54,6 +64,7 @@ public class slot : MonoBehaviour, IPointerClickHandler {
 	void Start () {
 		RectTransform slotRect = GetComponent<RectTransform>();
 		RectTransform txtRect = stackTxt.GetComponent<RectTransform>();
+        
 
 		int txtScaleFactor = (int)(slotRect.sizeDelta.x * 0.60);
 		stackTxt.resizeTextMaxSize = txtScaleFactor;
@@ -62,7 +73,17 @@ public class slot : MonoBehaviour, IPointerClickHandler {
 		txtRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, slotRect.sizeDelta.y);
 		txtRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, slotRect.sizeDelta.x);
 
-        if(transform.parent != null) // makes canvasGroup the same as parent if regular slot 
+        if(useTxt != null) // only shown and calculated if the slots have a definition of UseTxt and only happens for regular slots 
+        {
+            RectTransform useRect = useTxt.GetComponent<RectTransform>();
+            useTxt.resizeTextMaxSize = txtScaleFactor;
+            useTxt.resizeTextMinSize = txtScaleFactor;
+
+            useRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, slotRect.sizeDelta.y);
+            useRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, slotRect.sizeDelta.x);
+        }
+
+        if (transform.parent != null) // makes canvasGroup the same as parent if regular slot 
         {
             canvasGroup = transform.parent.GetComponent<CanvasGroup>();
         }
@@ -77,7 +98,6 @@ public class slot : MonoBehaviour, IPointerClickHandler {
 	public void AddItem(Item item)
 	{
 		Items.Push(item);
-
 		if (Items.Count > 1)
 		{
 			stackTxt.text = Items.Count.ToString();
@@ -114,7 +134,7 @@ public class slot : MonoBehaviour, IPointerClickHandler {
             {
                 Items.Peek().Use();
             }
-            else if (Items.Peek().isShop())// goes into shop options if shop item 
+            else if (shopItem)// goes into shop options if shop item 
             {
                 Debug.Log("About to Buy");
                 shop.Buy(Items.Peek());
