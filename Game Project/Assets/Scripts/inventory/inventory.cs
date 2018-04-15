@@ -465,6 +465,9 @@ public class inventory : MonoBehaviour {
                     case ItemType.STRENGTH:
                         allSlots[index].GetComponent<slot>().AddItem(Manager.Instance.strength.GetComponent<Item>());
                         break;
+                    case ItemType.ARMOR:
+                        allSlots[index].GetComponent<slot>().AddItem(Manager.Instance.armor.GetComponent<Item>());
+                        break;
                 }
             }
 

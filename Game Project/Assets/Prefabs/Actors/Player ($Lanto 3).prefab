@@ -319,6 +319,7 @@ GameObject:
   - component: {fileID: 222453869781908284}
   - component: {fileID: 114667427176120562}
   - component: {fileID: 114981717948079566}
+  - component: {fileID: 114908287053410854}
   m_Layer: 5
   m_Name: CoinHUD
   m_TagString: Untagged
@@ -962,7 +963,7 @@ MonoBehaviour:
   iceSpell: {fileID: 1542855276297634, guid: c8bcc826ce0465a4cb90d373ff4086bf, type: 2}
   strength: {fileID: 1127157588562124, guid: bc659bdefb3834342bd2d89188073ef5, type: 2}
   swift: {fileID: 1860981184223818, guid: 471dd639a55e0144fbdaf43fd39302d8, type: 2}
-  shop_mana: {fileID: 1771229265498306, guid: e16b22d04bc3c094ca42c05e11c319e9, type: 2}
+  armor: {fileID: 1496529847917020, guid: 87b28544b50281343be444b2455d539d, type: 2}
 --- !u!114 &114319896515579678
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1346,7 +1347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8014706, g: 0.48567814, b: 0.14732915, a: 1}
+  m_Color: {r: 0.95131844, g: 1, b: 0.11764705, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1366,7 +1367,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Coins: 500'
+  m_Text: 'Coins: '
 --- !u!114 &114609852091365746
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1495,14 +1496,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8235294, g: 0.70918745, b: 0.37543255, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300656, guid: c4cf21ddc9376b14b979b42c208e4dce, type: 3}
+  m_Sprite: {fileID: 21300772, guid: c4cf21ddc9376b14b979b42c208e4dce, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1591,6 +1592,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114908287053410854
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1580027436737224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aa708fc52e780d4eaa6ec6f0eb19e05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  coinText: {fileID: 114593436171023488}
 --- !u!114 &114910975685678124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1918,7 +1932,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -153, y: 22.52}
+  m_AnchoredPosition: {x: -142.56433, y: 22.519989}
   m_SizeDelta: {x: 51.5, y: 45.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224199459977956254
@@ -2201,7 +2215,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 102.53, y: 0.47999954}
+  m_AnchoredPosition: {x: 110.6, y: 0.47999954}
   m_SizeDelta: {x: 102.53, y: 45.04}
   m_Pivot: {x: 0.99999994, y: 0}
 --- !u!224 &224933618108993420

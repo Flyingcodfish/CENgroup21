@@ -16,17 +16,19 @@ public class ShopScript : MonoBehaviour {
     }
     public void Start()
     {
-        Manager.Instance.LoadSpecific("1-MANA-1;2-HEALTH-1;", "Shop Inventory"); // loads contents into specific inventory (contents,name)
+        Manager.Instance.LoadSpecific("1-MANA-1;2-HEALTH-1;0-ARMOR-1;", "Shop Inventory"); // loads contents into specific inventory (contents,name)
         shopInventory.RenameSlots("Shop");
         shopInventory.SetShopItems();
     }
     public void Buy(Item item)
     {
-        if(player.coins > item.value) // if the player has enough coins to buy 
+        if(player.coins >= item.value) // if the player has enough coins to buy 
         {
             if (item.isUpgrade()) // if its a upgrade just use right away 
             {
+                Debug.Log("is an upgrade");
                 item.Use();
+                playerCoins.MinusCoins(item.value);
             }
             else // else its a consumable so add to player inventory 
             {
