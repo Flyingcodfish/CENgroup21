@@ -30,7 +30,7 @@ public class PlayerControl : Actor {
 
 	public PushSpell pushPrefab;
 	int push_manaCost = 10;
-	private float pushTime = 1f;
+	private float pushTime = 0.6f;
 	private float pushTimer; 
 
     //control fields

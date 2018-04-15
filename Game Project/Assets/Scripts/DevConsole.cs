@@ -37,6 +37,9 @@ public class DevConsole : MonoBehaviour {
 				case "save":
 					currentMode = Command.save;
 					break;
+				case "name":
+					Debug.Log ("Player name is :" + GameSaver.liveSave.playerName);
+					break;
 				default:
 					Debug.Log("Error: '" + word + "' is not a recognzed command.");
 					return;

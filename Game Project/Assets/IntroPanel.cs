@@ -10,11 +10,13 @@ public class IntroPanel : MonoBehaviour {
         {
             gameObject.SetActive(false);
         }
-            
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+		if (GameSaver.liveSave.hasBeenNamed) {
+			//we already named the player. don't show this panel.
+			gameObject.SetActive (false);
+		}
+		else { //the player has not yet been named; turn them off until we name them
+			GameObject.FindObjectOfType<PlayerControl>().enabledAI = false;
+		}
 	}
 }

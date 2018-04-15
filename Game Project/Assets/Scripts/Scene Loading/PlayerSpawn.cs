@@ -13,11 +13,6 @@ public class PlayerSpawn : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		//creates a live SavedGame if none is present, only used when launching the game from NOT the main menu
-		if (GameSaver.liveSave == null) {
-			GameSaver.liveSave = new SavedGame ();
-		}
-
 		playerInstance = GameObject.FindWithTag("Player");
 		//spawn player if none present
 		if ( playerInstance == null){

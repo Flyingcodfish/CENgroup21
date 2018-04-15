@@ -12,7 +12,7 @@ public class QuitMenu : MonoBehaviour
 
     public void SaveQuit()
     {
-        //save game
+		GameSaver.SaveGame ();
         Application.Quit();
     }
 

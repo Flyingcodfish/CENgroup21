@@ -9,8 +9,8 @@ using System.IO;
 //It's a way of implenting a singleton class. Basically static, but it can store instances (like liveSave).
 public static class GameSaver {
 
-	//this is a global field: GameSaver.liveSave can be reference anywhere to access/change the current game state.
-	public static SavedGame liveSave; //the "live" version (in RAM) of the most recently loaded or created save. Written to disk when game is saved, changed when game is loaded.
+	//this is a global field: GameSaver.liveSave can be referenced anywhere to access/change the current game state.
+	public static SavedGame liveSave = new SavedGame(); //the "live" version (in RAM) of the most recently loaded or created save. Written to disk when game is saved, changed when game is loaded.
 
 	public static bool SaveGame(/*int saveSlot*/) {
 		//tell the save file that it's been saved. If it's loaded later, PlayerControl will see this fact and load traits from the live save.
@@ -48,7 +48,6 @@ public static class GameSaver {
 		return true; //returns true if successful
 	}
 
-
 	//	public static SaveList GetSaveList (){
 	//		//TODO: returns a yet undefined struct of save slots that exist. Intended to be called from a potential "choose a save slot" screen.
 	//		//Grabs basic information like slot number, name and inventory from each existing save, so that one can be chosen and loaded with the slot number.
@@ -65,7 +64,7 @@ public class SavedGame {
 	public string playerName = "(name not assigned)";
 //	public int slot; //only used if we want to have multiple save slots, requires more work and an extra main menu screen
 	public bool hasBeenSaved = false; //used by playerControl to determine if it should load traits from this saved file (true) or use its own default values (false).
-
+	public bool hasBeenNamed = false;
 
 	//PlayerControl fields
 	public float currentMana;
@@ -100,4 +99,5 @@ public class SavedGame {
 	public bool firetutorialpoint = false;
 	public bool watertutorialpoint = false;
     public bool mazetutorialpoint = false;
+
 }

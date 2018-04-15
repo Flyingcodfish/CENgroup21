@@ -13,7 +13,7 @@ public class ReturnMainMenu : MonoBehaviour {
 
     public void SaveGo()
     {
-        //save game
+		GameSaver.SaveGame ();
         Time.timeScale = 1f;
         SceneManager.LoadScene("Main Menu");
     }
