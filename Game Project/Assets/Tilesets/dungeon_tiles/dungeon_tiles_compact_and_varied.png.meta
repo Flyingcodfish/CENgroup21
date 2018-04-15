@@ -2856,6 +2856,24 @@ TextureImporter:
         - {x: 8, y: -8}
         - {x: 8, y: 8}
       tessellationDetail: 0
+    - serializedVersion: 2
+      name: dungeon_tiles_compact_and_varied_118
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: 8}
+        - {x: -8, y: -8}
+        - {x: 8, y: -8}
+        - {x: 8, y: 8}
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 

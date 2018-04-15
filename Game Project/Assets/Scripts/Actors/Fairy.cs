@@ -11,7 +11,7 @@ public class Fairy : AI_Actor {
 	public Projectile bullet_object;
 	public float bulletSpeed = 0.15f;
 	public GameObject flash_object;
-	public float attackCooldown = 1.5f; //in seconds
+	public float attackCooldown = 2.5f; //in seconds
 	private float attackTimer; //used to track attack cooldowns
 
 	//hovering fields; preallocating for performance (or is this made pointless  by the use of the 'new' keyword in the relevant code???)

@@ -7,8 +7,9 @@ using System.Globalization;
 
 public class DevConsole : MonoBehaviour {
 
+	//only need command modes for multi-word commands
 	private enum Command {
-		none, echo, loadScene, takeDamage, spendMana, save
+		none, echo, loadScene, takeDamage, spendMana, setFlag
 	}
 
 	private Command currentMode;
@@ -37,10 +38,22 @@ public class DevConsole : MonoBehaviour {
 					currentMode = Command.spendMana;
 					break;
 				case "save":
-					currentMode = Command.save;
-					break;
+					GameSaver.SaveGame ();
+					return;
 				case "name":
 					Debug.Log ("Player name is :" + GameSaver.liveSave.playerName);
+					return;
+				case "freeze":
+					WaterTileObject[] water = Resources.FindObjectsOfTypeAll<WaterTileObject> ();
+					Debug.Log ("Freezing " + water.Length + " water objects.");
+					for (int i = 0; i < water.Length; i++) {
+						water [i].Freeze ();
+					}
+					return;
+				case "setflag":
+				case "set":
+				case "kill": //in the context of killing bosses. If more flags end up being settable with this command it'll make less sense
+					currentMode = Command.setFlag;
 					break;
 				case "loadinv":
 				case "linv":
@@ -57,22 +70,39 @@ public class DevConsole : MonoBehaviour {
 				continue;
 			}
 
-			//we've parsed a command, time to execute it
-			switch (currentMode){
+			//we've received a multi-word command, time to execute based on the following word
+			switch (currentMode) {
 			case Command.echo:
-				Debug.Log(word);
+				Debug.Log (word);
 				return;
 			case Command.loadScene:
-				DevLoadLevel(word);
+				DevLoadLevel (word);
 				return;
 			case Command.takeDamage:
-				gameObject.SendMessageUpwards("TakeDamage", Int32.Parse(word, NumberStyles.AllowLeadingSign));
+				gameObject.SendMessageUpwards ("TakeDamage", Int32.Parse (word, NumberStyles.AllowLeadingSign));
 				break;
 			case Command.spendMana:
-				gameObject.SendMessageUpwards("SpendMana", Int32.Parse(word, NumberStyles.AllowLeadingSign));
+				gameObject.SendMessageUpwards ("SpendMana", Int32.Parse (word, NumberStyles.AllowLeadingSign));
 				break;
-			case Command.save:
-				GameSaver.SaveGame ();
+			case Command.setFlag:
+				switch (word) {
+				case "boss0":
+				case "fire_boss":
+					GameSaver.liveSave.bossKilled [0] = true;
+					break;
+				case "boss1":
+				case "water_boss":
+					GameSaver.liveSave.bossKilled [1] = true;
+					break;
+				case "boss2":
+				case "maze_boss":
+				case "final_boss":
+					GameSaver.liveSave.bossKilled [2] = true;
+					break;
+				}
+				break; //break setflag case
+			default:
+				Debug.Log ("The dev console reached a stage it shouldn't. pls to fix");
 				break;
 			}
 		}
