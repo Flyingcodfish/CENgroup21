@@ -14,7 +14,7 @@ public class CoinScript : MonoBehaviour {
     // Use this for initialization
     void Awake() {
         player = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
-        player.coins = 1000000;
+        player.coins = 0;
         SetText();
     }
     private void SetText(){
