@@ -73,18 +73,23 @@ namespace Pathfinding{
 		 * 
 		 */
 
+		//returns a mask of layers in which actors are known to reside.
+		private static int GetActorMask(){
+			return (int)LayerMask.GetMask("Flying") | (int)LayerMask.GetMask("Walking");
+		}
+
 		//based on the input blocking type, returns a layer mask used in collision detection.
-		public static LayerMask GetMaskFromBlockingType(BlockingType bType, bool includeActors = true){
+		public static LayerMask GetMaskFromBlockingType (BlockingType bType, bool includeActors = true){
 			int mask;
 			switch (bType){
 			case BlockingType.walking:
-				mask = LayerMask.GetMask("Walls", "Holes");
-				if (includeActors) mask = mask | (int)LayerMask.GetMask("Walking");
+				mask = Physics2D.GetLayerCollisionMask(LayerMask.NameToLayer("Walking"));
+				if (includeActors == false) mask = mask & ~GetActorMask();
 				break;
 
 			case BlockingType.flying:
-				mask = LayerMask.GetMask("Walls");
-				if (includeActors) mask = mask | (int)LayerMask.GetMask("Walking");
+				mask = Physics2D.GetLayerCollisionMask(LayerMask.NameToLayer("Flying"));
+				if (includeActors == false) mask = mask & ~GetActorMask();
 				break;
 
 			default:

@@ -25,10 +25,6 @@ public class Item : MonoBehaviour
 
     public string description;
 
-    public void Awake()
-    {
-        player = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
-    }
     public int maxSize; // decides how large can stack
 
     public void Use()
@@ -89,6 +85,8 @@ public class Item : MonoBehaviour
 		{
 			Destroy (this.gameObject);
 		}
+		//else
+		player = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
 	}
 
     public bool isUpgrade()
