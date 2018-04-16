@@ -2648,10 +2648,12 @@ MonoBehaviour:
   hasMoney: 0
   maxMana: 49
   manaRegen: 200
-  bomb_object: {fileID: 0}
+  bomb_object: {fileID: 114925543551872718, guid: 090ec3340aa92634a9acfef58eec598f,
+    type: 2}
   iceShardPrefab: {fileID: 114786623454023892, guid: cedb58da92376044e9c413c619a0a6d6,
     type: 2}
-  pushPrefab: {fileID: 0}
+  pushPrefab: {fileID: 114372811209995004, guid: 7187d751c11709046801d4decaab08e0,
+    type: 2}
   devConsole: {fileID: 0}
   attackHitbox: {fileID: 114657046412538298}
 --- !u!114 &114323752170897542
