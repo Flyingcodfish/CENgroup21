@@ -72,7 +72,6 @@ GameObject:
   - component: {fileID: 223772058958100174}
   - component: {fileID: 114584505686701288}
   - component: {fileID: 114038234267642716}
-  - component: {fileID: 225562490108711796}
   m_Layer: 5
   m_Name: HUDCanvas
   m_TagString: Untagged
@@ -238,10 +237,12 @@ MonoBehaviour:
   slotPaddingLeft: 2
   slotPaddingTop: 2
   slotSize: 30
+  spellSlotPrefab: {fileID: 0}
   slotPrefab: {fileID: 1903169189990112, guid: 117e2e3452b5a9d4c942d829a8960217, type: 2}
   iconPrefab: {fileID: 1042629837953936, guid: e29fc947c641ff247b37cd0bd965e017, type: 2}
   canvas: {fileID: 223772058958100174}
   eventSystem: {fileID: 0}
+  fadeTime: 0
 --- !u!114 &114410982685546384
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -703,14 +704,3 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 75, y: 60}
   m_Pivot: {x: 0, y: 0}
---- !u!225 &225562490108711796
-CanvasGroup:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1205224741065922}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0

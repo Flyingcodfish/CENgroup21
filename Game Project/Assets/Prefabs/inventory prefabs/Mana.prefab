@@ -81,13 +81,15 @@ MonoBehaviour:
   type: 0
   spriteNeutral: {fileID: 21300010, guid: 84f6c5242dc064c41a61bed0e85f0826, type: 3}
   spriteHighlighted: {fileID: 21300008, guid: 48c78c2299affef4dac7f1fee2b39ddd, type: 3}
+  maxSize: 10
   speedTime: 20
   speedModifier: 2
   strengthTime: 15
   strengthModifier: 0.5
   powerTime: 5
   powerModifier: 1.5
-  maxSize: 5
+  value: 10
+  description: 'Mana potion: adds 50 to mana '
 --- !u!212 &212199462910987134
 SpriteRenderer:
   m_ObjectHideFlags: 1

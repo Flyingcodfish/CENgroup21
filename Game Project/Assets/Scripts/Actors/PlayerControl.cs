@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerControl : Actor {
-
+    // inventory fields 
     public inventory inventory;
+    private inventory chest;
+    private inventory shop;
 
-	//status fields
-	public int hasKeys = 0; //number of door keys owned by the player.
+    public int coins;
+
+    //status fields
+    public int hasKeys = 0; //number of door keys owned by the player.
 	public int hasMoney = 0; //amount of generic currency owned by the player.
 	public float currentMana {get; private set;} //used to cast spells
 	public float maxMana = 49; //this is a joke
@@ -94,16 +98,18 @@ public class PlayerControl : Actor {
 	//src: http://michaelcummings.net/mathoms/creating-2d-animated-sprites-using-unity-4.3
     void Update()
     {
-		if (Input.GetKeyDown(KeyCode.BackQuote)){
-			devConsoleEnabled = !devConsoleEnabled;
-
-			Time.timeScale = devConsoleEnabled ? 0f : 1f;
-			devConsole.SetActive(devConsoleEnabled);
-			if (devConsoleEnabled) devConsole.GetComponent<UnityEngine.UI.InputField>().ActivateInputField();
-			this.enabledAI = !devConsoleEnabled;
-		}
-
 		if (IsActive()){
+			//dev console input check
+			if (Input.GetKeyDown(KeyCode.BackQuote)){
+				devConsoleEnabled = !devConsoleEnabled;
+
+				Time.timeScale = devConsoleEnabled ? 0f : 1f;
+				devConsole.SetActive(devConsoleEnabled);
+				if (devConsoleEnabled) devConsole.GetComponent<UnityEngine.UI.InputField>().ActivateInputField();
+				this.enabledAI = !devConsoleEnabled;
+			}
+			
+			//animator contorl based on input
 			animator.SetBool("Walking", true);
 	        if (input.y > 0) 	//up
 	        {
@@ -136,7 +142,7 @@ public class PlayerControl : Actor {
 	        else
 	        {
 				animator.SetBool("Walking", false);
-	//            int dir = animator.GetInteger("Direction");
+	//            int dir = animator.GetInteger("Direction"); //commented lines are for old animation controller
 	//            if(dir == 0) //idle down
 	//                animator.SetInteger("Direction", 4);
 	//            else if (dir == 1) //idle right
@@ -156,7 +162,6 @@ public class PlayerControl : Actor {
 			//TODO crappy way of doing this; I'm too lazy to make extensive changes to the controller untiol we know for sure what we're doing with these animations
 			animator.SetBool("Attacking", attacking || casting);
 		}
-
 		//timers continue regardless of whether the player is active or not
 		if (attacking) {
 			if(attackTimer > 0) {
@@ -192,6 +197,87 @@ public class PlayerControl : Actor {
 		if (pushTimer >= 0){
 			pushTimer -= Time.deltaTime;
 		}
+        // Used for inventory stuff 
+        if (Input.GetKeyDown(KeyCode.I)) // opens inventory 
+        {
+            Debug.Log("I key pressed");
+            inventory.Open();
+        }
+        // use specific items based on which num is used 
+        if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Debug.Log("1 is Pressed");
+            inventory.UseItem(0);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Debug.Log("2 is Pressed");
+            inventory.UseItem(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Debug.Log("3 is Pressed");
+            inventory.UseItem(2);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            Debug.Log("4 is Pressed");
+            inventory.UseItem(3);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad5) || Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            Debug.Log("5 is Pressed");
+            inventory.UseItem(4);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad6) || Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            Debug.Log("6 is Pressed");
+            inventory.UseItem(5);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad7) || Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            Debug.Log("7 is Pressed");
+            inventory.UseItem(6);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad8) || Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            Debug.Log("8 is Pressed");
+            inventory.UseItem(7);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad9) || Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            Debug.Log("9 is Pressed");
+            inventory.UseItem(8);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad0) || Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            Debug.Log("0 is Pressed");
+            inventory.UseItem(9);
+        }
+        // end hot bar keys 
+        // chest and interact key 
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if(chest != null)
+            {
+                chest.Open();
+            }
+            if(shop != null)
+            {
+                shop.Open();
+            }
+        }
+        // used for debugging save and load **********************
+        // weird problems when i use key for saving, reads in string and then saves null string right after 
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            inventory.SaveInventory();
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            inventory.LoadInventory(string.Empty); // set to empty to load from pref 
+        }
+        // ******************************************************
     }
 		
 	private void AnimateCast(){
@@ -201,9 +287,9 @@ public class PlayerControl : Actor {
 		animator.SetBool ("Casting", true); //used to slow down animation for a distinction between attacks/casts
 	}
 
-	//returns true if the amount was available to spend, else false.
-	//accepts either ints or floats, just for simplicity
-	public bool SpendMana(int amount){
+    //returns true if the amount was available to spend, else false.
+    //accepts either ints or floats, just for simplicity
+    public bool SpendMana(int amount){
 		return SpendMana ((float)amount);
 	}
 	public bool SpendMana(float amount){
@@ -257,6 +343,41 @@ public class PlayerControl : Actor {
         {
             inventory.AddItem(collision.GetComponent<Item>());
             Destroy(collision.gameObject);
+        }
+        if(collision.tag == "Chest")
+        {
+            chest = collision.GetComponent<ChestScript>().chestInventory; // gets inventory of chest 
+        }
+        if(collision.tag == "Shop")
+        {
+            shop = collision.GetComponent<ShopScript>().shopInventory;// gets inventory of any shops 
+        }
+        if(collision.tag == "Coins") // gets the type of coin and then adds to total 
+        {
+           CoinType tmp = collision.GetComponent<CoinScript>().type;
+            collision.GetComponent<CoinScript>().AddCoins(tmp);
+            Destroy(collision.gameObject);
+           
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Chest")
+        {
+            if (chest.IsOpen) // if open 
+            {
+                chest.Open(); // closes 
+            }
+            chest = null; // resets to null to make unable to access unless by chest 
+        }
+        if (collision.tag == "Shop")
+        {
+            if (shop.IsOpen) // if open 
+            {
+                shop.Open(); // closes 
+            }
+            shop = null; // resets to null to make unable to access unless by chest 
         }
     }
 
