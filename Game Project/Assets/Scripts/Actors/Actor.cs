@@ -13,14 +13,21 @@ public abstract class Actor : MonoBehaviour {
 
 	//bookkeeping fields
 	protected bool isBusy = false; //death only destroys object once this is false; used to wait on coroutines that must finish
-	public bool enabledAI = true; //used to pause coroutines/movement (used by freezing effects)
+	public int lockAI = 0; //when 0, AI can continue. else, not.
 	protected bool isDying = false; //similar to the above but "stronger," triggered by death
-	public bool IsActive(){return enabledAI && !isDying;} //method for easily checking the last two fields
+	public bool IsActive(){return (lockAI == 0) && !isDying;} //method for easily checking the last two fields
 
 	//status effect fields; protected so there's no temptation for other objects to set them directly
 	protected float power = 1f;
 	public float GetPower(){return power;} //used by hitboxes
-	protected float strength = 1f;
+    public void AddPower(float value) { power += value; // used to add power for upgrades currently 
+        if (power > 2.0f) { power = 2.0f; } //hardcaps at double normal 
+        Debug.Log("Power is: " + power);
+    } // used to upgrade power of actor 
+    protected float strength = 1f;
+    public void AddStrength(float value) { strength -= value; // used to add strength for upgrades currently 
+        if (strength < 0.5f) { strength = 0.5f; } //hardcaps at double normal 
+        Debug.Log("Strength is: " + strength); } // used to upgrade strength of actor
 	protected int frozenStatus = 0; //integer: +1 when frozen, -1 when freezes end. Allows multiple sources to overlap freeze duration, but not stack effects.
 
 	//health and damage fields
@@ -36,6 +43,15 @@ public abstract class Actor : MonoBehaviour {
 	//movement fields
 	public float drag = 100f;
 	public float maxSpeed = 300f;
+    public void AddSpeed(float value) // used to add speed for upgrades currently 
+    {
+        maxSpeed += value;
+        if (maxSpeed >= 750f)// hardcaps at double normal speed 
+        {
+            maxSpeed = 750f;
+        }
+        Debug.Log("Speed is: " + maxSpeed);
+    }
 
 	//references to required components
 	public Rigidbody2D rbody {get; private set;}
@@ -174,6 +190,10 @@ public abstract class Actor : MonoBehaviour {
     {
         float baseSpeed = this.maxSpeed;
         this.maxSpeed = baseSpeed * speedModifier;
+        if (this.maxSpeed > 1250) // hardcaps the speed for modifiers 
+        {
+            maxSpeed = 1250;
+        }
         yield return new WaitForSeconds(Duration);
         if (this != null)this.maxSpeed = baseSpeed;
     }
@@ -211,7 +231,7 @@ public abstract class Actor : MonoBehaviour {
 
 			//freeze actor
 			animator.enabled = false;
-			enabledAI = false;
+			lockAI += 1;
 		}
 
 		frozenStatus += 1;
@@ -227,7 +247,7 @@ public abstract class Actor : MonoBehaviour {
 			if (this != null){
 				//unfreeze actor
 				animator.enabled = true;
-				enabledAI = true;
+				lockAI -= 1;
 
 				//destroy iceblock
 				if (createdSortingGroup) //don't want to delete this if the actor already had one

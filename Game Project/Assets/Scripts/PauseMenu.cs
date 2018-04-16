@@ -18,10 +18,12 @@ public class PauseMenu : MonoBehaviour {
         {
             if (GameIsPaused)
             {
+                inventory.HudGroup.alpha = 1;
                 Resume();
             }
             else
             {
+                inventory.HudGroup.alpha = 0;
                 Pause();
             }
         }
@@ -55,7 +57,7 @@ public class PauseMenu : MonoBehaviour {
         //Time.timeScale = 1f;
         //SceneManager.LoadScene("Main Menu");
 
-        //if not saved
+        //show confirmation
         pauseMenuUI.SetActive(false);
         ReturnMainUI.SetActive(true);
 
@@ -63,17 +65,14 @@ public class PauseMenu : MonoBehaviour {
 
     public void SaveGame()
     {
+		GameSaver.SaveGame ();
         pauseMenuUI.SetActive(false);
         saveGameUI.SetActive(true);
-        //save game code
     }
 
     public void QuitGame()
     {
-        //if saved
-        //Application.Quit();
-
-        //if not saved
+        //show confirmation
         pauseMenuUI.SetActive(false);
         QuitUI.SetActive(true);
     }

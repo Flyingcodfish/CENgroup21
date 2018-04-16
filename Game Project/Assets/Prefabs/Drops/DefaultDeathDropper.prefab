@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4055100152656172}
   - component: {fileID: 114722122775066434}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: DefaultDeathDropper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,11 +52,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropList:
-  - weight: 3
+  - weight: 13
     drop: {fileID: 0}
-  - weight: 1
+  - weight: 4
     drop: {fileID: 1247982857437918, guid: d35faf583712cba458b7c9e8558905ec, type: 2}
-  - weight: 1
+  - weight: 3
     drop: {fileID: 1252703268272378, guid: f414730855f0aa94c9101914a6b90460, type: 2}
-  totalWeight: 5
+  - weight: 1
+    drop: {fileID: 1974236271894454, guid: e531209cbe21d914491da44d3b9e07ed, type: 2}
+  - weight: 2
+    drop: {fileID: 1152578564362986, guid: 5df464c587d04ab4ea53df39f391290a, type: 2}
+  - weight: 3
+    drop: {fileID: 1256728469790900, guid: 7d992345eee105149a07f812a1e5454b, type: 2}
+  totalWeight: 26
   dirty: 0

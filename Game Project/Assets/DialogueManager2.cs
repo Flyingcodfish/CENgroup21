@@ -12,9 +12,9 @@ public class DialogueManager2 : MonoBehaviour
     public Text dialogueText;
     public GameObject chatBox;
     public GameObject IntroBox;
-    public GameObject arrow1;
-    public GameObject arrow2;
+    public GameObject arrow1, arrow2, arrow3, arrow4;
     public GameObject exclamation;
+    public GameObject items;
     private int iterator = 0;
     [SerializeField]
     private InputField input;
@@ -26,7 +26,7 @@ public class DialogueManager2 : MonoBehaviour
 
     public void iterate()
     {
-        iterator++;
+        if (iterator != 9) iterator++;
         DisplayDialogue();
     }
 
@@ -92,14 +92,30 @@ public class DialogueManager2 : MonoBehaviour
         if (iterator == 8)
         {
             exclamation.SetActive(false);
-            dialogueText.text = "Anyways, follow me.";
+            if (items.transform.childCount == 0)
+            {
+                dialogueText.text = "Anyways, follow me.";
+                return;
+            }
+            else
+            {
+                arrow3.SetActive(true);
+                arrow4.SetActive(true);
+                dialogueText.text = "Anyways, go collect all those potions and spellbooks over there then follow me! They're going to come in handy.";
+                return;
+            }
         }
         
         if (iterator == 9)
         {
-            chatBox.SetActive(false);
-            //StartCoroutine(Fade());
-            SceneManager.LoadScene("hub");
+            if (items.transform.childCount == 0)
+            {
+                arrow3.SetActive(false);
+                arrow4.SetActive(false);
+                chatBox.SetActive(false);
+                SceneManager.LoadScene("hub");
+            }
+            else DisplayDialogue();
         }
     }
 }

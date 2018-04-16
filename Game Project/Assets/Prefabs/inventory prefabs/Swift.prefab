@@ -81,13 +81,15 @@ MonoBehaviour:
   type: 2
   spriteNeutral: {fileID: 21300010, guid: d18258736171abe449a6b76bbcc002d1, type: 3}
   spriteHighlighted: {fileID: 21300010, guid: d3e807d92ad3fc642931052b5ac6f701, type: 3}
+  maxSize: 5
   speedTime: 20
   speedModifier: 2
   strengthTime: 15
   strengthModifier: 0.5
   powerTime: 5
   powerModifier: 1.5
-  maxSize: 5
+  value: 50
+  description: 
 --- !u!212 &212654237197074588
 SpriteRenderer:
   m_ObjectHideFlags: 1

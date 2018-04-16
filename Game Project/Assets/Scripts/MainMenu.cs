@@ -6,25 +6,25 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour {
 
 	GameObject player;
+	LevelLoader loader;
 
 	void Start (){
+		loader = FindObjectOfType<LevelLoader> ();
 		player = GameObject.FindWithTag("Player");
-		if (player != null) player.SetActive(false);
+		Destroy (player);
 	}
 
     public void NewGame()
     {
-		if (player != null){
-			player.SetActive(true);
-			DestroyImmediate(player); //TODO does not actually delete player
-		}
-        SceneManager.LoadScene("test");    
+		Debug.Log ("Starting new game.");
+		GameSaver.liveSave = new SavedGame(); //resets current saved data
+		loader.LoadLevel(SceneUtility.GetBuildIndexByScenePath("test")); //fight me
     }
 
 	public void LoadGame()
 	{
-		if (player != null) player.SetActive(true);
-		SceneManager.LoadScene("enemy_test");
+		GameSaver.LoadGame (); //reads save from file into live save
+		SceneManager.LoadScene(GameSaver.liveSave.sceneName);
 	}
 
     public void QuitGame()
