@@ -74,7 +74,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1164681756230972}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.88, y: 0.65, z: 0}
+  m_LocalPosition: {x: -20.92, y: -3.72, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4841073800733498}
@@ -202,7 +202,7 @@ Animator:
   m_GameObject: {fileID: 1164681756230972}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e41447e314603b7419478016a2cc8bc3, type: 2}
+  m_Controller: {fileID: 9100000, guid: f57323b8cd578834d9160907edc8b5a1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -225,7 +225,7 @@ MonoBehaviour:
   isInvincible: 0
   maxHealth: 50
   drag: 100
-  maxSpeed: 300
+  maxSpeed: 400
   moveVector: {x: 0, y: 0, z: 0}
   hoverDistance: 1.5
   moveDeadZone: 0.1
