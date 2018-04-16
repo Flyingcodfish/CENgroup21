@@ -24,8 +24,14 @@ public class IceShardSpell : MonoBehaviour {
 		if (otherTeam == null || otherTeam.team != this.teamComponent.team){
 			//nicely ask the target to freeze and then take damage
 			Actor hitActor = other.gameObject.GetComponent<Actor>();
-			if (hitActor != null)
+			if (hitActor != null){
 				hitActor.ModifyEffect(Actor.Effect.Freeze, freezeTime);
+			}
+			else {
+				Fountain hitFountain = other.GetComponent<Fountain>();
+				if (hitFountain != null)
+					hitFountain.Freeze();
+			}
 			other.gameObject.SendMessage("TakeDamage", this.damage, SendMessageOptions.DontRequireReceiver);
 
 			StartCoroutine(Die());
