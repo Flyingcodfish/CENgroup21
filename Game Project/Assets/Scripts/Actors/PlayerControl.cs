@@ -98,16 +98,18 @@ public class PlayerControl : Actor {
 	//src: http://michaelcummings.net/mathoms/creating-2d-animated-sprites-using-unity-4.3
     void Update()
     {
-		if (IsActive()){
-			//dev console input check
-			if (Input.GetKeyDown(KeyCode.BackQuote)){
-				devConsoleEnabled = !devConsoleEnabled;
+		//dev console input check
+		if (Input.GetKeyDown(KeyCode.BackQuote)){
+			devConsoleEnabled = !devConsoleEnabled;
 
-				Time.timeScale = devConsoleEnabled ? 0f : 1f;
-				devConsole.SetActive(devConsoleEnabled);
-				if (devConsoleEnabled) devConsole.GetComponent<UnityEngine.UI.InputField>().ActivateInputField();
-				this.enabledAI = !devConsoleEnabled;
-			}
+			Time.timeScale = devConsoleEnabled ? 0f : 1f;
+			devConsole.SetActive(devConsoleEnabled);
+			if (devConsoleEnabled) devConsole.GetComponent<UnityEngine.UI.InputField>().ActivateInputField();
+			this.enabledAI = !devConsoleEnabled;
+		}
+
+
+		if (IsActive()){
 			
 			//animator contorl based on input
 			animator.SetBool("Walking", true);
@@ -161,7 +163,82 @@ public class PlayerControl : Actor {
 
 			//TODO crappy way of doing this; I'm too lazy to make extensive changes to the controller untiol we know for sure what we're doing with these animations
 			animator.SetBool("Attacking", attacking || casting);
+
+
+			// Used for inventory stuff 
+			if (Input.GetKeyDown(KeyCode.I)) // opens inventory 
+			{
+				Debug.Log("I key pressed");
+				inventory.Open();
+			}
+			// use specific items based on which num is used 
+			if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
+			{
+				Debug.Log("1 is Pressed");
+				inventory.UseItem(0);
+			}
+			if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
+			{
+				Debug.Log("2 is Pressed");
+				inventory.UseItem(1);
+			}
+			if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3))
+			{
+				Debug.Log("3 is Pressed");
+				inventory.UseItem(2);
+			}
+			if (Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Alpha4))
+			{
+				Debug.Log("4 is Pressed");
+				inventory.UseItem(3);
+			}
+			if (Input.GetKeyDown(KeyCode.Keypad5) || Input.GetKeyDown(KeyCode.Alpha5))
+			{
+				Debug.Log("5 is Pressed");
+				inventory.UseItem(4);
+			}
+			if (Input.GetKeyDown(KeyCode.Keypad6) || Input.GetKeyDown(KeyCode.Alpha6))
+			{
+				Debug.Log("6 is Pressed");
+				inventory.UseItem(5);
+			}
+			if (Input.GetKeyDown(KeyCode.Keypad7) || Input.GetKeyDown(KeyCode.Alpha7))
+			{
+				Debug.Log("7 is Pressed");
+				inventory.UseItem(6);
+			}
+			if (Input.GetKeyDown(KeyCode.Keypad8) || Input.GetKeyDown(KeyCode.Alpha8))
+			{
+				Debug.Log("8 is Pressed");
+				inventory.UseItem(7);
+			}
+			if (Input.GetKeyDown(KeyCode.Keypad9) || Input.GetKeyDown(KeyCode.Alpha9))
+			{
+				Debug.Log("9 is Pressed");
+				inventory.UseItem(8);
+			}
+			if (Input.GetKeyDown(KeyCode.Keypad0) || Input.GetKeyDown(KeyCode.Alpha0))
+			{
+				Debug.Log("0 is Pressed");
+				inventory.UseItem(9);
+			}
+			// end hot bar keys 
+			// chest and interact key 
+			if (Input.GetKeyDown(KeyCode.E))
+			{
+				if(chest != null)
+				{
+					chest.Open();
+				}
+				if(shop != null)
+				{
+					shop.Open();
+				}
+			}
+
 		}
+
+
 		//timers continue regardless of whether the player is active or not
 		if (attacking) {
 			if(attackTimer > 0) {
@@ -197,87 +274,6 @@ public class PlayerControl : Actor {
 		if (pushTimer >= 0){
 			pushTimer -= Time.deltaTime;
 		}
-        // Used for inventory stuff 
-        if (Input.GetKeyDown(KeyCode.I)) // opens inventory 
-        {
-            Debug.Log("I key pressed");
-            inventory.Open();
-        }
-        // use specific items based on which num is used 
-        if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            Debug.Log("1 is Pressed");
-            inventory.UseItem(0);
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            Debug.Log("2 is Pressed");
-            inventory.UseItem(1);
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            Debug.Log("3 is Pressed");
-            inventory.UseItem(2);
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            Debug.Log("4 is Pressed");
-            inventory.UseItem(3);
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad5) || Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            Debug.Log("5 is Pressed");
-            inventory.UseItem(4);
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad6) || Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            Debug.Log("6 is Pressed");
-            inventory.UseItem(5);
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad7) || Input.GetKeyDown(KeyCode.Alpha7))
-        {
-            Debug.Log("7 is Pressed");
-            inventory.UseItem(6);
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad8) || Input.GetKeyDown(KeyCode.Alpha8))
-        {
-            Debug.Log("8 is Pressed");
-            inventory.UseItem(7);
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad9) || Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            Debug.Log("9 is Pressed");
-            inventory.UseItem(8);
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad0) || Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            Debug.Log("0 is Pressed");
-            inventory.UseItem(9);
-        }
-        // end hot bar keys 
-        // chest and interact key 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if(chest != null)
-            {
-                chest.Open();
-            }
-            if(shop != null)
-            {
-                shop.Open();
-            }
-        }
-        // used for debugging save and load **********************
-        // weird problems when i use key for saving, reads in string and then saves null string right after 
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            inventory.SaveInventory();
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            inventory.LoadInventory(string.Empty); // set to empty to load from pref 
-        }
-        // ******************************************************
     }
 		
 	private void AnimateCast(){
@@ -318,7 +314,7 @@ public class PlayerControl : Actor {
 
 	public void CastFire(){
         GameSaver.liveSave.firespell = true;
-
+		AnimateCast ();
 		if (bombTimer <= 0 && SpendMana(bomb_manaCost)){
 			bombTimer = bombTime;
 			FireBomb bomb = Instantiate<FireBomb>(bomb_object, transform.position + (Vector3)facing*spellDistance, Quaternion.identity);

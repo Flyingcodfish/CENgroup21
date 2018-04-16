@@ -13,6 +13,8 @@ public class DevConsole : MonoBehaviour {
 
 	private Command currentMode;
 
+	private inventory inv;
+
 	public void TakeCommand(string rawString){
 		currentMode = Command.none;
 		string cmdString = rawString.ToLower();
@@ -40,6 +42,14 @@ public class DevConsole : MonoBehaviour {
 				case "name":
 					Debug.Log ("Player name is :" + GameSaver.liveSave.playerName);
 					break;
+				case "loadinv":
+				case "linv":
+					inv.LoadInventory(string.Empty); // set to empty to load from pref 
+					return;
+				case "saveinv":
+				case "sinv":
+					inv.SaveInventory();
+					return;
 				default:
 					Debug.Log("Error: '" + word + "' is not a recognzed command.");
 					return;
@@ -71,6 +81,10 @@ public class DevConsole : MonoBehaviour {
 	void DevLoadLevel(string levelName){
 		Debug.Log("Loading level: " + levelName +"...");
 		SceneManager.LoadScene(levelName);
+	}
+
+	void Start(){
+		inv = GetComponentInParent<PlayerControl>().inventory;
 	}
 
 }

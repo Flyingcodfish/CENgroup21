@@ -512,10 +512,14 @@ public class inventory : MonoBehaviour {
                     case ItemType.BOOTS:
                         allSlots[index].GetComponent<slot>().AddItem(Manager.Instance.boots.GetComponent<Item>());
                         break;
+					case ItemType.SPELL_FIRE:
+						allSlots[index].GetComponent<slot>().AddItem(Manager.Instance.fireSpell.GetComponent<Item>());
+						break;
+					case ItemType.SPELL_PUSH:
+						allSlots[index].GetComponent<slot>().AddItem(Manager.Instance.pushSpell.GetComponent<Item>());
+						break;
                 }
             }
-
         }
-
     }
 }

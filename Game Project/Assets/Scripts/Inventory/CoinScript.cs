@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum CoinType { LargeCoin };  // have different types of coins for variety 
+public enum CoinType { Large, Medium, Small };  // have different types of coins for variety 
 
 public class CoinScript : MonoBehaviour {
     public CoinType type;
@@ -26,9 +26,15 @@ public class CoinScript : MonoBehaviour {
         Debug.Log("Adding Coins");
         switch (coin)
         {
-            case CoinType.LargeCoin:
+            case CoinType.Large:
                 player.coins += 50;
                 break;
+			case CoinType.Medium:
+				player.coins += 20;
+				break;
+			case CoinType.Small:
+				player.coins += 10;
+				break;
         }
         SetText();
     }

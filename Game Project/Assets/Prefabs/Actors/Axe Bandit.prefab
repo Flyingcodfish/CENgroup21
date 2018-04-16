@@ -28,6 +28,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1203432989249758
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4778496251944136}
+  - component: {fileID: 114428907870402442}
+  m_Layer: 0
+  m_Name: DefaultDeathDropper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1298863165376464
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,9 +72,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1298863165376464}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.251822, y: -9.990663, z: 0}
+  m_LocalPosition: {x: -5.056398, y: -8.022638, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4778496251944136}
   - {fileID: 4727815974374702}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -70,6 +87,19 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1115508445638726}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4283312125952690}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4778496251944136
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1203432989249758}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -188,6 +218,32 @@ MonoBehaviour:
   castCollider: {fileID: 61400951611872138}
   attackCooldown: 2
   attackHitbox: {fileID: 114541600375678122}
+--- !u!114 &114428907870402442
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1203432989249758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e2567cdde69ac48bb1f6775fe55086, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropList:
+  - weight: 13
+    drop: {fileID: 0}
+  - weight: 4
+    drop: {fileID: 1247982857437918, guid: d35faf583712cba458b7c9e8558905ec, type: 2}
+  - weight: 3
+    drop: {fileID: 1252703268272378, guid: f414730855f0aa94c9101914a6b90460, type: 2}
+  - weight: 1
+    drop: {fileID: 1974236271894454, guid: e531209cbe21d914491da44d3b9e07ed, type: 2}
+  - weight: 2
+    drop: {fileID: 1152578564362986, guid: 5df464c587d04ab4ea53df39f391290a, type: 2}
+  - weight: 3
+    drop: {fileID: 1256728469790900, guid: 7d992345eee105149a07f812a1e5454b, type: 2}
+  totalWeight: 26
+  dirty: 0
 --- !u!114 &114541600375678122
 MonoBehaviour:
   m_ObjectHideFlags: 1

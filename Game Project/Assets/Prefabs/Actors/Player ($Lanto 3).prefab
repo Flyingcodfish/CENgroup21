@@ -1346,7 +1346,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1621778042324258}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.755728, y: -1.3691746, z: 0}
+  m_LocalPosition: {x: -1.6110816, y: -4.0511456, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4249281829995564}
@@ -2567,6 +2567,8 @@ MonoBehaviour:
   health: {fileID: 1249070843127512, guid: 8a93c5ff5851d4a4283fa9b50f8ec2e3, type: 2}
   power: {fileID: 1752239998093280, guid: 5a985fc601cc5114583dc04d8b42df86, type: 2}
   iceSpell: {fileID: 1542855276297634, guid: c8bcc826ce0465a4cb90d373ff4086bf, type: 2}
+  fireSpell: {fileID: 1848251401971866, guid: 0d23fa542b1076e4fadfb3cf482c30fd, type: 2}
+  pushSpell: {fileID: 1542855276297634, guid: 08221ba47f711a64daf7d0c48f6faf6e, type: 2}
   strength: {fileID: 1127157588562124, guid: bc659bdefb3834342bd2d89188073ef5, type: 2}
   swift: {fileID: 1860981184223818, guid: 471dd639a55e0144fbdaf43fd39302d8, type: 2}
   armor: {fileID: 1939856340714234, guid: 0f85301ef2776ab43a88194f2b57fe36, type: 2}
@@ -2654,7 +2656,7 @@ MonoBehaviour:
     type: 2}
   pushPrefab: {fileID: 114372811209995004, guid: 7187d751c11709046801d4decaab08e0,
     type: 2}
-  devConsole: {fileID: 0}
+  devConsole: {fileID: 1002033246716034}
   attackHitbox: {fileID: 114657046412538298}
 --- !u!114 &114323752170897542
 MonoBehaviour:
@@ -7122,7 +7124,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 136.70001, y: -115.79994}
+  m_AnchoredPosition: {x: 192, y: -111}
   m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224460612971937774
