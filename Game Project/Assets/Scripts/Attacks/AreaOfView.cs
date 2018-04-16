@@ -32,7 +32,7 @@ public class AreaOfView : MonoBehaviour {
 	public void OnTriggerEnter2D(Collider2D other) {
 		TeamComponent otherTeam = other.gameObject.GetComponent<TeamComponent>();
 		if (otherTeam.team != this.parentTeam){
-			enemyScript.enabledAI = true;
+			enemyScript.lockAI -= 1;
 			trigger.radius = de_aggroRadius;
 		}
 
@@ -42,7 +42,7 @@ public class AreaOfView : MonoBehaviour {
 	public void OnTriggerExit2D(Collider2D other) {
 		TeamComponent otherTeam = other.gameObject.GetComponent<TeamComponent>();
 		if (otherTeam.team != this.parentTeam){
-			enemyScript.enabledAI = false;
+			enemyScript.lockAI += 1;
 			enemyScript.moveVector = Vector3.zero;
 			trigger.radius = aggroRadius;
 		}

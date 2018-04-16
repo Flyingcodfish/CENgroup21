@@ -13,9 +13,9 @@ public abstract class Actor : MonoBehaviour {
 
 	//bookkeeping fields
 	protected bool isBusy = false; //death only destroys object once this is false; used to wait on coroutines that must finish
-	public bool enabledAI = true; //used to pause coroutines/movement (used by freezing effects)
+	public int lockAI = 0; //when 0, AI can continue. else, not.
 	protected bool isDying = false; //similar to the above but "stronger," triggered by death
-	public bool IsActive(){return enabledAI && !isDying;} //method for easily checking the last two fields
+	public bool IsActive(){return (lockAI == 0) && !isDying;} //method for easily checking the last two fields
 
 	//status effect fields; protected so there's no temptation for other objects to set them directly
 	protected float power = 1f;
@@ -231,7 +231,7 @@ public abstract class Actor : MonoBehaviour {
 
 			//freeze actor
 			animator.enabled = false;
-			enabledAI = false;
+			lockAI += 1;
 		}
 
 		frozenStatus += 1;
@@ -247,7 +247,7 @@ public abstract class Actor : MonoBehaviour {
 			if (this != null){
 				//unfreeze actor
 				animator.enabled = true;
-				enabledAI = true;
+				lockAI -= 1;
 
 				//destroy iceblock
 				if (createdSortingGroup) //don't want to delete this if the actor already had one

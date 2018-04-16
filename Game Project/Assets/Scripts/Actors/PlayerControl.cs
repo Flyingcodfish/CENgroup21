@@ -105,7 +105,7 @@ public class PlayerControl : Actor {
 			Time.timeScale = devConsoleEnabled ? 0f : 1f;
 			devConsole.SetActive(devConsoleEnabled);
 			if (devConsoleEnabled) devConsole.GetComponent<UnityEngine.UI.InputField>().ActivateInputField();
-			this.enabledAI = !devConsoleEnabled;
+			lockAI += (devConsoleEnabled ? 1 : -1);
 		}
 
 

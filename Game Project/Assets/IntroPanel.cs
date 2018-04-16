@@ -16,7 +16,7 @@ public class IntroPanel : MonoBehaviour {
 			gameObject.SetActive (false);
 		}
 		else { //the player has not yet been named; turn them off until we name them
-			GameObject.FindObjectOfType<PlayerControl>().enabledAI = false;
+			GameObject.FindObjectOfType<PlayerControl>().lockAI += 1;
 		}
 	}
 }

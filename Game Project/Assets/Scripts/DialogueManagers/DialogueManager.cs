@@ -22,7 +22,7 @@ public class DialogueManager : MonoBehaviour {
 
     public void GetInput(string name)
     {
-		GameObject.FindObjectOfType<PlayerControl> ().enabledAI = true;
+		GameObject.FindObjectOfType<PlayerControl> ().lockAI -= 1;
         nameText.text = name;
 		GameSaver.liveSave.playerName = name;
 		GameSaver.liveSave.hasBeenNamed = true;

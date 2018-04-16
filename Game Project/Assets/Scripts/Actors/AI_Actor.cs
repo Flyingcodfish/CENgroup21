@@ -40,7 +40,7 @@ public abstract class AI_Actor : Actor {
 		tileFilter = Navigator.GetFilterFromBlockingType(bType, false);
 		castHits = new RaycastHit2D[maxHits];
 		StartCoroutine (AI_Tick ());
-		enabledAI = false;
+		lockAI = 1; //locked by default until we enter aggro range
 		moveVector = Vector2.zero;
 		this.AI_Start ();
 	}
