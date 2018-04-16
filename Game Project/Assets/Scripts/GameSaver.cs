@@ -93,8 +93,10 @@ public class SavedGame {
 	public List<int> unlockedDoors = new List<int>(); //dictionary of which doors have been unlocked. If a door is unlocked, it will generate a unique int hash and add itself to this dictionary, with a value of true.
 	public List<int> pickedUpKeys = new List<int>(); //dictionary of which keys have been picked up. If a key is picked up, it will generate a unique int hash and add itself to this dictionary, with a value of true.
 
-	//TODO: set of flags indicating which upgrades have been unlocked.
-
+	//counters for upgrades that have been unlocked.
+	public int strengthUpgrades = 0;
+	public int speedUpgrades = 0;
+	public int powerUpgrades = 0;
 
 	//story progression flags
 	public bool firespell = false;

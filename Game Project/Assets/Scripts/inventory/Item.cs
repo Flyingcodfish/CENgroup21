@@ -60,15 +60,17 @@ public class Item : MonoBehaviour
 			player.CastPush();
 			break;
         case ItemType.ARMOR: // Upgrade uses
-                player.AddStrength(0.1f); 
-            break;
+			player.AddStrength(0.1f);
+			GameSaver.liveSave.strengthUpgrades++;
+			break;
         case ItemType.SWORD:
-                Debug.Log("SWORD");
-                player.AddPower(0.1f);
+			player.AddPower(0.1f);
+			GameSaver.liveSave.powerUpgrades++;
             break;
         case ItemType.BOOTS:
-                player.AddSpeed(50f);
-            break;
+			player.AddSpeed(50f);
+			GameSaver.liveSave.speedUpgrades++;
+			break;
 
         }
     }

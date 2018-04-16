@@ -69,6 +69,12 @@ public class PlayerControl : Actor {
 			hasKeys = GameSaver.liveSave.hasKeys;
 			coins = GameSaver.liveSave.coins;
 			inventory.LoadInventory(); //empty string; loads from save file
+
+			//load upgrade stat changes, to the cap set in actor. This is an awful way of doing it and voilates
+			//the spirit of code in Actor.cs and item.cs, but it's crunch time bb
+			strength = Mathf.Max(0.5f, strength - 0.1f*GameSaver.liveSave.strengthUpgrades);
+			power = Mathf.Min(2f, power + 0.1f*GameSaver.liveSave.powerUpgrades);
+			maxSpeed = Mathf.Min(750f, maxSpeed + 50f*GameSaver.liveSave.speedUpgrades);
 		}
 	}
 
