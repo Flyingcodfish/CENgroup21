@@ -81,7 +81,7 @@ public class inventory : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () {
+    void Awake() {
         isOpen = false; // defaults to inventory being closed
         canvasGroup = GetComponent<CanvasGroup>();// gets reference to specific canvas used for inv 
         hudGroup = transform.parent.GetComponent<CanvasGroup>();// gets reference to canvas group of HUD 
@@ -140,6 +140,7 @@ public class inventory : MonoBehaviour {
     }
     private void CreateLayout() // creates the inventory layout based on fields and formulas 
 	{
+        Debug.Log("Creating Layout");
         if(allSlots != null) // clears list if loading to not stack slots per load 
         {
             foreach(GameObject slot in allSlots)

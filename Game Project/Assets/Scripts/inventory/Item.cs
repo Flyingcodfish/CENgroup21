@@ -33,6 +33,10 @@ public class Item : MonoBehaviour
 
     public void Use()
     {
+        if(player == null)
+        {
+            player = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
+        }
         switch (type)
         {
         case ItemType.HEALTH: // Potion uses 
