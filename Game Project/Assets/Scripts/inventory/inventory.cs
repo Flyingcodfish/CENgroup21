@@ -229,7 +229,7 @@ public class inventory : MonoBehaviour {
                 slot tmp = slot.GetComponent<slot>();
                 if (!tmp.IsEmpty)
                 {
-                   tmp.Shop = true;
+                    tmp.Shop = true;
                     tmp.useTxt.text =  tmp.Items.Peek().value.ToString();
                     tmp.useTxt.color = Color.magenta;
                     tmp.useTxt.fontSize = 3;

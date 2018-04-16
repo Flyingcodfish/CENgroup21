@@ -107,7 +107,7 @@ public class Manager : MonoBehaviour { // used to manage all inventories and pre
     // USED FOR DEBUGGING 
     public void TestLoad()
     {
-        string contents = "4-MANA-2;1-SPELL_ICE-1;2-SPELL_ICE-1;";
+        string contents = "4-MANA-2;1-SPELL_ICE-1;2-SPELL_ICE-1;0-ARMOR-1;";
         string name = "Shop Inventory";
         LoadSpecific(contents, name);
     }

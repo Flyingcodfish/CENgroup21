@@ -58,12 +58,11 @@ public class slot : MonoBehaviour, IPointerClickHandler {
     void Awake()
     {
         Items = new Stack<Item>();// instantiates items upon awake 
-            shop = GameObject.FindObjectOfType<ShopScript>().GetComponent<ShopScript>();
+           shop = GameObject.FindObjectOfType<ShopScript>().GetComponent<ShopScript>();
         // gets shop script from shop in scene if there 
     }
 
 	void Start () {
-		Items = new Stack<Item>();
 		RectTransform slotRect = GetComponent<RectTransform>();
 		RectTransform txtRect = stackTxt.GetComponent<RectTransform>();
         
