@@ -12,8 +12,9 @@ public class CoinScript : MonoBehaviour {
 
     public Text coinText;
     // Use this for initialization
-    void Awake() {
+    void Start() {
         player = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
+        coinText = GameObject.Find("CoinText").GetComponent<Text>();
         player.coins = 0;
         SetText();
     }

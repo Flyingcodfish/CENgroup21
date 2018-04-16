@@ -78,10 +78,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df6e3e5557870e54b97116c22ee28e24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 8
+  type: 9
   spriteNeutral: {fileID: 21300000, guid: 84f6c5242dc064c41a61bed0e85f0826, type: 3}
   spriteHighlighted: {fileID: 21300000, guid: bbb243e9a92c05343a852e7c048d246f, type: 3}
-  maxSize: 1
   speedTime: 20
   speedModifier: 2
   strengthTime: 15
@@ -90,6 +89,7 @@ MonoBehaviour:
   powerModifier: 1.5
   value: 300
   description: Knight Armor, Increases Defense by 10%
+  maxSize: 1
 --- !u!212 &212338151386600390
 SpriteRenderer:
   m_ObjectHideFlags: 1

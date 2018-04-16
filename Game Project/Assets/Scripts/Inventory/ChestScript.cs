@@ -9,8 +9,9 @@ public class ChestScript : MonoBehaviour {
     private PlayerControl player;
 
     // Use this for initialization
-    void Start () {
+    void Start() {
         player = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
+        chestInventory = GameObject.Find("Chest Inventory").GetComponent<inventory>();
     }
 
     // Update is called once per frame
