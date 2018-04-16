@@ -167,7 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabledAI: 1
   isInvincible: 0
-  maxHealth: 40
+  maxHealth: 30
   drag: 100
   maxSpeed: 200
   moveVector: {x: 0, y: 0, z: 0}

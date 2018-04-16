@@ -9,7 +9,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(TeamComponent))] //projectiles need teams so they can check for friendly fire
 public class Projectile : MonoBehaviour {
-	private Vector2 velocity;
+	public Vector2 velocity;
 	public int damage = 10;
 	public float lifespan = 5f;
 	private TeamComponent teamComponent;
@@ -22,7 +22,8 @@ public class Projectile : MonoBehaviour {
 		if (otherTeam == null || otherTeam.team != this.teamComponent.team){
 			//nicely ask the target to take damage
 			other.gameObject.SendMessage("TakeDamage", this.damage, SendMessageOptions.DontRequireReceiver); //damage increased by power in Initialize()
-			this.Die();
+			PushSpell push = other.gameObject.GetComponent<PushSpell>();
+			if(push == null)this.Die();
 		}
 		//else ignore the collision
 	}

@@ -23,12 +23,22 @@ public class PushSpell : MonoBehaviour {
 		if (otherTeam == null || otherTeam.team != this.teamComponent.team){
 			//nicely ask the target to freeze and then take damage
 			Actor hitActor = other.gameObject.GetComponent<Actor>();
+
 			if (hitActor != null) {
 				Rigidbody2D enemyBody = other.gameObject.GetComponent<Rigidbody2D>();
 				enemyBody.AddForce (velocity * force,ForceMode2D.Impulse);
+				this.Die();
 			}
+
+			Projectile enemyProjectile = other.gameObject.GetComponent<Projectile> ();
+
+			if (enemyProjectile != null) {
+				otherTeam.team = Team.player;
+				enemyProjectile.velocity *= -1;
+			}
+
 			other.gameObject.SendMessage("TakeDamage", this.damage, SendMessageOptions.DontRequireReceiver);
-			this.Die();
+
 
 		}
 		//else ignore the collision
