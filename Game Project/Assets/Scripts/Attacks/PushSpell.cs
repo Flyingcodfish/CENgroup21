@@ -26,9 +26,12 @@ public class PushSpell : MonoBehaviour {
 			if (hitActor != null) {
 				Rigidbody2D enemyBody = other.gameObject.GetComponent<Rigidbody2D>();
 				enemyBody.AddForce (velocity * force,ForceMode2D.Impulse);
+				this.Die();
 			}
+
+
 			other.gameObject.SendMessage("TakeDamage", this.damage, SendMessageOptions.DontRequireReceiver);
-			this.Die();
+
 
 		}
 		//else ignore the collision
