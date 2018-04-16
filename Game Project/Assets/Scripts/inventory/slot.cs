@@ -58,7 +58,8 @@ public class slot : MonoBehaviour, IPointerClickHandler {
     void Awake()
     {
         Items = new Stack<Item>();// instantiates items upon awake 
-         shop = GameObject.FindObjectOfType<ShopScript>().GetComponent<ShopScript>(); // gets shop script from shop in scene 
+            shop = GameObject.FindObjectOfType<ShopScript>().GetComponent<ShopScript>();
+        // gets shop script from shop in scene if there 
     }
 
 	void Start () {
