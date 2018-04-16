@@ -13,6 +13,8 @@ public abstract class AI_Actor : Actor {
 	protected Vector2 directMove;
 	public float hoverDistance = 1.2f;
 	public float moveDeadZone = 0.1f;
+	protected bool hasLOS; //has line of sight
+
 
 	//navigation fields: usable by inheritors
 	protected Navigator navigator;
@@ -95,14 +97,17 @@ public abstract class AI_Actor : Actor {
 	IEnumerator AI_Tick(){
 		while (true){
 			if (this.IsActive()){
+				hasLOS = (0 == castCollider.Cast(directMove, tileFilter, castHits, directMove.magnitude));
 				directMove = targetObject.transform.position - transform.position;
 
-				if (directMove.magnitude <= hoverDistance){
-					OnInHoverDistance ();
-				}
-				//check if we can run straight towards player
-				else if (0 == castCollider.Cast(directMove, tileFilter, castHits, directMove.magnitude)){
-					OnDirectMove ();
+				//if we have line of sight, check if we are in hover range. if so, hover.
+				if (hasLOS){
+					if (directMove.magnitude <= hoverDistance){
+						OnInHoverDistance ();
+					}
+					else { //else, run straight towards our target
+						OnDirectMove ();
+					}
 				}
 				//pathfinding; only if we must
 				else {

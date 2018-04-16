@@ -79,7 +79,7 @@ public class Fairy : AI_Actor {
 	override protected void OnTickEnd(){
 		if (attackTimer <= 0 && directMove.magnitude <= attackRange) {
 			//only attack if we have line of sight
-			if (0 == Physics2D.Raycast(transform.position, directMove, tileFilter, castHits, directMove.magnitude)){
+			if (hasLOS){
 				attackTimer = attackCooldown;
 				StartCoroutine(FireShot());
 			}
