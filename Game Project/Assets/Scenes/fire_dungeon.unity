@@ -68811,6 +68811,16 @@ Prefab:
       propertyPath: m_Name
       value: Lit Torch (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 212276360259431428, guid: 6042f30ffa61ac441b11ea00cc2483f5,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: -1355697479
+      objectReference: {fileID: 0}
+    - target: {fileID: 212276360259431428, guid: 6042f30ffa61ac441b11ea00cc2483f5,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6042f30ffa61ac441b11ea00cc2483f5, type: 2}
   m_IsPrefabParent: 0
@@ -71243,7 +71253,7 @@ Tilemap:
   - first: {x: 0, y: 5, z: 0}
     second:
       m_TileIndex: 10
-      m_TileSpriteIndex: 10
+      m_TileSpriteIndex: 29
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -80545,8 +80555,8 @@ Tilemap:
     m_Data: {fileID: 21300170, guid: 262845d655fe76c4098f52ac39d2ac0f, type: 3}
   - m_RefCount: 4
     m_Data: {fileID: 21300162, guid: 262845d655fe76c4098f52ac39d2ac0f, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 21300166, guid: 262845d655fe76c4098f52ac39d2ac0f, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 9
     m_Data: {fileID: 21300000, guid: 262845d655fe76c4098f52ac39d2ac0f, type: 3}
   - m_RefCount: 8
@@ -80583,8 +80593,8 @@ Tilemap:
     m_Data: {fileID: 21300054, guid: 262845d655fe76c4098f52ac39d2ac0f, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300134, guid: 262845d655fe76c4098f52ac39d2ac0f, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300166, guid: 262845d655fe76c4098f52ac39d2ac0f, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300142, guid: 262845d655fe76c4098f52ac39d2ac0f, type: 3}
   - m_RefCount: 5
@@ -80759,6 +80769,16 @@ Prefab:
     - target: {fileID: 1787196256697744, guid: 6042f30ffa61ac441b11ea00cc2483f5, type: 2}
       propertyPath: m_Name
       value: Lit Torch (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212276360259431428, guid: 6042f30ffa61ac441b11ea00cc2483f5,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: -1355697479
+      objectReference: {fileID: 0}
+    - target: {fileID: 212276360259431428, guid: 6042f30ffa61ac441b11ea00cc2483f5,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6042f30ffa61ac441b11ea00cc2483f5, type: 2}
@@ -88734,6 +88754,16 @@ Prefab:
     - target: {fileID: 1787196256697744, guid: 6042f30ffa61ac441b11ea00cc2483f5, type: 2}
       propertyPath: m_Name
       value: Lit Torch (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212276360259431428, guid: 6042f30ffa61ac441b11ea00cc2483f5,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: -1355697479
+      objectReference: {fileID: 0}
+    - target: {fileID: 212276360259431428, guid: 6042f30ffa61ac441b11ea00cc2483f5,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6042f30ffa61ac441b11ea00cc2483f5, type: 2}
