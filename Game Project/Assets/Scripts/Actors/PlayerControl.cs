@@ -12,7 +12,6 @@ public class PlayerControl : Actor {
 
     //status fields
     public int hasKeys = 0; //number of door keys owned by the player.
-	public int hasMoney = 0; //amount of generic currency owned by the player.
 	public float currentMana {get; private set;} //used to cast spells
 	public float maxMana = 49; //this is a joke
 	public float manaRegen = 100f * 60 / 30; //implemented as "percent of max mana restored per minute." This completely fills the bar in 30 seconds.
@@ -68,7 +67,8 @@ public class PlayerControl : Actor {
 			currentHealth = GameSaver.liveSave.currentHealth;
 			currentMana = GameSaver.liveSave.currentMana;
 			hasKeys = GameSaver.liveSave.hasKeys;
-			hasMoney = GameSaver.liveSave.hasMoney;
+			coins = GameSaver.liveSave.coins;
+			inventory.LoadInventory(); //empty string; loads from save file
 		}
 	}
 
@@ -337,7 +337,12 @@ public class PlayerControl : Actor {
     {
         if(collision.tag == "Item")
         {
-            inventory.AddItem(collision.GetComponent<Item>());
+			Item item = collision.GetComponent<Item>();
+			if (item.type == ItemType.SPELL_FIRE) GameSaver.liveSave.spellTaken[0] = true;
+			if (item.type == ItemType.SPELL_ICE) GameSaver.liveSave.spellTaken[1] = true;
+			if (item.type == ItemType.SPELL_PUSH) GameSaver.liveSave.spellTaken[2] = true;
+
+			inventory.AddItem(item);
             Destroy(collision.gameObject);
         }
         if(collision.tag == "Chest")

@@ -25,7 +25,10 @@ public static class GameSaver {
 			liveSave.currentMana = player.currentMana;
 			liveSave.currentHealth = player.currentHealth;
 			liveSave.hasKeys = player.hasKeys;
-			liveSave.hasMoney = player.hasMoney; //TODO: integrate with tyler's stuff. is this the correct field name?
+			liveSave.coins = player.coins;
+
+			//save inventory data
+			player.inventory.SaveInventory();
 		}
 
 		//serialize data from live save. write to a file.
@@ -66,24 +69,23 @@ public class SavedGame {
 	public bool hasBeenSaved = false; //used by playerControl to determine if it should load traits from this saved file (true) or use its own default values (false).
 	public bool hasBeenNamed = false;
 
+
 	//PlayerControl fields
 	public float currentMana;
 	public int currentHealth;
 	public int hasKeys;
-	public int hasMoney; //TODO: integrate with tyler's stuff. is this the correct field name?
+	public int coins;
 	public string sceneName; //scene player last entered; we might want more granular control with multiple spawnPoints per scene
 //	public string location; //more specific location; for when there are multiple spawnpoints in a scene. Not currently implemented
-
+	//TODO: up player power, strength, speed
 
 	//player inventory
-	public string[] playerInventory; //TODO: integrate with Tyler's existing inventory saving/loading (rather than using playerPrefs). Can of course be something other than a string array.
+	public SavedInventory playerInventoryData = new SavedInventory();
 
 
 	//unlocks and mechanical progression
 	public bool[] bossKilled = new bool[3]; //array of three bools, indexed by boss number. Default values are false
 	public bool[] padUnlocked = new bool[3]; //array of three bools, indexed by teleport pad number. Default values are false
-
-	//TODO: integrate with tyler's inventory. Set spellTaken flags when spells are picked up.
 	public bool[] spellTaken = new bool[3]; //0 - ice spell; 1 - fireball; 2 - push spell. False: not yet picked up, item should spawn. True: item claimed, should not be present on ground.
 
 
@@ -91,7 +93,7 @@ public class SavedGame {
 	public List<int> unlockedDoors = new List<int>(); //dictionary of which doors have been unlocked. If a door is unlocked, it will generate a unique int hash and add itself to this dictionary, with a value of true.
 	public List<int> pickedUpKeys = new List<int>(); //dictionary of which keys have been picked up. If a key is picked up, it will generate a unique int hash and add itself to this dictionary, with a value of true.
 
-	//if upgrades are implemented, we can have a set of flags indicating which have been unlocked
+	//TODO: set of flags indicating which upgrades have been unlocked.
 
 
 	//story progression flags
@@ -100,4 +102,14 @@ public class SavedGame {
 	public bool watertutorialpoint = false;
     public bool mazetutorialpoint = false;
 
+}
+
+[System.Serializable]
+public class SavedInventory {
+	public string content = "";
+	public int slots = 10;
+	public int rows = 1;
+	public float slotPaddingLeft = 2f;
+	public float slotPaddingTop = 2f;
+	public float slotSize = 30f;
 }

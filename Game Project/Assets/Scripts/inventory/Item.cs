@@ -79,8 +79,8 @@ public class Item : MonoBehaviour
 
 	//if this spell item has been picked up before, pretend it doesn't exist.
 	public void Start(){
-		if (type == ItemType.SPELL_ICE  && GameSaver.liveSave.spellTaken [0] ||
-		    type == ItemType.SPELL_FIRE && GameSaver.liveSave.spellTaken [1] ||
+		if (type == ItemType.SPELL_ICE  && GameSaver.liveSave.spellTaken [1] ||
+		    type == ItemType.SPELL_FIRE && GameSaver.liveSave.spellTaken [0] ||
 		    type == ItemType.SPELL_PUSH && GameSaver.liveSave.spellTaken [2])
 		{
 			Destroy (this.gameObject);

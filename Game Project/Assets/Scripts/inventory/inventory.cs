@@ -416,7 +416,7 @@ public class inventory : MonoBehaviour {
     }
    public void SaveInventory() // uses gameObject.name to differentiate inventories in the scene
     {
-        Debug.Log("Saving");
+        Debug.Log("Saving Inventory...");
         string content = string.Empty;
         for(int i =0; i< allSlots.Count; i++) // goes through allslots and concatentates string with each index, type, and amount
         {
@@ -427,48 +427,27 @@ public class inventory : MonoBehaviour {
             }
         }
        // Debug.Log("Contents is: " + content);
-        PlayerPrefs.SetString(gameObject.name + "content", content);
+		GameSaver.liveSave.playerInventoryData.content = content;
         Debug.Log("Set Content is: " + content);
-        PlayerPrefs.SetInt(gameObject.name + "slots", slots);
-        PlayerPrefs.SetInt(gameObject.name + "rows", rows);
-        PlayerPrefs.SetFloat(gameObject.name + "slotPaddingLeft", slotPaddingLeft);
-        PlayerPrefs.SetFloat(gameObject.name + "slotPaddingTop", slotPaddingTop);
-        PlayerPrefs.SetFloat(gameObject.name + "slotSize", slotSize);
-        PlayerPrefs.Save(); // saves all the data member fields in playerprefs to be used for load 
+		GameSaver.liveSave.playerInventoryData.slots = slots;
+		GameSaver.liveSave.playerInventoryData.rows = rows;
+		GameSaver.liveSave.playerInventoryData.slotPaddingLeft = slotPaddingLeft;
+		GameSaver.liveSave.playerInventoryData.slotPaddingTop = slotPaddingTop;
+		GameSaver.liveSave.playerInventoryData.slotSize = slotSize;
     }
-    public void LoadInventory(string arg) // uses gameObject.name to differentiate inventories in the scene, and arg string to load specific contents
+    public void LoadInventory(string arg = "") // uses gameObject.name to differentiate inventories in the scene, and arg string to load specific contents
     {
-        Debug.Log("Loading");
-        string content = PlayerPrefs.GetString(gameObject.name + "content");
+        Debug.Log("Loading inventory...");
+		string content = GameSaver.liveSave.playerInventoryData.content;
         if(arg != string.Empty)
         { // need to format string like: index-Type-amount;
             content = arg;
         }
-        slots = PlayerPrefs.GetInt(gameObject.name + "slots");
-        if(slots == 0)
-        {
-            slots = 10;
-        }
-        rows = PlayerPrefs.GetInt(gameObject.name + "rows");
-        if(rows == 0)
-        {
-            rows = 1;
-        }
-        slotPaddingLeft = PlayerPrefs.GetFloat(gameObject.name + "slotPaddingLeft");
-        if(slotPaddingLeft == 0)
-        {
-            slotPaddingLeft = 2;
-        }
-        slotPaddingTop = PlayerPrefs.GetFloat(gameObject.name + "slotPaddingTop");
-        if(slotPaddingTop == 0)
-        {
-            slotPaddingTop = 2;
-        }
-        slotSize = PlayerPrefs.GetFloat(gameObject.name + "slotSize");
-        if(slotSize == 0)
-        {
-            slotSize = 30;
-        }
+		slots = GameSaver.liveSave.playerInventoryData.slots;
+		rows = GameSaver.liveSave.playerInventoryData.rows;
+		slotPaddingLeft = GameSaver.liveSave.playerInventoryData.slotPaddingLeft;
+		slotPaddingTop = GameSaver.liveSave.playerInventoryData.slotPaddingTop;
+		slotSize = GameSaver.liveSave.playerInventoryData.slotSize;
         CreateLayout();
 
         string[] splitContent = content.Split(';'); // delims by each slot 
