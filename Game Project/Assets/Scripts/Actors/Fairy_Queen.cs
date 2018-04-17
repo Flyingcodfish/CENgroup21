@@ -35,7 +35,6 @@ public class Fairy_Queen : Actor {
 	private float moveDeadZone = 0.2f;
 
 	public GameObject deathFlashPrefab;
-	public GameObject exitTeleporter;
 
 	override public void ActorStart(){
 		fireTarget = GameObject.FindObjectOfType<PlayerControl>().transform;
@@ -151,7 +150,6 @@ public class Fairy_Queen : Actor {
 		GameSaver.liveSave.watertutorialpoint = true;
 
 		Instantiate(deathFlashPrefab, transform.position, Quaternion.identity);
-		exitTeleporter.SetActive(true);
 		StartCoroutine(base.Die());
 		return null;
 	}
