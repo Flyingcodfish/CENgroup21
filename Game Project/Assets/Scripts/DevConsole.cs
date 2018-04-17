@@ -14,6 +14,7 @@ public class DevConsole : MonoBehaviour {
 
 	private Command currentMode;
 
+	private PlayerControl player;
 	private inventory inv;
 
 	public void TakeCommand(string rawString){
@@ -63,6 +64,16 @@ public class DevConsole : MonoBehaviour {
 				case "sinv":
 					inv.SaveInventory();
 					return;
+				case "godmode":
+				case "god":
+					player.isInvincible = !player.isInvincible;
+					player.infiniteMana = !player.infiniteMana;
+					Debug.Log("Toggling God Mode. Now " + (player.infiniteMana ? "enabled." : "disabled."));
+					return;
+				case "addkey":
+				case "key":
+					player.hasKeys ++;
+					return;
 				default:
 					Debug.Log("Error: '" + word + "' is not a recognzed command.");
 					return;
@@ -99,6 +110,15 @@ public class DevConsole : MonoBehaviour {
 				case "final_boss":
 					GameSaver.liveSave.bossKilled [2] = true;
 					break;
+				case "watertut":
+					GameSaver.liveSave.watertutorialpoint = true;
+					break;
+				case "firetut":
+					GameSaver.liveSave.firetutorialpoint = true;
+					break;
+				case "mazetut":
+					GameSaver.liveSave.mazetutorialpoint = true;
+					break;
 				}
 				break; //break setflag case
 			default:
@@ -114,7 +134,8 @@ public class DevConsole : MonoBehaviour {
 	}
 
 	void Start(){
-		inv = GetComponentInParent<PlayerControl>().inventory;
+		player = GetComponentInParent<PlayerControl>();
+		inv = player.inventory;
 	}
 
 }

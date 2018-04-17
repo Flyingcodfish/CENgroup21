@@ -29,7 +29,7 @@ public class Projectile : MonoBehaviour {
 		//else ignore the collision
 	}
 
-	private void Die(){
+	protected void Die(){
 		//probably hit a wall or target; destroy this bullet
 		//instantiate a fade-out effect/object
 		if (death_object != null)

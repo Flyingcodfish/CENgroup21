@@ -17,6 +17,8 @@ public static class GameSaver {
 		liveSave.hasBeenSaved = true;
 		//save the current scene name. Should we save actual x,y location? probably not.
 		liveSave.sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name;
+		//exceptions: places we don't want the player to save
+		if (liveSave.sceneName.Equals("water_boss_room")) liveSave.sceneName = "water_dungeon";
 
 		//write PlayerControl fields to liveSave, and stage for writing to disk.
 		PlayerControl player = Object.FindObjectOfType<PlayerControl>();

@@ -16,6 +16,7 @@ public class PlayerControl : Actor {
 	public float maxMana = 49; //this is a joke
 	public float manaRegen = 100f * 60 / 30; //implemented as "percent of max mana restored per minute." This completely fills the bar in 30 seconds.
 	private float manaTickTime = 0.1f; // how often in seconds should mana be regenerated? larger values make mana regen more visible, but also choppier
+	public bool infiniteMana = false; //for testing. Activate with "godmode" command in dev console
 
 	//spell fields
 	private float spellDistance = 0.15f;
@@ -295,6 +296,7 @@ public class PlayerControl : Actor {
 		return SpendMana ((float)amount);
 	}
 	public bool SpendMana(float amount){
+		if (infiniteMana) return true;
 		if (currentMana >= amount){
 			currentMana -= amount;
 		}

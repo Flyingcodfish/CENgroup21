@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4149158040949126}
   - component: {fileID: 212774992824947744}
   - component: {fileID: 58715958745814830}
-  - component: {fileID: 114582351032436458}
   - component: {fileID: 50142552553908410}
   - component: {fileID: 114052040902199292}
+  - component: {fileID: 114228807069132560}
   m_Layer: 14
   m_Name: FQ_dagger_shot
   m_TagString: Untagged
@@ -39,7 +39,7 @@ Transform:
   m_GameObject: {fileID: 1424920956255592}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0
---- !u!114 &114582351032436458
+--- !u!114 &114228807069132560
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -99,14 +99,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1424920956255592}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eadf96fb749ff5048a088455677e896f, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a8eb901ea792244c9ed7221c6eaeed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0}
   damage: 10
-  lifespan: 5
-  death_object: {fileID: 1695958140473736, guid: 9dd20aa2f5744ac42967ad960ba8a499,
-    type: 2}
+  lifespan: 10
+  death_object: {fileID: 0}
+  initialFlightTime: 0.3
+  homeTime: 0.9
+  target: {fileID: 0}
+  flySpeedUp: 1.5
 --- !u!212 &212774992824947744
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4321237505707134}
   - component: {fileID: 212584887898210614}
   - component: {fileID: 58657291931849536}
-  - component: {fileID: 114264897354158656}
   - component: {fileID: 50327768928287318}
   - component: {fileID: 114997939041875798}
+  - component: {fileID: 114087692675645282}
   m_Layer: 14
   m_Name: FQ_fan_shot
   m_TagString: Untagged
@@ -79,7 +79,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4
---- !u!114 &114264897354158656
+--- !u!114 &114087692675645282
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -87,14 +87,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1245598764106254}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eadf96fb749ff5048a088455677e896f, type: 3}
+  m_Script: {fileID: 11500000, guid: c1b32d8e4e35b224c9fd59d0a56271ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0}
   damage: 10
   lifespan: 5
-  death_object: {fileID: 1695958140473736, guid: 9dd20aa2f5744ac42967ad960ba8a499,
+  death_object: {fileID: 0}
+  flyTime: 0.3
+  spreadCount: 5
+  spreadRange: 80
+  straightShotPrefab: {fileID: 114055802189400976, guid: abfb45b9136c3ce47a450d87bb89e9a0,
     type: 2}
+  baseSpeed: 0
 --- !u!114 &114997939041875798
 MonoBehaviour:
   m_ObjectHideFlags: 1

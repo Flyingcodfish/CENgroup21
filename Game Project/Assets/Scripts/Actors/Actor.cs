@@ -29,6 +29,7 @@ public abstract class Actor : MonoBehaviour {
         if (strength < 0.5f) { strength = 0.5f; } //hardcaps at double normal 
         Debug.Log("Strength is: " + strength); } // used to upgrade strength of actor
 	protected int frozenStatus = 0; //integer: +1 when frozen, -1 when freezes end. Allows multiple sources to overlap freeze duration, but not stack effects.
+	protected bool canBeFrozen = true;
 
 	//health and damage fields
 	public bool isInvincible = false;
@@ -179,7 +180,7 @@ public abstract class Actor : MonoBehaviour {
             StartCoroutine(PowerUp(Modifier, Duration));
             break;
 		case Effect.Freeze:
-			StartCoroutine (Freeze(Duration));
+			if (canBeFrozen) StartCoroutine (Freeze(Duration));
 			break;
 		default:
 			Debug.Log("Errror: Invalid status effect applied to actor: " + this.gameObject.name);
