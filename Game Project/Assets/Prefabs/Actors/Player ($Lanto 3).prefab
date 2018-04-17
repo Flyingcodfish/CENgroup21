@@ -2639,17 +2639,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20ac7d2e0176114e9c24b0e4fd8898d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enabledAI: 1
+  lockAI: 0
   isInvincible: 0
-  maxHealth: 50
+  maxHealth: 80
   drag: 100
   maxSpeed: 500
   inventory: {fileID: 114470857220434192}
   coins: 0
   hasKeys: 0
-  hasMoney: 0
-  maxMana: 49
+  maxMana: 100
   manaRegen: 200
+  infiniteMana: 0
   bomb_object: {fileID: 114925543551872718, guid: 090ec3340aa92634a9acfef58eec598f,
     type: 2}
   iceShardPrefab: {fileID: 114786623454023892, guid: cedb58da92376044e9c413c619a0a6d6,
