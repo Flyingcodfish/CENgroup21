@@ -8,8 +8,8 @@ public class FireBomb : MonoBehaviour {
     public TeamComponent teamComponent;
     public Vector2 velocity;
     public int damage = 30;
-    private float explodetimer = 3.0f;
-    private float stoptimer = 0.5f;
+    public float explodetimer = 3.0f;
+    public float stoptimer = 0.5f;
     public Sprite littorch;
     public Animator animator;
 
