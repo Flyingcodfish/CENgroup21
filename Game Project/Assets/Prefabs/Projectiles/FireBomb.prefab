@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114925543551872718}
   - component: {fileID: 212848691500238250}
   - component: {fileID: 114430031803253960}
+  - component: {fileID: 95783317273684590}
   m_Layer: 0
   m_Name: FireBomb
   m_TagString: Untagged
@@ -89,6 +90,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4, y: 0.59}
   m_EdgeRadius: 0
+--- !u!95 &95783317273684590
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1321374676848342}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8a45bd03e19320c4c97609d267217a4b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114430031803253960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -116,7 +134,8 @@ MonoBehaviour:
   velocity: {x: 0.08, y: 0}
   damage: 30
   littorch: {fileID: 21300000, guid: 6516662f5108b1c4298060864b2751b0, type: 3}
-  explosionPrefab: {fileID: 114203950790949246, guid: ecb198292701e7240a0890ff495e0eb6,
+  animator: {fileID: 0}
+  explosionPrefab: {fileID: 114680645030569490, guid: ecb198292701e7240a0890ff495e0eb6,
     type: 2}
 --- !u!212 &212848691500238250
 SpriteRenderer:

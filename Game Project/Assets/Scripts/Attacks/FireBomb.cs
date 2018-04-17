@@ -11,6 +11,7 @@ public class FireBomb : MonoBehaviour {
     private float explodetimer = 3.0f;
     private float stoptimer = 0.5f;
     public Sprite littorch;
+    public Animator animator;
 
     public Explosion explosionPrefab;
 
@@ -51,11 +52,32 @@ public class FireBomb : MonoBehaviour {
 
     public void Initialize(Vector2 velocity, Team team, float dmgMod = 1f)
     {
+        animator = this.GetComponent<Animator>();
         this.velocity = velocity;
 		this.teamComponent = this.GetComponent<TeamComponent>();
 		teamComponent.team = team;
 		this.damage = (int) (this.damage * dmgMod);
 		this.gameObject.layer = LayerMask.NameToLayer("Projectiles");
+        if (velocity.y > 0)
+        {   //up
+            animator.SetInteger("Direction", 0);
+        }
+        else if (velocity.y < 0)
+        { //down
+            animator.SetInteger("Direction", 1);
+        }
+        else if (velocity.x < 0)
+        { //left
+            animator.SetInteger("Direction", 2);
+        }
+        else if (velocity.x > 0)
+        { //right
+            animator.SetInteger("Direction", 3);
+        }
+        else
+        {
+            //leave facing as is
+        }
     }
 
     public void FixedUpdate()
