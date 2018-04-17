@@ -39,6 +39,8 @@ public class FireWizard : AI_Actor {
         //turn physics off
         this.GetComponent<Collider2D>().enabled = false;
 
+        this.BroadcastMessage("Drop", SendMessageOptions.DontRequireReceiver);
+
         yield return new WaitForSeconds(5f); //wait for death animation to finish; TODO: THIS IS A BAD SOLUTION
 
         //wait for important coroutines to finish
