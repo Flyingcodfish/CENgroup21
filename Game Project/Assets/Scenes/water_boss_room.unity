@@ -269,11 +269,6 @@ Prefab:
       propertyPath: exitTeleporter
       value: 
       objectReference: {fileID: 1655730445}
-    - target: {fileID: 114533717295205926, guid: daef866f42357eb45ac40f8341718daf,
-        type: 2}
-      propertyPath: maxHealth
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: daef866f42357eb45ac40f8341718daf, type: 2}
   m_IsPrefabParent: 0
