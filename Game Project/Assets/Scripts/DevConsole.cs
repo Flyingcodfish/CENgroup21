@@ -9,7 +9,7 @@ public class DevConsole : MonoBehaviour {
 
 	//only need command modes for multi-word commands
 	private enum Command {
-		none, echo, loadScene, takeDamage, spendMana, setFlag
+		none, echo, loadScene, takeDamage, spendMana, setFlag, addMoney
 	}
 
 	private Command currentMode;
@@ -74,6 +74,10 @@ public class DevConsole : MonoBehaviour {
 				case "key":
 					player.hasKeys ++;
 					return;
+				case "addmoney":
+				case "coins":
+					currentMode = Command.addMoney;
+					break;
 				default:
 					Debug.Log("Error: '" + word + "' is not a recognzed command.");
 					return;
@@ -94,6 +98,9 @@ public class DevConsole : MonoBehaviour {
 				break;
 			case Command.spendMana:
 				gameObject.SendMessageUpwards ("SpendMana", Int32.Parse (word, NumberStyles.AllowLeadingSign));
+				break;
+			case Command.addMoney:
+				player.coins += Int32.Parse (word, NumberStyles.AllowLeadingSign);
 				break;
 			case Command.setFlag:
 				switch (word) {
