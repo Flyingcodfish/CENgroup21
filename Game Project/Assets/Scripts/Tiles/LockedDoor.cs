@@ -33,8 +33,8 @@ public class LockedDoor : MonoBehaviour {
 
 		string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name;
 		Random.InitState ((int)hash);
-		hash ^= (char)sceneName[Random.Range (0, sceneName.Length - 1)];
-		hash ^= (char)sceneName[Random.Range (0, sceneName.Length - 1)];
+		hash ^= (char)sceneName[Random.Range (0, sceneName.Length)];
+		hash ^= (char)sceneName[Random.Range (0, sceneName.Length)];
 		doorID = (int)hash;
 
 		//if this item is a key and has been picked up before, just pretend it doesn't exist

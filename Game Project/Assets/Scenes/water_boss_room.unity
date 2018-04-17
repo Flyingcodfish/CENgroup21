@@ -4112,3 +4112,21 @@ Tilemap:
   m_TileRefreshArray:
   - serializedVersion: 1
     m_DirtyIndex: 0
+--- !u!1 &1870820944 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1493777973581552, guid: daef866f42357eb45ac40f8341718daf,
+    type: 2}
+  m_PrefabInternal: {fileID: 696883336}
+--- !u!114 &1870820945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1870820944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 417676f1089d5674e8789685f7325607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  circleShotPrefab: {fileID: 114987804354539526, guid: 94e323f0386f6714dad5c7a941bee207,
+    type: 2}

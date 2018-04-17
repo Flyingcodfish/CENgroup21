@@ -12,11 +12,12 @@ public class Projectile : MonoBehaviour {
 	public Vector2 velocity;
 	public int damage = 10;
 	public float lifespan = 5f;
-	private TeamComponent teamComponent;
+	protected TeamComponent teamComponent;
+	protected bool initialized = false;
 
 	public GameObject death_object;
 
-	public void OnTriggerEnter2D(Collider2D other){
+	virtual public void OnTriggerEnter2D(Collider2D other){
 		//we hit something. if it is a wall, or on another team, "hit" it and destroy the bullet.
 		TeamComponent otherTeam = other.gameObject.GetComponent<TeamComponent>();
 		if (otherTeam == null || otherTeam.team != this.teamComponent.team){
@@ -37,15 +38,21 @@ public class Projectile : MonoBehaviour {
 	}
 
 	public void Initialize(Vector2 velocity, Team team, float dmgMod = 1f){
+		initialized = true;
 		this.velocity = velocity;
 		this.teamComponent = this.gameObject.GetComponent<TeamComponent>();
 		teamComponent.team = team;
 		this.damage = Mathf.RoundToInt(damage * dmgMod);
 
+		OnInit();
 		StartCoroutine(LifespanCountdown()); //begin the inevitable spiral towards death
 	}
-		
-	public void FixedUpdate(){
+
+	virtual public void OnInit(){
+		//pass
+	}
+
+	virtual public void FixedUpdate(){
 		transform.position = transform.position + (Vector3)velocity;
 	}
 

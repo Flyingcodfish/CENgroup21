@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eadf96fb749ff5048a088455677e896f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0}
   damage: 10
   lifespan: 5
   death_object: {fileID: 1695958140473736, guid: f8bbf4ec3dfd00049aba3b29e09373b0,
@@ -105,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8733780be8ed5134ba84b8c62e74b018, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 0
+  team: 2
 --- !u!212 &212932265091158674
 SpriteRenderer:
   m_ObjectHideFlags: 1

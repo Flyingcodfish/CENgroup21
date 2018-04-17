@@ -29,8 +29,8 @@ public class Drop : MonoBehaviour {
 
 			string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name;
 			Random.InitState((int)hash);
-			hash ^= (char) sceneName[Random.Range (0, sceneName.Length - 1)]; //assumes no scene has an empty name :^)
-			hash ^= (char) sceneName[Random.Range (0, sceneName.Length - 1)];
+			hash ^= (char) sceneName[Random.Range (0, sceneName.Length)]; //assumes no scene has an empty name :^)
+			hash ^= (char) sceneName[Random.Range (0, sceneName.Length)];
 			keyID = (int) hash;
 
 			//if this item is a key and has been picked up before, just pretend it doesn't exist
