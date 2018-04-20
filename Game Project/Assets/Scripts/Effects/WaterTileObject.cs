@@ -12,7 +12,7 @@ public class WaterTileObject : MonoBehaviour {
 	private SpriteRenderer spriteRenderer;
 
 	public int stoodOnCount = 0;
-	volatile public int frozenCount = 0;
+	public int frozenCount = 0;
 	private float thawTime = 4f;
 	private float iceAlpha = 1f;
 

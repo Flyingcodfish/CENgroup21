@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class circle_shot : Projectile {
 
-	public Mover centerPrefab;
-	private Mover centerInstance;
+	public Vector3 centerPosition;
 
 	public float angVelocity;
 	public float pathRadius;
@@ -14,29 +13,23 @@ public class circle_shot : Projectile {
 	float theta;
 
 	override public void OnInit(){
-		//create center object for path. Will move in a straight line
-		Vector3 centerPosition = transform.position + (Vector3)(pathRadius * velocity.normalized);
-		centerInstance = Instantiate (centerPrefab, centerPosition, Quaternion.identity);
-		centerInstance.velocity = velocity; //center instance moves towards player
-		transform.SetParent(centerInstance.transform, true); //follow this object
-
+		//create center location of path. Center will move in a straight line based on velocity.
+		centerPosition = transform.position + (Vector3)(pathRadius * velocity.normalized);
 		//set initial theta
-		theta = Vector2.SignedAngle(Vector2.right, transform.localPosition);
+		theta = Vector2.SignedAngle(Vector2.right, transform.position - centerPosition);
 	}
 
 	//orbit around center object
 	override public void FixedUpdate(){
 		if (initialized){
+			centerPosition += (Vector3)velocity;
+
 			Vector3 newPosition = new Vector3();
 			theta += angVelocity;
-			newPosition.x = centerInstance.transform.position.x + pathRadius * Mathf.Cos(Mathf.Deg2Rad * theta);
-			newPosition.y = centerInstance.transform.position.y + pathRadius * Mathf.Sin(Mathf.Deg2Rad * theta);
+			newPosition.x = centerPosition.x + pathRadius * Mathf.Cos(Mathf.Deg2Rad * theta);
+			newPosition.y = centerPosition.y + pathRadius * Mathf.Sin(Mathf.Deg2Rad * theta);
 			transform.position = newPosition;
 		}
-	}
-
-	void OnDestroy(){
-		Destroy(centerInstance.gameObject);
 	}
 
 }

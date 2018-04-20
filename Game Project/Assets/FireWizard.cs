@@ -12,7 +12,8 @@ public class FireWizard : AI_Actor {
     //I childproofed my own code, because I am a child :^)
     override public void AI_Start()
     {
-        //pass
+		if (GameSaver.liveSave.bossKilled [0] == true)
+			Destroy (this.gameObject);
     }
 
     //apply forces based on movement trajectory
@@ -40,6 +41,7 @@ public class FireWizard : AI_Actor {
         this.GetComponent<Collider2D>().enabled = false;
 
         this.BroadcastMessage("Drop", SendMessageOptions.DontRequireReceiver);
+		GameSaver.liveSave.bossKilled [0] = true;
 
         yield return new WaitForSeconds(5f); //wait for death animation to finish; TODO: THIS IS A BAD SOLUTION
 

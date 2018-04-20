@@ -94,7 +94,7 @@ public abstract class AI_Actor : Actor {
 	 * 
 	 */
 
-	IEnumerator AI_Tick(){
+	virtual protected IEnumerator AI_Tick(){
 		while (true){
 			if (this.IsActive()){
 				hasLOS = (0 == castCollider.Cast(directMove, tileFilter, castHits, directMove.magnitude));

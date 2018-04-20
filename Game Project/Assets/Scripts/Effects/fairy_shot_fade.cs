@@ -12,7 +12,7 @@ public class fairy_shot_fade : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		this.spriteRenderer = this.GetComponent<SpriteRenderer>();
-		this.spriteColor = Color.white;
+		spriteColor = spriteRenderer.color;
 		StartCoroutine(Fadeout());
 	}
 	

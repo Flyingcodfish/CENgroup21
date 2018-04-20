@@ -7,8 +7,8 @@ public class Fairy_Queen : Actor {
 	//attack fields
 	public Projectile circleShotPrefab;
 	private Projectile circleShotInstance;
-	public float circleSpeed = 0.5f;
-	public float circleShotInterval = 0.1f;
+	public float circleSpeed = 0.1f;
+	public float circleShotInterval = 0.15f;
 	public int circleShotCount = 4;
 
 	public dagger_shot daggerShotPrefab;
@@ -38,27 +38,29 @@ public class Fairy_Queen : Actor {
 	public GameObject exitTeleporter;
 
 	override public void ActorStart(){
+		if (GameSaver.liveSave.bossKilled [1] == true)
+			Destroy (this.gameObject);
 		fireTarget = GameObject.FindObjectOfType<PlayerControl>().transform;
 		canBeFrozen = false;
-		StartCoroutine(MoveTimer());
+		//StartCoroutine(MoveTimer());
 		StartCoroutine(AttackTimer());
 	}
 
 
-//	void Update(){
-//		//test fire
-//		if (Input.GetKeyDown(KeyCode.F)){
-//			FireCircleWave();
-//		}
-//
-//		if (Input.GetKeyDown(KeyCode.G)){
-//			FireDaggerWave();
-//		}
-//
-//		if (Input.GetKeyDown(KeyCode.H)){
-//			FireFanWave();
-//		}
-//	}
+	void Update(){
+		//test fire
+		if (Input.GetKeyDown(KeyCode.F)){
+			FireCircleWave();
+		}
+
+		if (Input.GetKeyDown(KeyCode.G)){
+			FireDaggerWave();
+		}
+
+		if (Input.GetKeyDown(KeyCode.H)){
+			FireFanWave();
+		}
+	}
 
 	//AI BEHAVIOR
 

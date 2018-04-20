@@ -35,6 +35,7 @@ public class PushSpell : MonoBehaviour {
 			if (enemyProjectile != null) {
 				otherTeam.team = Team.player;
 				enemyProjectile.velocity *= -1;
+				enemyProjectile.transform.up = enemyProjectile.velocity;
 			}
 
 			other.gameObject.SendMessage("TakeDamage", this.damage, SendMessageOptions.DontRequireReceiver);
