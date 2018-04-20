@@ -5,6 +5,7 @@ using UnityEngine;
 public class DarkSorceror : AI_Actor {
 
 	public GameObject teleportExit;
+	public GameObject deathFlashPrefab;
 
 	public Transform fireTarget;
 	private Vector3 fireDirection;
@@ -46,21 +47,21 @@ public class DarkSorceror : AI_Actor {
 	//BEHAVIOR BEGINS
 	//
 
-//	void Update(){
-//		//test fire
-//		if (Input.GetKeyDown(KeyCode.F)){
-//			FireCircleWave();
-//		}
-//		if (Input.GetKeyDown(KeyCode.G)){
-//			FireSpreadWave();
-//		}
-//		if (Input.GetKeyDown(KeyCode.H)){
-//			StartBlocking();
-//		}
-//		if (Input.GetKeyDown (KeyCode.J)) {
-//			FireTrap ();
-//		}
-//	}
+	void Update(){
+		//test fire
+		if (Input.GetKeyDown(KeyCode.F)){
+			FireCircleWave();
+		}
+		if (Input.GetKeyDown(KeyCode.G)){
+			FireSpreadWave();
+		}
+		if (Input.GetKeyDown(KeyCode.H)){
+			StartBlocking();
+		}
+		if (Input.GetKeyDown (KeyCode.J)) {
+			FireTrap ();
+		}
+	}
 
 
 
@@ -144,9 +145,14 @@ public class DarkSorceror : AI_Actor {
 		}
 	}
 
-	void OnDestroy(){
-		GameSaver.liveSave.bossKilled [2] = true;
-		teleportExit.SetActive (true);
+	override public IEnumerator Die(){
+		GameSaver.liveSave.bossKilled[1] = true;
+		GameSaver.liveSave.watertutorialpoint = true;
+
+		Instantiate(deathFlashPrefab, transform.position, Quaternion.identity);
+		teleportExit.SetActive(true);
+		StartCoroutine(base.Die());
+		yield return null;
 	}
 
 }

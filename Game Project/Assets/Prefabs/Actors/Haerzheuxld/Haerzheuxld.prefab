@@ -142,6 +142,8 @@ MonoBehaviour:
   avoidDistance: 1.5
   castCollider: {fileID: 61902624079930720}
   teleportExit: {fileID: 0}
+  deathFlashPrefab: {fileID: 1695958140473736, guid: 22c4d933fc170a2428d8e4cb4147131f,
+    type: 2}
   fireTarget: {fileID: 0}
   circleShotPrefab: {fileID: 114810190029613550, guid: 3a77135168193654595ed5de9de2c3d0,
     type: 2}
