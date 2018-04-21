@@ -15,17 +15,51 @@ public class DialogueManager4 : MonoBehaviour
     public GameObject elipses;
     public GameObject continueButton;
     public GameObject test;
+    public GameObject Gobby;
+    public GameObject Lato;
+    public GameObject exitArrow;
     private int iterator = 0;
 
     void Start()
     {
-        DisplayDialogue();
+        iterator = 0;
+        if (!GameSaver.liveSave.bossKilled[0]) DisplayDialogue();
+        else
+        {
+            Gobby.SetActive(false);
+            if (GameSaver.liveSave.bossKilled[1]) Lato.SetActive(false);
+        }
     }
 
     public void iterate()
     {
-        if (iterator != 9) iterator++;
-        DisplayDialogue();
+        iterator++;
+        if (!GameSaver.liveSave.bossKilled[0]) DisplayDialogue();
+        else DisplayDialogue2();
+    }
+
+    public void DisplayDialogue2()
+    {
+        if (iterator == 0)
+        {
+            chatBox.SetActive(true);
+            nameText.text = "Lato";
+            dialogueText.text = "You’re still alive! That’s a relief. I was worried the corruption would be too much, but I’m glad you’re still the sorcerer I knew so well.";
+            return;
+        }
+
+        if (iterator == 1)
+        {
+            dialogueText.text = "The next step would be to enter the Water Dungeon, but Gobby wanted a word with you before you left. You’ll find him south of here, at the merchant’s.";
+            return;
+        }
+
+        if (iterator == 3)
+        {
+            chatBox.SetActive(false);
+            exitArrow.SetActive(true);
+            return;
+        }
     }
 
     public void DisplayDialogue()
@@ -92,84 +126,74 @@ public class DialogueManager4 : MonoBehaviour
 
         if (iterator == 8)
         {
-            nameText.text = "";
-            dialogueText.text = "Press the number that corresponds to the position of the fire spellbook in your inventory, then click 'continue.'";
+            nameText.text = GameSaver.liveSave.playerName;
+            dialogueText.text = "(You close your eyes tightly and try to remember how to cast Fireball, but to little avail)";
         }
 
         if (iterator == 9)
         {
-            if (!GameSaver.liveSave.firespell) DisplayDialogue();
-            else
-            {
-                iterator++;
-                DisplayDialogue();
-            }
-        }
-
-        if (iterator == 10)
-        {
             nameText.text = "Lato";
-            dialogueText.text = "Weak! Thats what I thought. It’s common among certain sorcerers to come down with amnesia if they work with dangerous catalysts.";
+            dialogueText.text = "Thats what I thought. It’s common among certain sorcerers to come down with amnesia if they work with dangerous catalysts.";
             return;
         }
 
-        if (iterator == 11)
+        if (iterator == 10)
         {
             nameText.text = "Gobby";
             dialogueText.text = "So you’re saying " + GameSaver.liveSave.playerName + " doesn’t remember me? Or you?";
             return;
         }
 
-        if (iterator == 12)
+        if (iterator == 11)
         {
             nameText.text = "Lato";
             dialogueText.text = "Or anybody here, on that note. Or any magic.";
             return;
         }
 
-        if (iterator == 13)
+        if (iterator == 12)
         {
             nameText.text = "Gobby";
             dialogueText.text = "(sighs) Right when we needed you most. Have we been cursed?";
             return;
         }
 
-        if (iterator == 14)
+        if (iterator == 13)
         {
             nameText.text = "Lato";
             dialogueText.text = "Perhaps. But we have the state sorcerer here, nevertheless. Perhaps by helping them regain their memory, we can save ourselves as well.";
             return;
         }
 
-        if (iterator == 15)
+        if (iterator == 14)
         {
             nameText.text = GameSaver.liveSave.playerName;
             dialogueText.text = "M-me..?";
             return;
         }
 
-        if (iterator == 16)
+        if (iterator == 15)
         {
             nameText.text = "Lato";
             dialogueText.text = "You probably don’t remember, but you were a very powerful sorcerer before losing your memory. While you may have forgotten your spells, the fact remains that you are a capable sorcerer.";
             return;
         }
 
-        if (iterator == 17)
+        if (iterator == 16)
         {
             nameText.text = "Gobby";
             dialogueText.text = "Does that mean they can get their spells back?";
             return;
         }
 
-        if (iterator == 18)
+        if (iterator == 17)
         {
             nameText.text = "Lato";
             dialogueText.text = "Thats exactly what it means. It’s here that you gained your abilities, and it’s here that you’ll gain them back. You became state sorcerer after all.";
             return;
         }
 
-        if (iterator == 19)
+        if (iterator == 18)
         {
             exclamation2.SetActive(true);
             nameText.text = "Gobby";
@@ -177,7 +201,7 @@ public class DialogueManager4 : MonoBehaviour
             return;
         }
 
-        if (iterator == 20)
+        if (iterator == 19)
         {
             exclamation2.SetActive(false);
             nameText.text = "Lato";
@@ -185,64 +209,64 @@ public class DialogueManager4 : MonoBehaviour
             return;
         }
 
-        if (iterator == 21)
+        if (iterator == 20)
         {
             nameText.text = "Gobby";
             dialogueText.text = "But the temples are overrun with corruption...";
             return;
         }
 
-        if (iterator == 22)
+        if (iterator == 21)
         {
             nameText.text = "Lato";
             dialogueText.text = "I know, it’ll be more difficult than before. But they’re more powerful than before, despite not having the abilities to prove it.";
             return;
         }
 
-        if (iterator == 23)
+        if (iterator == 22)
         {
             nameText.text = "Gobby";
             dialogueText.text = GameSaver.liveSave.playerName + ", is this okay with you? You don’t have to do this.";
             return;
         }
 
-        if (iterator == 24)
+        if (iterator == 23)
         {
             nameText.text = GameSaver.liveSave.playerName;
             dialogueText.text = "I guess..?";
             return;
         }
 
-        if (iterator == 25)
+        if (iterator == 24)
         {
             nameText.text = "Gobby";
             dialogueText.text = "Well... okay! I know you’re capable of doing this. If you go to the Fire Dungeon, you’ll learn to cast Fireball. That’s how you’ll start your journey.";
             return;
         }
 
-        if (iterator == 26)
+        if (iterator == 25)
         {
             nameText.text = "";
-            dialogueText.text = "You can now access the Fire Dungeon by stepping on the orange teleport at the hub.";
+            dialogueText.text = "You can now access the Fire Dungeon by stepping on the orange teleport to the east in the town.";
             GameSaver.liveSave.firetutorialpoint = true;
             return;
         }
 
-        if (iterator == 27)
+        if (iterator == 26)
         {
             nameText.text = "Gobby";
             dialogueText.text = GameSaver.liveSave.playerName + ", time to head out! Bye, Lato!";
             return;
         }
 
-        if (iterator == 28)
+        if (iterator == 27)
         {
             nameText.text = "Lato";
             dialogueText.text = "(waves) Take care, Gobby! And best of luck to you, Sorcerer " + GameSaver.liveSave.playerName + ".";
             return;
         }
 
-        if (iterator == 29)
+        if (iterator == 28)
         {
             SceneManager.LoadScene("hub");
         }

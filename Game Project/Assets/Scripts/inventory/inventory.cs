@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class inventory : MonoBehaviour {
     // used for inventory layout 
@@ -286,6 +287,9 @@ public class inventory : MonoBehaviour {
                     if (tmp.name == "Spell" && item.isSpell()) // checks if its a slot spell and item is a spell 
                     {
                         Debug.Log("slot is spell and item is spell");
+                        if (SceneManager.GetActiveScene().name == "fire_dungeon" && !GameSaver.liveSave.bossKilled[0]) GameSaver.liveSave.firstFire = true;
+                        if (SceneManager.GetActiveScene().name == "water_dungeon" && !GameSaver.liveSave.bossKilled[1]) GameSaver.liveSave.firstIce = true;
+                        if (SceneManager.GetActiveScene().name == "maze_dungeon" && !GameSaver.liveSave.bossKilled[2]) GameSaver.liveSave.firstPush = true;
                         tmp.AddItem(item);
                         emptySlots--;
                         return true;

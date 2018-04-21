@@ -43,7 +43,7 @@ public class WaterTeleport : MonoBehaviour
         yield return new WaitForSeconds(0.6f);
         float fadeTime = GetComponent<Fading>().BeginFade(1);
         yield return new WaitForSeconds(fadeTime);
-        SceneManager.LoadScene("water_dungeon");
+        SceneManager.LoadScene("dungeon1_entrance");
     }
 }
 

@@ -43,7 +43,7 @@ public class MazeTeleport : MonoBehaviour
         yield return new WaitForSeconds(0.6f);
         float fadeTime = GetComponent<Fading>().BeginFade(1);
         yield return new WaitForSeconds(fadeTime);
-        SceneManager.LoadScene("maze_dungeon");
+        SceneManager.LoadScene("dungeon3_entrance");
     }
 }
 

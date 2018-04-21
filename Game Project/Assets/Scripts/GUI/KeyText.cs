@@ -21,6 +21,7 @@ public class KeyText : MonoBehaviour {
 	void Update () {
 		//slightly more expensive when we need to change count; much less expensive all other times
 		if (player.hasKeys != count){
+            GameSaver.liveSave.firstKey = true;
 			count = player.hasKeys;
 			text.text = count.ToString();
 		}

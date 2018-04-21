@@ -105,6 +105,13 @@ public class SavedGame {
 	public bool firetutorialpoint = false;
 	public bool watertutorialpoint = false;
     public bool mazetutorialpoint = false;
+    public bool firstFire = false;
+    public bool firstIce = false;
+    public bool firstPush = false;
+    public bool firstKey = false;
+    public bool tutorialpoint = false;
+    public bool tutorialpoint2 = false;
+    public bool tutorialpoint3 = false;
 
 }
 
