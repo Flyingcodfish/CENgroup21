@@ -5,7 +5,7 @@ using Pathfinding;
 
 public abstract class AI_Actor : Actor {
 
-	static float tickTime = 0.1f; //time in seconds between each AI tick
+	const float tickTime = 0.1f; //time in seconds between each AI tick
 
 	//targeting & movement fields: useable by inheritors
 	protected GameObject targetObject;
@@ -13,8 +13,8 @@ public abstract class AI_Actor : Actor {
 	protected Vector2 directMove;
 	public float hoverDistance = 1.2f;
 	public float moveDeadZone = 0.1f;
-	protected bool hasLOS; //has line of sight
-
+	protected bool hasPathLOS; //can run towards player
+	protected bool hasFireLOS; //can see player
 
 	//navigation fields: usable by inheritors
 	protected Navigator navigator;
@@ -30,6 +30,7 @@ public abstract class AI_Actor : Actor {
 	protected RaycastHit2D[] castHits;
 	protected ContactFilter2D obstacleFilter; //sees terrain AND actors
 	protected ContactFilter2D tileFilter; //only sees terrain
+	protected ContactFilter2D fireFilter; //determines line of sight
 	public Collider2D castCollider;
 
 
@@ -40,6 +41,7 @@ public abstract class AI_Actor : Actor {
 
 		obstacleFilter = Navigator.GetFilterFromBlockingType(bType, true);
 		tileFilter = Navigator.GetFilterFromBlockingType(bType, false);
+		fireFilter = tileFilter;
 		castHits = new RaycastHit2D[maxHits];
 		StartCoroutine (AI_Tick ());
 		lockAI = 1; //locked by default until we enter aggro range
@@ -94,20 +96,19 @@ public abstract class AI_Actor : Actor {
 	 * 
 	 */
 
-	virtual protected IEnumerator AI_Tick(){
+	IEnumerator AI_Tick(){
 		while (true){
 			if (this.IsActive()){
-				hasLOS = (0 == castCollider.Cast(directMove, tileFilter, castHits, directMove.magnitude));
+				hasPathLOS = (0 == castCollider.Cast(directMove, tileFilter, castHits, directMove.magnitude));
+				hasFireLOS = (0 == castCollider.Cast(directMove, fireFilter, castHits, directMove.magnitude));
 				directMove = targetObject.transform.position - transform.position;
 
 				//if we have line of sight, check if we are in hover range. if so, hover.
-				if (hasLOS){
-					if (directMove.magnitude <= hoverDistance){
-						OnInHoverDistance ();
-					}
-					else { //else, run straight towards our target
-						OnDirectMove ();
-					}
+				if (hasFireLOS && directMove.magnitude <= hoverDistance) {
+					OnInHoverDistance ();
+				}
+				else if (hasPathLOS) { //else, if we can, run straight towards our target
+					OnDirectMove ();
 				}
 				//pathfinding; only if we must
 				else {

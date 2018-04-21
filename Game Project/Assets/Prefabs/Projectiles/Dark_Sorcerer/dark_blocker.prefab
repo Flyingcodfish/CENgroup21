@@ -92,7 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0}
   damage: 25
-  lifespan: 10
+  lifespan: 5
   death_object: {fileID: 1695958140473736, guid: 22c4d933fc170a2428d8e4cb4147131f,
     type: 2}
   angVelocity: 3.5

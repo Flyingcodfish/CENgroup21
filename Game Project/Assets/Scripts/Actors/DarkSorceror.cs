@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+using Pathfinding;
 
 public class DarkSorceror : AI_Actor {
 
@@ -9,13 +11,19 @@ public class DarkSorceror : AI_Actor {
 
 	public Transform fireTarget;
 	private Vector3 fireDirection;
+	Vector3 localScale;
 
-	private float attackTimer;
+	private bool attackTrigger;
 	private float attackCooldown;
+	public float[] attackCooldownRange = {1f, 2f};
 
-	private float teleportTimer;
-	private float teleportTime; //maybe a pair of values representing a range
+	private float teleportTime;
+	public float[] teleportTimeRange = {5f, 7f};
+	public bool teleporting = false;
+	Vector3 teleportLocation;
 
+	public Tilemap teleportMap;
+	Vector3Int[] teleportLocationList;
 
 	//attack fields
 	public circle_shot circleShotPrefab;
@@ -36,6 +44,8 @@ public class DarkSorceror : AI_Actor {
 	private blocker_shot blockerShotInstance;
 	public float blockerInitialSpeed = 0.1f;
 	public int blockerCount = 12;
+	bool isBlocking;
+	float blockCooldown = 4f;
 
 	public trap_shot trapShotPrefab;
 	private trap_shot trapShotInstance;
@@ -48,23 +58,37 @@ public class DarkSorceror : AI_Actor {
 	//
 
 	void Update(){
-		//test fire
-		if (Input.GetKeyDown(KeyCode.F)){
-			FireCircleWave();
-		}
-		if (Input.GetKeyDown(KeyCode.G)){
-			FireSpreadWave();
-		}
-		if (Input.GetKeyDown(KeyCode.H)){
-			StartBlocking();
-		}
-		if (Input.GetKeyDown (KeyCode.J)) {
-			FireTrap ();
+//		//for test-firing attacks
+//		if (Input.GetKeyDown(KeyCode.F)){
+//			FireCircleWave();
+//		}
+//		if (Input.GetKeyDown(KeyCode.G)){
+//			FireSpreadWave();
+//		}
+//		if (Input.GetKeyDown(KeyCode.H)){
+//			StartBlocking();
+//		}
+//		if (Input.GetKeyDown (KeyCode.J)) {
+//			FireTrap ();
+//		}
+		if (moveVector.magnitude <= moveDeadZone) {	//idle
+			animator.SetInteger ("Direction", 0);
+		} else if (moveVector.x > 0) {				//right
+			localScale.x = Mathf.Abs (localScale.x);
+			transform.localScale = localScale;
+			animator.SetInteger ("Direction", 4);
+			localScale.x = Mathf.Abs(localScale.x);
+			transform.localScale = localScale;
+		} else if (moveVector.x < 0) {				//left
+			localScale.x = Mathf.Abs (localScale.x) * -1;
+			transform.localScale = localScale;
+			animator.SetInteger ("Direction", 3);
+		} else if (moveVector.y < 0) {				//up
+			animator.SetInteger ("Direction", 2);
+		} else if (moveVector.y > 0) {				//down
+			animator.SetInteger ("Direction", 1);
 		}
 	}
-
-
-
 
 	override public void AI_Start(){
 		if (GameSaver.liveSave.bossKilled [2] == true)
@@ -72,21 +96,111 @@ public class DarkSorceror : AI_Actor {
 		canBeFrozen = false;
 		targetObject = GameObject.FindObjectOfType<PlayerControl> ().gameObject;
 		fireTarget = targetObject.transform;
+		localScale = transform.localScale;
+		lockAI = 0;
+		fireFilter = Navigator.GetFilterFromBlockingType (Navigator.BlockingType.flying, false);
+		teleportLocationList = Pathfinding.MapConverter.GetAllTileLocations (teleportMap);
+		StartCoroutine (AttackTimer ());
+		StartCoroutine (TeleportTimer ());
 	}
 
 	void FixedUpdate(){
 		//apply moveVector as a force based on moveSpeed
-		rbody.AddForce(maxSpeed * moveVector.normalized);
+		if (teleporting == false)
+			rbody.AddForce(maxSpeed * moveVector.normalized);
 	}
 
 	override protected void OnInHoverDistance(){
 		moveVector = Vector3.zero;
-		//fire shot?
+		if (attackTrigger && !teleporting) {
+			LaunchAttack ();
+		}
 	}
+
+	IEnumerator AttackTimer(){
+		while (true) {
+			attackCooldown = Random.Range (attackCooldownRange [0], attackCooldownRange [1]);
+			yield return new WaitForSeconds (attackCooldown);
+
+			attackTrigger = true;
+			while (attackTrigger)
+				yield return null;
+		}
+	}
+
+	IEnumerator BlockTimer(){
+		yield return new WaitForSeconds (blockCooldown);
+		isBlocking = false;
+	}
+
+	IEnumerator TeleportTimer(){
+		while (true) {
+			teleportTime = Random.Range (teleportTimeRange [0], teleportTimeRange [1]);
+			yield return new WaitForSeconds (teleportTime);
+
+			Vector3Int coord = teleportLocationList [Random.Range (0, teleportLocationList.Length)];
+			teleportLocation = teleportMap.GetCellCenterWorld (coord);
+
+			StartCoroutine (TeleportAndFade ());
+			while (teleporting)
+				yield return null;
+		}
+	}
+
+	IEnumerator TeleportAndFade(){
+		teleporting = true;
+		float duration = 0.15f; //duration of animation in seconds
+		float fadeFramerate = 30; //Hz
+		float step = 1f / (duration*fadeFramerate);
+		Color spriteColor = spriteRenderer.color;
+
+		//fade out
+		for (float alpha = 1f; alpha > 0f; alpha -= step){
+			spriteColor.a= alpha; //fade out as size increases
+			spriteRenderer.color = spriteColor;
+			yield return new WaitForSeconds(1/fadeFramerate);
+		}
+
+		//teleport
+		transform.position = teleportLocation;
+
+		//fade in
+		for (float alpha = 0f; alpha < 1f; alpha += step){
+			spriteColor.a= alpha; //fade out as size increases
+			spriteRenderer.color = spriteColor;
+			yield return new WaitForSeconds(1/fadeFramerate);
+		}
+
+		teleporting = false;
+	}
+
 
 	//
 	// ATTACKS
 	//
+
+	void LaunchAttack(){
+		attackTrigger = false;
+		int choice = Random.Range (0, (isBlocking ? 4 : 5)); //only allow blocking if we're not already blocking
+		switch (choice) {
+		case 0:
+			//nothing, give player a small break
+			return;
+		case 1:
+			FireCircleWave ();
+			break;
+		case 2:
+			FireSpreadWave ();
+			break;
+		case 3:
+			FireTrap ();
+			break;
+		case 4:
+			StartBlocking ();
+			break;
+		}
+	}
+
 
 	void FireCircleWave(){
 		fireDirection = fireTarget.position - transform.position;

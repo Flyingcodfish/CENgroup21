@@ -92,5 +92,14 @@ namespace Pathfinding{
 			Vector3Int point = pathMap.referenceTilemap.WorldToCell(pos);
 			return TileToNode(pathMap, point.x, point.y);
 		}
+
+		public static Vector3Int[] GetAllTileLocations(Tilemap map){
+			List<Vector3Int> tileList = new List<Vector3Int> ();
+			foreach (Vector3Int position in map.cellBounds.allPositionsWithin){
+				if (map.HasTile (position))
+					tileList.Add (position);
+			}
+			return tileList.ToArray ();
+		}
 	}
 }
