@@ -80,7 +80,7 @@ public class DialogueManager5 : MonoBehaviour
 
         if (iterator == 8)
         {
-            SceneManager.LoadScene("dungeon2_entrance");
+			chatBox.SetActive (false);
         }
     }
 }

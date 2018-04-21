@@ -95,14 +95,8 @@ namespace Pathfinding
 							continue;
 						neighbours.Add(nodes[checkX, checkY]);
 					}
-
-		
-
-					
-
                 }
             }
-
             return neighbours;
         }
     }

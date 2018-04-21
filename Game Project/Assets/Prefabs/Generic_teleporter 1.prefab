@@ -253,7 +253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teleportAnim: {fileID: 1782479272681098}
   teleportSound: {fileID: 1034703376585764}
-  newSceneName: hub
+  newSceneName: dungeon2_entrance
 --- !u!212 &212449259739374458
 SpriteRenderer:
   m_ObjectHideFlags: 1
