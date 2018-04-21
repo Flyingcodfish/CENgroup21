@@ -88,14 +88,18 @@ namespace Pathfinding
 					int checkX = node.gridX + x;
 					int checkY = node.gridY + y;
 
-					//can't go diagonal if there's a wall in an adjacent orthogonal position
-					if (x!=0 && y!=0 && !(nodes[checkX, node.gridY].walkable && nodes[node.gridX, checkY].walkable))
-						continue;
-					
 					//ensure x and y are in bounds
 					if (checkX >= 0 && checkX < gridSizeX && checkY >= 0 && checkY < gridSizeY){
+						//if we're looking diagonally, and at least one of the adjacent orthagonal tiles is not walkable
+						if (x!=0 && y!=0 && !(nodes[checkX, node.gridY].walkable && nodes[node.gridX, checkY].walkable))
+							continue;
 						neighbours.Add(nodes[checkX, checkY]);
-                    }
+					}
+
+		
+
+					
+
                 }
             }
 
