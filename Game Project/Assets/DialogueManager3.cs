@@ -72,7 +72,7 @@ public class DialogueManager3 : MonoBehaviour
     {
         iterator++;
         if (!GameSaver.liveSave.tutorialpoint) DisplayDialogue();
-        else if (GameSaver.liveSave.tutorialpoint && !GameSaver.liveSave.tutorialpoint2) DisplayDialogue2();
+        else if (GameSaver.liveSave.tutorialpoint4 && !GameSaver.liveSave.tutorialpoint2) DisplayDialogue2();
         else if (GameSaver.liveSave.tutorialpoint2 && !GameSaver.liveSave.tutorialpoint3) DisplayDialogue3();
         else if (GameSaver.liveSave.tutorialpoint3) DisplayDialogue4();
     }
