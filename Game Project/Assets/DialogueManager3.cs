@@ -25,16 +25,14 @@ public class DialogueManager3 : MonoBehaviour
     public GameObject Gobby;
     public GameObject Gobby2;
     public GameObject Gobby3;
-    public GameObject LatoArrow;
     private int iterator = 0;
 
     void Start()
     {
         iterator = 0;
-        if (GameSaver.liveSave.bossKilled[0] && !GameSaver.liveSave.tutorialpoint)
+        if (GameSaver.liveSave.bossKilled[0] && GameSaver.liveSave.tutorialpoint)
         {
             Gobby.SetActive(false);
-            LatoArrow.SetActive(true);
             arrow1.SetActive(true);
         }
         if (GameSaver.liveSave.tutorialpoint && !GameSaver.liveSave.tutorialpoint2)
@@ -75,7 +73,7 @@ public class DialogueManager3 : MonoBehaviour
         iterator++;
         if (!GameSaver.liveSave.tutorialpoint) DisplayDialogue();
         else if (GameSaver.liveSave.tutorialpoint && !GameSaver.liveSave.tutorialpoint2) DisplayDialogue2();
-        else if (GameSaver.liveSave.tutorialpoint2) DisplayDialogue3();
+        else if (GameSaver.liveSave.tutorialpoint2 && !GameSaver.liveSave.tutorialpoint3) DisplayDialogue3();
         else if (GameSaver.liveSave.tutorialpoint3) DisplayDialogue4();
     }
 
