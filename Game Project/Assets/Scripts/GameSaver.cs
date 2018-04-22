@@ -112,6 +112,7 @@ public class SavedGame {
     public bool tutorialpoint = false;
     public bool tutorialpoint2 = false;
     public bool tutorialpoint3 = false;
+    public bool tutorialpoint4 = false;
 
 }
 

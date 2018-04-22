@@ -35,13 +35,13 @@ public class DialogueManager3 : MonoBehaviour
             Gobby.SetActive(false);
             arrow1.SetActive(true);
         }
-        if (GameSaver.liveSave.tutorialpoint && !GameSaver.liveSave.tutorialpoint2)
+        else if (GameSaver.liveSave.tutorialpoint4 && !GameSaver.liveSave.tutorialpoint2)
         {
             arrow1.SetActive(false);
             Gobby.SetActive(false);
             Gobby2.SetActive(true);
         }
-        if (GameSaver.liveSave.tutorialpoint2)
+        else if (GameSaver.liveSave.tutorialpoint2)
         {
             waterarrow.SetActive(true);
             Lato.SetActive(true);
@@ -55,7 +55,7 @@ public class DialogueManager3 : MonoBehaviour
             exclamation2.SetActive(false);
             question.SetActive(false);
             question2.SetActive(false);
-            if (!GameSaver.liveSave.watertutorialpoint)
+            if (!GameSaver.liveSave.bossKilled[0])
             {
                 firearrow.SetActive(true);
                 firearrow2.SetActive(true);

@@ -51,6 +51,7 @@ public class DialogueManager4 : MonoBehaviour
 
         if (iterator == 1)
         {
+            GameSaver.liveSave.tutorialpoint4 = true;
             dialogueText.text = "The next step would be to enter the Water Dungeon, but Gobby wanted a word with you before you left. You’ll find him south of here, at the merchant’s.";
             return;
         }
