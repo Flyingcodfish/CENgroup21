@@ -28,6 +28,7 @@ public class DialogueManager4 : MonoBehaviour
         {
             Gobby.SetActive(false);
             if (GameSaver.liveSave.bossKilled[1]) Lato.SetActive(false);
+            DisplayDialogue2();
         }
     }
 
