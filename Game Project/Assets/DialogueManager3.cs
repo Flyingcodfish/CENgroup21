@@ -129,7 +129,7 @@ public class DialogueManager3 : MonoBehaviour
             return;
         }
 
-        if (iterator == 6)
+        if (iterator == 7)
         {
             chatBox.SetActive(false);
         }
