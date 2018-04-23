@@ -19,7 +19,7 @@ public class CoinScript : MonoBehaviour {
         SetText();
     }
     private void SetText(){
-        coinText.text = "Coins: " + player.coins.ToString();
+        coinText.text =  player.coins.ToString();
     }
     public void AddCoins(CoinType coin) // easy add different coin values with additional cases 
     {
