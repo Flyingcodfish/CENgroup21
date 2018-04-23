@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 114159163772386310}
   - component: {fileID: 61084456696148126}
   - component: {fileID: 212844753471890974}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Generic_teleporter 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
