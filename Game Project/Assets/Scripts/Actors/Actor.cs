@@ -126,7 +126,7 @@ public abstract class Actor : MonoBehaviour {
 
 	IEnumerator AnimateHealth()
     {
-        Color baseColor = this.spriteRenderer.color;
+		Color baseColor = Color.white;//this.spriteRenderer.color;
         int ticker = 0;
 
         for (float t = 0; t < iFrameTime; t += flashPeriod / 2)
@@ -140,7 +140,7 @@ public abstract class Actor : MonoBehaviour {
     }
 
 	IEnumerator AnimateDamage(){
-		Color baseColor = this.spriteRenderer.color;
+		Color baseColor = Color.white;//this.spriteRenderer.color;
 		int ticker = 0;
 		this.isInvincible = true;
 

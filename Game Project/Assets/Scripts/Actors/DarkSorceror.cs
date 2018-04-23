@@ -152,7 +152,7 @@ public class DarkSorceror : AI_Actor {
 		float duration = 0.15f; //duration of animation in seconds
 		float fadeFramerate = 30; //Hz
 		float step = 1f / (duration*fadeFramerate);
-		Color spriteColor = spriteRenderer.color;
+		Color spriteColor = Color.white;//spriteRenderer.color;
 
 		//fade out
 		for (float alpha = 1f; alpha > 0f; alpha -= step){

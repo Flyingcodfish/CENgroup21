@@ -78,6 +78,19 @@ public class DevConsole : MonoBehaviour {
 				case "coins":
 					currentMode = Command.addMoney;
 					break;
+				case "demo":
+					Debug.Log ("Entering demo mode.");
+					//god mode
+					player.isInvincible = true; //can be toggled off with godmode
+					player.infiniteMana = true;
+					//access all dungeons
+					GameSaver.liveSave.watertutorialpoint = true;
+					GameSaver.liveSave.firetutorialpoint = true;
+					GameSaver.liveSave.mazetutorialpoint = true;
+					//add a buncha money
+					player.coins = 99999;
+					player.GetComponentInChildren<CoinScript> ().SetText ();
+					return;
 				default:
 					Debug.Log("Error: '" + word + "' is not a recognzed command.");
 					return;
@@ -101,6 +114,7 @@ public class DevConsole : MonoBehaviour {
 				break;
 			case Command.addMoney:
 				player.coins += Int32.Parse (word, NumberStyles.AllowLeadingSign);
+				player.GetComponentInChildren<CoinScript> ().SetText ();
 				break;
 			case Command.setFlag:
 				switch (word) {
