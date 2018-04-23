@@ -30,7 +30,7 @@ public class DialogueManager3 : MonoBehaviour
     void Start()
     {
         iterator = 0;
-        if (GameSaver.liveSave.bossKilled[0] && GameSaver.liveSave.tutorialpoint)
+        if (GameSaver.liveSave.bossKilled[0] && GameSaver.liveSave.tutorialpoint && !GameSaver.liveSave.tutorialpoint4)
         {
             Gobby.SetActive(false);
             arrow1.SetActive(true);
